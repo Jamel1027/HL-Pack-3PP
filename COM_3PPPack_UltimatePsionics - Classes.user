@@ -58,9 +58,14 @@ April 2, 2014 - Tim Shadow
   <thing id="cPWaMarPow" name="Martial Power" description="If the psychic warrior makes a melee attack, he can manifest a path power as part of the attack action. The power takes effect immediately after the attack has been finished." compset="ClSpecial" summary="Manifest a path power as part of a melee attack.">
     <tag group="SpecType" tag="Attack"/>
     </thing>
-  <thing id="cPWaTwistP" name="Twisting Paths" description="While maintaining psionic focus and using a Trance, the psychic warrior can \nchange into the Trance of his other path as a swift action." compset="ClSpecial" summary="Switch trances as a swift action."></thing>
+  <thing id="cPWaTwistP" name="Twisting Paths" description="While maintaining psionic focus and using a Trance, the psychic warrior can \nchange into the Trance of his other path as a swift action." compset="ClSpecial" summary="Switch trances as a swift action.">
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="abAction" tag="Swift"/>
+    </thing>
   <thing id="cPWaPathwe" name="Pathweaving" description="As long as the psychic warrior maintains psionic focus, once per day he can gain the benefits of both of his Trances for up to 5 minutes.  Activating this ability is a free action.  \nEvery third level thereafter, the psychic warrior can use this ability an additional time per day." compset="ClSpecial" summary="Gain the benefit of both path trances for an encounter.">
     <tag group="User" tag="Tracker"/>
+    <tag group="abAction" tag="Free"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostLevel" priority="10000" index="2"><![CDATA[      ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] = 0)
 
@@ -89,6 +94,7 @@ April 2, 2014 - Tim Shadow
     <tag group="AbilType" tag="Super"/>
     <tag group="Usage" tag="Day"/>
     <tag group="User" tag="Tracker"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cPWaPathSk" name="Path Skill" description="At 4th level, the psychic warrior gains a +2 bonus to one skill associated with a path he is on. Every three levels thereafter, he can choose to increase the bonus to one of his path skills by +2 (to a maximum of +6 for any one path skill). This may be a skill he has already chosen or a new skill associated with a path he is on.\n\n{b}Note:{/b} If you don&apos;t see a Knowledge or Profession like skill in the drop down please go to the {b}Skills{/b} tab and add the skill to your character.  It will then be avaible to select from the drop down." compset="ClSpecial" summary="+2 bonus to one skill associated with the path you are on.">
     <fieldval field="abValue" value="2"/>
@@ -311,6 +317,7 @@ April 2, 2014 - Tim Shadow
     </thing>
   <thing id="cPsiRecInf" name="Recovered Information" description="At 2nd level, as long as you maintain psionic focus, when someone successfully saves against a Clairsentience power you&apos;ve manifested, you learn about a single psionic effect currently in effect (if any) on the target. Each subsequent successful save against a Clairsentience power you manifest transfers information about another psionic effect currently in effect (if any) on the target. If there are no psionic powers in effect on the target that you do not already know, then you learn information about a single psionic item the creature currently possesses, as if you had {i}identified{/i} the item. This effect does not give any information on artifacts. The number of psionic effects or items you learn about per save increases by one every four psion levels thereafter." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="Render" priority="1000"><![CDATA[      ~the number of psionic effects or items (level-2)/4
       var bonus as number
       bonus = (#levelcount[Psion] - 2)/4
@@ -345,9 +352,12 @@ field[abValue].value += 2 + field[xCount].value]]></eval>
     <tag group="AbilType" tag="Super"/>
     <tag group="User" tag="Tracker" name="Tracker" abbrev="Tracker"/>
     <tag group="Usage" tag="Day" name="/day" abbrev="/day"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cPsiPerFSi" name="Perpetual Foresight" description="At 20th, your ability to foresee the different possibilities has suffused you. Anytime you roll a d20, you may expend your psionic focus as an immediate action to roll a second time. To choose the result of the second roll, you must pay the unmodified die roll in power points." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cPsiShaper" name="Metacreativity (Shaper)" description="A psion specializing in metacreativity is known as a shaper. This discipline includes powers that draw ectoplasm from the Astral Plane, creating semisolid and solid items such as armor, weapons, or animated constructs to do battle at the shaper&apos;s command.\n\n{i}Class Skills:{/i} Bluff (Cha), Disguise (Cha), and Use Magic Device (Cha)." compset="CustomSpec" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -497,7 +507,13 @@ field[abValue].value += 2 + field[xCount].value]]></eval>
     </thing>
   <thing id="cPsiSumCal" name="Summoner&apos;s Call" description="At 2nd level, if you maintain focus when manifesting a power of the creation subdiscipline, the duration is increased by 1 round plus 1 round for every four psion levels. In addition, your astral constructs gain an additional menu option of the highest menu available when you manifest the power." compset="ClSpecial">
     <tag group="AbilType" tag="Extra"/>
-    <eval phase="Render" priority="1000"><![CDATA[      ~the bonus rounds for the creation subdiscipline 1+level/4
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="Render" priority="1000"><![CDATA[      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
+
+      ~the bonus rounds for the creation subdiscipline 1+level/4
       var bonus as number
       bonus = 1+(#levelcount[Psion]/4)
       bonus = round(bonus,0,-1)
@@ -542,6 +558,7 @@ field[abSumm].text = "Gain concealment for " & field[abValue].value & "rounds, "
     </thing>
   <thing id="cPsiBrePow" name="Breach Power Resistance" description="At 8th level, anytime you manifest a power, you may expend your psionic focus to add your Intelligence modifier on any check to overcome power resistance.   This bonus increases by 1 every two psion levels thereafter." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="Render" priority="1000"><![CDATA[      ~the bonus rounds for the creation subdiscipline 1+level/4
       var bonus as number
       bonus = #attrmod[aINT] + ((#levelcount[Psion]-8)/2)
@@ -596,13 +613,7 @@ linkage[table].field[cSBonFtTot].arrayvalue[16] = 4</eval>
   <thing id="cPsiTelHur" name="Telekinetic Hurl" description="At 2nd level, as long as you maintain psionic focus, you gain the ability to telekinetically hurl objects of up to 5 lbs. as a ranged attack at an enemy within 30 ft. Such attacks deal 1d4 points of damage due to the force exerted. This damage increases by 1d4 points of damage for every four psion levels thereafter." compset="ClSpecial">
     <fieldval field="abValue2" value="4"/>
     <tag group="AbilType" tag="Super"/>
-    <eval phase="Render" priority="1000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ if we've been disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
-
-field[abSumm].text = "Hurl 5lb object for " & field[abValue].value & "d" & field[abValue2].value & " dmg when psi-focus."]]></eval>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostLevel" priority="10000" index="2"><![CDATA[
 ~Set the list name
 field[listname].text = field[thingname].text & " " & field[xIndex].value & "d" & field[abValue2].value
@@ -614,6 +625,13 @@ doneif (tagis[Helper.SpcDisable] <> 0)
 
 field[abValue].value += field[xCount].value
 field[livename].text = field[thingname].text & " " & field[abValue].value & "d" & field[abValue2].value]]></eval>
+    <eval phase="Render" priority="1000"><![CDATA[
+~ If we're not shown, just get out now
+doneif (tagis[Helper.ShowSpec] <> 1)
+~ if we've been disabled, get out now
+doneif (tagis[Helper.SpcDisable] <> 0)
+
+field[abSumm].text = "Hurl 5lb object for " & field[abValue].value & "d" & field[abValue2].value & " dmg when psi-focus."]]></eval>
     </thing>
   <thing id="cPsiKinAur" name="Kinetic Aura" description="At 8th level, you gain a +1 deflection bonus to AC. This bonus increases by +1 every three levels thereafter." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
@@ -643,12 +661,14 @@ hero.child[ArmorClass].field[tACDeflect].value = field[abValue].value]]></eval>
     <tag group="User" tag="Tracker"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPsiEngImm" name="Energy Immunity" description="At 20th level, when you gain psionic focus, you gain immunity to either cold, electricity, fire, force, or sonic, at your choice. You may change this immunity by gaining psionic focus again, and need not maintain psionic focus to maintain the immunity." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
     </thing>
   <thing id="cPsiMetHea" name="Metabolic Healing" description="At 2nd level, as long as you maintain psionic focus, you gain fast healing 1 when you manifest any psychometabolism power on yourself.  This fast healing lasts for a number of rounds equal to the level of the power manifested.   The fast healing increases by 1 for every four psion levels thereafter." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="Render" priority="1000"><![CDATA[      ~the bonus rounds for the creation subdiscipline 1+level/4
       var bonus as number
       bonus = 1 + ((#levelcount[Psion]-2)/4)
@@ -670,6 +690,7 @@ hero.child[ArmorClass].field[tACDeflect].value = field[abValue].value]]></eval>
     <tag group="AbilType" tag="Super"/>
     <tag group="Usage" tag="Day"/>
     <tag group="User" tag="Tracker"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cPsiInfFor" name="Infused Form" description="At 20th level, you gain DR 5/- and are treated as always under the effect of {i}adapt body{/i}." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
@@ -677,6 +698,8 @@ hero.child[ArmorClass].field[tACDeflect].value = field[abValue].value]]></eval>
     </thing>
   <thing id="cPsiNomSte" name="Nomad&apos;s Step" description="At 2nd level, as long as you maintain psionic focus, as a standard action you may teleport to a location up to 15 feet away.  You must have line of sight to the location and you can bring along possessions that amount to as much as a medium load.   The distance increases by 5 feet every psion level thereafter." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="abAction" tag="Standard"/>
     <eval phase="Render" priority="1000"><![CDATA[      ~the bonus rounds for the creation subdiscipline 1+level/4
       var bonus as number
       bonus = 15 + ((#levelcount[Psion]-2) * 5)
@@ -709,6 +732,7 @@ hero.child[ArmorClass].field[tACDeflect].value = field[abValue].value]]></eval>
     </thing>
   <thing id="cPsiMenInt" name="Mental Intrusion" description="At 2nd level, as long as you maintain psionic focus, increase the save DC of any mind-affecting power you manifest by 1 for every 2 power points you spend augmenting the power, provided the augmentation does not already increase the power&apos;s save DC.   For the purpose of this ability, you may spend additional power points augmenting a mind-affecting power&apos;s save DC even on a power that normally does not have any augment options." compset="ClSpecial">
     <tag group="AbilType" tag="Extra"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cPsiTelpth" name="Telepathy" description="At 8th level, you gain telepathy out to 400 ft. and can communicate with any creature, regardless of intelligence, so long as they have an Intelligence of 1 or higher.   The range of your telepathy increases by 10 ft. every psion level thereafter.\nAdditionally, as long as you maintain psionic focus, you can detect other creatures within 30 ft. using telepathy to communicate, although you cannot determine the content of the communication." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
@@ -944,18 +968,9 @@ Endif]]></eval>
     <tag group="AbilType" tag="Super"/>
     <tag group="SpecType" tag="Attack" name="Attack" abbrev="Attack"/>
     <tag group="User" tag="Activation"/>
-    <eval phase="PostLevel" priority="10000" index="2"><![CDATA[
-      ~Set the list name
-      field[listname].text = field[thingname].text & " " & signed(field[xIndex].value) & "d" & field[abValue2].value
-
-      ~ If we're not shown, just get out now
-      doneif (tagis[Helper.ShowSpec] <> 1)
-      ~ if we've been disabled, get out now
-      doneif (tagis[Helper.SpcDisable] <> 0)
-
-      field[abValue].value += field[xCount].value
-      field[livename].text = field[thingname].text & " " & signed(field[abValue].value) & "d" & field[abValue2].value
-      field[abSumm].text = signed(field[abValue].value) & "d" & field[abValue2].value & " to your mind blade damage."]]></eval>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Move"/>
+    <tag group="abAction" tag="Swift"/>
     <eval phase="PostLevel" priority="20000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -969,6 +984,18 @@ Endif]]></eval>
         ~ Set the extra damage onto our mind blade weapon
         #extradamage[eachpick,signed(field[abValue].value) & "d" & field[abValue2].value & " psy",field[name].text]
       nexteach]]></eval>
+    <eval phase="PostLevel" priority="10000" index="2"><![CDATA[
+      ~Set the list name
+      field[listname].text = field[thingname].text & " " & signed(field[xIndex].value) & "d" & field[abValue2].value
+
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ if we've been disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      field[abValue].value += field[xCount].value
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value) & "d" & field[abValue2].value
+      field[abSumm].text = signed(field[abValue].value) & "d" & field[abValue2].value & " to your mind blade damage."]]></eval>
     </thing>
   <thing id="cSknBSAltB" name="Alter Mind Blade" description="The soulknife gains the ability to shape her mind blade into different weapon forms. She may change her blade&apos;s form to the light weapon, one-handed weapon, or two-handed weapon forms any time she forms her mind blade. Additionally, the soulknife may choose to form her mind blade into a one-handed weapon and a light weapon instead of two light weapons." compset="CustomSpec" summary="You can reshape your mind blade any time you form it" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -1065,6 +1092,7 @@ Endif]]></eval>
     <tag group="Helper" tag="NoPathSoc"/>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <prereq message="Soulknife Level 12+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -1081,6 +1109,7 @@ Endif]]></eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="Standard"/>
     <prereq message="Soulknife Level 12+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -1139,6 +1168,8 @@ Endif]]></eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     <prereq message="Soulknife Level 10+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -1242,6 +1273,7 @@ else
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <prereq message="Soulknife Level 8+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -1346,6 +1378,8 @@ perform hero.childfound[iPUMndBl2H].assign[wCategory.RangeThrow]]]></eval>
     <tag group="Helper" tag="NoPathSoc"/>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
+    <tag group="StandardDC" tag="BAB"/>
+    <tag group="abSave" tag="FortNeg"/>
     </thing>
   <thing id="cSknEnhMB" name="Enhanced Mind Blade" description="A soulknife&apos;s mind blade improves as the character gains higher levels. At 3rd level and every odd level thereafter, the mind blade gains a cumulative +1 enhancement bonus that he may spend on an actual enhancement bonus or on weapon special abilities. A soulknife&apos;s level determines his maximum enhancement bonus (see Table 2-8: The Soulknife). The soulknife may (and must, when his total enhancement is higher than his maximum bonus) apply any special ability from the table below instead of an enhancement bonus, as long as he meets the level requirements. A soulknife can choose any combination of weapon special abilities and/or enhancement bonus that does not exceed the total allowed by the soulknife&apos;s level, but he must assign at least a +1 enhancement bonus before assigning any special abilities.\n\nIf the soulknife shapes his mind blade into two items, the enhancement bonus of his mind blade (if any) is reduced by 1 (to a minimum of 0). If this would reduce the enhancement bonus on the mind blades to 0 and weapon special abilities are applied, the soulknife must reshape his mind blade to make the options valid. Both mind blades have the same selection of enhancement bonus and weapon special abilities (if any). This penalty does not apply when using the Mind Shield blade skill.\n\n{b}Note:{/b} To ehance your mind blade go to the {b}Weapons{/b} tab and click on the &quot;Wrench/Hammer&quot; icon.  Then you can make it a +1 mindblade or a +1 Flaming mindblade.  Currently the scripts will not error check if you increase the bonus past what you should be allowed or take a invalid item power.  This will come in a future update." compset="ClSpecial" summary="You can enhance your mind blade with extra power.">
     <tag group="SpecType" tag="Attack" name="Attack" abbrev="Attack"/>
@@ -1643,9 +1677,7 @@ linkage[table].field[cBonFtTot].arrayvalue[16] = 5
     <tag group="Helper" tag="NoPathSoc"/>
     <tag group="SpecSource" tag="cHelpWld"/>
     <tag group="Custom" tag="SurgeWarr" name="Surge - Warrior&apos;s"/>
-    <bootstrap thing="fToughness">
-      <autotag group="thing" tag="skipprereq"/>
-      </bootstrap>
+    <tag group="abAction" tag="PUExpFocus"/>
     <bootstrap thing="cWldHarBod">
       <autotag group="ClSpecWhen" tag="5"/>
       </bootstrap>
@@ -1657,6 +1689,9 @@ linkage[table].field[cBonFtTot].arrayvalue[16] = 5
       </bootstrap>
     <bootstrap thing="cWldHarBod">
       <autotag group="ClSpecWhen" tag="17"/>
+      </bootstrap>
+    <bootstrap thing="fToughness">
+      <autotag group="thing" tag="skipprereq"/>
       </bootstrap>
     <eval phase="First" priority="1000"><![CDATA[
 ~ Update Surge Bond Text
@@ -2549,9 +2584,15 @@ if (hero.child[skSurvival].tagis[Helper.SkillFocus] + #hasability[cRgrTrack] >= 
     <tag group="AbilType" tag="Super"/>
     <tag group="SpecType" tag="Sense"/>
     </thing>
-  <thing id="cBrainNauS" name="Brain Nausea (sickened)" description="A phrenic slayer of 2nd level or higher has developed an innate backlash effect when her favored enemy targets her with mind-affecting effects. Any time the phrenic slayer makes a successful save against a mind-affecting effect from her favored enemy and has psionic focus, the favored enemy must make a successful Will save (DC 10 + ½ slayer level + Wisdom modifier) or be sickened for a number of rounds equal to the phrenic slayer&apos;s Wisdom modifier. At 6th level, the source is instead nauseated on a failed save. At 10th level, the source is stunned for one round on a failed save." compset="ClSpecial"></thing>
-  <thing id="cBrainNauN" name="Brain Nausea (nauseated)" description="A phrenic slayer of 2nd level or higher has developed an innate backlash effect when her favored enemy targets her with mind-affecting effects. Any time the phrenic slayer makes a successful save against a mind-affecting effect from her favored enemy and has psionic focus, the favored enemy must make a successful Will save (DC 10 + ½ slayer level + Wisdom modifier) or be sickened for a number of rounds equal to the phrenic slayer&apos;s Wisdom modifier. At 6th level, the source is instead nauseated on a failed save. At 10th level, the source is stunned for one round on a failed save." compset="ClSpecial"></thing>
-  <thing id="cBrainNauT" name="Brain Nausea (stunned)" description="A phrenic slayer of 2nd level or higher has developed an innate backlash effect when her favored enemy targets her with mind-affecting effects. Any time the phrenic slayer makes a successful save against a mind-affecting effect from her favored enemy and has psionic focus, the favored enemy must make a successful Will save (DC 10 + ½ slayer level + Wisdom modifier) or be sickened for a number of rounds equal to the phrenic slayer&apos;s Wisdom modifier. At 6th level, the source is instead nauseated on a failed save. At 10th level, the source is stunned for one round on a failed save." compset="ClSpecial"></thing>
+  <thing id="cBrainNauS" name="Brain Nausea (sickened)" description="A phrenic slayer of 2nd level or higher has developed an innate backlash effect when her favored enemy targets her with mind-affecting effects. Any time the phrenic slayer makes a successful save against a mind-affecting effect from her favored enemy and has psionic focus, the favored enemy must make a successful Will save (DC 10 + ½ slayer level + Wisdom modifier) or be sickened for a number of rounds equal to the phrenic slayer&apos;s Wisdom modifier. At 6th level, the source is instead nauseated on a failed save. At 10th level, the source is stunned for one round on a failed save." compset="ClSpecial">
+    <tag group="abAction" tag="PUExpFocus"/>
+    </thing>
+  <thing id="cBrainNauN" name="Brain Nausea (nauseated)" description="A phrenic slayer of 2nd level or higher has developed an innate backlash effect when her favored enemy targets her with mind-affecting effects. Any time the phrenic slayer makes a successful save against a mind-affecting effect from her favored enemy and has psionic focus, the favored enemy must make a successful Will save (DC 10 + ½ slayer level + Wisdom modifier) or be sickened for a number of rounds equal to the phrenic slayer&apos;s Wisdom modifier. At 6th level, the source is instead nauseated on a failed save. At 10th level, the source is stunned for one round on a failed save." compset="ClSpecial">
+    <tag group="abAction" tag="PUManFocus"/>
+    </thing>
+  <thing id="cBrainNauT" name="Brain Nausea (stunned)" description="A phrenic slayer of 2nd level or higher has developed an innate backlash effect when her favored enemy targets her with mind-affecting effects. Any time the phrenic slayer makes a successful save against a mind-affecting effect from her favored enemy and has psionic focus, the favored enemy must make a successful Will save (DC 10 + ½ slayer level + Wisdom modifier) or be sickened for a number of rounds equal to the phrenic slayer&apos;s Wisdom modifier. At 6th level, the source is instead nauseated on a failed save. At 10th level, the source is stunned for one round on a failed save." compset="ClSpecial">
+    <tag group="abAction" tag="PUManFocus"/>
+    </thing>
   <thing id="cLucidBuff" name="Lucid Buffer" description="At 3rd level, a phrenic slayer becomes especially skilled at resisting mental attacks. She gains a +2 competence bonus on saving throws against all compulsions and mind-affecting effects. This ability is active even if the phrenic slayer is unconscious, stunned, or otherwise helpless. This bonus increases to +4 at 8th level." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
     <eval phase="Final" priority="1000"><![CDATA[
@@ -2606,16 +2647,21 @@ if (hero.child[skSurvival].tagis[Helper.SkillFocus] + #hasability[cRgrTrack] >= 
   <thing id="cCereBlind" name="Cerebral Blind" description="After reaching 6th level, a phrenic slayer is protected from all devices, powers, and spells that reveal location. This ability protects against information gathering by clairsentience powers or effects that reveal location.\n\nThe ability even foils bend reality, limited wish, miracle, reality revision, and wish when they are used to gain information about the phrenic slayer&apos;s location (however, metafaculty can pierce this protective barrier). In the case of remote viewing or scrying that scans an area a phrenic slayer is in, the effect works, but the phrenic slayer simply isn&apos;t detected. Remote viewing or scrying attempts that are targeted specifically at a phrenic slayer do not work. This ability is active as long as the phrenic slayer is psionically focused." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
     <tag group="SpecType" tag="Resist"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cBreachPwr" name="Breach Power Resistance" description="A phrenic slayer of 8th level or higher can enhance her weapon with psionic might. Each successful melee attack (or ranged attack if the target is within 30 feet) she makes with her weapon against her favored enemy temporarily reduces its power resistance (if any) by 1. This penalty stacks. Unless the creature is slain, its lost power resistance returns all at once 12 hours later. This ability is active as long as the phrenic slayer is psionically focused. If the target has no power resistance, this ability does not function." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cCereImmun" name="Cerebral Immunity" description="On reaching 9th level, a phrenic slayer gains protection from all devices, powers, and spells that influence the mind. This ability grants her a +10 resistance bonus against almost all mind-affecting powers and effects (though the phrenic slayer can selectively allow powers or spells to affect her). The ability even foils bend reality, limited wish, miracle, reality revision, and wish when they are used to mentally influence a phrenic slayer. This ability is active as long as the phrenic slayer is psionically focused." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
     <tag group="SpecType" tag="Immune"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cReboundAt" name="Rebound Attack" description="At 10th level, if a phrenic slayer is targeted by her favored enemy by an effect that is subject to power resistance, as an immediate action, she may expend her psionic focus to rebound the effect on the source as if using reddopsi. This effect may not be used on touch range effects (including ranged touch attacks), effects that target an area, or effects such as dispel psionics. She may use this ability a number of times per day equal to 3 plus her Wisdom modifier." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cHelpPsU" name="Psion Uncarnate" compset="Class" uniqueness="unique">
     <fieldval field="cHDSides" value="6"/>
@@ -2944,6 +2990,7 @@ if (hero.tagis[Classes.Monk] <> 0) then
     <tag group="SpecType" tag="DR" name="Damage Reduction" abbrev="Damage Reduction"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <bootstrap thing="xDamRd">
       <autotag group="SpecSource" tag="cHelpFst"/>
       </bootstrap>
@@ -2965,15 +3012,22 @@ endif]]></eval>
     </thing>
   <thing id="cMesmerGlo" name="Mesmerising Glow" description="A psychic fist of 4th level can, as a standard action, spend 1 ki point to perform a visually-dazzling display, dazing up to half his class level in targets for one round unless the targets make a successful Will save (DC 10 + 1/2 psychic fist level + psychic fist&apos;s Wisdom modifier). All targets must be within 30 feet of the psychic fist and have line of sight to him to be affected." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
+    <tag group="StandardDC" tag="aWIS"/>
+    <tag group="abSave" tag="WillNeg"/>
     </thing>
   <thing id="cConcWill" name="Concentrated Will" description="Upon achieving 6th level, a psychic fist has learned to harness his internal energy to shrug off attacks that would harm others. Any time the psychic fist would suffer hit point damage, he may spend 2 ki points as an immediate action and make an Autohypnosis check (DC equal to double the damage of the attack) to ignore the damage. If the psychic fist fails the Autohypnosis check, the ki points are still spent and he still takes the damage." compset="ClSpecial"></thing>
   <thing id="cPsiAcro" name="Psionic Acrobatics" description="As long as a psychic fist of 7th level or higher maintains psionic focus, he adds his Wisdom modifier to his Acrobatics checks." compset="ClSpecial">
     <fieldval field="actName" value="Has Psionic Focus?"/>
     <tag group="User" tag="Activation"/>
-    <eval phase="PostAttr" priority="1000"><![CDATA[~If psionically focused, add Wisdom Modifier to acrobatics
-if (hero.tagis[Hero.PsiFocus] <> 0) then
-  #skillbonus[skAcrobat] += #attrmod[aWIS]
-endif]]></eval>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="PostAttr" priority="1000"><![CDATA[      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
+
+      ~If psionically focused, add Wisdom Modifier to acrobatics
+      #skillbonus[skAcrobat] += #attrmod[aWIS]]]></eval>
     </thing>
   <thing id="cPsychFus" name="Psychic Fusion" description="At 10th level, whenever a psychic fist successfully confirms a critical with a melee attack, he can manifest a power as a swift action. The power must include the target of the attack as one of its targets or in its area of effect and have a normal manifesting time of 1 standard action or less. Manifesting this power does not provoke an attack of opportunity." compset="ClSpecial"></thing>
   <thing id="cHelpPyr" name="Pyrokineticist" compset="Class" uniqueness="unique">
@@ -3789,6 +3843,9 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     <arrayval field="usrArray" index="1" value="Saves"/>
     <arrayval field="usrArray" index="0" value="Armor Class"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -3815,8 +3872,10 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
 
       ~ If we are Heavy/Medium encumbered get out now
       doneif (hero.tagis[Encumbered.Heavy] + hero.tagis[Encumbered.Medium] <> 0)
+      var v_focus as number
+      call PUPsiFocus
       ~ If Not psionically focused get out now
-      doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      doneif (v_focus <> 1)
       ~ If not active get out now
       doneif (field[abilActive].value <> 1)
 
@@ -3827,16 +3886,16 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
       ElseIf (field[usrIndex].value = 1) Then
         #applybonus[BonComp,hero.child[svAll],field[abValue].value]
       Endif]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-      Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManAsc" name="Maneuver (Ascetic Path)" description="Beginning at 3rd level, as an immediate action, you can expend your psionic focus to gain a +2 dodge bonus to your AC until the beginning of your next turn. This bonus increases by +1 for every five psychic warrior levels you have.{br}{br}In addition, if you did this in response to an attack and that attack misses you, you may take a 5-foot step as part of this action." compset="ClSpecial">
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
     Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaPathPo" name="Path Power" description="When manifesting this power, called a path power, the psychic warrior can either choose to manifest it for no cost by expending his psionic focus, in which case it cannot be augmented, or he can choose to manifest it normally, in which case his effective manifester level for this power is treated as one higher than normal." compset="ClSpecial" summary="Gain a bonus power related to your path.">
     <tag group="AbilType" tag="Extra"/>
     <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If Power tags then build search list
       If (tagcount[ClsAllowPs.?] <> 0) Then
@@ -3897,6 +3956,9 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     </thing>
   <thing id="cPWaTraAss" name="Trance (Assassin&apos;s Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus on attack rolls.  This bonus increases by 1 every 4 levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to attack rolls.">
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -3921,8 +3983,10 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
       ~ Set live name
       field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
+      var v_focus as number
+      call PUPsiFocus
       ~ If Not psionically focused get out now
-      doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      doneif (v_focus <> 1)
       ~ If not active get out now
       doneif (field[abilActive].value <> 1)
 
@@ -3930,12 +3994,13 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
       #applybonus[atmBonComp,hero.child[Attack],field[abValue].value]
       ~ Range bonus
       #applybonus[atrBonComp,hero.child[Attack],field[abValue].value]]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManAss" name="Maneuver (Assassin&apos;s Path)" description="Beginning at 3rd level, any time you strike an enemy with a melee attack and there are no other enemies adjacent to you, you can expend your psionic focus to deal an additional +2d6 damage. For every five psychic warrior levels you gain thereafter, this damage increases by +1d6. This damage is precision-based damage." compset="ClSpecial">
     <fieldval field="abValue" value="2"/>
     <fieldval field="abValue2" value="6"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000" index="2"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -3954,8 +4019,6 @@ Call PsyWarTrMa</eval>
       Endif
       ~ Set live name to include the bonus damage
       field[livename].text = field[thingname].text & " " & signed(field[abValue].value) & "d" & field[abValue2].value]]></eval>
-    <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
-      Call PsyWarTrMa</eval>
     </thing>
   <thing id="cWPaBraPri" name="Brawling Path" description="You bring the combat to your enemy - up into his face. Your powers allow you to overpower enemies and bring them to bear, either to bring justice to them, or to finish them off when they are out.\n\n{b}Bonus Class Skill{/b}: Escape Artist\n\n{b}Powers{/b}: Grip of iron, hammer\n\n{b}Skills{/b}: Acrobatics, Autohypnosis, Escape Artist\n\n{b}Note:{/b} You need to correctly set one of the Path&apos;s selected as your Primary path and the 2nd one as the Secondary path to have everthing calc correctly." compset="CustomSpec" summary="You are a follower of the Brawler&apos;s Path" uniqueness="unique">
     <comment><![CDATA[PathSkill - This tag group is used to setup the skills associated to the Path. These skills will only be allowed to be selection from the "PathSkill" class ability.
@@ -3993,6 +4056,9 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     </thing>
   <thing id="cPWaTraBra" name="Trance (Brawler&apos;s Path)" description="Beginning at 3rd level, while maintaining psionic focus, each time you make a successful grapple check, you can deal damage to that enemy equal to your Wisdom modifier." compset="ClSpecial" summary="When psi-focused and make a successful grapple you deal">
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostAttr" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -4006,12 +4072,12 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
 
       ~ Set Summary
       field[abSumm].text = "When psi-focused and make a successful grapple you deal " & signed(field[abValue].value) & " dmg."]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManBra" name="Maneuver (Brawler&apos;s Path)" description="{b}Maneuver{/b}: Beginning at 3rd level, as a swift action you can expend your psionic focus to cause an enemy you are grappling to take 2d6 non-lethal damage. For every two psychic warrior levels you gain thereafter, the damage increases by 1d6." compset="ClSpecial">
     <fieldval field="abValue" value="2"/>
     <fieldval field="abValue2" value="6"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Swift"/>
     <eval phase="PostLevel" priority="10000" index="2"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -4082,6 +4148,9 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     </thing>
   <thing id="cPWaTraFer" name="Trance (Feral Warrior&apos;s Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus to your attack rolls on attacks made with natural weapons. This bonus increases by 1 every four psychic warrior levels you gain thereafter." compset="ClSpecial" summary="When psi-focused gain a competence bonus to attack with natural weapons.">
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -4106,8 +4175,10 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
       ~ Set live name
       field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
+      var v_focus as number
+      call PUPsiFocus
       ~ If Not psionically focused get out now
-      doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      doneif (v_focus <> 1)
       ~ If not active get out now
       doneif (field[abilActive].value <> 1)
 
@@ -4118,11 +4189,12 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
         ~ Range bonus
         #applybonus[atrBonComp,eachpick,field[abValue].value]
       nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManFer" name="Maneuver (Feral Warrior&apos;s Path)" description="{b}Maneuver{/b}: Beginning at 3rd level, you can expend your psionic focus when use the charge action. If you do, you can make one additional attack at the end of your charge instead of making a single melee attack, but each attack suffers a -2 penalty to the attack roll. In addition, you gain a +1 competence bonus to any damage rolls made as part of this action. This competence bonus increases by +1 for every four psychic warrior levels you gain thereafter. At 20th level, when using the charge action, you can instead make a full attack at the end of the charge." compset="ClSpecial">
     <fieldval field="abValue" value="1"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000" index="2"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -4145,8 +4217,6 @@ Call PsyWarTrMa</eval>
 
       ~ Set live name to include the bonus damage
       field[livename].text = field[thingname].text & " " & signed(field[abValue].value)]]></eval>
-    <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cWPaMKnPri" name="Mindknight&apos;s Path" description="You have sworn an oath to your order, and in exchange you have been trained in mystic techniques that allow you to summon a weapon from beyond time and space, while protecting yourself with the power of your mind.\n\n{b}Bonus Class Skill{/b}: Diplomacy\n\n{b}Powers{/b}:  Call weapon, inertial armor\n\n{b}Skills{/b}: Autohypnosis, Diplomacy, Ride\n\n{b}Note:{/b} You need to correctly set one of the Path&apos;s selected as your Primary path and the 2nd one as the Secondary path to have everthing calc correctly." compset="CustomSpec" summary="You are a follower of the Mindknight&apos;s Path" uniqueness="unique">
     <arrayval field="usrArray" index="0" value="Primary"/>
@@ -4176,6 +4246,9 @@ Call PsyWarTrMa</eval>
       Call PsyWarPath</eval>
     </thing>
   <thing id="cPWaTraMin" name="Trance (Mind Knight&apos;s Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus to your initiative. In addition, when wielding a weapon you gain through call weaponry, you gain a +1 bonus to attack and damage rolls with that weapon. All of these bonuses increase by 1 for every four psychic warrior levels you gain thereafter.\n\n{B}Note:{/b} To gain the Call Weaponry bonus add the &quot;Call Weaponry&quot; spell/power on the &quot;Adjust&quot; tab." compset="ClSpecial" summary="When psi-focused competence bonus Hit/Dmg with Call Weaponry weapons.">
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -4200,14 +4273,16 @@ Call PsyWarTrMa</eval>
       ~ Set live name
       field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
+      var v_focus as number
+      call PUPsiFocus
       ~ If Not psionically focused get out now
-      doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      doneif (v_focus <> 1)
       ~ Give bonus to initiative
       #applybonus[BonComp,hero.child[Initiative],field[abValue].value]]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManMin" name="Maneuver (Mind Knight&apos;s Path)" description="{b}Maneuver{/b}: Beginning at 3rd level, you can expend your psionic focus as a standard action to make a melee attack against two creatures adjacent to you. For every five psychic warrior levels you gain thereafter, you can make one additional attack against another enemy adjacent to you." compset="ClSpecial">
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Standard"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
       Call PsyWarTrMa</eval>
     </thing>
@@ -4245,6 +4320,9 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     </thing>
   <thing id="cPWaTraWea" name="Trance (Weaponmaster&apos;s Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus on attack rolls made with a weapon (natural weapons do not count for this benefit). This bonus increases by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused gain a competence bonus on manufactured weapons.">
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
     ~ If we're not shown, just get out now
     doneif (tagis[Helper.ShowSpec] <> 1)
@@ -4269,8 +4347,10 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     ~ Set live name
     field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
-    ~ If Not psionically focused get out now
-    doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
     ~ If not active get out now
     doneif (field[abilActive].value <> 1)
 
@@ -4281,10 +4361,10 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
        ~ Range bonus
        #applybonus[atrBonComp,eachpick,field[abValue].value]
     nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManWea" name="Maneuver (Weaponmaster&apos;s Path)" description="{b}Maneuver{/b}: Beginning at 3rd level, you can expend your psionic focus as an immediate action when an enemy attacks you to make a single melee attack against that enemy and then take a 5-foot step. The enemy’s attack is resolved before you take your action. At 8th level and every five psychic warrior levels thereafter, you gain a +1 competence bonus on the attack and damage rolls made for this attack." compset="ClSpecial">
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
       Call PsyWarTrMa</eval>
     </thing>
@@ -4292,9 +4372,11 @@ Call PsyWarTrMa</eval>
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
-    <eval phase="PreLevel" priority="10000"><![CDATA[
-      ~ If not psionicly focused get out now!
-      doneif (hero.tagis[Hero.PsiFocus] = 0)
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="PreLevel" priority="10000"><![CDATA[      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
       ~ All weapons on the hero use Wis mod for attack & dmg
       foreach pick in hero from BaseWep 
@@ -4307,15 +4389,18 @@ Call PsyWarTrMa</eval>
   <thing id="cSknBSFDef" name="Focused Defense" description="When fighting defensively or using Combat Expertise or the total defense action, the soulknife adds his Wisdom modifier as a dodge bonus to his AC so long as he maintains psionic focus. The soulknife must be at least 4th level in order to select this blade skill." compset="CustomSpec" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpSkn" name="Soulknife" abbrev="Soulknife"/>
-    <eval phase="PostAttr" priority="10000">~ If not psionicly focused get out now!
-      doneif (hero.tagis[Hero.PsiFocus] = 0)
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
       ~ If Combat Expertise, Fighting Defensively, 
       ~ or Total Defense not active get out now!
       doneif (hero.tagis[Activated.fComExpert] + hero.tagis[Condition.pstFtDefen] + hero.tagis[Condition.pstTotDef] = 0)
       
       ~ Give Wisdom as a Dodge bonus to AC
-      hero.child[ArmorClass].field[tACDodge].value += #attrmod[aWIS]</eval>
+      hero.child[ArmorClass].field[tACDodge].value += #attrmod[aWIS]]]></eval>
     <prereq message="Soulknife Level 4+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -4542,6 +4627,7 @@ Call PsyWarTrMa</eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cSknBSEmuM" name="Emulate Melee Weapon" description="The soulknife can form his mind blade to replicate any single melee weapon, chosen at the time he takes this blade skill. The soulknife is proficient with his mind blade in this form and it functions in all ways as the chosen weapon. This blade skill may be taken multiple times; each time, it allows the soulknife to form his mind blade to replicate a different melee weapon. This blade skill may not be used with the mind bolt." compset="CustomSpec" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -4577,6 +4663,8 @@ Call PsyWarTrMa</eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     <exprreq message="Mind Shield Blade Skill required."><![CDATA[#hasability[cSknBSMShl] <> 0]]></exprreq>
     </thing>
   <thing id="cSknBSFirB" name="Fire Blade" description="When the soulknife makes an attack with his mind blade, he can choose to have it deal fire damage instead of its normal damage. In addition, the soulknife can expend his psionic focus when he hits with an attack to deal an additional +1d10 fire damage. The soulknife must be at least 8th level to choose this blade skill." compset="CustomSpec" uniqueness="useronce">
@@ -4584,6 +4672,7 @@ Call PsyWarTrMa</eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <prereq message="Soulknife Level 8+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -4607,6 +4696,7 @@ Call PsyWarTrMa</eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <prereq message="Soulknife Level 8+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -4698,6 +4788,9 @@ Call PsyWarTrMa</eval>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="abCategory" tag="PUBladeSk"/>
     <tag group="NotClExpr" tag="cHelpPUA"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abSave" tag="FortNeg"/>
+    <tag group="StandardDC" tag="BAB"/>
     <prereq message="Soulknife Level 8+ required">
       <validate><![CDATA[        
         var classcheck as string
@@ -4842,6 +4935,8 @@ Call PsyWarTrMa</eval>
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="Helper" tag="NoPathSoc"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     <prereq message="Soulknife level 12+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -4872,6 +4967,8 @@ Call PsyWarTrMa</eval>
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="NoPathSoc"/>
     <tag group="SpecSource" tag="cHelpSkn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cSknBSTrpf" name="Trapfinder" description="Not implemented yet\nThe soulknife gains the Trapfinding ability of a rogue of his level. In addition, the soulknife treats Disable Device as a class skill. The soulknife must have the Covert Training class feature to select this blade skill." compset="CustomSpec" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -4884,6 +4981,8 @@ Call PsyWarTrMa</eval>
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpSkn"/>
     <tag group="Helper" tag="NoPathSoc"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Free"/>
     <prereq message="Soulknife level 8+ required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -6542,6 +6641,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <tag group="AbilType" tag="Super"/>
     <tag group="ProductId" tag="PUProdID"/>
     <tag group="Helper" tag="SpecUp"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ Set the list name
       field[listname].text = field[thingname].text & " " & signed(field[xIndex].value * 2)
@@ -6559,10 +6659,14 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
 
       #competencebonus[hero.child[skStealth], field[abValue].value]]]></eval>
     </thing>
-  <thing id="cPUCrHideP" name="Hide in Plain Sight" description="At 10th level, as long as the cryptic maintains psionic focus, she can use the Stealth skill to hide, even while being observed." compset="ClSpecial" summary="As long as you maintain psionic focus, you can use the Stealth skill to hide, even while being observed."></thing>
+  <thing id="cPUCrHideP" name="Hide in Plain Sight" description="At 10th level, as long as the cryptic maintains psionic focus, she can use the Stealth skill to hide, even while being observed." compset="ClSpecial" summary="As long as you maintain psionic focus, you can use the Stealth skill to hide, even while being observed.">
+    <tag group="abAction" tag="PUManFocus"/>
+    </thing>
   <thing id="cPURapDef" name="Rapid Defense" description="Starting at 4th level, a cryptic can use her altered defense ability as a free action by expending her psionic focus. The cryptic may even do this when it is not her turn." compset="ClSpecial" summary="Use your altered defense ability as a free action by expending your psionic focus.">
     <tag group="AbilType" tag="Super"/>
     <tag group="ProductId" tag="PUProdID"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Free"/>
     </thing>
   <thing id="cPUSwiftTr" name="Swift Trapper" description="At 6th level, a cryptic can create traps with astounding speed. It takes a cryptic half the normal amount of time to create traps." compset="ClSpecial" summary="It takes a cryptic half the normal amount of time to create traps.">
     <tag group="AbilType" tag="Extra"/>
@@ -6700,6 +6804,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
     </thing>
   <thing id="cPUInsEnhT" name="Enhance Tattoo" description="A number of times per day equal to her Intelligence modifier, the cryptic can cause any tattoo she taps to function at a manifester level equal to her class level." compset="CustomSpec" uniqueness="unique">
     <usesource source="pPsiUn"/>
@@ -7020,6 +7125,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
     <prereq message="Cryptic level 10 or greater required for this Insight">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -7145,6 +7251,7 @@ herofield[tLangsSpk].value += 1</eval>
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="Helper" tag="Secondary"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUSInPerD" name="Personal Design" description="The cryptic increases the maximum number of psionic tattoos she can have on her body to thirty. In addition, the cryptic automatically identifies any visible psionic tattoos on other creatures. Finally, as an immediate action that does not provoke attacks of opportunity, the cryptic can activate any psionic tattoo on her body." compset="CustomSpec" uniqueness="unique">
     <usesource source="pPsiUn"/>
@@ -7157,9 +7264,11 @@ herofield[tLangsSpk].value += 1</eval>
     <tag group="Helper" tag="Secondary"/>
     </thing>
   <thing id="cPUSInTouP" name="Toughened Pattern" description="The cryptic has learned to solidify her own pattern against physical attacks, gaining a +4 bonus to her natural armor bonus." compset="CustomSpec" uniqueness="unique">
+    <fieldval field="abValue" value="4"/>
     <usesource source="pPsiUn"/>
-    <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="Helper" tag="Secondary"/>
+    <tag group="SpecSource" tag="cHelpPU1"/>
+    <eval phase="PostLevel" priority="10000">      hero.childfound[mNatural].field[Bonus].value += field[abValue].value</eval>
     </thing>
   <thing id="cPUSInUnrP" name="Unravel Pattern" description="Once per day, the cryptic can permanently unravel a creature or object’s pattern as a ranged touch attack. The creature or object struck must make a Fortitude save (DC 20 + the cryptic’s Intelligence modifier) or be destroyed. The target must have 150 or fewer current hit points or this ability has no effect. Creatures killed in this manner leave behind no trace of their body. This is considered a death effect." compset="CustomSpec" uniqueness="unique">
     <usesource source="pPsiUn"/>
@@ -7191,8 +7300,7 @@ field[abSumm].text = "+" & MyBonus & " Insight bonus to Intimidate."]]></eval>
 
       field[abValue].value += field[xCount].value
 
-      field[livename].text = field[name].text & " (" & field[abValue].value & "d6+" & field[xTotalLev].value & ")"
-      ]]></eval>
+      field[livename].text = field[name].text & " (" & field[abValue].value & "d6+" & field[xTotalLev].value & ")"]]></eval>
     </thing>
   <thing id="cPUAuraFea" name="Aura of Fear" description="At 3rd level, a dread radiates a palpably daunting aura that causes all enemies within 10 feet to take a –4 penalty on saving throws against fear effects. Creatures that are normally immune to fear lose that immunity while within 10 feet of a dread with this ability. This ability functions only while the dread remains conscious, not if she is unconscious or dead." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -7265,6 +7373,7 @@ field[CustDesc].text = "Shadow Twin (" & field[abValue].value & "')"]]></eval>
     <tag group="ChargeCalc" tag="LevelFull"/>
     <tag group="ChargeCalc" tag="LevelX1"/>
     <tag group="User" tag="Tracker"/>
+    <tag group="abAction" tag="Swift"/>
     </thing>
   <thing id="cPUTerChaT" name="Chase Terror" description="Whenever an adjacent foe that is shaken, frightened, or panicked attempts to take a 5-foot step away from the dread, the dread can, as an immediate action, take a 5-foot step so long as the dread ends up adjacent to the foe that triggered this ability." compset="CustomSpec" uniqueness="unique">
     <usesource source="pPsiUn"/>
@@ -7589,6 +7698,7 @@ endif]]></eval>
     <tag group="SpecSource" tag="cHelpPU2"/>
     <tag group="User" tag="Activation"/>
     <tag group="StandardDC" tag="aCHA"/>
+    <tag group="abSave" tag="FortNeg"/>
     <prereq message="Dread level 6 or higher required">
       <validate><![CDATA[        var classcheck as string
         var levels as number
@@ -7636,12 +7746,14 @@ endif]]></eval>
     <tag group="SpecSource" tag="cHelpPU2"/>
     <tag group="User" tag="Activation"/>
     <tag group="StandardDC" tag="aCHA"/>
+    <tag group="abSave" tag="WillNeg"/>
     </thing>
   <thing id="cPUTerWeak" name="Weakening Fear" description="The dread’s attack causes the target to be fatigued for one round per dread level unless it makes a successful Will save (DC 10 + 1/2 the dread’s class level + the dread’s Charisma modifier). This is a mind-affecting fear effect. This terror has no effect on a creature that is already fatigued. Unlike with normal fatigue, the effect ends as soon as the terror’s duration expires." compset="CustomSpec" summary="Target becomes fatigued for 1 round/level if they fail a Fort Save." uniqueness="unique">
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpPU2"/>
     <tag group="User" tag="Activation"/>
     <tag group="StandardDC" tag="aCHA"/>
+    <tag group="abSave" tag="WillNeg"/>
     </thing>
   <thing id="cPUMrkPBS" name="Point Blank Shot" description="At 1st level, a marksman gains the Point-Blank Shot feat as a bonus feat." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -7680,6 +7792,7 @@ Endif]]></eval>
   <thing id="cPUTechFin" name="Style Technique (Finesse)" description="Once a marksman has reached 2nd level, she may expend her psionic focus while making a ranged attack to use one of the following combat maneuvers as a ranged attack: bull rush, dirty trick, disarm, sunder, or trip. The marksman may use either her Strength or Dexterity modifier when determining her CMB for this attack. The ranged attack deals no damage and provokes attacks of opportunity as normal." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUSkilFin" name="Style Skill (Finesse)" description="At 3rd level, a finesse marksman gains a +1 bonus to Intimidate. This bonus increases by 1 every three marksman levels thereafter." compset="ClSpecial" summary="You gain a bonus to the Intimidate skill.">
     <usesource source="pPsiUn"/>
@@ -7706,6 +7819,7 @@ field[livename].text = "Style Skill (Finesse) (+" & field[abValue].value & ")"
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Extra"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostAttr" priority="5000"><![CDATA[var myTimes as number
 
 myTimes = field[xIndex].value
@@ -7721,6 +7835,11 @@ doneif (tagis[Helper.ShowSpec] = 0)
 field[abValue].value += field[xCount].value
 
 field[livename].text = "Style Mantra (Finesse) (+" & field[abValue].value & ")"
+
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
 #skillbonus[skIntim] += field[abValue].value]]></eval>
     </thing>
@@ -7738,11 +7857,14 @@ field[livename].text = "Style Mantra (Finesse) (+" & field[abValue].value & ")"
     <tag group="AbilType" tag="Super"/>
     <tag group="Usage" tag="Day"/>
     <tag group="StandardDC" tag="aWIS"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="abAction" tag="Standard"/>
     </thing>
   <thing id="cPUFinTelA" name="Teleporting Attack" description="Upon achieving 12th level, a finesse marksman is capable of teleporting her ranged or thrown attacks to hit enemies from unexpected angles. By expending psionic focus as part of a ranged or thrown attack, the target is considered flat-footed for the attack. Should the target have uncanny dodge or improved uncanny dodge, treat the finesse marksman’s class level as her rogue level to determine if the target is treated as flat-footed." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUFinStuD" name="Stunning Display" description="At 16th level, a finesse marksman is capable of putting on a truly captivating display of ranged combat mastery with her ranged or thrown weapons. As a standard action, all creatures within 30 ft. of the marksman are fascinated for a number of rounds equal to the marksman’s Wisdom modifier unless they make a successful Will saving throw (DC 10 + half marksman level + marksman’s Wisdom modifier). If something ends the effect prematurely, the creature is instead stunned for one round.\n\nThis ability does not affect mindless creatures. This \nability may be used once every 10 minutes." compset="ClSpecial">
     <fieldval field="trkMax" value="1"/>
@@ -7750,6 +7872,8 @@ field[livename].text = "Style Mantra (Finesse) (+" & field[abValue].value & ")"
     <tag group="Usage" tag="Minute10"/>
     <tag group="StandardDC" tag="aWIS"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
+    <tag group="abSave" tag="WillNeg"/>
     </thing>
   <thing id="cPUFinOubK" name="Oubliette of Knives" description="Upon reaching 20th level, the finesse marksman gains the master technique Oubliette of Knives.\n\n{i}Oubliette of Knives:{/i} As a standard action, you can make a ranged attack with a ranged or thrown weapon, and redirect the attack at another target after every successful strike. Each additional attack made in this fashion uses your full base attack bonus. You may attack the same target multiple times with this technique, but only if another target is successfully attacked between strikes, and each individidual target may only be struck by a single use of oubliette of knives equal to your Wisdom modifier. All distance traveled by the thrown weapon or projectile counts against range increments.\n\nFor example, Bob the finesse marksman has a Wisdom of 20 and uses Oubliette of Knives to attack an orc at his full attack bonus. The attack is successful, so Bob redirects the attack to a nearby goblin. This second attack is successful, so Bob redirects the attack back to the orc, repeating this process until an attack fails, the weapon has gone its total range, or each target has been struck five times each.\n\nThis ability does not affect mindless creatures. This \nability may be used once every 10 minutes." compset="ClSpecial">
     <fieldval field="trkMax" value="1"/>
@@ -7757,6 +7881,7 @@ field[livename].text = "Style Mantra (Finesse) (+" & field[abValue].value & ")"
     <tag group="Usage" tag="Minute10"/>
     <tag group="StandardDC" tag="aWIS"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
     </thing>
   <thing id="cPUMrkSni" name="Combat Style (Sniper)" description="Marksmen of this style focus on taking a single shot and making the most of it. These are the marksmen who will use a single attack to change the entire course of the battle by eliminating the enemy’s leader. Sometimes nicknamed assassins, these marksmen are not cruel, they simply find elegance in a single perfect shot placed\nat just the right point." compset="CustomSpec" uniqueness="unique">
     <fieldval field="shortname" value="Combat Style"/>
@@ -7786,10 +7911,12 @@ perform hero.childfound[cHelpPU3].assign[fInclude.fRapidShot]</eval>
   <thing id="cPUTechVol" name="Style Technique (Volley)" description="Once a marksman has reached 2nd level, she may expend her psionic focus while making a full attack with a ranged or thrown weapon to gain one additional attack. This extra attack does not stack with other effects that grant additional attacks such as haste, physical acceleration, or the speed weapon special ability. Beginning at 15th level, this technique does stack with additional attacks such as those from haste, physical acceleration, or the speed weapon special ability." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUTechSni" name="Style Technique (Sniper)" description="Once a marksman has reached 2nd level, she may expend her psionic focus while making a single ranged attack to add her Wisdom modifier to the damage the attack deals. This ability may not be used as part of a full attack." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUSkilSni" name="Style Skill (Sniper)" description="At 3rd level, a finesse marksman gains a +1 bonus to Stealth. This bonus increases by 1 every three marksman levels thereafter." compset="ClSpecial" summary="You gain a bonus to the Stealth skill.">
     <usesource source="pPsiUn"/>
@@ -7837,6 +7964,7 @@ field[livename].text = "Style Skill (Volley) (+" & field[abValue].value & ")"
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Extra"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostAttr" priority="5000"><![CDATA[var myTimes as number
 
 myTimes = 1 + field[xIndex].value
@@ -7857,6 +7985,7 @@ field[livename].text = "Style Mantra (Sniper) (+" & field[abValue].value & ")"]]
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Extra"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostAttr" priority="5000"><![CDATA[var myTimes as number
 
 myTimes = 1 + field[xIndex].value
@@ -7879,6 +8008,7 @@ field[livename].text = "Style Mantra (Sniper) (+" & field[abValue].value & ")"]]
     <tag group="Usage" tag="Day"/>
     <tag group="ChargeAttr" tag="aWIS"/>
     <tag group="ChargeCalc" tag="AttrUses3"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUSniAugS" name="Augmented Shot" description="As part of a single attack with a ranged or thrown weapon, a sniper marksman of at least 8th level can expend her psionic focus, causing the attack to deal augmented damage. Increase the base damage of the attack by one die. Unlike normal bonus damage, this increases the actual weapon damage (much like your Strength modifier on a melee attack), and is thus multiplied in the case of a critical hit. With feats such as Vital Strike, this increased base damage is used to determine the bonus damage on the attack. For example, if wielding a medium-sized light crossbow, add 1d8 damage. Every six marksman levels thereafter, increase the weapon damage by an additional die. This ability may not be used as part of a full attack." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -7886,6 +8016,7 @@ field[livename].text = "Style Mantra (Sniper) (+" & field[abValue].value & ")"]]
     <tag group="Usage" tag="Day"/>
     <tag group="ChargeAttr" tag="aWIS"/>
     <tag group="ChargeCalc" tag="AttrUses3"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="PostAttr" priority="5000"><![CDATA[var myTimes as number
 
 myTimes = field[xIndex].value
@@ -7910,6 +8041,8 @@ field[livename].text = "Augmented Shot (+" & field[abValue].value & " dice)"]]><
   <thing id="cPUSniEyeN" name="Through the Eye of the Needle" description="Upon reaching 20th level, the sniper marksman gains the master technique Through the Eye of the Needle. \n\n{i}Through the Eye of the Needle:{/i} As a standard action, you carefully focus your shot on your enemy and make a single ranged attack against that enemy. If your attack is successful, the target takes an additional 5d6 points of damage and gains one of the following penalties, your choice, until they are fully healed (at full hit points): \n\n• Ability damage equal to your Wisdom modifier to\nany one stat\n• -4 to all attacks and damage rolls\n• Blinded\n• Deafened\n• Staggered\n• Shaken and slowed\n\nA successful Fortitude save (DC 20 + the marksman’s Wisdom modifier) negates the chosen penalty, but does not negate the damage taken." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="StandardDC" tag="aWIS"/>
+    <tag group="abSave" tag="FortPart"/>
     </thing>
   <thing id="cPUSniCriM" name="Critical Master" description="Once a sniper marksman has reached 16th level, her critical threat range with her favored weapons are doubled and she gains a competence bonus equal to her Wisdom modifier on rolls to confirm critical hits. This ability does not stack with the Improved Critical feat or keen weapons; instead, the critical threat range is only increased by 1." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -7929,6 +8062,7 @@ field[livename].text = "Augmented Shot (+" & field[abValue].value & " dice)"]]><
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cPUVolBurA" name="Burst Arrows" description="At 12th level, a volley marksman is capable of charging her ranged attacks with psychokinetic energy to explode and disrupt enemies. Once per day as part of a full attack with a ranged or thrown weapon, the marksman can expend psionic focus and have the space occupied by each target treated as if covered in caltrops for a number of rounds equal to her Wisdom modifier. In addition, all creatures within a 5 ft. radius of the struck target take damage equal to the marksman’s Wisdom modifier unless they make a successful Reflex save (DC 10 + half marksman level + marksman’s Wisdom modifier). \n\nThis ability can be used an additional time per day every two marksman levels thereafter." compset="ClSpecial">
     <fieldval field="trkMax" value="1"/>
@@ -7937,6 +8071,7 @@ field[livename].text = "Augmented Shot (+" & field[abValue].value & " dice)"]]><
     <tag group="StandardDC" tag="aWIS"/>
     <tag group="User" tag="Tracker"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="PostLevel" priority="1000"><![CDATA[var myLevel as number
 
 ~exit if less than level 14
@@ -7990,6 +8125,7 @@ field[livename].text = "Favored Weapon (+" & field[abValue].value & ")"]]></eval
     <tag group="Usage" tag="Day"/>
     <tag group="AbilType" tag="Extra"/>
     <tag group="StandardDC" tag="aDEX"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUDefShot" name="Defensive Shot" description="At 13th level, a marksman no longer provokes attacks of opportunity when making ranged attacks with a ranged or thrown weapon." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -9171,6 +9307,7 @@ field[livename].text = "Strategy (" & myTimes & "/day)"]]></eval>
   <thing id="cPUPoolKno" name="Pooled Knowledge" description="Once a tactician has reached 14th level, he has learned to share not only strategic knowledge over the collective, but even knowledge of manifesting. By expending psionic focus, the tactician may attempt to manifest any power known by a member of his collective. If the power is not on the tactician power list, the tactician must make a successful Spellcraft check (DC 20 + the power&apos;s level) to see if he understands the power. If the Spellcraft check fails, the attempt fails and psionic focus is still expended, but no power points are spent. If the check is successful, the tactician may immediately manifest the power. Using this ability uses an action equal to the manifesting time of the power to be manifested. This ability may not be used to manifest powers with a manifesting time longer than one round." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUMstStra" name="Master Strategist" description="Upon achieving 20th level, a tactician has learned how to turn his collective into a truly cohesive battle unit. The tactician may use two daily uses of his strategy ability and grant all of his allies an insight bonus on attack and damage rolls, armor class, and saving throws equal to his Intelligence modifier for two minutes. This ability may not be used if the tactician is not engaged in combat." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -9399,6 +9536,7 @@ validif (state.isfocus <> 0)]]></validate>
     <tag group="ChargeCalc" tag="AttrUses3"/>
     <tag group="ChargeAttr" tag="aWIS"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="Standard"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[var myCnt as number
 var myTimes as number
 
@@ -9485,14 +9623,22 @@ elseif (field[xIndex].value = 2) then
   <thing id="cPUGuSwift" name="Swift Aid" description="A guardian of 8th level may, as an immediate action and by expending his psionic focus, grant a member of his collective a +1 insight bonus to AC or saves (guardian&apos;s choice) that lasts until the beginning of the target&apos;s next turn. This insight bonus increases by +1 every four vitalist levels thereafter." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cPUMeSwift" name="Swift Aid" description="A mender of 8th level may, as an immediate action and by expending his psionic focus, heal a member of his collective as if he had used transfer wounds." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="cPUSoSwift" name="Swift Aid" description="A soulthief of 8th level may, as an immediate action and by expending his psionic focus, transfer the wounds of a member of his collective to an enemy within 15 ft. of the ally for an amount of damage equal to the soulthief&apos;s transfer wounds ability. A successful Fortitude save (DC 10 + 1/2 class level + Wisdom modifier) negates the effect." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
+    <tag group="abSave" tag="FortNeg"/>
+    <tag group="StandardDC" tag="aWIS"/>
     </thing>
   <thing id="cPUVitExpK" name="Expanded Knowledge" description="Skilled vitalists understand that there is merit in expanding their arsenal. At 9th level, a vitalist gains Expanded Knowledge as a bonus feat. He gains this feat again at 18th level." compset="ClSpecial">
     <tag group="Helper" tag="SpecUp"/>
@@ -9506,6 +9652,7 @@ elseif (field[xIndex].value = 2) then
     </thing>
   <thing id="cPUGuExper" name="Guardian&apos;s Expertise" description="Upon achieving 11th level, anytime a guardian manifests {i}empathic feedback{/i}, the power gains two additional augment options.{br}{br}3. If you spend 6 additional power points, this power may be manifested as an immediate action.{br}{br}4. If you spend 4 additional power points, the damage dealt to the attacker is subtracted from the damage you take.{br}{br}In addition, any time a guardian manifests a power on a member of his collective (including himself) with a range of You and a duration measured in rounds, the guardian may expend his psionic focus to treat that power as if affected by the Extend Power feat." compset="ClSpecial">
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUMeExper" name="Mender&apos;s Expertise" description="Upon achieving 11th level, a mender is skilled at restoring the psyche of the recently deceased and efficiently healing his collective members.{br}{br}Any time a mender manifests {i}psionic revivify{/i}, the maximum number of rounds after the target&apos;s death allowed increases by his Wisdom modifier (minimum 1) without the need to suffer additional negative levels.{br}{br}In addition, anytime a mender manifests a power with the Healing descriptor, it heals an additional 50% hit points (round down).\nIn addition, any time a guardian manifests a power on a member of his collective (including himself) with a range of You and a duration measured in rounds, the guardian may expend his psionic focus to treat that power as if affected by the Extend Power feat." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -9527,10 +9674,16 @@ elseif (field[xIndex].value = 2) then
   <thing id="cPUMeMaste" name="Master Mender" description="A mender of 20th level is capable of healing even the most grievous of injuries. As a fullround action and by expending his psionic focus, the mender can heal a member of his collective to full health, including restoring any ability drain, removing fatigue or exhaustion, and curing any poisons or diseases. The mender can use this ability once every 10 minutes." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="FullRd"/>
     </thing>
   <thing id="cPUSoMaste" name="Master Soulthief" description="A soulthief of 20th level learns how to siphon the life out of a creature. Once every 10 minutes, the soulthief can choose one target to which he has line of sight and, as a full-round action and by expending his psionic focus, begin draining the target of health (12d6 points of empathic damage) which is then transferred to the collective and heals an equal amount of damage. A successful Will save (DC 20 + Wis modifier) negates the effect. Each round, the target may attempt another Will save to negate the effect. The soulthief can maintain concentration to continue the damage each round, for up to one minute. Any damage done after all members of the collective are healed completely instead grants temporary hit points to any member of the collective (soulthief&apos;s choice) for 10 minutes. The soulthief may divide these temporary hit points as he so chooses among members of the collective." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="Usage" tag="Day"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="FullRd"/>
+    <tag group="abSave" tag="WillNeg"/>
+    <tag group="StandardDC" tag="aWIS"/>
     </thing>
   <thing id="cPUArcPPri" name="Archer&apos;s Path" description="Your focus is on ranged combat rather than wading into the thick of things.\n\n{b}Powers:{/b} {i}Force screen{/i}, {i}psychokinetic cannon{/i}* \n\n{b}Skills:{/b} Perception, Ride, Stealth \n\n{b}Bonus Class Skill:{/b} Stealth \n\n{b}Note:{/b} You need to correctly set one of the Path&apos;s selected as your Primary path and the 2nd one as the Secondary path to have everthing calc correctly." compset="CustomSpec" summary="You are a follower of the Archer&apos;s Path" uniqueness="unique">
     <comment><![CDATA[Add Psychokinetic Cannon power to list
@@ -9594,8 +9747,10 @@ Endif
 ~ Set live name
 field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
 ~ If not active get out now
 doneif (field[abilActive].value <> 1)
@@ -9609,9 +9764,8 @@ Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaTraSur" name="Trance (Survivor Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain DR 2/-. This damage reduction improves by 1 every four psychic warrior levels thereafter. In addition, you suffer no harm from being in a hot or cold environment. You can exist comfortably in conditions between –50 and 140 degrees Fahrenheit without having to make Fortitude saves. Your equipment is likewise protected. This doesn’t provide any protection from fire or cold damage, nor does it protect against other environmental hazards such as smoke, lack of air, and so forth." compset="ClSpecial" summary="When psi-focused you gain DR and hot or cold environment endurance.">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUManFocus"/>
     <bootstrap thing="xDamRd"></bootstrap>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
 ~ If we're not shown, just get out now
 doneif (tagis[Helper.ShowSpec] <> 1)
@@ -9636,19 +9790,25 @@ Endif
 ~ Set live name
 ~field[livename].text = field[thingname].text & " " & signed(field~[abValue].value)
 
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
-
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 ~ Give bonus to DR 
 hero.child[xDamRd].field[abValue].value = maximum(hero.child[xDamRd].field[abValue].value, field[abValue].value)]]></eval>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManArc" name="Maneuver (Archer Path)" description="Beginning at 3rd level, you can expend your psionic focus and make a ranged trip attack as a standard action. If your target is flying, they are instead staggered for one round. At 7th level and every four psychic warrior levels thereafter, you gain a +1 bonus to your CMB when using this maneuver." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
 Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManSur" name="Maneuver (Survivor Path)" description="Beginning at 3rd level, you can expend your psionic focus as an immediate action to be treated as having the Stalwart ability until the beginning of your next turn. At 7th level and every four psychic warrior levels beyond, you gain a +1 competence bonus to Will saves when using this maneuver. In addition, at 11th level, when using this maneuver, you are treated as having the Improved Stalwart ability." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
 Call PsyWarTrMa</eval>
     </thing>
@@ -9656,6 +9816,9 @@ Call PsyWarTrMa</eval>
     <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
 ~ If we're not shown, just get out now
 doneif (tagis[Helper.ShowSpec] <> 1)
@@ -9680,8 +9843,10 @@ Endif
 ~ Set live name
 field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
 ~ If not active get out now
 doneif (field[abilActive].value <> 1)
@@ -9690,13 +9855,14 @@ doneif (field[abilActive].value <> 1)
 ~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
 ~  eachpick.field[wAttRanged].value += field[abValue].value
 ~  nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaTraGla" name="Trance (Gladiator Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus to your CMB and a +2 competence bonus to your CMD. These bonuses increase by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to CMB and CMD.">
     <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
 ~ If we're not shown, just get out now
 doneif (tagis[Helper.ShowSpec] <> 1)
@@ -9721,8 +9887,10 @@ Endif
 ~ Set live name
 field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
 ~ If not active get out now
 doneif (field[abilActive].value <> 1)
@@ -9731,8 +9899,6 @@ doneif (field[abilActive].value <> 1)
 ~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
 ~  eachpick.field[wAttRanged].value += field[abValue].value
 ~  nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaTraInf" name="Trance (Infiltrator Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +2 competence bonus on Disguise checks and a +1 competence bonus on damage rolls made with natural weapons. These bonuses increase by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to Disguise checks and damage with natural weapons.">
     <fieldval field="actName" value="Active"/>
@@ -9762,8 +9928,10 @@ Endif
 ~ Set live name
 field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
 ~ If not active get out now
 doneif (field[abilActive].value <> 1)
@@ -9779,6 +9947,9 @@ Call PsyWarTrMa</eval>
     <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
     <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
+Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
 ~ If we're not shown, just get out now
 doneif (tagis[Helper.ShowSpec] <> 1)
@@ -9803,8 +9974,10 @@ Endif
 ~ Set live name
 field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
 ~ If not active get out now
 doneif (field[abilActive].value <> 1)
@@ -9813,26 +9986,29 @@ doneif (field[abilActive].value <> 1)
 ~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
 ~  eachpick.field[wAttRanged].value += field[abValue].value
 ~  nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManDer" name="Maneuver (Dervish Path)" description="Beginning at 3rd level, you can expend your psionic focus as part of a full attack when you fight with two weapons to take a 5-foot step between your attacks, even if you have already taken a 5-foot step, but not if you have moved normally (such as by using hustle). At 8th level and every five psychic warrior levels thereafter, you gain one additional 5-foot step, but each of these 5-foot steps must be made after an attack in your full attack." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
 Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManGla" name="Maneuver (Gladiator Path)" description="Beginning at 3rd level, you can expend your psionic focus when using a combat maneuver to not provoke an attack of opportunity for using that combat maneuver. If you have a feat that already does this, such as Improved Bull Rush, your trance competence bonus on this specific maneuver check increases by 2 or you gain a +2 competence bonus on this check if you do not have the Gladiator trance active. Additionally at 8th level and every four psychic warrior levels thereafter, the bonus you gain on this specific maneuver check increases by 1." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
 Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManInf" name="Maneuver (Infiltrator Path)" description="Beginning at 3rd level, you can expend your psionic focus when manifesting minor metamorphosis, metamorphosis, or major metamorphosis to gain an intimidating visage. For the duration of the manifestation, you may make a free Intimidate check against any creature that comes within 30 ft. of you. You must have line of sight to the creature and you may only make one such check against that creature per manifestation of minor metamorphosis, metamorphosis, or major metamorphosis. At 7th level and every four psychic warrior levels thereafter, you gain a +1 competence bonus to this Intimidate check." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
 Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaManInt" name="Maneuver (Interceptor Path)" description="Beginning at 3rd level, you can expend your psionic focus as an immediate action when an enemy you threaten attacks one of your allies to make a single melee attack or bull rush attempt against that enemy. Your attack or bull rush attempt is resolved before the enemy’s attack. If you made a melee attack and it is successful, the struck enemy takes a penalty equal to the competence bonus of the Interceptor trance on the attack and damage rolls of the attack that triggered this maneuver." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     <eval phase="First" priority="10000">~ Setup this Maneuver or Trance for the Psy Warrior
 Call PsyWarTrMa</eval>
     </thing>
@@ -9919,6 +10095,17 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     <comment>need to limit to light load/no armor</comment>
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="PostLevel" priority="10001"><![CDATA[      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
+      
+      ~ If not active get out now
+      doneif (field[abilActive].value <> 1)
+  
+      ~ Bonus to Speed
+      hero.child[Speed].field[tSpeed].value += (field[abValue].value * 5)]]></eval>
     <eval phase="PostLevel" priority="10000" index="2"><![CDATA[~ add to our value based on level
 var mylevel as number
 var mybonus as number
@@ -9940,15 +10127,6 @@ if (mylevel >= 17) then
 endif
 
 field[abValue].value += 1]]></eval>
-    <eval phase="PostLevel" priority="10001"><![CDATA[      
-~ If Not psionically focused get out now
-doneif (hero.tagis[Hero.PsiFocus] <> 1)
-      
-~ If not active get out now
-doneif (field[abilActive].value <> 1)
-  
-~ Bonus to Speed
-  hero.child[Speed].field[tSpeed].value += (field[abValue].value * 5)]]></eval>
     </thing>
   <thing id="cPUChargeT" name="Charge Through" description="Starting at 2nd level, you are able to make charges through difficult terrain or through squares occupied by allies. This ability can be used in conjunction with the Psionic Charge feat. This replaces the bonus feat normally gained as a 2nd level psychic warrior." compset="ClSpecial" summary="You can make charges through difficult terrain or through ally-occupied squares.">
     <comment>need to limit to light load/no armor</comment>
@@ -10827,6 +11005,7 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
     <tag group="ChargeAttr" tag="aWIS"/>
     <tag group="Usage" tag="Day"/>
     <tag group="StandardDC" tag="aWIS"/>
+    <tag group="abSave" tag="FortNeg"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[var myCnt as number
 var myTimes as number
 
@@ -11033,8 +11212,9 @@ hero.childfound[cfgPUPsFtR].field[cfgMaxF1].value += 1</eval>
     <tag group="SpecType" tag="Defense" name="Defense" abbrev="Defense"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
-    <exprreq message="Psionic Shot feat required."><![CDATA[#hasfeat[fPUPsiShot] <> 0]]></exprreq>
+    <tag group="abAction" tag="PUExpFocus"/>
     <exprreq message="Psionics required."><![CDATA[hero.tagcount[Hero.Psionic] >= 1]]></exprreq>
+    <exprreq message="Psionic Shot feat required."><![CDATA[#hasfeat[fPUPsiShot] <> 0]]></exprreq>
     <prereq message="Rogue level 10 required.">
       <validate><![CDATA[
         var classcheck as string
@@ -11047,7 +11227,7 @@ hero.childfound[cfgPUPsFtR].field[cfgMaxF1].value += 1</eval>
         validif (levels >= 10)]]></validate>
       </prereq>
     </thing>
-  <thing id="cPURogVan" name="Vanish" description="As long as a rogue with this ability is maintaining psionic focus, as a swift action he can become invisible as long as he does not move from his location. If the rogue moves while under this effect, he instead is treated as having 50% concealment if he moves less than half his movement, or 20% concealment if he moves more than half his movement. The rogue can use this ability for a number of rounds per day equal to his rogue level. These rounds do not need to be consecutive." compset="CustomSpec" summary="Expend psionic focus to daze target of successful ranged Sneak Attack." uniqueness="unique">
+  <thing id="cPURogVan" name="Vanish" description="As long as a rogue with this ability is maintaining psionic focus, as a swift action he can become invisible as long as he does not move from his location. If the rogue moves while under this effect, he instead is treated as having 50% concealment if he moves less than half his movement, or 20% concealment if he moves more than half his movement. The rogue can use this ability for a number of rounds per day equal to his rogue level. These rounds do not need to be consecutive." compset="CustomSpec" summary="Become invisible as long as you stay psi-focused and you don&apos;t move" uniqueness="unique">
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpRog" name="Rogue" abbrev="Rogue"/>
     <tag group="SpecType" tag="Defense" name="Defense" abbrev="Defense"/>
@@ -11055,6 +11235,8 @@ hero.childfound[cfgPUPsFtR].field[cfgMaxF1].value += 1</eval>
     <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
     <tag group="Usage" tag="Day"/>
     <tag group="ChargeCalc" tag="LevelFull"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="abAction" tag="Swift"/>
     <exprreq message="Psionics required."><![CDATA[hero.tagcount[Hero.Psionic] >= 1]]></exprreq>
     <prereq message="Rogue level 10 required.">
       <validate><![CDATA[
@@ -11107,14 +11289,17 @@ hero.childfound[cfgPUPsFtR].field[cfgMaxF1].value += 1</eval>
   <thing id="cPUGaeComm" name="Gaean Communion" description="While maintaining psionic focus, the gaean is in communion with the dormant earthmind and gains the ability to telepathically communicate with any animal or magical beast with an intelligence of 1 or 2 within 100 ft. Any time the gaean casts {i}summon nature&apos;s ally{/i}, she can communicate telepathically with all of the creatures summoned by the spell. This ability replaces wild empathy." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cPUStrGaea" name="Strength of Gaea" description="At 4th level, while the gaean is in physical contact with nature, such as being barefoot on the ground or touching a tree, once per day the gaean can draw strength from the earthmind, allowing her to augment her spells in one of the following ways.{br}{br}{b}Augment:{/b} You can augment your spells in one of the following ways.{br}{br}By spending 1 power point and expending your psionic focus, the duration of the spell is doubled.{br}{br}By spending 1 power point and expending your psionic focus, the range of the spell is doubled.{br}{br}By spending 1 power point and expending your psionic focus, the spell can be cast without verbal components.{br}{br}By spending 2 power points and expending your psionic focus, the spell can be cast without somatic components.{br}{br}By spending 2 power points and expending your psionic focus, the spell is treated as if under the effect of the Empower Spell feat.{br}{br}This ability replaces resist nature&apos;s lure." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUGaeaRev" name="Gaean Revivification" description="At 13th level, if the gaean is maintaining psionic focus when reduced to 0 or fewer hit points and is in physical contact with nature, she can choose as a free action to submerge into whatever part of nature she is in contact with, typically the ground. While submerged, the gaean cannot be targeted by attacks or effects (even if the attacker has a burrow speed or similar ability), she immediately stops bleeding and gains fast healing 5. She is ejected from the earthmind&apos;s embrace once she returns to positive hit points, although she can choose to stay submerged as a free action by expending spell slots. Each level of the spell slot expended extends the effect by 1 round. While submerged the gaean can take no actions other than expending spell slots to remain submerged. This ability replaces a thousand faces." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cfgPUTranB" name="Transformed Body" compset="Configure" uniqueness="unique">
     <fieldval field="cfgObject1" value="Customization"/>
@@ -12096,6 +12281,7 @@ hero.childfound[cPUAegHelp].field[abValue2].value -=1]]></eval>
     <tag group="SpecType" tag="Defense"/>
     <tag group="DescInfo" tag="puBattl3"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="Final" priority="10000"><![CDATA[~field abValue contains the # of times tracker for the first copy
 ~field abValue2 contains the bonus manifester level
 ~field abValue3 contains the bonus uses
@@ -12456,6 +12642,7 @@ field[abValue].value += round(field[xTotalLev].value/2,0,-1)]]></eval>
     </thing>
   <thing id="cPUUnnerDi" name="Unnerving Disruption" description="Any time the brutal disruptor deals damage with her disrupt pattern ability, she can expend her psionic focus to make a free Intimidate check against the affected opponent. This ability replaces trapmaker." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUChanDis" name="Channeled Disruption" description="A 6th level brutal disruptor has learned to channel her disrupt pattern ability into her melee attacks. The brutal disruptor may use her disrupt pattern ability as part of any or all melee attacks she makes. This is an exception to the rule that disrupt pattern may only be used once per round. The brutal disruptor cannot use her disrupt pattern ability as a ranged attack in the same round that she has used it as part of a melee attack. This ability replaces swift trapper." compset="ClSpecial" summary="Use Disrupt Pattern on any and all Melee Attacks.">
     <usesource source="pPsiUn"/>
@@ -12494,6 +12681,8 @@ field[abValue].value += round(field[xTotalLev].value/2,0,-1)]]></eval>
     </thing>
   <thing id="cPUAltApp" name="Altered Appearance" description="A distorter has learned to alter her pattern to mask her appearance. As long as the distorter is maintaining psionic focus, as a fullround action, the distorter can change her physical appearance to look like someone else, granting a +10 bonus on Disguise skill checks. The distorter&apos;s size does not change, and she does not gain any special abilities, even if her new appearance would seem to grant it. The effect ends once the distorter is not maintaining psionic focus or it can be dismissed as a free action. This ability replaces the Scribe Tattoo feat normally gained at 1st level." compset="ClSpecial">
     <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="FullRd"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="cPUWarPer" name="Warp Perception" description="A 4th level distorter has learned to alter the way creatures perceive distances by manipulating the visual patterns. The distorter can cause up to her Intelligence modifier in creatures to incorrectly calculate the distance between the affected creature and the cryptic unless each creature makes a successful Will save (DC 10 + 1/2 cryptic class level + the cryptic&apos;s Intelligence modifier). For a number of rounds equal to the cryptic&apos;s Intelligence modifier, each square of movement any of the affected creatures take toward the cryptic counts as two squares of movement, regardless of the mode of movement (flight, swim, etc) or if the creature is corporeal or incorporeal. In addition, any ranged attacks made at the cryptic by the affected creatures that only work within a certain range (such as a ranged sneak attack or Point-Blank Shot) count the distance between the creature and the cryptic as double.{br}{br}This does not affect the range increment of the attack, only if the distance of the attack qualifies. This ability replaces the insight normally gained at 4th level." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -12508,6 +12697,7 @@ field[abValue].value += round(field[xTotalLev].value/2,0,-1)]]></eval>
   <thing id="cPUBlurPa" name="Blur Pattern" description="More experienced distorters have learned to alter their own pattern to make them harder to perceive. As long as a distorter of 14th level maintains psionic focus, she gains concealment (20% miss chance).{br}{br}This ability can be suppressed as a free action, but once suppressed, requires a standard action to reactivate. A {i}see invisibility{/i} spell does not counteract the effect, but a {i}true seeing{/i} spell or {i}pierce the veils{/i} manifestation does.{br}{br}This ability replaces enduring defense." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUManFocus"/>
     </thing>
   <thing id="arPUCryGra" name="Grammaton" description="For some cryptics, the way bullets travel through the air is a special pattern that can be used and manipulated for deadly attacks and abilities. These grammatons use handguns to destroy patterns and enemies alike.\n\n{b}Weapon and Armor Proficiency:{/b} Grammatons are proficient with all simple weapons, firearms, plus the rapier and shortbow. Grammatons are proficient with light armor but not with shields." compset="ClassVary" uniqueness="unique">
     <fieldval field="cvSpec5thS" value="Deed"/>
@@ -12910,6 +13100,7 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
     <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="StandardDC" tag="aINT"/>
     <tag group="abSave" tag="WillPart"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     <exprreq message="Lost Mind archetype required."><![CDATA[#hasarchetype[arPULstMnd] <> 0]]></exprreq>
     </thing>
   <thing id="cPUInsNiFl" name="Nightmare Made Flesh" description="The lost mind adds {i}form of doom{/i} to his list of powers known. In addition, the lost mind can manifest {i}form of doom{/i} once per day without paying its power point cost, but when used in this fashion the power cannot be augmented. The lost mind must be at least 16th level to select this insight." compset="CustomSpec" uniqueness="unique">
@@ -13001,6 +13192,7 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
   <thing id="cPUDisAura" name="Disabling Aura" description="Starting at 16th level, the pattern breaker can expend her psionic focus as full round action to suppress only harmful effects around her in a 5 ft. aura for a number of rounds equal to her Intelligence modifier. This functions similar to {i}null psionics field{/i}, but it only affects harmful effects. This includes suppressing magical or psionic weapons being used in attacks against the pattern breaker, although such items would still work against other targets. The pattern breaker does not need to be aware of the effect to be suppressed. This ability replaces the insight normally gained at 16th level." compset="ClSpecial">
     <usesource source="pPsiUn"/>
     <tag group="abAction" tag="FullRd"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cHelpPUA" name="Soul Archer" compset="Class" uniqueness="unique">
     <fieldval field="cHDSides" value="10"/>
@@ -13088,7 +13280,7 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
       hero.childfound[cSknEnhMB].field[xExtraLev].value += (root.field[cTotalLev].value -1)]]></eval>
     </thing>
   <thing id="cPUARanFea" name="Ranged Feat" description="A 2nd level soul archer gains a bonus feat of his choice. The feat chosen must have Point-Blank Shot as a prerequisite in order to be selected.{br}{br}{b}Note:{/b} When selecting your bonus feat no validation is in place to check for the Point-Blank Shot as a prerequisite." compset="ClSpecial" summary="Gain a bonus feat that has Point-Blank Shot as a prerequisite."></thing>
-  <thing id="cPUARaPsSt" name="Ranged Psychic Strike" description="At 4th level and again at 8th level, the soul archer&apos;s psychic strike damage when his mind blade is in mind arrow form increases by one die of damage. If the soul archer does not have the psychic strike ability, he gains the psychic strike ability, dealing 1d8 points of damage at 4th level and 2d8 points of damage at 8th level, but may only use this ability when his mind blade is in mind arrow form.{br}{br}{b}Note:{/b} If you don&apos;t have the Psychic Strike ability this will NOT currently give it to you. But it will correctly increase the damage when using a Mind Arrow." compset="ClSpecial" summary="Increase your Mind Arrows psynic strike damage.">
+  <thing id="cPUARaPsSt" name="Ranged Psychic Strike" description="At 4th level and again at 8th level, the soul archer&apos;s psychic strike damage when his mind blade is in mind arrow form increases by one die of damage. If the soul archer does not have the psychic strike ability, he gains the psychic strike ability, dealing 1d8 points of damage at 4th level and 2d8 points of damage at 8th level, but may only use this ability when his mind blade is in mind arrow form.{br}{br}{b}Note:{/b} If you don&apos;t have the Psychic Strike ability this will NOT currently give it to you. But it will correctly increase the damage when using a Mind Arrow." compset="ClSpecial" summary="Increase your Mind Arrows psychic strike damage.">
     <fieldval field="abValue2" value="8"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ Set the list name
@@ -13115,10 +13307,13 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
   <thing id="cPUAPhaSho" name="Phasing Shot" description="Once a soul archer has achieved 8th level, he can expend his psionic focus and make a single ranged touch attack as a standard action and launch a mind arrow at a target within range. The mind arrow travels to the target in a straight path, passing through any nonmagical or nonpsionic barrier or wall on its way. (A {i}wall of force{/i}, {i}wall of fire{/i}, {i}wall of ectoplasm{/i}, or the like stops a mind arrow.) This ability negates cover and concealment, but otherwise the attack is rolled normally." compset="ClSpecial" summary="Expend your focus to make a ranged touch attack with your mind arrow.">
     <tag group="ProductId" tag="PUProdID"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Standard"/>
     </thing>
   <thing id="cPUAEmpSho" name="Empowered Shot" description="At 10th level, the soul archer can expend his psionic focus to grant the effect of a single feat that requires focus expenditure to apply to all attacks in a full attack sequence that round. The feat must only work on ranged attacks." compset="ClSpecial" summary="Expend your focus to grant the effect of a feat that requires focus expenditure to apply to full attack.">
     <tag group="ProductId" tag="PUProdID"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="arPUFeaFle" name="Fear in Flesh" description="Fear is a powerful emotion, one which dreads use to great effect. Some dreads learn to use the power of fear to alter their own physical form, becoming nightmares made real, beings referred to as fear in flesh. These individuals become nightmares brought to life, striking fear deep into the hearts of those unfortunate enough to face them." compset="ClassVary" uniqueness="unique">
     <fieldval field="srcPageNum" value="267"/>
@@ -13178,6 +13373,7 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
     <usesource source="pPsiUn"/>
     <tag group="User" tag="Activation"/>
     <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="PUExpFocus"/>
     </thing>
   <thing id="cPUStrFear" name="Strengthened By Fear" description="A fear in flesh of 4th level can channel the fear of those around him into a physical boost to his own form. Once per day as a swift action, the fear in flesh can gain a +1 insight bonus to his natural armor and a +2 insight bonus to one physical ability score (Strength, Dexterity, or Constitution) for a number of rounds equal to his dread level. The fear in flesh can only use this ability if there is a creature within the fear in flesh&amp;apos;s line of sight with the shaken, frightened, or panicked condition.\n\nAt 8th level, the effect grants a +2 natural armor bonus, a +4 insight bonus to one physical ability score (Strength, Dexterity, or Constitution), and a +2 insight bonus to a second physical ability score.\n\nAt 12th level, the effect grants a +3 natural armor bonus, a +6 insight bonus to one physical ability score (Strength, Dexterity, or Constitution), a +4 insight bonus to a second physical ability score, and a +2 insight bonus to the third physical ability score.\n\nAt 8th, 12th, 16th, and 20th level, the fear in flesh gains an additional daily use of this ability.\n\nThis ability replaces the terror gained at 4th level.\n\n{B}Note:{/b} The first drop down is always your highest bonus. The second chooser is the next highest ability.  At 12th level a new ability will appear that lets you choose the third ability score which is the lowest ability bonus." compset="ClSpecial">
     <fieldval field="actName" value="Active"/>
@@ -13464,6 +13660,8 @@ foreach pick in hero from BaseWep where "IsWeapon.wMindBlade"
     </thing>
   <thing id="cPUNBAdaFo" name="Adaptive Form" description="Once a nimble blade has reached 10th level, he has learned how to rapidly alter his use of the mind blade to adapt to any particular situation. As an immediate action and by expending psionic focus, the nimble blade can select any one blade skill whose requirements he meets and be treated as having that blade skill. The effect of the blade skill selected lasts until he expends his psionic focus as an immediate action to change it. This replaces the blade skill normally gained at 10th level." compset="ClSpecial">
     <tag group="ProductId" tag="PUProdID"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="arPUSlbolt" name="Soulbolt" description="Some soulknives choose to focus on ranged attacks, launching a mind bolt at their enemies instead of wielding a blade of energy." compset="ClassVary" uniqueness="unique">
     <fieldval field="srcPageNum" value="283"/>
@@ -13932,6 +14130,8 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     </thing>
   <thing id="cPUTranAtt" name="Transfer Attack" description="A 9th level life leech can expend his psionic focus as an immediate action to redirect damage being taken by one member of the collective to another member of the collective. Calculate the damage as if the original target would have taken it. The damage transferred is empathic in nature, so damage reduction or other means to block the damage to the final target are not effective. This ability replaces the Expanded Knowledge feat normally gained at 9th level." compset="ClSpecial" summary="Expend psionic focus as an immediate action to redirect damage from one member of the collective to another member.">
     <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Immediate"/>
     </thing>
   <thing id="arPUMedita" name="Meditant" description="Few manifesters have the tools at their disposal to fight unarmed better than psychic warriors. The meditants are those psychic warriors who have turned this strength into their focus, learning to make deadly strikes without the use of psionic powers or weapons." compset="ClassVary" uniqueness="unique">
     <fieldval field="srcBookInf" value="Ultimate Psionics"/>
@@ -14011,6 +14211,19 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     <tag group="LvNameApp" tag="SignAppVal"/>
     <tag group="LvNameApp" tag="AppValue"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="PostAttr" priority="20000"><![CDATA[
+      ~ Set the list name
+      field[listname].text = field[name].text & " " & signed(field[xIndex].value-1)
+
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ if we've been disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ Start our bonus off as our wisdom bonus + the count of specials, -1
+      ~ (because our first instance gives a base of +0)
+      field[abValue].value += field[xCount].value -1 + #attrmod[aWIS]]]></eval>
     <eval phase="PostAttr" priority="30000" index="2"><![CDATA[
       ~ Get our encumbrance level - if we're encumbered by that, or if we're
       ~ wearing armor or a shield, we're disabled.
@@ -14024,25 +14237,16 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
       doneif (tagis[Helper.ShowSpec] = 0)
       ~ If we're disabled, do nothing
       doneif (tagis[Helper.SpcDisable] <> 0)
-      ~ If the hero does not have Psionic Focus, do nothing
-      doneif (hero.tagis[Hero.PsiFocus] = 0)
+
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
       ~ Apply our AC bonus to Wis Modifier AC. Do this using applybonus
       ~ so that it does not stack from another source. Only the highest
       ~ value will apply.
       #applybonus[tACWisMod,hero.child[ArmorClass],field[abValue].value]]]></eval>
-    <eval phase="PostAttr" priority="20000"><![CDATA[
-      ~ Set the list name
-      field[listname].text = field[name].text & " " & signed(field[xIndex].value-1)
-
-      ~ If we're not shown, just get out now
-      doneif (tagis[Helper.ShowSpec] <> 1)
-      ~ if we've been disabled, get out now
-      doneif (tagis[Helper.SpcDisable] <> 0)
-
-      ~ Start our bonus off as our wisdom bonus + the count of specials, -1
-      ~ (because our first instance gives a base of +0)
-      field[abValue].value += field[xCount].value -1 + #attrmod[aWIS]]]></eval>
     </thing>
   <thing id="cPUUnFiSt" name="Unarmed Fighting Style" description="A meditant of 8th level can choose whether to focus his or her fighting style take advantage of natural attacks or to use specialized weapons.  The meditant gets their choice of proficiency with all monk weapons or the Feral  Combat Training* feat as a bonus feat.  If the meditant selects monk weapon proficiency, he or she can use flurry of strikes with monk weapons,making any or all of the attacks with the monk weapon in place of an unarmed strike. If the meditant selects the Feral Combat Training feat, he or she does not need to meet the prerequisites and can use the selected natural attack with  his or her flurry of strikes. \n\nThis replaces the bonus feat normally gained at 8th level." compset="ClSpecial" summary="Choose to focus fighting style on monk weapons or natural attacks.">
     <arrayval field="usrArray" index="0" value="-None-"/>
