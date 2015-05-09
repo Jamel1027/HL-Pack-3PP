@@ -15,7 +15,7 @@
     <fieldval field="cSkills" value="4"/>
     <fieldval field="cSpecSing" value="Gambit"/>
     <fieldval field="cHDSides" value="10"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <arrayval field="cBonFtTot" index="5" value="2"/>
     <arrayval field="cBonFtTot" index="9" value="3"/>
     <arrayval field="cBonFtTot" index="13" value="4"/>
@@ -357,7 +357,7 @@
     </thing>
   <thing id="cHelpPW2" name="Stalker" compset="Class" uniqueness="unique">
     <fieldval field="cHDSides" value="8"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <fieldval field="cSkills" value="6"/>
     <fieldval field="cSpecSing" value="Stalker Art"/>
     <fieldval field="cSpecName" value="Stalker Arts"/>
@@ -542,6 +542,9 @@
       <autotag group="ClSpecWhen" tag="20"/>
       </bootstrap>
     <bootstrap thing="PWDisLevel"></bootstrap>
+    <bootstrap thing="cPW2ManRec">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
     </thing>
   <thing id="cPW2KiPool" name="Ki Pool" description="At 1st level, a stalker gains a pool of ki points, supernatural energy he can use to accomplish amazing feats. The number of points in the stalker&apos;s ki pool is equal to 1/2 her stalker level + his Wisdom modifier (minimum of 1).\n\nAt 1st level, the stalker may spend 1 point of ki to grant himself a +4 insight bonus to a single Perception or Sense Motive check as an immediate action, as he uses his ki to feel out the vibrations of others and their hidden motives.\n\nAt 5th level, the stalker may use his deadly strikes in conjunction with his combat insight to &quot;read&quot; his opponent&apos;s defenses and deliver devastating blows beyond his foe&apos;s guard. The stalker spends one point of ki as a swift action to read his target opponent, and may apply his deadly strike to all martial strikes initiated by the stalker for a number of rounds equal to his Wisdom modifier against this target. If the stalker scores a successful critical hit against the target while this ability is active, then he activates deadly strike as normal.\n\nAt 7th level, the stalker may spend 1 point from his ki pool to gain a +4 insight bonus on a saving throw as an immediate action.\n\nAt 9th level, the stalker can delve into his subconscious in battle and remember key lessons from his training. The stalker envisions potential scenarios where martial abilities he has not readied come into play and gains a momentary burst of martial insight. A number of times per day equal to his Wisdom modifier, the stalker can spend one ki point as a swift action and trade one readied maneuver for another maneuver known of the same level or lower. The new maneuver is immediately readied and accessible for use. The character may initiate this maneuver and recover it as if he had prepared at the beginning of the day (or when ever the stalker readied his maneuvers last) until the end of the combat encounter.\n\nThe ki pool is replenished each day after 8 hours of rest and meditation; these hours do not need to be consecutive. If the stalker possesses levels in another class that grants points to a ki pool, stalker levels stack with the levels of that class to determine the total number of ki points in the combined pool, but only one ability score modifier is added to the total. The choice of which score to use is made when the second class ability is gained, and once made, the choice is set. The stalker can now use ki points from this pool to power the abilities of every class he possesses that grants a ki pool." compset="ClSpecial" summary="You have a ki pool equal to 1/2 your stalker level + your WIS modifier.">
     <tag group="abAction" tag="None" name="No action" abbrev="None"/>
@@ -1216,7 +1219,7 @@ hero.child[fComRef].field[abValue].value = 1 + maximum(hero.child[aINT].field[aM
 ~ Threatened area while in Defensive Focus: 5ft + 5ft per 5 IL
 var IL as number
 var extraArea as number
-IL = hero.child[cHelpPW3].field[cCasterLev].value
+IL = hero.child[mHelpPW3].field[cIL].value
 extraArea = 5 * round(IL/5,0,-1)
 field[abValue].value = 5 + maximum(5, extraArea)
 
@@ -1282,7 +1285,7 @@ field[abSumm].text = signed(field[abValue].value) & " morale bonus to AC and Wil
     </thing>
   <thing id="cHelpPW3" name="Warder" compset="Class" uniqueness="unique">
     <fieldval field="cHDSides" value="12"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <fieldval field="cAbbr" value="Wdr"/>
     <fieldval field="cSkills" value="4"/>
     <arrayval field="cKnowTot" index="0" value="5"/>
@@ -1953,8 +1956,7 @@ endif]]></eval>
       ~ Range is 25 ft + 5 ft per two initiator levels
       field[abRange].value += (round(hero.child[mHelpPWPC1].field[cIL].value/2, 0, -1)) * 5
 
-      field[abText].text = field[xTotalLev].value & " + 1d4/maneuver level HP"
-      ]]></eval>
+      field[abText].text = field[xTotalLev].value & " + 1d4/maneuver level HP"]]></eval>
     </thing>
   <thing id="cPWP1DvRec" name="Divine Recovery" description="Beginning at 4th level, a battle templar may channel divine power to recharge his martial maneuvers. As a swift action, the character can recover an expended maneuver by sacrificing a spell with a level equal to or greater than the maneuver&apos;s. If the spell&apos;s level is higher than the maneuver&apos;s level, then additional level &quot;overage&quot; restores 1d8 hit points of damage to the battle templar per excess spell level." compset="ClSpecial" summary="Recover maneuvers by expending spell slots">
     <tag group="ProductId" tag="HLCommunit"/>
@@ -2049,7 +2051,7 @@ endif]]></eval>
     </thing>
   <thing id="cHelpPWPC2" name="Bladecaster" compset="Class" uniqueness="unique">
     <fieldval field="cHDSides" value="10"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <fieldval field="cAbbr" value="Bcs"/>
     <fieldval field="cSkills" value="4"/>
     <arrayval field="cMagLevTot" index="1" value="1"/>
@@ -2280,7 +2282,7 @@ endif]]></eval>
     </thing>
   <thing id="cHelpPWPC3" name="Dragon Fury" compset="Class" uniqueness="unique">
     <fieldval field="cHDSides" value="12"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <fieldval field="cAbbr" value="DFr"/>
     <fieldval field="cSkills" value="4"/>
     <usesource source="srcPathOfW"/>
@@ -2711,7 +2713,7 @@ nexteach]]></validate>
     <fieldval field="cSkills" value="4"/>
     <fieldval field="cSplMaxLvl" value="6"/>
     <fieldval field="cHDSides" value="8"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <arrayval field="cCastTot" index="1" column="1" value="3"/>
     <arrayval field="cCastTot" index="1" column="2" value="1"/>
     <arrayval field="cCastTot" index="2" column="1" value="3"/>
@@ -3088,7 +3090,7 @@ Array 9 = Stances</comment>
     <fieldval field="cAbbr" value="UBl"/>
     <fieldval field="cSkills" value="4"/>
     <fieldval field="cHDSides" value="10"/>
-  <fieldval field="srcBookInf" value=" [PoW]"/>
+    <fieldval field="srcBookInf" value=" [PoW]"/>
     <arrayval field="cKnowTot" index="1" column="7" value="1"/>
     <arrayval field="cKnowTot" index="2" column="7" value="1"/>
     <arrayval field="cKnowTot" index="2" column="8" value="1"/>
@@ -4036,5 +4038,34 @@ nexteach]]></validate>
 
       ~ Since the stance doesn't need to be activated anymore, just remove its activation checkbox
       perform focus.delete[User.Activation]]]></eval>
+    </thing>
+  <thing id="cPW2ManRec" name="Stalker Maneuver Recovery" description="Stalkers may recover their maneuvers in one of two ways. The stalker may either center his awareness of the combat momentarily as a standard action and recover a single expended maneuver of his choice.\n\nAlternately, he may recover his Wisdom modifier in expended maneuvers (min of 2) as a full round action that does not provoke attacks of opportunity, centering his spirit completely to re-align his perceptions of the battle and change his place in it. When recovering his maneuvers as a full round action, he may move up to his base speed and adds a +4 insight bonus to his Armor Class as his ki defends his form while he re-centers himself. The next attack or martial strike he attempts after recovering his maneuvers adds his deadly strike&apos;s damage to the attack if successful.\n\n{b}NOTE:{/b}  When using the full-round recovery, check &quot;Full-round recovery&quot; on the In-Play tab to gain the AC bonus." compset="ClSpecial">
+    <comment>abValue = Minimum manuevers recovered
+abValue2 = AC insight bonus</comment>
+    <fieldval field="abValue" value="2"/>
+    <fieldval field="abValue2" value="4"/>
+    <fieldval field="actName" value="Full-round recovery"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="Standard"/>
+    <tag group="abAction" tag="FullRd"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] = 0)
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ If initiating modifer is higher than 2, replace number of maneuvers recovered
+      perform hero.childfound[mHelpPW2].pulltags[UseAttr.?]
+      var initMod as number
+      foreach pick in hero from BaseAttr where tagids[UseAttr.?]
+        initMod = eachpick.field[aModBonus].value
+      nexteach
+      field[abValue].value = maximum(field[abValue].value, initMod)
+
+      ~ Stop now if we're not activated
+      doneif (field[abilActive].value = 0)
+
+      ~ Add insight bonus to AC
+      #applybonus[BonInsight, hero.child[ArmorClass], field[abValue2].value]]]></eval>
+    <eval phase="Render" priority="10000" index="2"><![CDATA[      this.field[actName].text &= " (" & field[abValue].value & " maneuvers)"]]></eval>
     </thing>
   </document>
