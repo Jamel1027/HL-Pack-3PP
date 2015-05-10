@@ -817,4 +817,162 @@ abValue2 stores the extra bonus vs Claimed targets</comment>
     <tag group="ProductId" tag="HLCommunit"/>
     <tag group="AbilType" tag="Super"/>
     </thing>
+  <thing id="arPWViglnt" name="Vigilante" description="Vigilantes are warriors who use fear and darkness to their advantage.  They rely on keen insight and inspiration to aid them where others would seek to use magic or the supernatural." compset="ClassVary" uniqueness="unique">
+    <tag group="ClVaryName" tag="AppParen"/>
+    <tag group="ClassSkill" tag="skKnowDun"/>
+    <tag group="ClassSkill" tag="skKnowGeog"/>
+    <tag group="ClassSkill" tag="skKnowHist"/>
+    <tag group="ClassSkill" tag="skKnowNobl"/>
+    <tag group="ClassSkill" tag="skSleight"/>
+    <tag group="AbReplace" tag="cPW2KiPool"/>
+    <tag group="AbReplace" tag="cPW2KiSavF"/>
+    <tag group="AbReplace" tag="cPW2KiMnRp"/>
+    <tag group="AbReplace" tag="cPW2KiPerc"/>
+    <tag group="AbReplace" tag="cPW2KiSavR"/>
+    <tag group="AbReplace" tag="cPW2KSeeAl"/>
+    <tag group="AbReplace" tag="cPW2KiSens"/>
+    <tag group="AbReplace" tag="cPW2KiSavW"/>
+    <tag group="AbReplace" tag="cPW2DeadSt"/>
+    <tag group="AbReplace" tag="cPW2RetKi"/>
+    <tag group="AbReplace" tag="cPW2ManRec"/>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="3"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="7"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="9"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="11"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="13"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="15"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="17"/>
+      </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="19"/>
+      </bootstrap>
+    <bootstrap thing="cRogTrapfn">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPW2Inspir">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPW2VgManR">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPW2InsVen">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <link linkage="varies" thing="cHelpPW2"/>
+    <eval phase="First" priority="1000"><![CDATA[~ Switch initiating attribute to INT
+      perform hero.childfound[mHelpPW2].delete[UseAttr.aWIS]
+      perform hero.childfound[mHelpPW2].assign[UseAttr.aINT]
+      perform hero.childfound[cCfgPW2].delete[UseAttr.aWIS]
+      perform hero.childfound[cCfgPW2].assign[UseAttr.aINT]
+
+      perform hero.childfound[cHelpPW2].assign[AllowC4th.cHelpInv]
+      hero.child[cHelpPW2].field[cSpec4thSi].text = "Investigator Talent"
+
+      ~perform hero.childfound[cHelpPW2].assign[FtCountAs.cHelpInv]]]></eval>
+    <eval phase="Final" priority="5000" index="2"><![CDATA[~ Grant access to Tempest Gale discipline
+perform hero.child[mHelpPW2].assign[Discipline.TmpGale]
+~ Grant access to Scarlet Throne discipline
+perform hero.child[mHelpPW2].assign[Discipline.ScarletThr]
+
+~ Remove access to Solar Wind discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
+var SWcount as number
+SWcount = hero.tagcount[Discipline.SolarWind]
+if (SWcount < 2) then
+  perform hero.child[mHelpPW2].delete[Discipline.SolarWind]
+endif
+
+~ Remove access to Veiled Moon discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
+var VMcount as number
+VMcount = hero.tagcount[Discipline.VeiledMoon]
+if (VMcount < 2) then
+  perform hero.child[mHelpPW2].delete[Discipline.VeiledMoon]
+endif]]></eval>
+    </thing>
+  <thing id="cPW2VgManR" name="Vigilante Maneuver Recovery" description="Vigilantes may recover their maneuvers in one of two ways. The vigilante may either center his awareness of the combat momentarily as a standard action and recover a single expended maneuver of his choice.\n\nAlternately, he may recover his initiation modifier in expended maneuvers (min of 2) as a full round action that does not provoke attacks of opportunity, opening his mind to the flow of battle and the inherent patterns therein. When recovering his maneuvers as a full round action, he may move up to his base speed and adds a +4 insight bonus to his Armor Class as his mind opens to anticipate any incoming attack his enemies might bring to bear. The next attack or martial strike he attempts after recovering his maneuvers adds his sneak attack&apos;s damage to the attack if successful.\n\nThis alters the Stalker’s Maneuvers Known, Maneuvers Readied and Stances.\n\n{b}NOTE:{/b}  When using the full-round recovery, check &quot;Full-round recovery&quot; on the In-Play tab to gain the AC bonus." compset="ClSpecial">
+    <fieldval field="abValue" value="2"/>
+    <fieldval field="abValue2" value="4"/>
+    <fieldval field="actName" value="Full-round recovery"/>
+    <tag group="abAction" tag="Standard" name="Standard" abbrev="Stand"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="User" tag="Activation" name="Activation" abbrev="Activation"/>
+    <tag group="abAction" tag="FullRd" name="Full rd" abbrev="Full"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] = 0)
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ If initiating modifer is higher than 2, replace number of maneuvers recovered
+      perform hero.childfound[mHelpPW2].pulltags[UseAttr.?]
+      var initMod as number
+      foreach pick in hero from BaseAttr where tagids[UseAttr.?]
+        initMod = eachpick.field[aModBonus].value
+      nexteach
+      field[abValue].value = maximum(field[abValue].value, initMod)
+
+      ~ Stop now if we're not activated
+      doneif (field[abilActive].value = 0)
+
+      ~ Add insight bonus to AC
+      #applybonus[BonInsight, hero.child[ArmorClass], field[abValue2].value]]]></eval>
+    <eval phase="Render" priority="10000" index="2"><![CDATA[      this.field[actName].text &= " (" & field[abValue].value & " maneuvers)"]]></eval>
+    </thing>
+  <thing id="cPW2Inspir" name="Inspiration" description="The Vigilante relies on his insight to aid him in his mission, this takes the form of a pool of Inspiration which can be used to augment his skill checks and ability checks. The vigilante has an inspiration pool equal to 1/2 his class level + his Intelligence modifier (minimum 1). A Vigilante&apos;s inspiration pool refreshes each day, typically after he gets a restful night&apos;s sleep. As a free action, he can expend one use of inspiration from his pool to add 1d6 to the result of that check, including any on which he takes 10 or 20. This choice is made after the check is rolled and before the results are revealed. A vigilante can only use inspiration once per check or roll. The vigilante can use inspiration on any Knowledge, Perception, or Sense Motive skill checks without expending a use of inspiration, provided he&apos;s trained in the skill.\n\nInspiration can also be used on attack rolls and saving throws, at the cost of expending two uses of inspiration each time from the vigilante&apos;s pool. In the case of saving throws, using inspiration is an immediate action rather than a free action.\n\nInspiration replaces the Stalker’s Ki Pool." compset="ClSpecial" summary="Use 1 point, +1d6 to trained skill or ability check. Use 2 points, to add to attack or save.">
+    <fieldval field="abValue" value="1"/>
+    <fieldval field="abValue2" value="6"/>
+    <tag group="abAction" tag="Free"/>
+    <tag group="abRange" tag="Personal"/>
+    <tag group="LvNamePar" tag="DieCntVal"/>
+    <tag group="LvNamePar" tag="AppValue3"/>
+    <tag group="LvNamePar" tag="SignAppVal"/>
+    <tag group="LvNamePar" tag="SignDieCnt"/>
+    <tag group="LvNamePar" tag="DieSizVal2"/>
+    <tag group="SbNamePar" tag="IncUses"/>
+    <tag group="AbilType" tag="Extra"/>
+    <tag group="ChargeCalc" tag="LevelHalf"/>
+    <tag group="ChargeCalc" tag="FinalMin1"/>
+    <tag group="ChargeAttr" tag="aINT"/>
+    <tag group="User" tag="Tracker"/>
+    <tag group="Usage" tag="Day"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="cPW2InvTal" name="Investigator Talent" description="Instead of selecting a Stalker Art at the appropriate level, the vigilante can select an investigator talent instead.  He must meet the prerequisites for this Investigator Talent as normal.  The vigilante cannot select Investigator Talents which augment Alchemy, nor can he select Stalker Arts which require a Ki Pool to function.  Any investigator talent which augments Studied Strike instead affects the Vigilante’s Sneak Attacks." compset="CustomSpec" summary="Gain an investigator talent" uniqueness="unique">
+    <usesource source="srcPOWEx"/>
+    <tag group="abCategory" tag="StalkerArt" name="Stalker Art" abbrev="Stalker Art"/>
+    <tag group="SpecSource" tag="arPWViglnt"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      linkage[table].field[cGiveSp4th].value += 1]]></eval>
+    <eval phase="Final" priority="99999999" index="2"><![CDATA[
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ Allow Investigator Talents (except for the ones that are also Rogue Talents or Alchemist Discoveries)
+      hero.child[cHelpPW2].field[cCstS4Expr].text = "(SpecSource.cHelpInv & !SpecSource.cHelpRog & !SpecSource.cHelpAlc)"]]></eval>
+    </thing>
+  <thing id="cPW2InsVen" name="Inspired Vengeance" description="At 20th level, the vigilante has mastered inspiration to such an extent that he can instinctively use with every attack.  The Vigilante can use inspiration as a free action on any attack roll he makes without spending inspiration.  In addition, the vigilante can spend one point of inspiration to add the result of the inspiration roll to the DC of one maneuver he initiates this round as a free action." compset="ClSpecial" summary="Use Inspiration for free on attacks">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    <tag group="abAction" tag="Free"/>
+    </thing>
   </document>

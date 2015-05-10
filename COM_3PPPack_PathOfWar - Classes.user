@@ -672,6 +672,7 @@
     <tag group="SpecSource" tag="cHelpPW2"/>
     <tag group="abAction" tag="Immediate"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2AdvStd" name="Advanced Study" description="The stalker&apos;s knowledge of the martial disciplines expands, imparting new maneuvers as if the character had taken the Advanced Study feat. This art may be selected more than once. The stalker must meet the prerequisites of this feat to select this stalker art." compset="CustomSpec">
     <usesource source="srcPathOfW"/>
@@ -731,6 +732,7 @@
 
       ~ Set fatigue condition on hero
       perform hero.assign[Condition.pcnFatigue]]]></eval>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2ComArt" name="Combat Art" description="A stalker that selects this art gains a bonus combat feat. The stalker must meet the prerequisites for selecting this feat. This art may be selected more than once." compset="CustomSpec" summary="You gain a bonus combat feat.">
     <usesource source="srcPathOfW"/>
@@ -850,6 +852,7 @@
 
       field[abValue].value = field[xAllLev].value]]></eval>
     <exprreq message="Stalker level 11 required"><![CDATA[#custspeciallevelcount[PWStalker] >= 11]]></exprreq>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2MndBnd" name="Mind Bending" description="The stalker&apos;s inner sense learns the workings of another being&apos;s mind, granting him the ability to impose his own will over those weak enough to succumb to this art. As a standard action, the character spends one ki point and must make eye contact with the target creature and begin speaking to them, using his ki to influence his target&apos;s thoughts. The target then must make a Will save (DC 13 + the stalker&apos;s Wisdom modifier) or be subject to a charm monster spell. Minimum stalker level 5th." compset="CustomSpec" summary="Spend ki to charm monster" uniqueness="unique">
     <usesource source="srcPathOfW"/>
@@ -867,6 +870,7 @@
       ~ Save DC is 13 + WIS mod
       field[abDC].value = 13 + #attrmod[aWIS]]]></eval>
     <exprreq message="Stalker level 5 required"><![CDATA[#custspeciallevelcount[PWStalker] >= 5]]></exprreq>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2MonWep" name="Monastic Weapon Training" description="The stalker gains the Improved Unarmed Strike feat and gains proficiency with all weapons that are considered monk weapons." compset="CustomSpec" summary="Gain Improved Unarmed Strike and monk proficiencies" uniqueness="unique">
     <usesource source="srcPathOfW"/>
@@ -914,8 +918,9 @@
       doneif (tagis[Helper.SpcDisable] <> 0)    
     
       field[abDuration].value = 1 + #attrmod[aWIS]]]></eval>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
-  <thing id="cPW2Obfusc" name="Obfuscation" description="The stalker knows how to maintain a quiet, innocuous attitude as if he were nothing more than a part of the scenery. The stalker spends a point of ki as a full round action to activate his obfuscation, and as long as he remains in a non- threatening posture (by carrying no weapons in hand moving at half his base speed) the stalker radiates a psychic field that causes others to ignore his presence for a number of minutes equal to the stalker&apos;s Wisdom modifier. Subjects who normally would react to the stalker&apos;s presence in a way that would stop or harm him must make a Will save (DC 15 + the stalker&apos;s Wisdom modifier) or be under the influence of the cloud mind psionic power. For every 2 additional points of ki spent on this art, the saving throw DC increases by +1 to a maximum of the stalker&apos;s Wisdom modifier. Minimum stalker level 7th." compset="CustomSpec" summary="Force others to ignore you" uniqueness="unique">
+  <thing id="cPW2Obfusc" name="Obfuscation" description="The stalker knows how to maintain a quiet, innocuous attitude as if he were nothing more than a part of the scenery. The stalker spends a point of ki as a full round action to activate his obfuscation, and as long as he remains in a non- threatening posture (by carrying no weapons in hand moving at half his base speed) the stalker radiates a psychic field that causes others to ignore his presence for a number of minutes equal to the stalker&apos;s Wisdom modifier. Subjects who normally would react to the stalker&apos;s presence in a way that would stop or harm him must make a Will save (DC 15 + the stalker&apos;s Wisdom modifier) or be under the influence of the {i}cloud mind{/i} psionic power. For every 2 additional points of ki spent on this art, the saving throw DC increases by +1 to a maximum of the stalker&apos;s Wisdom modifier. Minimum stalker level 7th." compset="CustomSpec" summary="Force others to ignore you" uniqueness="unique">
     <usesource source="srcPathOfW"/>
     <tag group="abCategory" tag="StalkerArt"/>
     <tag group="abAction" tag="FullRd"/>
@@ -932,6 +937,7 @@
       ~ Duration is WIS minutes
       field[abDuration].value = #attrmod[aWIS]]]></eval>
     <exprreq message="Stalker level 7 required"><![CDATA[#custspeciallevelcount[PWStalker] >= 7]]></exprreq>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2PhmRch" name="Phantom Reach" description="The stalker is capable of extending the reach of melee range martial strikes by infusing ki into the maneuver, causing a phantom echo to rush towards the enemy and initiate the attack. As a swift action, the stalker may spend one ki point and initiate a melee martial strike with a range of melee attack as if it instead had a range of close (25-ft. + 5-ft. / 2 levels). Strikes with a range greater than melee attack do not function with this art." compset="CustomSpec" summary="Make martial strikes at range" uniqueness="unique">
     <usesource source="srcPathOfW"/>
@@ -945,6 +951,7 @@
       doneif (tagis[Helper.SpcDisable] <> 0)
 
       field[abRange].value = 25 + (field[xTotalLev].value/2) * 5]]></eval>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2PrcStp" name="Precocious Step" description="By relying on his combat insight to steer him effortlessly through a dangerous spot, the stalker may spend one point of ki as a swift action and move without provoking attacks of opportunity for a number rounds equal to his Wisdom modifier (min 1)." compset="CustomSpec" summary="Spend ki to move without AoO" uniqueness="unique">
     <usesource source="srcPathOfW"/>
@@ -960,6 +967,7 @@
 
       ~ Duration is WIS rounds
       field[abDuration].value += #attrbonus1[aWIS]]]></eval>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPW2RogTal" name="Rogue Talent" description="Some stalkers have learned techniques that are similar to those of the rogue, and may select rogue talents instead of stalker arts. Stalkers may not learn advanced talents, nor can they gain the Ki Pool or Underhanded rogue talents. Talents that apply to a rogue&apos;s sneak attack apply to a stalker&apos;s deadly strike ability." compset="CustomSpec" summary="Gain a rogue talent" uniqueness="unique">
     <usesource source="srcPathOfW"/>
@@ -1195,6 +1203,7 @@
     <tag group="LvNamePar" tag="IncDurati"/>
     <eval phase="PostAttr" priority="10000">field[abDuration].value = #attrmod[aWIS]</eval>
     <exprreq message="Deadly Strike required"><![CDATA[#hasability[cPW2DeadSt] <> 0]]></exprreq>
+    <exprreq message="Not available to Vigilante archetype"><![CDATA[#hasarchetype[arPWViglnt] <> 1]]></exprreq>
     </thing>
   <thing id="cPWWarder" name="Warder" description="Protective and disciplined warriors, warders are fighting men and women who use their knowledge of warfare, tactics, and strategy combined with superior combat training to accomplish their goals in defending others. Their intellect guides them through battle, and their skill at arms achieves their success.\n\n{b}Adventures:{/b} Warders adventure to further their employer’s missions, to serve on battlefields as protectors and champions, or to protect those that they care about. Some warders adventure to forge kingdoms of their own, battle tyranny, fight others of their kind for honor, or to live simply and by their own code.\n\n{b}Characteristics:{/b} Warders are always protective of people they deem in their care, be it a superior, their friends, or fellow soldiers of fortune. Many warders are proud, intelligent individuals who study tactics and maps as well while training daily with their associates to better suit their style towards their defense.\n\n{b}Alignment:{/b} Any, but most are lawful; the moral portion of their alignment is either up to them or their inclusion in their sect.\n\n{b}Religion:{/b} Many warders are religious, often following gods of war, chivalry, and sacrifice. Some follow gods of tyranny or justice, and others follow gods that stand for the good of their race.\n\n{b}Background:{/b} Warders find their place in their society based upon their line of adventuring. Some warders are regarded with great respect as leaders and guardians while others are feared and hated for their tyrannical ways. Many are respected and treated well in the hopes that if trouble comes, the warder will come to help those who showed them kindness.\n\n{b}Races:{/b} Nearly all humanoid races have warders amongst them. Dwarves, half-orcs, and humans make up the larger majority of warders in more civilized\nsociety, but there are a minority of halflings and gnomes that guard their kind from harm. While elves possess the tactical prowess to make great warders,\ntheir fragile bodies are often not enough for the physical rigors of the profession. While some warders are restrictive to whom they’ll share their secrets, it’s\nlargely agreed that the more monstrous races tend to be excluded. Hobgoblins, of the monstrous races, are by far the largest exception to that stereotype.\n\n{b}Other Classes:{/b} Warders get on well with those of a more orderly and martial bent, naturally befriending paladins, monks, and fighters. Rogues and warders\ndon’t exactly see eye to eye, while rangers and sorcerers might find a warder’s presence restrictive. Wizards and warders appreciate many of their shared\nfacets in learning, and warders widely recognize the importance of clerics in both martial and spiritual matters.\n\n{b}Role:{/b} Defender. Warders are natural guardians and protectors of the weaker members of the party, and are the ones who can take the most damage on\nthe front line. They also double as being coordinators on the battlefield, helping their teammates and providing support for them both defensively and offensively." compset="ClassLevel" maxlimit="20">
     <usesource source="srcPathOfW"/>
