@@ -835,9 +835,7 @@ abValue2 stores the extra bonus vs Claimed targets</comment>
     <tag group="AbReplace" tag="cPW2DeadSt"/>
     <tag group="AbReplace" tag="cPW2RetKi"/>
     <tag group="AbReplace" tag="cPW2ManRec"/>
-    <bootstrap thing="cSneakAtt">
-      <autotag group="ClSpecWhen" tag="1"/>
-      </bootstrap>
+    <tag group="Helper" tag="Playtest"/>
     <bootstrap thing="cSneakAtt">
       <autotag group="ClSpecWhen" tag="3"/>
       </bootstrap>
@@ -877,35 +875,36 @@ abValue2 stores the extra bonus vs Claimed targets</comment>
     <bootstrap thing="cPW2InsVen">
       <autotag group="ClSpecWhen" tag="20"/>
       </bootstrap>
+    <bootstrap thing="cSneakAtt">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
     <link linkage="varies" thing="cHelpPW2"/>
-    <eval phase="First" priority="1000"><![CDATA[~ Switch initiating attribute to INT
+    <eval phase="Final" priority="5000" index="2"><![CDATA[      ~ Grant access to Tempest Gale discipline
+      perform hero.child[mHelpPW2].assign[Discipline.TmpGale]
+      ~ Grant access to Scarlet Throne discipline
+      perform hero.child[mHelpPW2].assign[Discipline.ScarletThr]
+
+      ~ Remove access to Solar Wind discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
+      var SWcount as number
+      SWcount = hero.tagcount[Discipline.SolarWind]
+      if (SWcount < 2) then
+        perform hero.child[mHelpPW2].delete[Discipline.SolarWind]
+      endif
+
+      ~ Remove access to Veiled Moon discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
+      var VMcount as number
+      VMcount = hero.tagcount[Discipline.VeiledMoon]
+      if (VMcount < 2) then
+        perform hero.child[mHelpPW2].delete[Discipline.VeiledMoon]
+      endif]]></eval>
+    <eval phase="First" priority="1000"><![CDATA[      ~ Switch initiating attribute to INT
       perform hero.childfound[mHelpPW2].delete[UseAttr.aWIS]
       perform hero.childfound[mHelpPW2].assign[UseAttr.aINT]
       perform hero.childfound[cCfgPW2].delete[UseAttr.aWIS]
       perform hero.childfound[cCfgPW2].assign[UseAttr.aINT]
 
       perform hero.childfound[cHelpPW2].assign[AllowC4th.cHelpInv]
-      hero.child[cHelpPW2].field[cSpec4thSi].text = "Investigator Talent"
-
-      ~perform hero.childfound[cHelpPW2].assign[FtCountAs.cHelpInv]]]></eval>
-    <eval phase="Final" priority="5000" index="2"><![CDATA[~ Grant access to Tempest Gale discipline
-perform hero.child[mHelpPW2].assign[Discipline.TmpGale]
-~ Grant access to Scarlet Throne discipline
-perform hero.child[mHelpPW2].assign[Discipline.ScarletThr]
-
-~ Remove access to Solar Wind discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
-var SWcount as number
-SWcount = hero.tagcount[Discipline.SolarWind]
-if (SWcount < 2) then
-  perform hero.child[mHelpPW2].delete[Discipline.SolarWind]
-endif
-
-~ Remove access to Veiled Moon discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
-var VMcount as number
-VMcount = hero.tagcount[Discipline.VeiledMoon]
-if (VMcount < 2) then
-  perform hero.child[mHelpPW2].delete[Discipline.VeiledMoon]
-endif]]></eval>
+      hero.child[cHelpPW2].field[cSpec4thSi].text = "Investigator Talent"]]></eval>
     </thing>
   <thing id="cPW2VgManR" name="Vigilante Maneuver Recovery" description="Vigilantes may recover their maneuvers in one of two ways. The vigilante may either center his awareness of the combat momentarily as a standard action and recover a single expended maneuver of his choice.\n\nAlternately, he may recover his initiation modifier in expended maneuvers (min of 2) as a full round action that does not provoke attacks of opportunity, opening his mind to the flow of battle and the inherent patterns therein. When recovering his maneuvers as a full round action, he may move up to his base speed and adds a +4 insight bonus to his Armor Class as his mind opens to anticipate any incoming attack his enemies might bring to bear. The next attack or martial strike he attempts after recovering his maneuvers adds his sneak attack&apos;s damage to the attack if successful.\n\nThis alters the Stalker’s Maneuvers Known, Maneuvers Readied and Stances.\n\n{b}NOTE:{/b}  When using the full-round recovery, check &quot;Full-round recovery&quot; on the In-Play tab to gain the AC bonus." compset="ClSpecial">
     <fieldval field="abValue" value="2"/>
@@ -974,5 +973,169 @@ endif]]></eval>
     <tag group="ProductId" tag="HLCommunit"/>
     <tag group="AbilType" tag="Extra"/>
     <tag group="abAction" tag="Free"/>
+    </thing>
+  <thing id="arPWDsprdo" name="Desperado" description="Some warlords take to the way of the gun, and find that their daring personalities and devil-may-care attitude to danger is well suited to the black smoke and thunderous crack of the gun fight." compset="ClassVary" uniqueness="unique">
+    <fieldval field="cvSpec5thS" value="Gunslinger Deed"/>
+    <arrayval field="cvBonFtMod" index="13" value="-1"/>
+    <arrayval field="cvBonFtMod" index="17" value="-1"/>
+    <arrayval field="cvBonFtMod" index="0" value="-1"/>
+    <arrayval field="cvBonFtMod" index="5" value="-1"/>
+    <arrayval field="cvCust5Tot" index="4" value="1"/>
+    <arrayval field="cvCust5Tot" index="6" value="2"/>
+    <arrayval field="cvCust5Tot" index="8" value="3"/>
+    <arrayval field="cvCust5Tot" index="10" value="4"/>
+    <arrayval field="cvCust5Tot" index="12" value="5"/>
+    <arrayval field="cvCust5Tot" index="14" value="6"/>
+    <arrayval field="cvBonFtMod" index="9" value="-1"/>
+    <tag group="fDisable" tag="fArmShield"/>
+    <tag group="ClassSkill" tag="skSleight"/>
+    <tag group="Helper" tag="Playtest"/>
+    <tag group="AbReplace" tag="cPW1BatPro"/>
+    <tag group="AbReplace" tag="cPW1DulBoo"/>
+    <tag group="AbReplace" tag="cPW1DuaPre"/>
+    <tag group="AllowC5th" tag="arPalHoGun"/>
+    <tag group="CSCountAdj" tag="NegLev4"/>
+    <tag group="AbReplace" tag="cPW1IndPre"/>
+    <tag group="AbReplace" tag="cPW1Presen"/>
+    <tag group="AbReplace" tag="cPW1WarPre"/>
+    <tag group="AbReplace" tag="cPW1RalPre"/>
+    <tag group="AbReplace" tag="cPW1VicPre"/>
+    <tag group="ClVaryName" tag="AppParen"/>
+    <tag group="PreReqCaP1" tag="GunDare"/>
+    <tag group="PreReqCaP1" tag="GunDeed"/>
+    <bootstrap thing="cPW1DrGrit">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cPW1Gunftr">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="fArmBuckl"></bootstrap>
+    <bootstrap thing="fExoticGun"></bootstrap>
+    <bootstrap thing="cPWRapReld">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPW1BPProw">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cPW1BPProw">
+      <autotag group="ClSpecWhen" tag="12"/>
+      </bootstrap>
+    <bootstrap thing="cPW1BPProw">
+      <autotag group="ClSpecWhen" tag="19"/>
+      </bootstrap>
+    <bootstrap thing="cPW1GunGam">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="cPW1GunGam">
+      <autotag group="ClSpecWhen" tag="12"/>
+      </bootstrap>
+    <bootstrap thing="cPW1GunGam">
+      <autotag group="ClSpecWhen" tag="18"/>
+      </bootstrap>
+    <link linkage="varies" thing="cHelpPW1"/>
+    <eval phase="First" priority="1000"><![CDATA[     ~ Grant access to Tempest Gale discipline
+     perform hero.child[mHelpPW1].assign[Discipline.TmpGale]
+
+     ~ Remove access to Veiled Moon discipline (unless it came from more than one source, such as multiclassing into another class that grants it)
+     var PFcount as number
+     PFcount = hero.tagcount[Discipline.PrimalFury]
+     if (PFcount < 2) then
+       perform hero.child[mHelpPW1].delete[Discipline.PrimalFury]
+     endif
+
+      #appenddesc[cGunGrit, "{b}Addition from Desperado:{/b} Instead of using her Wisdom to determine the number of grit points she gains at the start of each day, a desperado uses Charisma."]]]></eval>
+    <eval phase="PostLevel" priority="10000" index="2">perform hero.childfound[trkGrit].assign[Helper.GritUseCHA]</eval>
+    </thing>
+  <thing id="cPW1Gunftr" name="Gunfighter" description="At 1st level, the desperado gains the Amateur Gunslinger feat and Gunsmithing as bonus feats. The Amateur Gunslinger feat is modified in that it uses the character’s Charisma in place of Wisdom as per the normal rules for this feat. They also gain a battered gun identical to the one gained by the Gunslinger. This replaces the bonus feat gained at 1st level." compset="ClSpecial" summary="Gain Gunsmithing and Amateur Gunslinger, use CHA for grit">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    <tag group="Helper" tag="SpecUp"/>
+    <bootstrap thing="fGunsmithi"></bootstrap>
+    <bootstrap thing="fAmateuGun">
+      <containerreq phase="First" priority="490"><![CDATA[!hero#Classes.Gunsling & count:hero#Classes.PWWarlord < 5]]></containerreq>
+      </bootstrap>
+    </thing>
+  <thing id="cPWRapReld" name="Rapid Reload" description="The desperado’s hands are lightning quick, gaining Rapid Reload as a bonus feat at 2nd level, even if the desperado does not meet the requirements for this feat. This replaces the tactical presence (indomitable presence) class feature." compset="ClSpecial" summary="Gain Rapid Reload as a bonus feat">
+    <tag group="Helper" tag="SpecUp"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <bootstrap thing="fRapidRel">
+      <autotag group="thing" tag="skipprereq"/>
+      </bootstrap>
+    </thing>
+  <thing id="cPW1DrGrit" name="Daring Grit" description="Starting at 5th level, at the start of each day, the desperado gains a number of grit points equal to their Charisma modifier (minimum 1). Their grit goes up or down throughout the day, but usually cannot go higher than their Charisma modifier (minimum 1), though some feats and magic items may affect this maximum (as normal, the Amateur Gunslinger feat is immediately traded for the Extra Grit feat) and gains the use of a single Gunslinger deed. She can select any deed (or dare) that a Gunslinger of their warlord level –4 could use. At 7th level, and again at 9th, 11th, 13th, and 15th level, the desperado gains another Gunslinger dare or deed that a Gunslinger of their level –4 could use. The desperado may treat his class level -4 as a his gunslinger level to determine his overall gunslinger level for feat purposes.\n\nIf the desperado already has levels in Gunslinger, they gain a bonus to the maximum amount of grit they can have each day, equal to their Charisma bonus (if any) but gains no extra grit at the start of each day. This replaces the warlord’s remaining tactical presences, dual tactical presence, and warlord’s presence class features." compset="ClSpecial" summary="Gain a pool of points that are spent to fuel deeds, regained on firearm crit/killing blow.">
+    <tag group="AbilType" tag="Extra" name="Extraordinary Ability" abbrev=" (Ex)"/>
+    <tag group="SpecType" tag="Attack" name="Attack" abbrev="Attack"/>
+    <tag group="HasAbility" tag="cGunGrit"/>
+    <bootstrap thing="trkGrit">
+      <autotag group="Helper" tag="Grit"/>
+      <autotag group="Helper" tag="GritUseCHA"/>
+      </bootstrap>
+    <bootstrap thing="fExtraGrit"></bootstrap>
+    <eval phase="PostLevel" priority="10000"><![CDATA[
+      ~if we're on a planned class level, then we need to undo the setting of
+      ~our grit tracker as a Grit ability - that will keep it from generating
+      ~a pool value, which means it's hidden until we're turned into a real
+      ~level
+      if (tagis[Helper.ShowSpec] = 0) then
+        perform hero.child[trkGrit].delete[Helper.Grit]
+        endif]]></eval>
+    <eval phase="Render" priority="10000" index="2"><![CDATA[
+      field[sbName].text = lowercase(field[thingname].text) & " (" & hero.childfound[trkGrit].field[trkMax].value & ")"]]></eval>
+    </thing>
+  <thing id="cPW1BPProw" name="Blackpowder Prowess" description="The desperado is a skilled warrior with his chosen firearms and is capable of using them with incredible proficiency. At 5th level, while in a Tempest Gale or Solar Wind stance, the character gains a +1 competence bonus to attack and damage rolls and to his CMB checks while using firearms. This bonus improves to +2 at 12th level and +3 at 19th level. This replaces the battle prowess class feature." compset="ClSpecial" summary="Bonus with firearms while in Solar Wind or Tempest Gale stance">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    <tag group="SpecType" tag="Attack"/>
+    <eval phase="PostLevel" priority="10000"><![CDATA[      ~Set the list name
+      field[listname].text = field[thingname].text & " " & signed(field[xIndex].value)
+
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] = 0)
+      ~ If we're disabled, just get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      field[abValue].value += field[xCount].value
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
+
+      ~ Stop if we're not in a Solar Wind or Tempest Gale stance
+      var IsInStance as number
+      var targetDisc as string
+      var staTotal as number
+      staTotal = 0
+      targetDisc = "SolarWind"
+      call PWinDSta
+      staTotal += IsInStance
+      targetDisc = "TmpGale"
+      call PWinDSta
+      staTotal += IsInStance
+      doneif (staTotal < 1)
+
+      ~ Add to-hit and damage bonus to firearms. If a firearm is equipped, add to CMB as well.
+      var eqGuns as number
+      eqGuns = 0
+      foreach pick in hero from BaseWep where "wCategory.Firearm"
+        #applybonus[BonComp,eachpick,field[abValue].value]
+        eqGuns += eachpick.tagcount[Hero.MainHand]
+      nexteach
+      if (eqGuns > 0) then
+        #applybonus[BonComp,hero.childfound[ManeuvBon],field[abValue].value]
+      endif]]></eval>
+    </thing>
+  <thing id="cPW1GunGam" name="Gunpowder Gambits" description="At 6th level, the desperado’s combination of dynamic verve and strange good fortune embody the concept that sometimes, it’s better to be lucky than good. Once per day, you may spend a point of grit to reroll a gambit attempt and take the higher of two results. You may do this twice per day at 12th level, and three times per day at 18th level. This replaces the dual boost class feature." compset="ClSpecial" summary="Spend grit to reroll a gambit attempt">
+    <tag group="User" tag="Tracker"/>
+    <tag group="Usage" tag="Day"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    <eval phase="PostLevel" priority="10000"><![CDATA[
+      ~Set the list name
+      field[listname].text = field[thingname].text & " " & field[xIndex].value & tagnames[Usage.?]
+
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ if we've been disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      field[abValue].value += field[xCount].value
+      field[trkMax].value += field[abValue].value]]></eval>
     </thing>
   </document>
