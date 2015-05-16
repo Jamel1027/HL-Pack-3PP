@@ -1784,13 +1784,12 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     </thing>
   <thing id="fPUPsiShiB" name="Psionic Shield Bash" description="Your shield bash attacks can strike both the body and mind of a foe.\n\n{b}Prerequisites:{/b} Improved Shield Bash, Shield Proficiency.\n\n{b}Benefit:{/b} While maintaining psionic focus, when you successfully strike a foe with a shield bash attack, the foe must also make a Will save (DC 10 + one-half your base attack bonus + your Wisdom modifier) or be shaken for 1 round. This is a mind-affecting fear effect.\n\nIf you expend your psionic focus when you make a shield bash, on a successfully attack roll you can instead force the target to make a Will saving throw or be stunned for 1 round." compset="Feat" maxlimit="2">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="abAction" tag="PUExpFocus"/>
     <tag group="abAction" tag="PUManFocus"/>
-    <exprreq message="Shield Proficiency required."><![CDATA[#hasfeat[fArmShield] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Improved Shield Bash feat required."><![CDATA[#hasfeat[fImpShBash] <> 0]]></exprreq>
+    <exprreq message="Shield Proficiency required."><![CDATA[#hasfeat[fArmShield] <> 0]]></exprreq>
     </thing>
   <thing id="fPUPsiSund" name="Psionic Sunder" description="You can draw on your psionic power to boost the power of a sunder attack.{br}{br}{b}Prerequisites:{/b} Str 13, Improved Sunder, Power Attack, base attack bonus +1.{br}{br}{b}Benefit:{/b} While maintaining psionic focus, when you successfully perform a sunder combat maneuver, you also deal damage equal to half your level to the creature holding the item sundered.{br}{br}If you expend your psionic focus when you perform a successful sunder maneuver, you ignore half the hardness of the object you are sundering." compset="Feat" maxlimit="2">
     <usesource source="pPsiUn"/>
