@@ -2516,4 +2516,14 @@ field[gCost].value += field[abValue2].value]]></eval>
     <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="Proficient"/>
     </thing>
+  <thing id="ioPBBGlve" name="Pattern Breaker&apos;s Gloves" description="These black leather gloves allow the wielder to use the disrupt pattern ability with unarmed strikes or natural attacks, rather than as ranged attacks." compset="Wondrous">
+    <fieldval field="gCost" value="2000"/>
+    <fieldval field="gCraftCost" value="1000"/>
+    <fieldval field="gWeight" value="1"/>
+    <tag group="Helper" tag="EquipAvail"/>
+    <tag group="Hero" tag="EqpHand"/>
+    <tag group="Helper" tag="EquipMag"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <tag group="gType" tag="Wonder"/>
+    </thing>
   </document>
