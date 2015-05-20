@@ -1827,8 +1827,6 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     </thing>
   <thing id="fPUReadyRe" name="Ready Response" description="You can move yourself more quickly through sheer willpower.\n\n{b}Benefit:{/b} At the beginning of a surprise round, if you would not normally take an action, you can expend your psionic focus to roll initiative and take a standard action or a move action. If you do move normally in a surprise round, you can expend your psionic focus to take a full-round of action, rather than only a standard or move action.\n\n{b}Normal:{/b} A character that is allowed to act in a surprise round can take only a standard action or a move action, not both." compset="Feat" maxlimit="2">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="abAction" tag="PUExpFocus"/>
     </thing>
