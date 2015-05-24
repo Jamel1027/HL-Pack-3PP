@@ -55,8 +55,10 @@
 	<value id="ElemFlux"    name="Elemental Flux"/>
 	<value id="EternGuard"  name="Eternal Guardian"/>
 	<value id="MithCurr"    name="Mithral Current"/>
+	<value id="PrcThun"  	name="Piercing Thunder"/>
 	<value id="RivnHglass"  name="Riven Hourglass"/>
 	<value id="SlpGoddess"  name="Sleeping Goddess"/>
+	<value id="TmpGale"		name="Tempest Gale"/>
   </group>
 
   <!-- Has Manuever tags inherited from the discipline level group -->
