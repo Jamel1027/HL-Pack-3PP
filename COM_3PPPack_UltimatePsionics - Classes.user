@@ -14402,4 +14402,278 @@ debug "PP Reserve " & #resmax[resPowerPt]
 debug "PP +" & PP]]></eval>
     </thing>
   <thing id="cPUTacCoor" name="Coordinate" description="Coordinate (Su): At 6th level, as long as the tactician maintains psionic focus, he may share any one teamwork feat he has with one member of his collective within line of sight and line of effect. Declaring which member of the collective gains the teamwork feat is a free action that may only be done once per round. The ally’s positioning and actions must still meet the prerequisites listed in the teamwork feat to receive the listed bonus, but the ally need not meet the feat prerequisites to gain the benefit.&quot;" compset="ClSpecial"></thing>
+  <thing id="cPUIConstr" name="Improved Constructs" description="At 8th level, you gain your choice of the Advanced Construct* or Boost Construct feat as a bonus feat. If you already have one of the feats, you gain the other instead. If you already possess both feats, you gain a bonus psionic feat of your choice. You must meet any applicable prerequisites to select the feat." compset="ClSpecial">
+    <comment>Stub</comment>
+    </thing>
+  <thing id="cPUMsConst" name="Maestro of Constructs" description="At 14th level, once per day as a standard action, you can choose to create up to half your psion level in astral constructs, divided at your discretion (For example, for a 14th level constructor, a 5th-level construct and a 2nd-level construct, a single 7th-level construct, seven 1st-level constructs, etc.), repair a damaged astral construct for up to 30 hit points plus 1 hit point per psion level, or summon two astral swarms (see Appendix) plus one astral swarm for each three levels beyond 14th, to a maximum of 4 at 20th level." compset="ClSpecial">
+    <comment>stub</comment>
+    </thing>
+  <thing id="cPsiShapr2" name="Constructor (Shaper)" description="A psion specializing in metacreativity is known as a shaper. This discipline includes powers that draw ectoplasm from the Astral Plane, creating semisolid and solid items such as armor, weapons, or animated constructs to do battle at the shaper&apos;s command.\n\n{i}Class Skills:{/i} Bluff (Cha), Disguise (Cha), and Use Magic Device (Cha)." compset="CustomSpec" uniqueness="useronce">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="ClassSkill" tag="skDisguise" name="Disguise" abbrev="Disguise"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="ClassSkill" tag="skBluff" name="Bluff" abbrev="Bluff"/>
+    <bootstrap thing="cPsiSumCal">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPUMsConst">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAstAll">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPUIConstr">
+      <autotag group="ClSpecWhen" tag="12"/>
+      </bootstrap>
+    <bootstrap thing="cPUIConstr">
+      <autotag group="ClSpecWhen" tag="16"/>
+      </bootstrap>
+    <bootstrap thing="cPUIConstr">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPUIConstr">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <eval phase="UserFinal" priority="1000"><![CDATA[
+      ~ Give access to Shaper Powers
+      linkage[table].field[cPsiExpr].text &= "|psiClass.cPsiShaper"]]></eval>
+    </thing>
+  <thing id="cPsiGen2" name="Erudite (Generalist)" description="A psion who chooses to remain more general in his studies of psionics is known as a generalist.  While he does not gain the unique abilities each discipline grants to the specialized psions, he is able to broaden his powers and blend them in unique ways.\n\n{i}Class Skills:{/i} Use Magic Device (Cha) and any one skill chosen from the above discipline lists." compset="CustomSpec" uniqueness="useronce">
+    <fieldval field="usrCandid1" value="thingid.skAcrobat|thingid.skBluff|thingid.skClimb|thingid.skDiplo|thingid.skDisable|thingid.skDisguise|thingid.skFly|thingid.skHeal|thingid.skIntim|thingid.skPercep|thingid.skSenseMot|thingid.skSurvival|thingid.skSwim"/>
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="fShowWhat" tag="Skills" name="Skills" abbrev="Skills"/>
+    <tag group="ChooseSrc1" tag="Hero" name="All Picks on Hero" abbrev="All Picks on Hero"/>
+    <tag group="ClassSkill" tag="skUseMagic" name="Use Magic Device" abbrev="Use Magic Device"/>
+    <bootstrap thing="cPUDayPowr">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPsiBrePow">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <bootstrap thing="cPsiDblMan">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiExMind">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <eval phase="PreLevel" priority="5000">~ Make selected skill a class skill
+perform field[usrChosen1].chosen.assign[Helper.ClassSkill]</eval>
+    <eval phase="First" index="2">~ Set 2nd bonus feat tags
+perform linkage[table].assign[fCatSec.ItemCreate]
+perform linkage[table].assign[fCatSec.Metapsion]
+~ Expanded Knowledge
+perform linkage[table].assign[fIncSec.fPUExpKn]
+~ Extra Power Known
+perform linkage[table].assign[fIncSec.fPUExtPwrK]
+~ Set the 2nd bonus feat levels
+linkage[table].field[cSBonFtTot].arrayvalue[1]  = 1
+linkage[table].field[cSBonFtTot].arrayvalue[6]  = 2
+linkage[table].field[cSBonFtTot].arrayvalue[11] = 3
+linkage[table].field[cSBonFtTot].arrayvalue[16] = 4</eval>
+    </thing>
+  <thing id="cPsiSeer2" name="Insight (Seer)" description="A psion who chooses clairsentience is known as a seer. Seers can learn precognitive powers to aid their comrades in combat, as well as powers that permit them to gather information in many different ways.\n\n{i}Class Skills:{/i} Diplomacy (Cha) and Perception (Wis)." compset="CustomSpec" uniqueness="useronce">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="ClassSkill" tag="skPercep" name="Perception" abbrev="Perception"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="ClassSkill" tag="skDiplo" name="Diplomacy" abbrev="Diplomacy"/>
+    <bootstrap thing="cPUInsStep">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPsiSeeCon">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiPerFSi">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAltWav">
+      <autotag group="ClSpecWhen" tag="10"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAltWav">
+      <autotag group="ClSpecWhen" tag="12"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAltWav">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAltWav">
+      <autotag group="ClSpecWhen" tag="16"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAltWav">
+      <autotag group="ClSpecWhen" tag="18"/>
+      </bootstrap>
+    <bootstrap thing="cPsiAltWav">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPUAltProb">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <eval phase="UserFinal" priority="1000"><![CDATA[
+      ~ Give access to Seer Powers
+      linkage[table].field[cPsiExpr].text &= "|psiClass.cPsiSeer"]]></eval>
+    </thing>
+  <thing id="cPUInsStep" name="Insightful Steps" description="Starting at 2nd level, as long as you maintain focus, your insight allows you to know just where to step to keep your footing, allowing you to ignore difficult terrain. You may expend your psionic focus as an immediate action to grant this ability to an ally within 30 ft. for a number of rounds equal to your Intelligence modifier. Only one person, including you, can benefit from this ability at a time. At 6th level and every four psion levels thereafter, one additional creature may be affected by this ability at a time (2 at 6th, 3 at 10th, and so on)." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="cPUAltProb" name="Alter Probability" description="At 8th level, once per day as an immediate action, you may expend your psionic focus to give an enemy false insight, forcing one enemy within Medium range (100 ft. + 10 ft./level) to reroll a single dice roll. The target must take the worse of the\ntwo rolls. Every two psion levels thereafter, this ability may be used one additional time per day. A successful Will save negates this effect (DC 10 + 1/2 class level + Int modifier)." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="abAction" tag="Immediate"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="cPUEvac" name="Evacuate" description="At 14th level, once per day, you can teleport anywhere within line of sight as an immediate action. You can bring along up to your Intelligence modifier in creatures touching you." compset="ClSpecial">
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPUFarStri" name="Far Strider" description="At 20th level, you can use your nomad’s step ability as a free action. You cannot use this ability if you have already taken a 5 ft. step this round, and using this ability counts as using your 5 ft. step." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPsiJaunt" name="Jaunting (Nomad)" description="A psion who relies on psychoportation powers is known as a nomad. Nomads can wield powers that propel or displace objects in space or time.\n\n{i}Class Skills:{/i} Climb (Str), Fly (Dex), Survival (Wis), and Swim (Str)." compset="CustomSpec" uniqueness="useronce">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="ClassSkill" tag="skFly" name="Fly" abbrev="Fly"/>
+    <tag group="ClassSkill" tag="skSurvival" name="Survival" abbrev="Survival"/>
+    <tag group="ClassSkill" tag="skSwim" name="Swim" abbrev="Swim"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="ClassSkill" tag="skClimb" name="Climb" abbrev="Climb"/>
+    <bootstrap thing="cPUFarStri">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPsiIncPos">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <bootstrap thing="cPsiNomSte">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPUEvac">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <eval phase="UserFinal" priority="1000"><![CDATA[
+      ~ Give access to Nomad Powers
+      linkage[table].field[cPsiExpr].text &= "|psiClass.cPsiNomad"]]></eval>
+    </thing>
+  <thing id="cPUImpWill" name="Impose Will" description="At 2nd level, as long as you maintain psionic focus you treat your psion level as 1 higher when manifesting Charm or Compulsion powers. In addition, you are treated as if affected by mind link with any creature currently charmed or dominated by you for the duration of the charm or domination effect." compset="ClSpecial">
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPUEnthral" name="Enthrall" description="At 14th level, once per day, you can make one creature your thrall. A Will save (DC 10 + 1/2 psion level + key ability modifier) negates the effect.  The affected creature will follow any instruction you give, including harming itself, although obviously selfdestructive orders give the target an additional save each round it is under those orders. You may only have one thrall at any given time and the thrall gains a new save to negate the effect every 24 hours from the time it became your thrall. This is considered a mind-affecting, compulsion effect." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPsiMindB" name="Mindbender (Telepath)" description="A psion who chooses the discipline of telepathy is known as a telepath. He is the master of powers that allow mental contact and control of other sentient creatures. A telepath can deceive or destroy the minds of his enemies with ease.\n\n{i}Class Skills:{/i} Bluff (Cha), Diplomacy (Cha), and Sense Motive (Wis)." compset="CustomSpec" uniqueness="useronce">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="ClassSkill" tag="skDiplo" name="Diplomacy" abbrev="Diplomacy"/>
+    <tag group="ClassSkill" tag="skSenseMot" name="Sense Motive" abbrev="Sense Motive"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="ClassSkill" tag="skBluff" name="Bluff" abbrev="Bluff"/>
+    <bootstrap thing="cPUImpWill">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPUEnthral">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiGrdTho">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPsiTelpth">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <eval phase="UserFinal" priority="1000"><![CDATA[
+      ~ Give access to Telepath Powers
+      linkage[table].field[cPsiExpr].text &= "|psiClass.cPsiTelepa"]]></eval>
+    </thing>
+  <thing id="cPUEmpAlt" name="Empowered Alteration" description="Starting at 8th level, you can expend your psionic focus anytime you manifest a power of the psychometabolism discipline that has a range of Personal and a Target of you to have all numeric effects of the power increased by 50%. For example, when manifesting animal affinity, you could expend your psionic focus to gain a +6 enhancement bonus to Strength instead of +4. Powers modified in this fashion cannot also be altered by effects such as Empower Power." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    </thing>
+  <thing id="cPUInfBody" name="Infused Body" description="At 20th level, anytime you manifest one of the metamorphosis powers, you heal a number of hit points equal to the number of power points spent on the manifestation.\n\n  In addition, your body has become so adept at changing form that you become virtually indestructible. As long as some portion of your body still exists, you will return to life as if affected by resurrection one week after dying, although you gain three permanent negative levels instead of only one." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPsiXmorg" name="Transmogrifist (Egoist)" description="A psion who specializes in psychometabolism is known as an egoist. This discipline consists of powers that alter the psion&apos;s psychobiology, or that of creatures near him. An egoist can both heal and transform himself into a fearsome fighter.\n\n{i}Class Skills:{/i} Acrobatics (Dex) and Heal (Wis)." compset="CustomSpec" uniqueness="useronce">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="ClassSkill" tag="skHeal" name="Heal" abbrev="Heal"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="ClassSkill" tag="skAcrobat" name="Acrobatics" abbrev="Acrobatics"/>
+    <bootstrap thing="cPsiMetHea">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPsiResBod">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPUInfBody">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPUEmpAlt">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <eval phase="UserFinal" priority="1000"><![CDATA[
+      ~ Give access to Egoist Powers
+      linkage[table].field[cPsiExpr].text &= "|psiClass.cPsiEgoist"]]></eval>
+    </thing>
+  <thing id="cPUTelBurs" name="Telekinetic Burst" description="At 14th level, once per day, you can expend your psionic focus as a standard action to hurl all creatures within 30 feet of you back to the edge of the burst effect, knocking them to the ground, prone. A successful Reflex save (DC 10 + half psion level + your Intelligence modifier) negates the knock back effect, but creatures within the effect are still knocked prone." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="abAction" tag="Standard"/>
+    </thing>
+  <thing id="cPUPermTel" name="Permenant Telekinesis" description="At 20th level, as long as you maintain psionic focus, you can use telekinetic force or telekinetic maneuver at will, but you must still pay any power point cost to augment the manifestation." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="cPsiUnseeH" name="Unseen Hand (Kineticist)" description="Psions who specialize in psychokinesis are known as kineticists. They are the masters of powers that manipulate and transform matter and energy. Kineticists can attack with devastating blasts of energy.   Unlike other psions, when a kineticist selects any power that specifies the character must select from cold, electricity, fire, or sonic damage, he gains the option to choose the type of damage at the time the power is manifested.\n\n{i}Class Skills:{/i} Disable Device (Dex) and Intimidate (Cha)." compset="CustomSpec" uniqueness="useronce">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="ClassSkill" tag="skIntim" name="Intimidate" abbrev="Intimidate"/>
+    <tag group="Helper" tag="NoPathSoc" name="Not Allowed for Pathfinder Society Characters" abbrev="Not Allowed for Pathfinder Society Characters"/>
+    <tag group="SpecSource" tag="cHelpPsi" name="Psion" abbrev="Psion"/>
+    <tag group="ClassSkill" tag="skDisable" name="Disable Device" abbrev="Disable Device"/>
+    <bootstrap thing="cPsiTelHur">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPsiTelHur">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="cPsiTelHur">
+      <autotag group="ClSpecWhen" tag="10"/>
+      </bootstrap>
+    <bootstrap thing="cPsiTelHur">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiTelHur">
+      <autotag group="ClSpecWhen" tag="18"/>
+      </bootstrap>
+    <bootstrap thing="cPsiKinAur">
+      <autotag group="ClSpecWhen" tag="11"/>
+      </bootstrap>
+    <bootstrap thing="cPUTelBurs">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPsiKinAur">
+      <autotag group="ClSpecWhen" tag="17"/>
+      </bootstrap>
+    <bootstrap thing="cPUPermTel">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPsiKinAur">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <eval phase="UserFinal" priority="1000"><![CDATA[
+      ~ Give access to Kinetic Powers
+      linkage[table].field[cPsiExpr].text &= "|psiClass.cPsiKineti"]]></eval>
+    </thing>
+  <thing id="cPUDiscTal" name="Discipline Talents" description="Discipline Talents (Ps): When you meditate to regain your power points for the day, choose two powers from the following list: call to mind, catfall, create sound, far hand, hammer, and telepathic lash. As long as you maintain psionic focus, you may manifest either of your chosen powers without paying a power point cost, but the power may not be augmented or affected by metapsionic feats. The competence bonus from call to mind is reduced to +2, the effect of catfall only treats your fall as 20 ft. shorter than it is, the duration of create sound is one round per two psion levels (minimum 1 round), and the damage of hammer is reduced to 1d4.\nThis ability replaces the talents normally gained by a psion." compset="ClSpecial">
+    <usesource source="pPsiUn"/>
+    <tag group="AbilType" tag="PsiLike"/>
+    </thing>
+  <thing id="cPUDayPowr" name="Daily Powers" description="At 2nd level, each day, you may choose one power from the Psion/Wilder list that is not on your list of powers known and manifest that power as if it was. You must have manifested the power from a power stone at some point prior to choosing it as a daily power and the power’s level may not exceed your maximum power level. You may decide which power to manifest at the time of manifesting. Once this choice has been made, it cannot be changed until you have meditated to regain\nyour daily power points after resting. At 7th level and every five psion levels thereafter, you may choose one additional power per day to treat as if a power known (2 at 7th level, 3 at 12th level, 4 at 17th level). These powers are in addition to your normal powers known.\n\nThis ability replaces the Bonus Feat normally gained by a generalist psion and the powers known gained at each level a daily power is gained, as displayed on Table: The Erudite." compset="ClSpecial"></thing>
   </document>
