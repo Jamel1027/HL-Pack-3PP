@@ -960,7 +960,7 @@
     <tag group="mSave" tag="WillNeg"/>
     <tag group="mDescript" tag="Death"/>
     </thing>
-  <thing id="staPWGlBk1" name="Galebreaker&apos;s Stance" description="The ability to accurately read the wind allows the Tempest Gale disciple to fight effectively even in the most adverse conditions.  While you maintain this stance, you do not take any penalties to ranged attacks due to high wind speed, and your ranged attacks ignore {i}wind wall{/i} and other magical wind effects that would negatively affect them." compset="PWManuever" summary="Ignore weather effects and {i}wind wall{/i} (and related spells) while in this stance.">
+  <thing id="staPWGlBk1" name="Galebreaker&apos;s Stance" description="The ability to accurately read the wind allows the Tempest Gale disciple to fight effectively even in the most adverse conditions.  While you maintain this stance, you do not take any penalties to ranged attacks due to high wind speed, and your ranged attacks ignore {i}wind wall{/i} and other magical wind effects that would negatively affect them." compset="PWManuever" summary="Ignore weather effects and {i}wind wall{/i} (and related spells) while in this stance." uniqueness="useronce">
     <usesource source="srcPOWEx"/>
     <tag group="Discipline" tag="TmpGale"/>
     <tag group="mType" tag="Stance"/>
@@ -971,7 +971,7 @@
     <tag group="mLevel" tag="1"/>
     <tag group="mInitAct" tag="Swift1"/>
     </thing>
-  <thing id="staPWSnEy1" name="Sniper&apos;s Eye Stance" description="Distance is no obstacle to a tempest gale disciple.  While in this stance, you reduce the total penalty for range increments by 2, and you gain a +2 bonus to combat maneuver checks with ranged attacks.  For every four initiator levels you possess, the penalty to ranged attacks lessens by another 2, and the bonus to combat maneuvers increases by 2." compset="PWManuever" summary="Reduce range penalties for attacks by 2 per 4 levels and gain a +2 bonus on combat maneuvers used at range.">
+  <thing id="staPWSnEy1" name="Sniper&apos;s Eye Stance" description="Distance is no obstacle to a tempest gale disciple.  While in this stance, you reduce the total penalty for range increments by 2, and you gain a +2 bonus to combat maneuver checks with ranged attacks.  For every four initiator levels you possess, the penalty to ranged attacks lessens by another 2, and the bonus to combat maneuvers increases by 2." compset="PWManuever" summary="Reduce range penalties for attacks by 2 per 4 levels and gain a +2 bonus on combat maneuvers used at range." uniqueness="useronce">
     <fieldval field="abValue" value="2"/>
     <usesource source="srcPOWEx"/>
     <tag group="mType" tag="Stance"/>
@@ -992,7 +992,7 @@
       #situational[hero.childfound[ManeuvBon],signed(field[abValue].value) & " when performing ranged combat maneuvers",field[thingname].text]]]></eval>
     <eval phase="Render" priority="20000" index="2"><![CDATA[      field[livename].text &= " " & signed(field[abValue].value)]]></eval>
     </thing>
-  <thing id="staPWTmpG3" name="Tempest Gale Stance" description="The disciple of the Tempest Gale moves as swiftly as the wind, and hits with the fury of the storm.  While you maintain this stance, you add your initiation modifier to damage rolls made with ranged weapons and gain a bonus to ranged combat maneuver rolls and the saving throw DCs of Tempest Gale maneuvers equal to ¼ your initiator level (minimum 1)." compset="PWManuever" summary="Add your initiation modifier to damage rolls made with ranged attacks, and gain a bonus to CMB and Save DCs of your maneuvers equal to ¼ your Initiator Level.">
+  <thing id="staPWTmpG3" name="Tempest Gale Stance" description="The disciple of the Tempest Gale moves as swiftly as the wind, and hits with the fury of the storm.  While you maintain this stance, you add your initiation modifier to damage rolls made with ranged weapons and gain a bonus to ranged combat maneuver rolls and the saving throw DCs of Tempest Gale maneuvers equal to ¼ your initiator level (minimum 1)." compset="PWManuever" summary="Add your initiation modifier to damage rolls made with ranged attacks, and gain a bonus to CMB and Save DCs of your maneuvers equal to ¼ your Initiator Level." uniqueness="useronce">
     <fieldval field="mPreReq" value="1"/>
     <usesource source="srcPOWEx"/>
     <tag group="mType" tag="Stance"/>
@@ -1023,7 +1023,7 @@
         eachpick.field[mDC].value += bon
       nexteach]]></eval>
     </thing>
-  <thing id="staPWWoV6" name="Winds of Vengeance Stance" description="Every move that a Tempest Gale disciple’s enemies make is an opportunity for him, and one that he relishes taking advantage of.  While you maintain this stance, you may make a number of additional attacks of opportunity per round equal to your initiation modifier, and any time an enemy hits an ally within 60 feet with an attack, you can make an attack of opportunity against that enemy using a ranged weapon you are wielding." compset="PWManuever" summary="Take AoO&apos;s against foes who hit your allies, extra AoOs per round">
+  <thing id="staPWWoV6" name="Winds of Vengeance Stance" description="Every move that a Tempest Gale disciple’s enemies make is an opportunity for him, and one that he relishes taking advantage of.  While you maintain this stance, you may make a number of additional attacks of opportunity per round equal to your initiation modifier, and any time an enemy hits an ally within 60 feet with an attack, you can make an attack of opportunity against that enemy using a ranged weapon you are wielding." compset="PWManuever" summary="Take AoO&apos;s against foes who hit your allies, extra AoOs per round" uniqueness="useronce">
     <fieldval field="mPreReq" value="2"/>
     <usesource source="srcPOWEx"/>
     <tag group="mType" tag="Stance"/>
@@ -1038,7 +1038,7 @@
       field[abValue].value += field[mIM].value]]></eval>
     <eval phase="Render" priority="10000" index="2"><![CDATA[      field[livename].text &= " (" & signed(field[abValue].value) & " extra AoO/turn)"]]></eval>
     </thing>
-  <thing id="staPWEotS8" name="Eye of the Storm Stance" description="Like the calm winds at the center of a hurricane, the master of the Tempest Gale is a bastion of serenity on the chaos of the battlefield.  While you maintain this stance, you add your initiation modifier to all ranged damage rolls, you do not take any penalties for range increments, and you ignore the effects of  weather conditions on your ranged attacks. Additionally, your ranged attacks ignore the AC bonus granted to targets by anything less than total cover, and the miss chance granted to targets by anything less than total concealment." compset="PWManuever" summary="Add init modifier to ranged attacks, ignore weather effects and non-total cover/concealment">
+  <thing id="staPWEotS8" name="Eye of the Storm Stance" description="Like the calm winds at the center of a hurricane, the master of the Tempest Gale is a bastion of serenity on the chaos of the battlefield.  While you maintain this stance, you add your initiation modifier to all ranged damage rolls, you do not take any penalties for range increments, and you ignore the effects of  weather conditions on your ranged attacks. Additionally, your ranged attacks ignore the AC bonus granted to targets by anything less than total cover, and the miss chance granted to targets by anything less than total concealment." compset="PWManuever" summary="Add init modifier to ranged attacks, ignore weather effects and non-total cover/concealment" uniqueness="useronce">
     <fieldval field="mPreReq" value="3"/>
     <usesource source="srcPOWEx"/>
     <tag group="mType" tag="Stance"/>
@@ -1934,5 +1934,517 @@
     <tag group="mType" tag="Strike"/>
     <tag group="mLevel" tag="8"/>
     <tag group="mDescript" tag="Compulsion"/>
+    </thing>
+  <thing id="staPWVKSt1" name="Valiant Keeper’s Stance" description="The disciple of the Eternal Guardian must always strive to be a bastion for those he has sworn to protect. This defensive stance allows the disciple to ward off threats to nearby allies. While in this stance, your allies do not provoke attacks of opportunity when moving through squares you threaten." compset="PWManuever" summary="Allies do not provoke attacks of opportunity when moving through squares you threaten." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mDescript" tag="Curse"/>
+    </thing>
+  <thing id="staPWVgKS1" name="Vigilant Keeper’s Stance" description="The disciple of the Eternal Guardian takes an aggressive stance that slows his enemy’s ability to advance or retreat. While in this stance, your foes treat all squares you threaten as difficult terrain. This does not prevent creatures from charging through squares you threaten. In addition, whenever you succeed on an attack of opportunity, your target becomes cursed until the end of your next turn." compset="PWManuever" summary="Enemies treat squares you threaten as difficult terrain." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    </thing>
+  <thing id="staPWSoEG1" name="Stance of the Eternal Guardian" description="In this iconic ability of the Eternal Guardian, the disciple binds his soul to his charge’s, sharing their pain as if they were one body. When you enter this stance, choose an ally within range. While in this stance, your ally gains a +1 deflection bonus to AC and a +1 resistance bonus on saves. These bonuses increase by 1 at initiator level 8 and every 4 initiator levels thereafter. Additionally, your ally takes only half damage from all wounds and attacks (including those dealt by special abilities) that deal hit point damage; the amount of damage not taken by the warded creature is taken by you (functioning as a {i}shield other{/i} spell). You can change the warded creature with a swift action. If you are knocked unconscious or killed while this stance is active, it continues for 1 round. During this time, damage ceases to be transferred, but the bonuses to AC and saves are doubled, as your soul is free to completely focus on shielding your ally. During this round, you can still be healed even if dropped to a point where you should die. If your hit point total is brought up to a negative amount less than its Constitution score (or more), you come back to life and stabilize at your new hit point total. When resurrected in this way, you gain 1 temporary negative level that lasts for 1 day.\n\n{b}NOTE:{/b} To record the effect on this stance for another character, add the &quot;Shield Other&quot; spell adjustment to that character on the Adjustments tab." compset="PWManuever" summary="You tie your soul to a creature, giving benefits similar to a {i}shield other{/i} spell." uniqueness="useronce">
+    <fieldval field="abValue" value="1"/>
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mType" tag="Stance"/>
+    <eval phase="Render" priority="20000" index="2"><![CDATA[      field[livename].text &= " " & signed(field[abValue].value)]]></eval>
+    <eval phase="PostLevel" priority="10000"><![CDATA[      ~ Calculate extra bonus from IL (+1 at 8 and every 4 after)
+      if (field[mIL].value >= 8) then
+        field[abValue].value += 1
+      endif
+      if (field[mIL].value >= 12) then
+        field[abValue].value += 1
+      endif
+      if (field[mIL].value >= 16) then
+        field[abValue].value += 1
+      endif
+      if (field[mIL].value >= 20) then
+        field[abValue].value += 1
+      endif]]></eval>
+    </thing>
+  <thing id="staPWJotD5" name="Jailer of the Damned" description="An advanced disciple of the Eternal Guardian stands as a warden at the gates of death, striking fear into the hearts of all. While in this stance, creatures you have cursed that are immune to mind-affecting or fear effects lose those immunities against your fear effects (even mindless creatures are given the ability to feel fear), but creatures that were immune to fear gain a +5 resistance bonus against your fear effects. Additionally, you do not provoke attacks of opportunity when performing a combat maneuver against a creature under the shaken, frightened, or panicked conditions, and you gain a +2 bonus when performing a combat maneuver against such creatures." compset="PWManuever" summary="Cursed creatures lose immunity to fear, and you gain bonuses against frightened creatures." uniqueness="useronce">
+    <fieldval field="abValue" value="1"/>
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mType" tag="Stance"/>
+    </thing>
+  <thing id="staPWSoIW8" name="Stance of the Infinite Warrior" description="A master disciple of the Eternal Guardian remains vigilant forever - even after his physical body seems unable to continue to defend an area. While in this stance, all squares you threaten remained threatened by you until the end of your next turn. You can make melee attacks (including attacks of opportunity) against creatures that enter these squares, regardless of your actual location - a flickering glimpse of how you appeared the moment you threatened that square appears and makes the attack. In addition, whenever a foe enters your threatened area, you can teleport to a square within 10 feet of your foe as an immediate action and make a melee attack against them that deals an additional 4d6 damage." compset="PWManuever" summary="All squares you pass through become threatened, and you can teleport to threatened squares as an immediate action." uniqueness="useronce">
+    <fieldval field="abValue" value="1"/>
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mDescript" tag="Teleport"/>
+    </thing>
+  <thing id="manPWGdOt1" name="Guard’s Oath" description="A central concept of the discipline of the Eternal Guardian is the ability to restrict an opponent’s movement - prevent their escape or halting their advance. This basic but potent strike allows the disciple to harry and disrupt a threat until they lay down their arms. Make a melee attack. If you succeed, your opponent must make a Will save or its movement becomes cursed. Any movement by a creature cursed by this effect provokes an attack of opportunity from you, even a 5 foot step or the withdraw action. All attacks of opportunity you make against that creature gain a +2 bonus on their attack roll for the duration of the curse. If the creature drops all weapons it is holding, it gains a new save to end the effect. A creature that is not holding a weapon can draw or pick up a weapon and then drop it to gain a save but can never gain more than one save per round against this curse." compset="PWManuever" summary="On a failed save, your foe’s movement is cursed, provoking attacks of opportunity against you, even on a 5 foot step." uniqueness="useronce">
+    <fieldval field="mDuration" value="Instant and 24 hours (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mSave" tag="WillNeg"/>
+    </thing>
+  <thing id="manPWSoIP1" name="Strike of the Infinite Protector" description="The disciple swears to protect his charge, while living or dead, with an unbreakable oath. Make a single melee or ranged attack; if you succeed, a fragment of your life force envelops an ally within 30 feet granting them a +2 bonus to AC for one round. If you are knocked unconscious or killed during this time, the bonus to AC increases to +4 and the duration increases to one round per initiator level, as your oath is fulfilled. If you are brought back to consciousness, the bonus is reduced to +2 and ends at the beginning of your next turn." compset="PWManuever" summary="Attack grants an ally a bonus to AC, which doubles if you become unconscious or dead." uniqueness="useronce">
+    <fieldval field="mDuration" value="1 round or 1 round per initiator level (see text)"/>
+    <fieldval field="mRange" value="Melee or ranged attack and 30 feet (see text)"/>
+    <fieldval field="mTarget" value="One enemy and one ally"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    </thing>
+  <thing id="manPWTrBl1" name="Terrifying Blow" description="With a bellowing cry, the disciple delivers a fearsome wound to his opponent. Make a single melee or ranged attack; if successful, your opponent must make a Will save or be frightened for one round. If your opponent is cursed, your attack deals an additional 1d6 damage." compset="PWManuever" summary="Attack frightens opponent for 1 round on failed save, deals +1d6 damage if foe is cursed" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="mSave" tag="WillNeg"/>
+    </thing>
+  <thing id="manPWSotR2" name="Strike of the Royal Guardian" description="When a disciple of the Eternal Guardian feels a foe can slip past him, he must resort to other measures to minimize the target’s threat. With this maneuver, the disciple afflicts an enemy with an agonizing curse that cripples its attacks. Make a single melee or ranged attack; if successful, your opponent takes a -2 penalty on damage rolls for all melee and ranged attacks. This penalty increases by 1 for every two initiator levels you have. A creature can only be affected by this curse from one initiator at a time. If a creature affected by this curse makes no attack rolls for 1 round, they can make a Will save to end the effect. If a creature affected by this curse prostates itself (treat as prone) and grovels for a full round, the curse is automatically removed." compset="PWManuever" summary="Your attack reduces your opponent’s damage." uniqueness="useronce">
+    <fieldval field="mDuration" value="Instant and 24 hours (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mSave" tag="SeeText"/>
+    </thing>
+  <thing id="manPWRWSt2" name="Relentless Warden’s Strike" description="A disciple of the Eternal Guardian must untiringly pursue targets to ensure his mission is completed. This maneuver allows the disciple to hound a weakened enemy to keep them in check. Teleport to a square within 60 feet that is within 10 ft. of a creature that is cowering, cursed, shaken, frightened, or panicked. You then make a melee attack that deals an additional +2d6 damage against any creature within reach." compset="PWManuever" summary="Teleport to a creature that is cursed or afraid, then make a melee attack that deals +2d6 damage." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mDescript" tag="Teleport"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mRange" tag="mRangSpec"/>
+    <tag group="mDuration" tag="Instant"/>
+    </thing>
+  <thing id="manPWIntE3" name="Intruder&apos;s End" description="The disciple dares foes to enter his protected sanctum, swearing to defend it until his last breath. Until the beginning of your next turn, your reach changes to 20 feet; effects that further increase your reach do not apply while this maneuver is active. You gain additional attacks of opportunity equal to half your initiator level (maximum 5) that stack Combat Reflexes and similar abilities, and your attacks of opportunity gain a +2 circumstance bonus to their attack and damage rolls. You can substitute a combat maneuver that can be made as an attack action (such as a trip attempt or a bull rush if you have the Quick Bull Rush feat) with the +2 circumstance bonus in place of an attack of opportunity. When you make each attack, you teleport to a foe, make your attack, and then teleport back to your original position, ready to strike down the next intruder." compset="PWManuever" summary="Increase your threatened area and gain extra AoO&apos;s" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Full1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mDescript" tag="Teleport"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWGGL4" name="Grim Guard’s Laughter" description="The disciple laughs a long, echoing laugh before unleashing a storm of attacks on his foes. Make an Intimidate check to demoralize and apply the results against every foe within 30 feet, then make a melee attack against every foe within your reach that deals an additional 2d6 damage. You ignore cover and concealment for these attacks against creatures that are cowering, shaken, frightened, or panicked. You do not ignore total concealment with these attacks, but you do ignore 50% miss chance from other sources, such as {i}displacement{/i}. You can make a combat maneuver that can be made as an attack action (such as a trip attempt or a bull rush if you have the Quick Bull Rush feat) in place of each melee attack if you choose." compset="PWManuever" summary="Make an Intimidate check, then attack every foe within reach." uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="AllEnmRang"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWSoSL4" name="Strike of the Steadfast Legion" description="As the disciple strikes down a foe, he commands his allies to stand their ground, hardening their will to fight. Make a single melee or ranged attack that deals bonus damage equal to half your initiator level. If successful, you and all allies within 60 feet gain DR /- equal to your initiation modifier (minimum 1) for 1 round. In addition, any ally who receives this damage reduction can expend hit points up to your initiator level (ignoring temporary hit points). For every hit point they sacrifice, they can grant any ally that also received this damage reduction 3 temporary hit points that last for 1 round, stacking up to 3 times your initiator level." compset="PWManuever" summary="You and your allies gain DR and can sacrifice HP to grant allies temp HP." uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="AllAllyRng" name="All allies within range"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWSotC5" name="Shackles of the Condemned" description="The disciple’s strike locks cursed manacles around himself and his opponent, tying the two together and preventing escape. Make a melee attack that deals an additional 5d6 damage. If you are successful, your opponent is entangled for the duration of the curse. It cannot move further than 30 feet away from you and becomes immune to teleportation effects. Either you or your target can pull on the chain to attempt a trip or drag attempt against the other that does not provoke attacks of opportunity, but you gain a +4 circumstance bonus to CMB and CMD on these checks. You can make a drag check against the creature as an attack action while the curse lasts. If the creature begins and ends its turn adjacent to you, it gains a Will save to break the curse. If you teleport out of range, the curse is broken. The shackles cannot be attacked, but can be broken with a Strength check equal to 15+your initiator level; breaking the shackles ends the curse. You can end the maneuver at any time as a free action." compset="PWManuever" summary="Your foe is entangled and must remain within 30 feet of you." uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="Instant and 1 round per initiator level"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mSave" tag="WillNeg"/>
+    </thing>
+  <thing id="manPWCoD6" name="Charge of Dismay" description="The disciple barrels through the enemy lines, terrifying his foes. Make a charge attack that does not provoke attacks of opportunity, making a full attack at the end (as the pounce ability). Each attack deals an additional 2d6 damage. In addition, as long as at least one attack hits, all foes within 30 feet must make a Will save or be frightened for 1 round per initiator level. Creatures with more hit dice than your initiator level are instead shaken for the duration on a failed save. Either way, a creature can make a new save each round they do not have line of sight to you. Creatures that succeed on their Will save are immune to the fear effect of the maneuver for 24 hours." compset="PWManuever" summary="Charge without AoO, +2d6 damage, pounce, can frighten targets" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="Instant and 1 round per initiator level"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Full1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mRange" tag="30"/>
+    <tag group="mTarget" tag="SeeDesc"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWSoS6" name="Strike of Sacrifice" description="The disciple seals a portion of his life force in his allies, protecting them from harm, but leaving him open to attack. Make a melee or ranged attack. If successful, you deal an additional 6d6 damage, and you can lower your AC by up to half your initiator level (min. 1) to grant all allies within 30 feet an equal bonus to their AC. If you take at least a -4 penalty, your allies gain light fortification for the duration of this effect (overlapping with fortification from other sources). If you take at least a -8 penalty, your allies instead gain medium fortification (overlapping with fortification from other sources). Any creature being affected by this maneuver may end its effect on it as a free action at the beginning of its turn; if the initiator ends this maneuver, it ends for all creatures. The bonus to AC overlaps (does not stack) with additional uses of this maneuver, even from other initiators, but the penalty to AC stacks." compset="PWManuever" summary="You transfer up to half your initiator level of your AC to allies within 30 feet." uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="Instant and 1 round per initiator level"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mRange" tag="30"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="AllAllyRng"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWCoID7" name="Curse of Impending Doom" description="The disciple’s curse seeps into the foe’s subconscious, forcing it to believe failure is just around the corner. Make a single melee or ranged attack. If successful, you deal an additional 7d6 damage, and your target takes a -2 penalty on attack rolls, saving throws, and skill checks for the duration of the curse. Whenever your foe succeeds on an attack roll, saving throw, or skill check, the penalty increases by 2. When your foe fails on one of these checks (except a saving throw against this curse), they must make a Will saving throw or be panicked for 1 round. A successful saving throw ends the curse. If the creature fails its saving throw, the penalties are reset to -2. A creature under this curse can choose to fail an attack roll to gain a saving throw. Creatures immune to mind-affecting or fear effects are immune to the panicked condition, but not the penalties." compset="PWManuever" summary="Attack deals +7d6 damage, foe takes -2 penalty that increases with every successful roll" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <fieldval field="mDuration" value="Instant and 24 hours (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWHotI8" name="Hammer of the Immortal" description="With an overwhelming assault, the disciple completes the traditional tactic of the “hammer and anvil,” closing with an enemy force to break their lines and then circling around to cut off their retreat. First, make a melee attack that deals an additional 6d6 damage against every foe you threaten; each creature struck becomes cursed, taking a -6 penalty to its AC and CMD for 24 hours. Next, you can choose to move up to your movement speed; this movement does not provoke attacks of opportunity. Finally, you may then attempt a combat maneuver that can be made as an attack action (such as a trip attempt or a bull rush if you have the Quick Bull Rush feat) against every foe you threaten. At the beginning of its turn, a creature cursed by this maneuver can choose to double their penalty for 1 round to gain a saving throw against the curse." compset="PWManuever" summary="Attack and make CMB check against each threatened foe, deal +6d6 damage, targets are cursed and take -6 AC," uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <fieldval field="mDuration" value="Instant and 24 hours (see text)"/>
+    <fieldval field="mTarget" value="Every foe you threaten"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mLevel" tag="8"/>
+    </thing>
+  <thing id="manPWOoEt9" name="Oath of Eternity" description="In this ultimate technique of the Eternal Guardian, the disciple swears to defend an area, body and soul. Until the beginning of your next turn, your reach changes to 40 feet; effects that further increase your reach do not apply while this maneuver is active. You gain additional attacks of opportunity equal to your initiator level (maximum 20) that stack Combat Reflexes and similar abilities. Your attacks of opportunity gain a circumstance bonus to their attack roll equal to half your initiator level and deal an additional 10d6 damage. You can substitute a combat maneuver that can be made as an attack action (such as a trip attempt or a bull rush if you have the Quick Bull Rush feat) with the circumstance bonus in place of an attack of opportunity; if you succeed on a combat maneuver check, you can choose to deal 10d6 damage to your target. When you make each attack, you teleport to a foe, make your attack, and then teleport back to your original position, ready to strike down the next intruder.\n\nIn addition, you cannot die from hit point damage while this maneuver is in effect. You continue to take damage and benefit from healing as normal. When the maneuver ends, you face the full consequences of your new hit point total. You can still die from death effects, your body can still be disintegrated, and so forth; this maneuver only delays when you are affected by hit point damage." compset="PWManuever" summary="Massively increasing your threatened area and gain extra AoO&apos;s that deal +10d6 damage" uniqueness="useronce">
+    <fieldval field="mPreReq" value="4"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mInitAct" tag="Full1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="9"/>
+    <tag group="mDescript" tag="Teleport"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Round1"/>
+    </thing>
+  <thing id="manPWWrBr1" name="Warden’s Bearing" description="The disciple shifts his weight, puffing out his chest and shoulders to take a strong, impressive position. Activate this boost before attempting a combat maneuver. You gain a +2 bonus to that combat maneuver, do not provoke attacks of opportunity for that combat maneuver, and are treated as one size category larger. The increase in size does not provide an additional benefit to the roll but can determine whether or not you can attempt a combat maneuver (such as a Medium creature attempting to bull rush a Huge creature)." compset="PWManuever" summary="Gain a +2 bonus to a combat maneuver, and you are treated as one size category larger." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Instant"/>
+    </thing>
+  <thing id="manPWDbFr2" name="Debilitating Fear" description="The disciple fills his foes with despair, leaving them tensed with fear like prey when it sees a predator. When you activate this boost, choose one foe within range that is cowering, shaken, frightened, or panicked. That foe must make a Will save or be paralyzed for 1 round." compset="PWManuever" summary="Paralyze a cowering, shaken, frightened, or panicked foe." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWBnFt3" name="Binding Fetters" description="The disciple swears an oath that his foe must stand and fight him while striking a foe to leash their souls together. Activate this boost when you succeed on a melee attack against a creature. The creature targeted becomes cursed for the duration of the maneuver. At the end of the cursed creature’s next turn, it must make a Will save or be teleported to an area adjacent to you of their choice (regardless of their distance from you). For every 10 feet the creature moves during their turn, the save DC increases by 1, to a maximum of +3. You can touch an ally in place of a melee attack to curse them, and they can choose to fail their Will save to be teleported back to you at the end of their turn. If the creature ends its turn on a different plane, the maneuver fails. You can end this effect any time as a free action." compset="PWManuever" summary="Struck creature must make a Will save or be teleported back to you at the end of their turn." uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mDescript" tag="Teleport"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mSave" tag="SeeText"/>
+    </thing>
+  <thing id="manPWOoT4" name="Oath of Torpor" description="The disciple swears that his foe will tire and fail, cursing his foe with a creeping lethargy. Every creature you succeed on a melee attack, ranged attack or CMB check against before the beginning of your next turn becomes cursed for 1 minute. Once per round per creature, when a foe cursed by this boost moves (even a 5 foot step), it must make a Will save or become slowed (as the spell) until the end of their next turn. A slowed creature that fails their save takes damage equal to your initiator level plus your initiation modifier. Two consecutive successful saves ends the curse, and if the cursed creature stands still for two consecutive rounds, the curse is automatically broken. A creature forced to move (such as with a bull rush or by failing their save against a teleportation effect) does not trigger the curse but is still considered to have moved for the purpose of ending the maneuver." compset="PWManuever" summary="If your foe attempts to move, they must save or become {i}slowed{/i}." uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <fieldval field="mDuration" value="1 round and 1 minute (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="WillNeg"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="manPWStYG5" name="Stand Your Ground" description="The disciple demands an ally stand with him and defend a position, strengthening their resolve. Choose an ally within 60 feet. You and your chosen ally each take half damage from enemy attacks, spells, powers, and supernatural abilities until the beginning of your next turn. Damage that is redirected (such as from a {i}shield other{/i} spell) or sacrificed (such as from {i}strike of the steadfast legion{/i}) is not reduced. If you and your ally become more than 60 feet away from each other, the effect ends immediately. Additional uses of this maneuver do not stack." compset="PWManuever" summary="You and an ally take half damage from enemy attacks for 1 round." uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="1 round and 1 minute (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWInFt6" name="Inescapable Fetters" description="The disciple swears a nightmarish oath that leashes his foes to him, drawing them back time and time again no matter how far they try to run. Each creature you strike with a melee attack before the beginning of your next turn becomes cursed for 1 round per four initiator levels. At the end of each of the cursed creatures’ turns, they must make a Will save or be teleported to an area adjacent to you of their choice, provoking an attack of opportunity from you. For every 10 feet the creature moves during their turn, the save DC for that turn increases by 2, to a maximum of +6. You can touch an ally in place of a melee attack to curse them, and they can choose to fail their Will save to be teleported back to you at the end of their turn. You can end this effect on any creature affected at any time as a free action. This maneuver functions regardless of the distance travelled by the affected creatures, even if they move to a different plane." compset="PWManuever" summary="Struck creatures must save or be teleported back to you at the end of their turns, provoking an AoO" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="1 round and 1 round per 4 initiator levels (see text)"/>
+    <fieldval field="mTarget" value="All creatures struck"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="mDescript" tag="Teleport"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mSave" tag="WillNeg"/>
+    </thing>
+  <thing id="manPWGrSt7" name="Grim Satisfaction" description="Seeing the resignation in his foe’s eyes as they give in to terror feeds the disciple’s determination. Each creature you strike with a melee or ranged attack within 1 round must make a Will save or cower for 1 round per initiator level. Each foe can make a new save at the beginning of its turn. You gain fast healing 5 as long as at least one foe continues to cower. Each time a creature fails its save against this maneuver, it takes a -2 penalty on saves against fear effects. If at least one creature affected is cursed, the fast healing is doubled." compset="PWManuever" summary="Struck foes must make a Will save or cower in fear. You gain fast healing while the fear lasts." uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <fieldval field="mDuration" value="1 round and 1 round per initiator level (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWFtRp2" name="Fear the Reaper" description="As a disciple of the Eternal Guardian continues their training, they learn to use the fear as a method of defense, unnerving and distracting foes when they attempt to strike. Activate this counter when an opponent makes a melee or ranged attack against an ally within 60 feet. Make an Intimidate check opposed by their attack roll. If successful, the attack misses, and the attacker is shaken for 1 round; this counts as demoralizing your foe through an Intimidate check for the purpose of any ability you may have." compset="PWManuever" summary="Startle your opponent into missing when they try to attack an ally." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWOotI2" name="Oath of the Intercessor" description="In this pure expression of the ideals of the Eternal Guardian, the disciple pushes an ally out of the way of an attack, making an unbreakable vow to take the blow. Initiate this counter when an opponent makes a melee or ranged attack roll against an ally within your reach. Switch places with your ally. The attack resolves in all ways as if you were the target of the attack. Neither your nor your ally’s movement provokes attacks of opportunity." compset="PWManuever" summary="You take a blow meant for an ally." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="Ally1"/>
+    </thing>
+  <thing id="manPWSwYF3" name="Swallow Your Fear" description="The disciple attempts to isolate and consume thoughts that would draw his charges away from their mission, bolstering his courage with newfound resolution. Activate this counter when an opponent targets you or an ally within 60 feet with a mind-affecting effect that allows a save. You or your ally gain a +4 morale bonus on that saving throw. If your target’s save is successful, you gain temporary hit points equal to the DC of the effect that last for 1 round per initiator level." compset="PWManuever" summary="You or ally gain a +4 to save against a mind-affecting effect, gain temp HP on success" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <fieldval field="mDuration" value="Instantaneous and 1 round per initiator level (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    </thing>
+  <thing id="manPWWtRb4" name="Watchman’s Rebuke" description="The disciple calls for his opponent to stop resisting and submit to judgement. Activate this counter when an opponent within 60 feet succeeds on a saving throw. They must re-roll that saving throw and use the second result. If your opponent is cursed, they take a -2 penalty to the reroll." compset="PWManuever" summary="Opponent must reroll a successful saving throw, with a -2 penalty if cursed." uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mDuration" tag="Instant"/>
+    </thing>
+  <thing id="manPWUnbG5" name="Unbearable Gaze" description="The disciple’s stare causes an opponent to feel an incomparable sense of dread to even look at him, feeling that something terrifying will happen should it meet the disciple’s eyes. You can activate this ability when an opponent targets you or an ally within 60 feet with a spell, power, or attack. Make an Intimidate check with a DC equal to 10 + the target’s Hit Dice + the target’s Wisdom modifier. If you succeed, they take damage equal to double your Intimidate check. This damage is empathic in nature, so powers and abilities the subject may have such as damage reduction do not lessen or change this damage.\n\nHowever, the creature can choose to close its eyes as a free action (treat as blinded); each round the creature voluntarily closes its eyes, it delays taking damage. If the creature leaves its eyes closed for 5 consecutive rounds, the maneuver ends harmlessly. Creatures that are already blind or immune to the blinded condition take damage equal to half your Intimidate check instead of the normal effects of this maneuver." compset="PWManuever" summary="Your opponent must close their eyes or take damage." uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="Up to 5 rounds (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mDescript" tag="MindAffect"/>
+    </thing>
+  <thing id="manPWInFc6" name="Infinite Focus" description="The disciple shares some of his patience and dedication with his allies, allowing them to avoid careless mistakes that would allow an opponent to strike. All allies within range do not provoke attacks of opportunity for one round. Any ally that moves outside of the range of the maneuver loses its benefit. You can activate this counter in response to an ally provoking an attack of opportunity. if you do, that attack is immediately negated, and that ally gains the full benefits of this counter as normal." compset="PWManuever" summary="Your allies do not provoke attacks of opportunity for 1 round." uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mDuration" value="Up to 5 rounds (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="AllAllyRng"/>
+    <tag group="mDuration" tag="Round1"/>
+    </thing>
+  <thing id="manPWUnPr7" name="Unbreakable Promise" description="The disciple vows that his foes will be unable to land a killing blow against those under his protection. Activate this maneuver when an opponent makes a melee or ranged attack against you or an ally within 60 feet. All foes within 60 feet must make a Will save or be cursed for 1 minute. As long as this curse persists, an affected creature cannot reduce any creature other than itself below 1 hit point; any additional damage is negated. If a creature affected by this curse strikes itself as an attack action (automatically hitting and dealing damage as normal for a melee attack), the curse ends at the beginning of your next turn." compset="PWManuever" summary="Foes in range must save or be unable to reduce creatures below 0 hit points." uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <fieldval field="mDuration" value="1 minute (see text)"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="AllAllyRng"/>
+    <tag group="mDescript" tag="Curse"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mSave" tag="WillNeg"/>
+    </thing>
+  <thing id="manPWCrRb8" name="Crushing Rebuke" description="The disciple horrifically castigates a foe, utterly condemning them as an impotent, miserable disgrace. Activate this maneuver in response to an opponent making a melee or ranged attack against you or an ally within 60 feet. Make an Intimidate check with a DC equal to your opponent’s attack roll. If you succeed, all attack rolls your foe makes before the beginning of your next turn are resolved as if they had rolled a 0, including the triggering attack (adding modifiers as normal). Your foe can still hit if their modifiers are high enough or target’s AC is low enough. In addition, their attacks cannot be a critical hit for the duration of this maneuver, regardless of their other abilities." compset="PWManuever" summary="Intimidate check forces foes to roll 0 on attacks, and they cannot crit" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="EternGuard"/>
+    <tag group="mDescript" tag="Fear"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="mDescript" tag="MindAffect"/>
     </thing>
   </document>
