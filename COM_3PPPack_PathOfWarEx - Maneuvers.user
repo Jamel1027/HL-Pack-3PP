@@ -970,6 +970,7 @@
     <tag group="PathOfWar" tag="Stance"/>
     <tag group="mLevel" tag="1"/>
     <tag group="mInitAct" tag="Swift1"/>
+    <tag group="AbilType" tag="Extra"/>
     </thing>
   <thing id="staPWSnEy1" name="Sniper&apos;s Eye Stance" description="Distance is no obstacle to a tempest gale disciple.  While in this stance, you reduce the total penalty for range increments by 2, and you gain a +2 bonus to combat maneuver checks with ranged attacks.  For every four initiator levels you possess, the penalty to ranged attacks lessens by another 2, and the bonus to combat maneuvers increases by 2." compset="PWManuever" summary="Reduce range penalties for attacks by 2 per 4 levels and gain a +2 bonus on combat maneuvers used at range." uniqueness="useronce">
     <fieldval field="abValue" value="2"/>
@@ -982,6 +983,8 @@
     <tag group="mLevel" tag="1"/>
     <tag group="mInitAct" tag="Swift1"/>
     <tag group="Discipline" tag="TmpGale"/>
+    <tag group="AbilType" tag="Extra"/>
+    <eval phase="Render" priority="20000" index="2"><![CDATA[      field[livename].text &= " " & signed(field[abValue].value)]]></eval>
     <eval phase="PostAttr" priority="20000"><![CDATA[      ~ Increase bonus by 2 for every 4 initiator levels
       field[abValue].value += 2 * (round(field[mIL].value/4,0,-1))      
 
@@ -990,7 +993,6 @@
 
       ~ Situational bonus to CMB when performing maneuvers at range
       #situational[hero.childfound[ManeuvBon],signed(field[abValue].value) & " when performing ranged combat maneuvers",field[thingname].text]]]></eval>
-    <eval phase="Render" priority="20000" index="2"><![CDATA[      field[livename].text &= " " & signed(field[abValue].value)]]></eval>
     </thing>
   <thing id="staPWTmpG3" name="Tempest Gale Stance" description="The disciple of the Tempest Gale moves as swiftly as the wind, and hits with the fury of the storm.  While you maintain this stance, you add your initiation modifier to damage rolls made with ranged weapons and gain a bonus to ranged combat maneuver rolls and the saving throw DCs of Tempest Gale maneuvers equal to ¼ your initiator level (minimum 1)." compset="PWManuever" summary="Add your initiation modifier to damage rolls made with ranged attacks, and gain a bonus to CMB and Save DCs of your maneuvers equal to ¼ your Initiator Level." uniqueness="useronce">
     <fieldval field="mPreReq" value="1"/>
@@ -1003,6 +1005,7 @@
     <tag group="mLevel" tag="3"/>
     <tag group="mInitAct" tag="Swift1"/>
     <tag group="Discipline" tag="TmpGale"/>
+    <tag group="AbilType" tag="Extra"/>
     <eval phase="PostAttr" priority="12000"><![CDATA[      ~ If we're not enabled, get out now
       doneif (field[abilActive].value = 0)
 
@@ -1034,9 +1037,10 @@
     <tag group="mLevel" tag="6"/>
     <tag group="mInitAct" tag="Swift1"/>
     <tag group="Discipline" tag="TmpGale"/>
+    <tag group="AbilType" tag="Extra"/>
+    <eval phase="Render" priority="10000" index="2"><![CDATA[      field[livename].text &= " (" & signed(field[abValue].value) & " extra AoO/turn)"]]></eval>
     <eval phase="PostAttr" priority="20000"><![CDATA[      ~ Extra AoO's allowed = Init modifier
       field[abValue].value += field[mIM].value]]></eval>
-    <eval phase="Render" priority="10000" index="2"><![CDATA[      field[livename].text &= " (" & signed(field[abValue].value) & " extra AoO/turn)"]]></eval>
     </thing>
   <thing id="staPWEotS8" name="Eye of the Storm Stance" description="Like the calm winds at the center of a hurricane, the master of the Tempest Gale is a bastion of serenity on the chaos of the battlefield.  While you maintain this stance, you add your initiation modifier to all ranged damage rolls, you do not take any penalties for range increments, and you ignore the effects of  weather conditions on your ranged attacks. Additionally, your ranged attacks ignore the AC bonus granted to targets by anything less than total cover, and the miss chance granted to targets by anything less than total concealment." compset="PWManuever" summary="Add init modifier to ranged attacks, ignore weather effects and non-total cover/concealment" uniqueness="useronce">
     <fieldval field="mPreReq" value="3"/>
@@ -1049,6 +1053,7 @@
     <tag group="mLevel" tag="8"/>
     <tag group="mInitAct" tag="Swift1"/>
     <tag group="Discipline" tag="TmpGale"/>
+    <tag group="AbilType" tag="Extra"/>
     <eval phase="PostAttr" priority="20000"><![CDATA[      ~ If we're not enabled, get out now
       doneif (field[abilActive].value = 0)
 
@@ -1152,6 +1157,7 @@
     <tag group="Discipline" tag="TmpGale"/>
     <tag group="mDuration" tag="Instant"/>
     <tag group="mRange" tag="30"/>
+    <tag group="AbilType" tag="Extra"/>
     </thing>
   <thing id="manPWDDr2" name="Distracting Draft" description="A well placed shot will both hurt the enemy and put them off their guard.  When you initiate this maneuver, you can make a ranged feint attempt against a creature you can see.  If your feint is successful, your next ranged attack against that target within one round deals an additional 1d6 points of damage." compset="PWManuever" summary="Make a ranged feint attempt, if successful your next ranged attack deals +1d6 damage" uniqueness="useronce">
     <usesource source="srcPOWEx"/>
