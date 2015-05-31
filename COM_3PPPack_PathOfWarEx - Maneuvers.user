@@ -2453,4 +2453,16 @@
     <tag group="mDuration" tag="Round1"/>
     <tag group="mDescript" tag="MindAffect"/>
     </thing>
+  <thing id="manPWEShd1" name="Eldritch Shield" description="By drawing upon the elements, you are capable of defending against energy effects. You can initiate this counter when you are affected by an attack, spell, or effect that deals Acid, Cold, Fire, Electricity, or Sonic damage. You gain energy resistance 10 against that attack, spell, or effect.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase this energy resistance to 20." compset="PWManuever">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Attack1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    </thing>
   </document>

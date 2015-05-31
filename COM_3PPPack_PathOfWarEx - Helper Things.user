@@ -140,6 +140,7 @@
     <tag group="wFtrGroup" tag="BladeLight"/>
     <tag group="wFtrGroup" tag="Monk"/>
     <tag group="wFtrGroup" tag="Thrown"/>
+    <bootstrap thing="fPWEFlxNrg"></bootstrap>
     <eval phase="First" priority="50">~ Setup the Discipline Class Skill
       Call PWsetupDSk</eval>
     </thing>
@@ -202,5 +203,37 @@
     <tag group="wFtrGroup" tag="Spears"/>
     <eval phase="First" priority="50">~ Setup the Discipline Class Skill
       Call PWsetupDSk</eval>
+    </thing>
+  <thing id="fPWEFlxNrg" name="Elemental Flux: Active Energy Type" description="{b}Elemental Flux and Energy Damage:{/b} Many of this discipline’s maneuvers deal damage of a certain type of energy, with  air (electricity), earth (acid), fire (fire), and water (cold) being the elements available. Additionally, some maneuvers use pure arcane force for their source and is not affected by your active element. For maneuvers of the Elemental Flux discipline that have the choice of acid, cold, electricity, and fire; the initiator must choose after he prepares his readied maneuvers which of these energy types is his active energy. Maneuvers that deal energy damage deal damage of your active element, and a character may only have one element active at a time. The initiator may choose to change which energy type is his active element by spending a standard action. If the character is psionic and has an active energy type, this active energy type and active element are synonymous and may both be changed at the same time in a manner than changes one or the other." compset="Feat" summary="Choose your active energy type" uniqueness="useronce">
+    <arrayval field="usrArray" index="0" value="Air (Electricity)"/>
+    <arrayval field="usrArray" index="1" value="Earth (Acid)"/>
+    <arrayval field="usrArray" index="2" value="Fire (Fire)"/>
+    <arrayval field="usrArray" index="3" value="Water (Cold)"/>
+    <tag group="Helper" tag="Helper"/>
+    <tag group="Hide" tag="Feat"/>
+    <tag group="Helper" tag="ActivMenu"/>
+    <eval phase="First" priority="10500"><![CDATA[      ~ Disable if we don't have any Elemental Flux maneuvers
+      if (hero.childlives[zPWElmFlux] = 1) then
+        if (hero.childfound[zPWElmFlux].tagcount[mLevel.?] < 1) then
+          perform assign[Helper.FtDisable]
+          perform delete[Helper.ActivMenu]
+        endif
+      endif
+
+      ~ If we're disabled, do nothing
+      doneif (tagis[Helper.FtDisable] <> 0)
+      ~ If we have not chosen then get out now
+      doneif (field[usrChosen1].ischosen <> 1)
+
+      ~ Assign an energy type tag based on our selection
+      If (field[usrIndex].value = 0) Then
+         perform hero.assign[PWActNRG.Air]
+      ElseIf (field[usrIndex].value = 1) Then
+         perform hero.assign[PWActNRG.Earth]
+      ElseIf (field[usrIndex].value = 2) Then
+         perform hero.assign[PWActNRG.Fire]
+      ElseIf (field[usrIndex].value = 3) Then
+         perform hero.assign[PWActNRG.Water]
+      Endif]]></eval>
     </thing>
   </document>
