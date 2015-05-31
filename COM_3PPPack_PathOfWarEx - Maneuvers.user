@@ -2820,4 +2820,375 @@ abValue3 = Fire speed bonus</comment>
 
       endif]]></eval>
     </thing>
+  <thing id="manPWFlMv1" name="Fluctuation Movement" description="Coating your feet in the power of the elements, you alter your movement to grant you a burst of speed and maneuverability. This boost has one of the following effects, based on your active element:\n\n{b}Air{/b} You can make a single jump this round as a free action, with a +10 bonus to your acrobatics check.\n\n{b}Earth{/b} Your movement ignores difficult terrain for one round.\n\n{b}Fire{/b} Your base land speed increases by 10 feet for one round.\n\n{b}Water{/b} You can make one turn of up to 90 degrees as part of the move when charging this round" compset="PWManuever" summary="Grants movement method based on active element." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    </thing>
+  <thing id="manPWDgRs2" name="Degrade Resistance" description="As a disciple of the Elemental Flux, you understand how to use elements to assault those normally resistant to them. When you initiate this boost, your attacks ignore the first 10 points of energy resistance to your active element for one round, and your next attack deals an additional 1d6 points of damage of your active element.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase this maneuver’s additional damage to 2d6." compset="PWManuever" summary="Ignore 10 points of energy resistance and deal an additional 1d6 points of energy damage." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWElFn2" name="Eldritch Fang" description="You fill your strike with eldritch energy that overwhelms the senses of your target. The next attack you make deals an additional 1d6 points of force damage and automatically overcomes damage reduction. If it hits, the target must also succeed at a Fortitude save (DC 12+ initiation modifier) or be staggered for one round.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase the force damage of this boost to 2d6." compset="PWManuever" summary="Attack adds 1d6 force damage,  ignores DR, and may stagger a foe." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="FortPart"/>
+    <tag group="mSave" tag="SeeText"/>
+    </thing>
+  <thing id="manPWEnSp3" name="Energy Spark" description="You fill the air with elemental energy, which explodes as you strike your target. When you make an attack, you can initiate this boost to fire a ray of energy at a creature within 30 feet. This ray requires a ranged touch attack to hit and deals 3d6 points of damage of your active element.\n\n{i}Animus augmentation:{/i} You may spend two points of animus to create an additional ray. The rays may be fired at the same or different targets, but both rays must be aimed at targets within 30 feet of you." compset="PWManuever" summary="Extra ranged touch attack deals 3d6 elemental damage" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="30"/>
+    </thing>
+  <thing id="manPWAsRs4" name="Assay Resistance" description="By directly targeting the elemental essence that suffuses all creatures, you overcome an enemy’s defenses with a powerful attack. Your next attack ignores the first 25 points of energy resistance to your active element, automatically overcomes damage reduction, and deals an additional 2d6 points of damage.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase the damage of this boost to 3d6 points of damage." compset="PWManuever" summary="Ignore 25 ER, bypass DR, deal extra 2d6 energy damage" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="1attack"/>
+    </thing>
+  <thing id="manPWEFFl6" name="Eldritch Fang Flurry" description="Striking at your foes with elemental fury, you aim to disable his opponents in addition to harming them.  When you initiate this boost, all attacks you make for one round deal an additional 3d6 points of force damage and automatically overcomes damage reduction. In addition, any enemy hit by one of your attacks must succeed at a Fortitude save (DC 16 + initiating modifier) or be blinded for 1 round.  Multiple hits do not extend the duration of this blinding effect, though they do prompt multiple saves." compset="PWManuever" summary="Attacks deal +3d6 force damage, ignore DR, can blind foes" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mSave" tag="FortPart"/>
+    <tag group="mSave" tag="SeeText"/>
+    </thing>
+  <thing id="manPWShRs6" name="Shatter Resistance" description="You know that the might of the elements can overwhelm any defense. When you initiate this boost, all attacks you make for one round ignore energy resistance of your targets, and creatures with an energy immunity still take half damage, rather than no damage. In addition, all of your attacks deal an additional 4d6 points of damage of your active energy type for the duration of this boost.\n\n{i}Animus augmentation:{/i} You may spend two points of animus to treat any spell resistance possessed by those damaged by this boost as 10 lower for the duration of this boost." compset="PWManuever" summary="Attacks deal +4d6 energy damage, ignore ER, deal half damage to immune" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWElBr8" name="Elemental Breach" description="As a master of the Elemental Flux discipline, you know how to overwhelm the defenses of your targets and expose their weaknesses to the elements. When you initiate this boost, your attacks for one round ignore all resistances and immunities and automatically overcome damage reduction. Additionally, any damage you deal of your active element is increased by 50% for the duration of this boost." compset="PWManuever" summary="Ignore DR and ER and deal deal +50% damage with active element" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWArSh2" name="Arcane Shield" description="You rely on your unique insight into eldritch powers to create a shield of energy that protects you from an attack. You may initiate this counter in response to a melee or ranged attack (including touch or ranged touch spell attacks) being made against you. Make a Spellcraft check, using the attack roll of your opponent as the DC. If you are successful, the attack is negated. This is a force effect, and may be used to block incorporeal attacks.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to have the force shield crumble slowly after the attack, passively granting you a +2 shield bonus to your AC until the start of your next turn." compset="PWManuever" summary="Generate a small disc of force to defend yourself against an attack using a Spellcraft check" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    </thing>
+  <thing id="manPWElCn4" name="Eldritch Consumption" description="You have such an intimate understanding of the underlying nature of magic that you can capture its essence and feast on it to rejuvenate yourself. You may initiate this counter in response to being targeted by a spell, spell-like ability, power, or psi-like ability. Make a Spellcraft check (DC 11 + the opponent’s effect’s caster or manifester level). If you succeed, the effect is countered, and you heal 5 hp per level of the spell, spell-like ability, power, or psi-like ability you countered." compset="PWManuever" summary="Negate a spell and gain 5 HP per spell level" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    </thing>
+  <thing id="manPWElAb5" name="Elemental Absorption" description="You learn to suffuse your being with an element to such a degree that its presence heals you instead of harming you. When you initiate this counter, you gain immunity to your active element, and attacks that deal energy damage of that type instead heal you for ½ of the damage they would normally deal." compset="PWManuever" summary="Gain immunity to your element for 1 rd, and heal 1/2 damage you would otherwise take from it" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    </thing>
+  <thing id="manPWRdFl7" name="Redirecting Flux" description="A master of the Elemental Flux discipline knows how to read and alter the flow of magical energy.  You can initiate this counter when you are targeted by a spell, power, spell-like ability or psi-like ability. Make a Spellcraft check against a DC of 15 + the effect’s caster level. If you succeed, you can redirect that effect to another target of your choice within the spell’s range. If the effect has multiple targets, you can choose to change all of its targets to other valid targets within range.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase your Spellcraft check by +2." compset="PWManuever" summary="Spellcraft check to redirect a targeted spell or SLA to new target" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    </thing>
+  <thing id="manPWSpkS1" name="Spark Strike" description="By letting the power of the elements flow through you and into your attack, you’re able to strike true with raw primal energies at your unlucky foe. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 2d4 points of damage of your active element.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase this maneuver’s additional damage to 3d4." compset="PWManuever" summary="Attack that deals +2d4 points of energy damage of your element." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWVrFl1" name="Variable Flux" description="Filling your weapon with the power of the Elements, you lash out with barely-contained eldritch power. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 1d6 points of damage of your active element. This strike also has one of the following effects, based on your active element:\n\n{b}Air{/b} If the target is  wearing metal armor, wielding a metal shield, or wielding a weapon mostly composed of metal, you gain a +4 bonus to your attack roll.\n\n{b}Earth{/b} If your attack hits, the target must succeed at a Will save or become sickened for one round.\n\n{b}Fire{/b} If your attack hits, the target must succeed at a Reflex save or catch on fire for 1d4 rounds.\n\n{b}Water{/b} If your attack hits, the target must succeed at a Fortitude save or become fatigued for one round.\n\nSaving throws against this maneuver are DC 11 + initiation modifier." compset="PWManuever" summary="Attack does +1d6 damage of your element, extra effect based on element" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="SeeText"/>
+    </thing>
+  <thing id="manPWElSt2" name="Elemental Strike" description="The  disciples of Elemental Flux learn to empower their strikes not just with the energy of magic, but the effects of the elements themselves. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 2d6 points of damage of your active element. This strike also has one of the following effects, based on your active element:\n\n{b}Air{/b} If your attack hits, the target must succeed at a Reflex save or be knocked prone from the force of the blow.\n\n{b}Earth{/b} If your attack hits, the target must succeed at a Reflex save or take an additional 2d6 points of acid damage at the start of your next turn.\n\n{b}Fire{/b} If your attack hits, the target must succeed at a Reflex save or be blinded by the smoke and flames for one round.\n\n{b}Water{/b} If your attack hits, the target must succeed at a Fortitude save or become nauseated for one round from the chilling cold.\n\nSaving throws against this maneuver are DC 12 + initiation modifier.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase the initial damage of this strike by 1d6 and increase the DC to save against the strike by +1 per point of animus spent." compset="PWManuever" summary="Attack does +2d6 damage of your element, extra effect based on element" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mSave" tag="RefPart"/>
+    </thing>
+  <thing id="manPWEnJt2" name="Energy Jolt" description="The disciple fills the enemy with harmful elemental energy, dealing damage and causing them to suffer debilitating effects. Make a ranged touch attack against an enemy within 30 feet. If it hits, it deals 3d6 points of damage of your active element, plus one of the following effects, based on your active element:\n\n{b}Air{/b} The target must succeed on a Fortitude save or be pushed back 15 feet.\n\n{b}Earth{/b} The target takes an additional 1d6 points of acid damage at the start of your next turn, and must succeed at a Fortitude save or be sickened for initiator modifier in rounds\n\n{b}Fire{/b} The target must succeed at a Reflex save or take an additional 2d6 points of fire damage at the start of your next turn\n\n{b}Water{/b} If your active element is water, the target must succeed at a Fortitude save or be entangled for a number of rounds equal to your initiation modifier.\n\nSaving throws against this maneuver are DC 12 + initiation modifier.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase the initial damage of this strike by 1d6 and increase the DC to save against the strike by +1 per point of animus spent." compset="PWManuever" summary="Elemental blast for 3d6 points of your element" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mRange" tag="30"/>
+    </thing>
+  <thing id="manPWLnPw3" name="Lance of Power" description="With a swing of your blade, you release a rippling line of elemental energy. When you initiate this maneuver, you create a 30-ft. line of energy that deals 5d6 points of damage of your active element to each creature within its area, plus one of the following effects, based on your active element:\n\n{b}Air{/b} The crack of thunder accompanying the lightning deafens creatures for a number of rounds equal to your initiation modifier. \n\n{b}Earth{/b} The acid spray also creates a greasy, oily slick, causing creatures who fail their Reflex saves to drop items they are holding as if affected by the grease spell.\n\n{b}Fire{/b} The intensity of the flaming blast adds an additional +1 point of damage per die and dazzles each target for a number of rounds equal to your  initiation modifier..\n\n{b}Water{/b} The icy blast makes surfaces very slippery, and creatures who fail their saving throw slip on the ice and fall prone.\n\nCreatures caught in the line can make a Reflex saving throw (DC 13 + initiation modifier) to take half damage and negate the added effect.\n\n{i}Animus augmentation:{/i} For every point of animus you spend, this maneuver’s damage increases by 2d6, to a maximum number of dice equal to your initiator level (maximum 15d6)." compset="PWManuever" summary="Deal 5d6 damage of your element in a 30-ft line" uniqueness="useronce">
+    <fieldval field="mArea" value="30-ft line"/>
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="30"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mSave" tag="RefHalf"/>
+    </thing>
+  <thing id="manPWRgFl3" name="Raging Flux" description="You know how to strike with such eldritch force that it drives your foes backwards. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 4d6 points of damage of your active element. For every 10 points of damage you deal, the target of this attack is pushed 5 feet away from you. If this movement causes the target to collide with a solid object (such as a tree or a wall), it suffers an additional 1d6 points of bludgeoning damage from striking the surface.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to push the target an additional 5 feet" compset="PWManuever" summary="Attack deals +4d6 points of damage and pushes foe back 5ft. for every 10 pts of damage" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWAcTr4" name="Arcane Torrent" description="You unleash a sudden burst of eldritch energy that surges towards a distant foe. When you initiate this maneuver, select a target within 60 feet. Magical missiles of explosive force swiftly fly at this target, dealing 6d6 points of force damage on a failed Reflex save (DC 14 + initiation modifier).\n\n{i}Animus augmentation:{/i} You may spend two points of animus to instead fire a barrage of force missiles. Instead of this maneuver’s normal effect, you create a 15-ft. burst within 60 feet of you, affecting each creature within its area as if you had targeted them." compset="PWManuever" summary="Missiles of arcane energy that deal 6d6 points of force damage to target." uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mSave" tag="RefHalf"/>
+    </thing>
+  <thing id="manPWEnHm4" name="Energy Hammer" description="As you advances your training, you learn to unleash ever more powerful bursts of energy. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 6d6 points of damage of your active element plus an added affect.\n\n{b}Air{/b} The target must succeed at a Fortitude save or be deafened for 1d4 rounds.\n\n{b}Earth{/b}  The target must succeed at a Will save or be stunned for 1d4 rounds\n\n{b}Fire{/b} The target must succeed at a Reflex save or be blinded for 1d4 rounds.\n\n{b}Water{/b} The target must succeed at a Fortitude save or be nauseated for 1d4 rounds.\n\nSaving throws are DC 14 + initiation modifier.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase the initial damage of this strike by 1d6 and increase the DC to save against the strike by +1." compset="PWManuever" summary="Attack deals +6d6 damage of your element, can stun foe" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    </thing>
+  <thing id="manPWElDr5" name="Elemental Drive" description="You charge your weapon with kinetic and elemental energy, driving them back with a wave of elemental power. Make a ranged touch attack. If it hits, it deals 9d6 points of damage of your active element. In addition, you attempt a bull rush against your target, calculating your CMB using your initiation modifier and initiator level in place of your Strength modifier and base attack bonus.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to add a +5 bonus to your bull rush attempt." compset="PWManuever" summary="Ranged touch for 9d6 energy damage, bull rush target" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="30"/>
+    </thing>
+  <thing id="manPWElVt5" name="Elemental Vortex" description="A whirling vortex of elemental energy engulfs your foe just as your blade lands. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 8d6 points of damage of your active element. This strike also has one of the following effects, based on your active element:\n\n{b}Air{/b} If the target is wearing metal armor, wielding a metal shield, or wielding a weapon mostly composed of metal, you and your allies gain a +4 bonus to attack rolls against the target until the start of your next turn.\n\n{b}Earth{/b} If your attack hits, you may make a free trip attempt that does not provoke attacks of opportunity, with a bonus on the attempt  equal to your initiation modifier.\n\n{b}Fire{/b} If your attack hits, the target must succeed at a Reflex save or catch on fire for 2d4 rounds, and become sickened from the pain for as long as they are burning.\n\n{b}Water{/b} If your attack hits, the target must succeed at a Fortitude save or entangled for a number of rounds equal to your initiation modifier.\n\nSaving throws against this maneuver are DC 15 + initiation modifier.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase the initial damage of this strike by 1d6 and increase the DC to save against the strike by +1" compset="PWManuever" summary="Attack deals +8d6 points of energy damage, extra effect from your element." uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mSave" tag="SeeText"/>
+    </thing>
+  <thing id="manPWEEHm6" name="Eldritch Energy Hammer" description="You know how to destroy the bonds that hold magic together just as easily as you can forge them. When you initiate this strike, make an attack against and a target, and if successful,  roll a dispel check against the spell with the highest caster level affecting the target, as if you had cast a targeted {i}dispel magic{/i} at them. Use your initiator level in place of your caster level for this dispel check. If you do not successfully dispel that spell, compare the same result to the spell with the next highest caster level. Repeat this process until you have dispelled one spell affecting the target, or you have failed to dispel every spell. You can only end one spell with this maneuver. After resolving the dispel check,  resolve your weapon damage as normal, plus an additional 1d6 points of force damage per level of the spell dispelled, if any.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to add +2 to your dispel check." compset="PWManuever" summary="Attack deals +10d6 energy damage and targets foe with {i}dispel magic{/i} effect" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    </thing>
+  <thing id="manPWEDRn6" name="Elemental Destruction Ring" description="You whip the elements around you into a fury, then unleash the energy at all the foes who surround you. When you initiate this maneuver, you release a 20-ft. burst of energy, centered on you, that deals 12d6 points of damage of your active energy type to any creatures in the area, plus one of the following effects, based on your active element:\n\n{b}Air{/b} The flash of lightning blinds targets for 1d4 rounds.\n\n{b}Earth{/b} The acid is gummy and sticky, applying a -4 penalty to Dexterity and a -2 penalty to attack rolls for 1d4 rounds. In addition, they take 1d6 points of acid damage at the start of each of their turns for the duration of this effect.\n\n{b}Fire{/b} The intense heat and pain from the blast dazes targets for one round. \n\n{b}Water{/b} Targets become staggered for 1d6 rounds from the intense chill.\n\nCreatures caught in the burst can make a Reflex saving throw (DC 16 + initiation modifier) to take half damage and negate the added effect.\n\n{i}Animus augmentation:{/i} For every two points of animus you spend, this maneuver’s damage increases by 1d6, to a maximum number of dice equal to your initiator level (maximum 20d6)." compset="PWManuever" summary="Deal 12d6 energy damage in a 20-ft burst centered on you" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mArea" value="20 ft radius burst, centered on you"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mSave" tag="RefHalf"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mRange" tag="Personal"/>
+    </thing>
+  <thing id="manPWCoEW7" name="Cascade of Elemental Wrath" description="Each slash of your blade releases more and more eldritch power, overwhelming your enemies with the power of your strikes. Make a full attack with a bonus on attack rolls equal to your initiator modifier. Each attack deals an additional 3d6 points of damage of your active energy type. During your full attack, you can change your active energy type as a free action once after each subsequent attack. If you do so, increase the additional damage of further attacks by 1d6 for each time you change your active energy type.\n\n{i}Animus augmentation:{/i} You may spend two animus to make an extra attack at your highest attack bonus as part of this strike." compset="PWManuever" summary="Full attack with +3d6 energy damage/hit; change energy type as a free action for more damage" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mInitAct" tag="Full1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creat1Plus"/>
+    </thing>
+  <thing id="manPWFcMj7" name="Force Majeure" description="You infuse your weapon with pure elemental power, striking with a force beyond mere steel. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 14d6 points of damage. Unlike with a normal attack, all damage dealt by this attack is to be considered to be of your active element (including weapon damage, weapon enchantments, and bonuses from a high strength or from feats).\n\n{i}Animus augmentation:{/i} You spend three points of animus to instead infuse your strike with raw arcane energy, unaligned to any elemental forces. If you do, your attack deals force damage rather than elemental damage." compset="PWManuever" summary="Attack deals +14d6 damage, converts all damage to your energy type" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWZpFl8" name="Zephyr Flux" description="Upon reaching supreme levels of understanding in this discipline, you may transmute your entire being into elemental energy and travel in the blink of an eye across the battlefield, leaving a wake of devastation behind you. This strike functions as a {i}chain lightning{/i} spell that deals 16d6 points of damage of your active elemental type to the primary target. This strike also has one of the following effects, based on your active element:\n\n{b}Air{/b} Any target who fails their save is stunned by the electrical jolt for one round.\n\n{b}Earth{/b}  Any target who fails their save is knocked prone from the seismic vibrations and slippery acid.\n\n{b}Fire{/b} Any target who fails their save is engulfed in flame, becoming confused for 1d4 rounds.\n\n{b}Water{/b} Any target who fails their save is nauseated for 1d4 rounds from the bone-chilling cold.\n\nWhen this strike ends, you can position yourself anywhere within 10 feet of the final target of this strike. As a supernatural ability, this strike is not subject to spell resistance. Its saving throw is DC 18 + initiation modifier.\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase the initial damage of this strike by 1d6 and increase the DC to save against the strike by +1." compset="PWManuever" summary="Become a living {i}chain lightning{/i} of your element that deals 16d6 damage." uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <fieldval field="mTarget" value="One primary target, plus one secondary target/level (each of which must be within 30 ft of the prima"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="200" name="200 ft"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="mSave" tag="RefHalf"/>
+    </thing>
+  <thing id="manPWSoED9" name="Strike of Elemental Devastation" description="The ultimate expression of elemental power can only be unleashed by a master of the Elemental Flux discipline, and by calling upon the arcane forces of magic as well as the terrific power of the elements, the disciple may crush his opponents under a fierce magical assault. The maneuver creates five distinct blasts of energy, one of each element and one of pure force. Each blast is resolved as a ranged touch attack at your full base attack bonus, and each has a specific effect. The rays may be fired at the same or different targets. The effects follow as:\n\n{b}Air{/b} A bolt of electrical energy that deals 25 points of electricity damage and staggers the opponent for 1d4 rounds; if the target is wearing metal armor or a metal shield, or wielding a primarily metal weapon then the attack gains a +4 circumstance bonus to hit.\n\n{b}Earth{/b} A jet of boiling acid that deals 25 points of acid damage and blinds an enemy for 1d4 rounds.\n\n{b}Fire{/b} A stream of sulfurous fire that deals 25 points of fire damage and nauseates a foe for 1d4 rounds, and sets them on fire for the same duration.\n\n{b}Force{/b} A hammering blast of arcane force that deals 50 points of force damage.\n\n{b}Water{/b} A freezing beam of cold that deals 25 points of cold damage and dazes a foe for 1d4 rounds on a failed Fortitude save (DC 19 + initiator modifier).\n\n{i}Animus augmentation:{/i} You may spend one or more points of animus (max 3)  to increase the initial damage of each ray from this strike by 10 and increase the DC to save against the strike by +1." compset="PWManuever" uniqueness="useronce">
+    <fieldval field="mPreReq" value="4"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="9"/>
+    <tag group="mInitAct" tag="Full1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mRange" tag="AnyAttack"/>
+    <tag group="mTarget" tag="Creature5" name="Up to five creatures"/>
+    <tag group="mSave" tag="SeeText"/>
+    <tag group="mSave" tag="Special"/>
+    </thing>
   </document>
