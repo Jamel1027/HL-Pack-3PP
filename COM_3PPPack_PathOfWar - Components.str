@@ -85,6 +85,14 @@
       type="user"
       maxlength="100">
     </field>
+	
+	<!-- mExValue is an "overflow" field for cases where we need more than 5 abValue fields -->
+	<field
+	  id="mExValue"
+	  name="Extra Value"
+	  type="derived"
+	  maxlength="0">
+	</field>
 
     <!-- TAGS -->
     <tag group="Usage" tag="PWEncounte"/>

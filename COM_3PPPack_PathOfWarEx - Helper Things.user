@@ -212,15 +212,7 @@
     <tag group="Helper" tag="Helper"/>
     <tag group="Hide" tag="Feat"/>
     <tag group="Helper" tag="ActivMenu"/>
-    <eval phase="First" priority="10500"><![CDATA[      ~ Disable if we don't have any Elemental Flux maneuvers
-      if (hero.childlives[zPWElmFlux] = 1) then
-        if (hero.childfound[zPWElmFlux].tagcount[mLevel.?] < 1) then
-          perform assign[Helper.FtDisable]
-          perform delete[Helper.ActivMenu]
-        endif
-      endif
-
-      ~ If we're disabled, do nothing
+    <eval phase="First"><![CDATA[      ~ If we're disabled, do nothing
       doneif (tagis[Helper.FtDisable] <> 0)
       ~ If we have not chosen then get out now
       doneif (field[usrChosen1].ischosen <> 1)
@@ -235,5 +227,14 @@
       ElseIf (field[usrIndex].value = 3) Then
          perform hero.assign[PWActNRG.Water]
       Endif]]></eval>
+    <eval phase="First" priority="10500" index="2"><![CDATA[      ~ If we don't have any Elemental Flux maneuvers, disable this feat and remove any tags it assigned
+      ~ We wait until First/10500 to do this because we need the PWActNRG tags early for bootstraps but can't check for maneuver presence until after First/10000
+      if (hero.childlives[zPWElmFlux] = 1) then
+        if (hero.childfound[zPWElmFlux].tagcount[mLevel.?] < 1) then
+          perform assign[Helper.FtDisable]
+          perform delete[Helper.ActivMenu]
+          perform hero.delete[PWActNRG.?]
+        endif
+      endif]]></eval>
     </thing>
   </document>

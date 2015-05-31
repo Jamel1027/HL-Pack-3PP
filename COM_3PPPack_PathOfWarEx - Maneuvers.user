@@ -2453,7 +2453,7 @@
     <tag group="mDuration" tag="Round1"/>
     <tag group="mDescript" tag="MindAffect"/>
     </thing>
-  <thing id="manPWEShd1" name="Eldritch Shield" description="By drawing upon the elements, you are capable of defending against energy effects. You can initiate this counter when you are affected by an attack, spell, or effect that deals Acid, Cold, Fire, Electricity, or Sonic damage. You gain energy resistance 10 against that attack, spell, or effect.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase this energy resistance to 20." compset="PWManuever">
+  <thing id="manPWEShd1" name="Eldritch Shield" description="By drawing upon the elements, you are capable of defending against energy effects. You can initiate this counter when you are affected by an attack, spell, or effect that deals Acid, Cold, Fire, Electricity, or Sonic damage. You gain energy resistance 10 against that attack, spell, or effect.\n\n{i}Animus augmentation:{/i} You may spend one point of animus to increase this energy resistance to 20." compset="PWManuever" summary="Grants energy resistance of 10 against single attack." uniqueness="useronce">
     <usesource source="srcPOWEx"/>
     <tag group="Discipline" tag="ElemFlux"/>
     <tag group="mType" tag="Counter"/>
@@ -2464,5 +2464,360 @@
     <tag group="mDuration" tag="Attack1"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="PathOfWar" tag="Manuever"/>
+    </thing>
+  <thing id="staPWElNi1" name="Elemental Nimbus" description="Channeling the strength of the Elements lends your attacks strength and fury. While you maintain this stance, you gain one of the following effects, based on your active element:\n\n{b}Air{/b} You gain a +2 bonus to attack rolls against enemies wearing metal armor, and your attacks deal an additional 1d6 points of electricity damage. This bonus increases to +4 to attack rolls and +2d6 damage at initiator level 10.\n\n{b}Earth{/b} The strength of the earth empowers your weapon, causing it to deal damage as if it was one size category larger (this stacks with other size increasing effects). This bonus increases to two size categories at initiator level 10.\n\n{b}Fire{/b} Your attacks deal additional fire damage equal to your initiation modifier. At initiator level 10, this bonus equals twice your initiation modifier.\n\n{b}Water{/b} When you successfully hit an enemy with an attack, they must make a Fortitude save (DC 11 + initiation modifier) or be staggered for 1 round; a target cannot be staggered by this stance more than once per round. The saving throw for this aspect of this  stance increases by 1 every four initiator levels starting at initiator level 5." compset="PWManuever" summary="Offensive stance that grants variable benefits depending on active element." uniqueness="useronce">
+    <fieldval field="abValue" value="2"/>
+    <fieldval field="abValue2" value="1"/>
+    <fieldval field="abValue3" value="6"/>
+    <fieldval field="actName2" value="Target wearing metal armor"/>
+    <fieldval field="abValue4" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+      ~ Stop now if we don't have an active element
+      doneif (hero.tagcount[PWActNRG.?] = 0)
+
+      ~ Fire bonus damage = init mod
+      field[abValue5].value = field[mIM].value
+
+      ~ Increased benefits at higher IL
+      if (field[mIL].value >= 10) then
+        ~ Air: Increase to-hit and damage dice
+        field[abValue].value += 2
+        field[abValue2].value += 1
+
+        ~ Earth: Increase sizeup on weapons
+        field[abValue4].value += 1
+ 
+        ~ Fire: Add init mod to fire damage again
+        field[abValue5].value += field[mIM].value
+      endif
+
+      ~ Air: Attack bonus vs. metal armor, bonus elec damage dice
+      if (hero.tagis[PWActNRG.Air] = 1) then
+        if (field[abilAct2].value = 1) then
+          hero.childfound[Attack].field[Bonus].value += field[abValue].value
+        endif
+      endif
+
+      ~ Water: Increase DC of stagger-on-hit ability
+      if (hero.tagis[PWActNRG.Water] = 1) then
+        ~ Bonus increases at IL  and every 4 levels after
+        var firstIncLv as number
+        var incEveryLv as number
+        var incAmt as number
+        var inc as number
+        firstIncLv = 5
+        incEveryLv = 4
+        incAmt = 1
+        call PWgetILBon
+        field[mDC].value += inc
+      endif
+
+      ~ Stop now if none of our active elements affect weapons
+      doneif (hero.tagcount[PWActNRG.Air] + hero.tagcount[PWActNRG.Earth] + hero.tagcount[PWActNRG.Fire] = 0)
+      
+      ~ Process weapon effects
+      foreach pick in hero from BaseWep
+        ~ Air: Bonus electric damage dice
+        if (hero.tagis[PWActNRG.Air] = 1) then
+          #extradamage[eachpick, signed(field[abValue2].value) & "d" & field[abValue3].value & " Elec.", field[thingname].text]
+        endif
+
+        ~ Earth: Damage die sizeup
+        if (hero.tagis[PWActNRG.Earth] = 1) then
+            eachpick.field[wDamage].value += field[abValue4].value
+            eachpick.field[wRanDamage].value += field[abValue4].value
+        endif
+      
+        ~ Fire: Bonus fire damage
+        if (hero.tagis[PWActNRG.Fire] = 1) then
+          #extradamage[eachpick, signed(field[abValue5].value) & " Fire", field[thingname].text]
+        endif
+      nexteach]]></eval>
+    </thing>
+  <thing id="staPWEmEl1" name="Embrace the Elements" description="By filling yourself with the fundamentals of an element, you are capable of altering how your body defends itself in the realm of martial combat. While you maintain this stance, you gain one of the following effects, based on your active element:\n\n{b}Air:{/b} You gain a +2 dodge bonus to your AC and the benefit of the Deflect Arrows feat (you need not meet the prerequisites for this feat). This dodge bonuses increases by +1 at initiator level 6 and again every six initiator levels.\n\n{b}Earth:{/b} You gain a +2 natural armor bonus to AC and a +4 resistance bonus to CMD to resist bull rush, grapple, and trip attempts. These bonuses increases by +1 at initiator level 6 and again every six initiator levels.\n\n{b}Fire:{/b} You gain a +4 bonus to initiative checks, and you gain the benefits of the {i}endure elements{/i} spell. This initiative bonus increases by +1 at initiator level 6 and again every four initiator levels.\n\n{b}Water:{/b} You gain a +2 bonus to Reflex saving throws and a +4 competence bonus to Acrobatics checks. These bonuses increases by +1 at initiator level 6 and again every six initiator levels." compset="PWManuever" summary="Defensive stance grants variable benefits depending on active element." uniqueness="useronce">
+    <comment>abValue = Air dodge bonus
+abValue2 = Earth Nat AC bonus
+abValue3 = Earth CMD bonus
+abValue4 = Fire init bonus
+abValue5 = Water Ref bonus
+mExValue = Water Acro bonus</comment>
+    <fieldval field="abValue2" value="2"/>
+    <fieldval field="abValue3" value="4"/>
+    <fieldval field="abValue4" value="4"/>
+    <fieldval field="abValue5" value="2"/>
+    <fieldval field="abValue" value="2"/>
+    <fieldval field="mExValue" value="4"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <bootstrap thing="fDefArrow">
+      <containerreq phase="First" priority="400"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Air]]></containerreq>
+      <autotag group="thing" tag="skipprereq"/>
+      <autotag group="Hide" tag="Feat"/>
+      <autotag group="Helper" tag="FtDisable"/>
+      </bootstrap>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+      ~ Stop now if we don't have an active element
+      doneif (hero.tagcount[PWActNRG.?] = 0)
+
+      ~ Most bonuses increase at IL 6 and every 4 or 6 levels after
+      var firstIncLv as number
+      var incEveryLv as number
+      var incAmt as number
+      var inc as number
+      firstIncLv = 6
+      incEveryLv = 6
+      incAmt = 1
+      call PWgetILBon
+      field[abValue].value += inc
+      field[abValue2].value += inc
+      field[abValue3].value += inc
+      field[abValue5].value += inc
+      field[mExValue].value += inc
+
+      ~ Air: Dodge bonus to AC
+      if (hero.tagis[PWActNRG.Air] = 1) then
+        hero.child[ArmorClass].field[tACDodge].value += field[abValue].value
+      endif
+
+      ~ Earth: Natural Armor bonus to AC, CMD bonus for some maneuvers
+      if (hero.tagis[PWActNRG.Earth] = 1) then
+        hero.childfound[ArmorClass].field[tACNatural].value = maximum(hero.childfound[ArmorClass].field[tACNatural].value, field[abValue2].value)
+        hero.childfound[manTrip].field[cmdBonus].value += field[abValue3].value
+        hero.childfound[manBullRus].field[cmdBonus].value += field[abValue3].value
+        hero.childfound[manGrapple].field[cmdBonus].value += field[abValue3].value
+      endif
+
+      ~ Water: Ref save bonus, and Acrobatics bonus
+      if (hero.tagis[PWActNRG.Water] = 1) then
+        hero.childfound[svRef].field[Bonus].value += field[abValue5].value
+        #competencebonus[hero.childfound[skAcrobat], field[mExValue].value]
+      endif
+
+      ~ Fire: Init bonus (and this one increases every four IL after 6
+      if (hero.tagis[PWActNRG.Fire] = 1) then
+        incEveryLv = 4
+        call PWgetILBon
+        field[abValue4].value += inc
+        hero.child[Initiative].field[Bonus].value += field[abValue4].value
+      endif]]></eval>
+    </thing>
+  <thing id="staPWEFSt3" name="Elemental Flux Stance" description="Filling both your body and soul with the power of the elements, you open yourself up to new powers. While you maintain this stance, your attacks with weapons deal an additional 2d6 points of elemental damage of your active element, you gain energy resistance 15 to your active element, and you gain one of the following effects, based on your active element:\n\n{b}Air{/b} Your movement and perception are heightened, granting you a +4 bonus to initiative checks and a +4 dodge bonus to your AC.\n\n{b}Earth{/b} The strength and durability of the earth suffuses your bones, granting you DR 5/adamantine.\n\n{b}Fire{/b} Your body is filled with warmth and healing light, granting you fast healing 1, and you glow like a torch, as if under the effect of a {i}light{/i} spell.\n\n{b}Water{/b} Your body is inured against debilitating effects, granting you a +2 bonus to saving throws." compset="PWManuever" summary="+2d6 energy damage w/weapons, gain energy resistance 15" uniqueness="useronce">
+    <comment>abValue = Damage dice number
+abValue2 = Damage die size
+abValue3 = Energy res
+abValue4 = Air dodge/init bonus
+abValue5 = Fire fast healing amount
+mExValue = Water save bonus</comment>
+    <fieldval field="abValue2" value="6"/>
+    <fieldval field="abValue3" value="15"/>
+    <fieldval field="abValue4" value="4"/>
+    <fieldval field="abValue5" value="1"/>
+    <fieldval field="abValue" value="2"/>
+    <fieldval field="mExValue" value="2"/>
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mLevel" tag="3"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+      ~ Stop now if we don't have an active element
+      doneif (hero.tagcount[PWActNRG.?] = 0)
+
+      var elmDamStr as string
+      elmDamStr = signed(field[abValue].value) & "d" & field[abValue2].value & " "
+
+      ~ Air: Dodge bonus to AC, init bonus
+      if (hero.tagis[PWActNRG.Air] = 1) then
+        hero.child[ArmorClass].field[tACDodge].value += field[abValue4].value
+        hero.child[Initiative].field[Bonus].value += field[abValue4].value
+        #applydr[xDamRsElec,field[abValue3].value]
+        elmDamStr &= "Elec."
+      endif
+
+      ~ Earth: DR 5/adamantine
+      if (hero.tagis[PWActNRG.Earth] = 1) then
+        #applydr[xDamRdAdam, 5]
+        #applydr[xDamRsAcid,field[abValue3].value]
+        elmDamStr &= "Acid"
+      endif
+
+      ~ Water: Save bonus
+      if (hero.tagis[PWActNRG.Water] = 1) then
+        hero.childfound[svAll].field[Bonus].value += field[mExValue].value
+        #applydr[xDamRsCold,field[abValue3].value]
+        elmDamStr &= "Cold"
+      endif
+
+      ~ Fire: Fast Healing
+      if (hero.tagis[PWActNRG.Fire] = 1) then
+        hero.childfound[xFastHeal].field[abValue].value = maximum(hero.childfound[xFastHeal].field[abValue].value, field[abValue5].value)
+        #applydr[xDamRsFire,field[abValue3].value]
+        elmDamStr &= "Fire"
+      endif
+
+      ~ Add elemental damage to all attacks
+      foreach pick in hero from BaseWep
+        #extradamage[eachpick,elmDamStr,field[thingname].text]
+      nexteach]]></eval>
+    </thing>
+  <thing id="stanPWEtV5" name="Enter the Vortex" description="Riding on the currents of elemental energy, you gain the benefit of a new form of movement. While you maintain this stance, you may throw a blast of energy as if you were using a ranged weapon (range increment of 30-ft, critical threat 20/x2). This blast is a ranged touch attack that deals 4d6 points of damage of your active element. In addition,  you gain one of the following effects, based on your active element:\n\n{b}Air{/b} You can fly at a speed equal to your base land speed, with good maneuverability.\n\n{b}Earth{/b} You gain a burrow at a speed equal to your base land speed, and you gain tremorsense with a range of 30 feet. In addition, you can breathe freely while underground.\n\n{b}Fire{/b} You gain a +4 circumstance bonus to initiative checks and your base land speed increases by 30 feet.\n\n{b}Water{/b} You gain a swim speed equal to twice your base land speed, and you also gain the aquatic and amphibious subtypes." compset="PWManuever" summary="Gain movement type based on active element." uniqueness="useronce">
+    <comment>abValue = Earth tremorsense range
+abValue2 = Fire init bonus
+abValue3 = Fire speed bonus</comment>
+    <fieldval field="abValue2" value="4"/>
+    <fieldval field="abValue3" value="30"/>
+    <fieldval field="abValue" value="30"/>
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mLevel" tag="5"/>
+    <bootstrap thing="wPWElmBlst">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Air]]></containerreq>
+      <autotag group="wType" tag="Elec"/>
+      </bootstrap>
+    <bootstrap thing="xFly">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Air]]></containerreq>
+      <autotag group="Maneuver" tag="Good"/>
+      </bootstrap>
+    <bootstrap thing="wPWElmBlst">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Fire]]></containerreq>
+      <autotag group="wType" tag="Fire"/>
+      </bootstrap>
+    <bootstrap thing="wPWElmBlst">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Water]]></containerreq>
+      <autotag group="wType" tag="Cold"/>
+      </bootstrap>
+    <bootstrap thing="wPWElmBlst">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Earth]]></containerreq>
+      <autotag group="wType" tag="Acid"/>
+      </bootstrap>
+    <bootstrap thing="xSwim">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Water]]></containerreq>
+      </bootstrap>
+    <bootstrap thing="stAquatic">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Water]]></containerreq>
+      </bootstrap>
+    <bootstrap thing="raAmphib">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Water]]></containerreq>
+      </bootstrap>
+    <bootstrap thing="xBurrow">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Earth]]></containerreq>
+      </bootstrap>
+    <bootstrap thing="xTremorsen">
+      <containerreq phase="First" priority="450"><![CDATA[fieldVal:abilActive = 1 & hero#PWActNRG.Earth]]></containerreq>
+      </bootstrap>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+      ~ Stop now if we don't have an active element
+      doneif (hero.tagcount[PWActNRG.?] = 0)
+
+      ~ Air: 
+      if (hero.tagis[PWActNRG.Air] = 1) then
+        #value[xFly] += hero.child[Speed].field[tSpeed].value
+      endif
+
+      ~ Earth: 
+      if (hero.tagis[PWActNRG.Earth] = 1) then
+        #value[xBurrow] += hero.child[Speed].field[tSpeed].value
+        #value[xTremorsen] += field[abValue].value
+      endif
+
+      ~ Water: Swim speed, subtypes
+      if (hero.tagis[PWActNRG.Water] = 1) then
+        #value[xSwim] += hero.child[Speed].field[tSpeed].value * 2
+      endif
+
+      ~ Fire: Init bonus, base speed bonus
+      if (hero.tagis[PWActNRG.Fire] = 1) then
+        hero.child[Initiative].field[Bonus].value += field[abValue2].value
+        hero.child[Speed].field[tSpeed].value += field[abValue3].value
+      endif]]></eval>
+    </thing>
+  <thing id="wPWElmBlst" name="Elemental Blast" compset="Weapon">
+    <tag group="wMain" tag="4d6"/>
+    <tag group="wCategory" tag="Touch"/>
+    <tag group="wCategory" tag="RangeProj"/>
+    <tag group="wSpecial" tag="Touch"/>
+    <tag group="wRangeInc" tag="30"/>
+    <tag group="Helper" tag="FixSizeDmg"/>
+    <tag group="Helper" tag="Proficient"/>
+    <tag group="Helper" tag="NoOutGear"/>
+    <tag group="wCritMin" tag="20"/>
+    <tag group="wCritMult" tag="2"/>
+    <tag group="wMaxStrBon" tag="0"/>
+    <tag group="wMaxStrPen" tag="0"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="Helper"/>
+    </thing>
+  <thing id="staPWMotE8" name="Master of the Elements" description="You attune your very form to roiling elemental energies and merge with them. While you maintain this stance, your type changes to outsider (native), with elemental subtype of your active element. In addition, you are treated as if you were under the effects of the {i}elemental body III spell{/i}. You may continue to wield weapons, wear armor, and use other items while in this form, and your new body does not damage or otherwise negatively affect your equipment.\n\n{b}NOTE:{/b} To get the effect of this stance, you will need to go to the Adjustments tab and add the {i}elemental body III{/i} adjustment under Spell Adjustments.  The stance script is not currently capable of doing this automatically." compset="PWManuever" summary="Take on elemental aspects based on active element." uniqueness="useronce">
+    <fieldval field="abValue2" value="4"/>
+    <fieldval field="abValue3" value="30"/>
+    <fieldval field="abValue" value="30"/>
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="mLevel" tag="8"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+      ~ Stop now if we don't have an active element
+      doneif (hero.tagcount[PWActNRG.?] = 0)
+
+      ~ Air: 
+      if (hero.tagis[PWActNRG.Air] = 1) then
+      endif
+
+      ~ Earth: 
+      if (hero.tagis[PWActNRG.Earth] = 1) then
+      endif
+
+      ~ Water: Swim speed, subtypes
+      if (hero.tagis[PWActNRG.Water] = 1) then
+      endif
+
+      ~ Fire: Init bonus, base speed bonus
+      if (hero.tagis[PWActNRG.Fire] = 1) then
+
+      endif]]></eval>
     </thing>
   </document>
