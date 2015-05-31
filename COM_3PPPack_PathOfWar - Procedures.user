@@ -458,4 +458,23 @@
       perform field[usrChosen1].chosen.pushtags[Discipline.?]
 	  ]]>
   </procedure>
+  
+  <procedure id="PWgetILBon" context="pick"><![CDATA[
+      ~ This procedure is used by stances that increase a granted bonus at level X and again every Y levels.
+	  var firstIncLv as number
+	  var incEveryLv as number
+	  var incAmt as number
+	  var inc as number
+	  
+	  ~ Start by assuming no increase
+	  inc = 0
+	  
+	  var tmp as number
+	  tmp = field[mIL].value
+	  while (tmp >= firstIncLv)
+	    inc += incAmt
+		tmp -= incEveryLv
+	  loop
+      ]]>
+  </procedure>
   </document>
