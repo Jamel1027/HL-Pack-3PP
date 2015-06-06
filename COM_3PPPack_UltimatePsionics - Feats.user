@@ -2522,12 +2522,13 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <exprreq message="Dexterity 17 required"><![CDATA[#attrvalue[aDEX] >= 17]]></exprreq>
     <exprreq message="Style ability class feature required"><![CDATA[(#hasability[cPUTechFin] + #hasability[cPUTechSni] + #hasability[cPUTechVol]) <> 0]]></exprreq>
     <prereq message="Weapon Focus (any crossbow or firearm) feat required">
-      <validate><![CDATA[~search through all the crossbows and firearms in the game,
-~and compare them to the list of weapons we have weapon
-~focus in - if there's a match, then we're valid
-      foreach thing in BaseWep where "wFtrGroup.Crossbows | wCategory.Firearm"
-        validif (eachthing.intersect[WepFocus,WepFocus] <> 0)
-      nexteach]]></validate>
+      <validate><![CDATA[
+        ~ search through all the crossbows and firearms in the game,
+        ~ and compare them to the list of weapons we have weapon
+        ~ focus in - if there's a match, then we're valid
+        foreach thing in BaseWep where "wFtrGroup.Crossbows | wCategory.Firearm"
+          validif (eachthing.intersect[WepFocus,WepFocus] <> 0)
+        nexteach]]></validate>
       </prereq>
     </thing>
   </document>
