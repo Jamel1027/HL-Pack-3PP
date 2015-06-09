@@ -8,7 +8,7 @@
       ]]>
       </info_author>
     <info_history><![CDATA[
-<strong>v1.10 June 7, 2015</strong>
+<strong>v1.10 June 9, 2015</strong>
 
 <strong>Bug Fixes</strong>
 <ul>
@@ -17,7 +17,9 @@
 <li>Ultimate Psionics (psych777) - Updated Psionic Shield Bash feat to fix issue #52. Feat was asking for a selection when none should have been.</li>
 <li>Ultimate Psionics (psych777) - Touched up more feat text and scripts through the letter "F". In addition tagged feats to the community.</li>
 <li>Ultimate Psionics (psych777) - Removed unnecessary dropdown on Touch of Terror feat.</li>
-<li>Ultimate Psionics (psych777) - Focused Precision feat now correct validates its requirment of needing weapon focus with any crossbow or firearm.</li>
+<li>Ultimate Psionics (psych777) - Focused Precision feat now correctly validates its requirement of needing weapon focus with any crossbow or firearm.</li>
+<li>Ultimate Psionics (ShadowChemosh) - Fixed issue #55. Soulknife mind blade is a masterwork weapon and was not getting the +1 enhancement bonus to attack.</li>
+<li>Ultimate Psionics (ShadowChemosh) - Fixed the soulknife's "Throw Mind Blade" class ability as it was not changing mind blades to thrown weapons.</li>
 </ul>
 <strong>New Features</strong>
 <ul>
