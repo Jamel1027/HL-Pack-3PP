@@ -940,27 +940,27 @@ field[abSumm].text = "Last Respite {i}Mind Switch{/i} save DC " & lrDC & " vs Wi
     </thing>
   <thing id="cSknShaMB" name="Shape Mind Blade" description="The soulknife&apos;s mind blade retains the last chosen form every time it is formed until the soulknife reshapes it. If the soulknife chooses to reshape his blade, it requires a full-round action to do so. She may also re-assign the type of damage dealt as part of reshaping his mind blade if he so chooses.{br}{br}A soulknife can reassign the ability or abilities he has added to his mind blade; see below. To do so, he must first spend 8 hours in concentration. These cannot be the normal 8 hours used for rest, even if the soulknife does not require sleep. After that period, the mind blade materializes with the new ability or abilities selected by the soulknife." compset="ClSpecial" summary="Change the form of your mind blade, or reassign its abilities"></thing>
   <thing id="cSknThrMB" name="Throw Mind Blade" description="All soulknives have some knowledge of how to throw their mind blades, though the range increment varies by form and the largest of blade forms cannot be thrown. Light weapon mind blades have a range increment of 20 ft. One-handed weapon mind blades have a range increment of 15 ft. Two-handed weapon mind blades cannot be thrown without the Two-Handed Throw blade skill. Whether or not the attack hits, a thrown mind blade then dissipates." compset="ClSpecial" summary="Light 20ft, 1H 15ft, and 2H can&apos;t be thrown.">
-    <eval phase="PreLevel" priority="10000"><![CDATA[
-~we're earlier than the normal test for whether we've reached the correct level, so we'll recreate that test here
-doneif (root.field[cTotalLev].value + field[xExtraLev].value + field[xEffectLev].value < tagvalue[ClSpecWhen.?])
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+    <eval phase="First" priority="10000"><![CDATA[
+      ~we're earlier than the normal test for whether we've reached the correct level, so we'll recreate that test here
+      doneif (root.field[cTotalLev].value + field[xExtraLev].value + field[xEffectLev].value < tagvalue[ClSpecWhen.?])
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ If Light mindblade live set throw distance
-If (hero.childlives[iPUMndBlLT] <> 0) Then
-  ~ Find all Light Mindblade weapons
-  foreach pick in hero from BaseWep where "MindBlade.Light"
-    ~ Give light mindblade 20ft throw range
-    perform eachpick.assign[wRangeInc.20]
-    perform eachpick.assign[wCategory.RangeThrow]
-  nexteach
-Endif
-~ If One-handed mindblade live set throw distance
-If (hero.childlives[iPUMndBl1H] <> 0) Then
-  ~ Give 1-Handed mindblade 15ft throw range
-  perform hero.childfound[iPUMndBl1H].assign[wRangeInc.15]
-  perform hero.childfound[iPUMndBl1H].assign[wCategory.RangeThrow]
-Endif]]></eval>
+      ~ If Light mindblade live set throw distance
+      If (hero.childlives[iPUMndBlLT] <> 0) Then
+        ~ Find all Light Mindblade weapons
+        foreach pick in hero from BaseWep where "MindBlade.Light"
+          ~ Give light mindblade 20ft throw range
+          perform eachpick.assign[wRangeInc.20]
+          perform eachpick.assign[wCategory.RangeThrow]
+        nexteach
+      Endif
+      ~ If One-handed mindblade live set throw distance
+      If (hero.childlives[iPUMndBl1H] <> 0) Then
+        ~ Give 1-Handed mindblade 15ft throw range
+        perform hero.childfound[iPUMndBl1H].assign[wRangeInc.15]
+        perform hero.childfound[iPUMndBl1H].assign[wCategory.RangeThrow]
+      Endif]]></eval>
     </thing>
   <thing id="cSknPsyStr" name="Psychic Strike" description="As a move action, a soulknife of 3rd level or higher can imbue his mind blade with destructive psychic energy. This effect deals an extra 1d8 points of damage on any attack he wishes to activate it on (as long as the attack is made with his mind blade). A soulknife may hold the charge as long as he likes without discharging. It does not go off on any attack unless he chooses to use it, and the charge is not wasted if an attack misses. Mindless creatures are immune to this damage, although non-mindless creatures immune to mind-affecting effects are affected by this damage as normal. (Unlike the rogue&apos;s sneak attack, the psychic strike is not precision damage and can affect creatures otherwise immune to extra damage from critical hits or more than 30 feet away.)\n\nA mind blade deals this extra damage only once when this ability is called upon, but a soulknife can imbue his mind blade with psychic energy again by taking another move action. Additionally, he may recharge it as a swift action by expending his psionic focus.{br}{br}Once a soulknife has prepared his blade for a psychic strike, it holds the extra energy until it is used (whether the attack is successful or not). Even if the soulknife drops the mind blade (or it otherwise dissipates, such as when it is thrown), it is still imbued with psychic energy when the soulknife next materializes it.{br}{br}If the soulknife forms his mind blade into two weapons, he may imbue each mind blade with psychic strike as normal. If he reshapes his mind blade into a single weapon form, the additional psychic strike imbued into the additional weapon is lost.{br}{br}At every four levels thereafter (7th, 11th, etc), the extra damage from a soulknife&apos;s psychic strike increases by 1d8." compset="ClSpecial" summary="Add destructive psychic energy to your mindblade.">
     <fieldval field="abValue2" value="8"/>
