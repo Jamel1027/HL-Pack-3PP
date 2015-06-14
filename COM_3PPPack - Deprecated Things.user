@@ -29,7 +29,21 @@
     <tag group="psiClass" tag="cHelpPsi"/>
     <tag group="sSave" tag="FortHalf"/>
     </thing>
+  <thing id="fPUExSpKno" name="Extra Power Known" description="You know an additional psionic power.\n\n{b}Prerequisite:{/b} Manifester level 1st.\n\n{b}Benefit:{/b} Add one additional power known of any level up to the highest-level power you can manifest to your powers known. You can only choose the power from your class power list.\n\n{b}Special:{/b} You can gain this feat multiple times. Each time, you learn one new power from your class power list up to the highest-level power you can manifest.\n\n{b}Note:{/b} This is currently not implemented from the feat. Go to the adjustments tab and add the spell known level from there." compset="Feat">
+    <comment>Needtobeable to choose Class and Spell Level to add known.</comment>
+    <usesource source="pPsiUn"/>
+    <tag group="fCategory" tag="Psionic"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <prereq message="Manifester level 1+ required.">
+      <validate><![CDATA[
+        ~check for Manifester level 1
+        validif (hero.tagcount[Hero.Manifester] >= 1)]]></validate>
+      </prereq>
+    </thing>
 
 
   <hidden id="puCreaSnd1"/>
+  <hidden id="fPUExSpKno"/>
+
 </document>
