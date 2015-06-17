@@ -6116,9 +6116,6 @@ perform forward[WepProf.?]]]></eval>
     <bootstrap thing="fArmMedium"></bootstrap>
     <bootstrap thing="fWepMart"></bootstrap>
     <bootstrap thing="fArmShield"></bootstrap>
-    <bootstrap thing="cPUTacCoor">
-      <autotag group="ClSpecWhen" tag="6"/>
-      </bootstrap>
     <link linkage="psiattr" thing="aINT"/>
     </thing>
   <thing id="cPUTactici" name="Tactician" description="Joining allies into a single cohesive unit, the tactician uses his psionic power to unlock the potential of others, as well as himself. This master of strategy tends to focus his abilities on the insight of clairsentience and the improved communication of telepathy to know where and when to act and ensure his companions are best situated to react.\n\n{b}Role:{/b} A tactician is at his strongest when his companions cooperate with his instructions. He is a strategist and a battle leader, issuing orders and expecting them to be followed. He has decent combat ability, but relies primarily upon his manifesting ability.\n\n{b}Alignment:{/b} Any." compset="ClassLevel" maxlimit="20">
@@ -7271,7 +7268,7 @@ herofield[tLangsSpk].value += 1</eval>
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="Secondary"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
-    <eval phase="PostLevel" priority="10000">hero.childfound[mNatural].field[Bonus].value += field[abValue].value</eval>
+    <eval phase="PostLevel" priority="10000">      hero.childfound[mNatural].field[Bonus].value += field[abValue].value</eval>
     </thing>
   <thing id="cPUSInUnrP" name="Unravel Pattern" description="Once per day, the cryptic can permanently unravel a creature or object’s pattern as a ranged touch attack. The creature or object struck must make a Fortitude save (DC 20 + the cryptic’s Intelligence modifier) or be destroyed. The target must have 150 or fewer current hit points or this ability has no effect. Creatures killed in this manner leave behind no trace of their body. This is considered a death effect." compset="CustomSpec" uniqueness="unique">
     <usesource source="pPsiUn"/>
@@ -14400,9 +14397,5 @@ debug "PP -" & PP
       #resmax[resPowerPt] += PP     
 debug "PP Reserve " & #resmax[resPowerPt]
 debug "PP +" & PP]]></eval>
-    </thing>
-  <thing id="cPUTacCoor" name="Coordinate" description="At 6th level, as long as the tactician maintains psionic focus, he may share any one teamwork feat he has with one member of his collective within line of sight and line of effect. Declaring which member of the collective gains the teamwork feat is a free action that may only be done once per round. The ally’s positioning and actions must still meet the prerequisites listed in the teamwork feat to receive the listed bonus, but the ally need not meet the feat prerequisites to gain the benefit." compset="ClSpecial">
-    <usesource source="pPsiUn"/>
-    <tag group="AbilType" tag="Super"/>
     </thing>
   </document>
