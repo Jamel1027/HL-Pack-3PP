@@ -5959,13 +5959,9 @@ perform forward[WepProf.?]]]></eval>
     <fieldval field="cPsiSPowMa" value="3"/>
     <fieldval field="srcPageNum" value="64"/>
     <fieldval field="srcBookInf" value="Ultimate Psionics"/>
-    <arrayval field="cCustTot" index="15" value="5"/>
-    <arrayval field="cCustTot" index="18" value="6"/>
     <arrayval field="cBonFtTot" index="5" value="1"/>
     <arrayval field="cBonFtTot" index="11" value="2"/>
     <arrayval field="cBonFtTot" index="17" value="3"/>
-    <arrayval field="cCustTot" index="3" value="1"/>
-    <arrayval field="cCustTot" index="6" value="2"/>
     <arrayval field="cPsiPPTot" index="0" value="2"/>
     <arrayval field="cPsiPPTot" index="1" value="6"/>
     <arrayval field="cPsiPPTot" index="2" value="11"/>
@@ -6026,15 +6022,13 @@ perform forward[WepProf.?]]]></eval>
     <arrayval field="cPsiLevTot" index="17" value="9"/>
     <arrayval field="cPsiLevTot" index="18" value="9"/>
     <arrayval field="cPsiLevTot" index="19" value="9"/>
+    <arrayval field="cCustTot" index="3" value="1"/>
+    <arrayval field="cCustTot" index="6" value="2"/>
     <arrayval field="cCustTot" index="9" value="3"/>
     <arrayval field="cCustTot" index="12" value="4"/>
+    <arrayval field="cCustTot" index="15" value="5"/>
+    <arrayval field="cCustTot" index="18" value="6"/>
     <usesource source="pPsiUn"/>
-    <tag group="ClassSkill" tag="skLinguist"/>
-    <tag group="ClassSkill" tag="skPercep"/>
-    <tag group="ClassSkill" tag="skRide"/>
-    <tag group="ClassSkill" tag="skSenseMot"/>
-    <tag group="ClassSkill" tag="skSpellcr"/>
-    <tag group="ClassSkill" tag="skSwim"/>
     <tag group="ClassSkill" tag="skUseMagic"/>
     <tag group="cAttack" tag="Medium"/>
     <tag group="cFort" tag="Poor"/>
@@ -6055,22 +6049,12 @@ perform forward[WepProf.?]]]></eval>
     <tag group="ClassSkill" tag="skPUKnwPsi"/>
     <tag group="ClassSkill" tag="skKnowHist"/>
     <tag group="ProductId" tag="HLCommunit"/>
-    <bootstrap thing="cPUImpShar">
-      <autotag group="ClSpecWhen" tag="5"/>
-      </bootstrap>
-    <bootstrap thing="cPUImpShar">
-      <autotag group="ClSpecWhen" tag="11"/>
-      </bootstrap>
-    <bootstrap thing="cPUImpShar">
-      <autotag group="ClSpecWhen" tag="17"/>
-      </bootstrap>
-    <bootstrap thing="fSimple"></bootstrap>
-    <bootstrap thing="cPUCoorStr">
-      <autotag group="ClSpecWhen" tag="1"/>
-      </bootstrap>
-    <bootstrap thing="cPUTacColl">
-      <autotag group="ClSpecWhen" tag="1"/>
-      </bootstrap>
+    <tag group="ClassSkill" tag="skSwim"/>
+    <tag group="ClassSkill" tag="skLinguist"/>
+    <tag group="ClassSkill" tag="skPercep"/>
+    <tag group="ClassSkill" tag="skRide"/>
+    <tag group="ClassSkill" tag="skSenseMot"/>
+    <tag group="ClassSkill" tag="skSpellcr"/>
     <bootstrap thing="cPUCoorStr">
       <autotag group="ClSpecWhen" tag="5"/>
       </bootstrap>
@@ -6102,7 +6086,7 @@ perform forward[WepProf.?]]]></eval>
       <autotag group="ClSpecWhen" tag="15"/>
       </bootstrap>
     <bootstrap thing="cPUTacColl">
-      <autotag group="ClSpecWhen" tag="20"/>
+      <autotag group="ClSpecWhen" tag="19"/>
       </bootstrap>
     <bootstrap thing="cPUSpiMany">
       <autotag group="ClSpecWhen" tag="2"/>
@@ -6120,6 +6104,22 @@ perform forward[WepProf.?]]]></eval>
     <bootstrap thing="fArmMedium"></bootstrap>
     <bootstrap thing="fWepMart"></bootstrap>
     <bootstrap thing="fArmShield"></bootstrap>
+    <bootstrap thing="cPUImpShar">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cPUImpShar">
+      <autotag group="ClSpecWhen" tag="11"/>
+      </bootstrap>
+    <bootstrap thing="cPUImpShar">
+      <autotag group="ClSpecWhen" tag="17"/>
+      </bootstrap>
+    <bootstrap thing="fSimple"></bootstrap>
+    <bootstrap thing="cPUCoorStr">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPUTacColl">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
     <link linkage="psiattr" thing="aINT"/>
     </thing>
   <thing id="cPUTactici" name="Tactician" description="Joining allies into a single cohesive unit, the tactician uses his psionic power to unlock the potential of others, as well as himself. This master of strategy tends to focus his abilities on the insight of clairsentience and the improved communication of telepathy to know where and when to act and ensure his companions are best situated to react.\n\n{b}Role:{/b} A tactician is at his strongest when his companions cooperate with his instructions. He is a strategist and a battle leader, issuing orders and expecting them to be followed. He has decent combat ability, but relies primarily upon his manifesting ability.\n\n{b}Alignment:{/b} Any." compset="ClassLevel" maxlimit="20">
@@ -6225,11 +6225,9 @@ perform forward[WepProf.?]]]></eval>
     <tag group="ProductId" tag="HLCommunit"/>
     <bootstrap thing="fArmLight"></bootstrap>
     <bootstrap thing="fSimple"></bootstrap>
-    <bootstrap thing="cPUVitReqA">
-      <autotag group="ClSpecWhen" tag="5"/>
-      </bootstrap>
     <bootstrap thing="cPUVitExpK">
       <autotag group="ClSpecWhen" tag="9"/>
+      <assignval field="abValue" value="9"/>
       </bootstrap>
     <bootstrap thing="cPUVitColl">
       <autotag group="ClSpecWhen" tag="1"/>
@@ -6298,10 +6296,8 @@ perform forward[WepProf.?]]]></eval>
       <autotag group="ClSpecWhen" tag="5"/>
       </bootstrap>
     <bootstrap thing="cPUVitExpK">
-      <autotag group="ClSpecWhen" tag="9"/>
-      </bootstrap>
-    <bootstrap thing="cPUVitExpK">
       <autotag group="ClSpecWhen" tag="18"/>
+      <assignval field="abValue" value="18"/>
       </bootstrap>
     <link linkage="psiattr" thing="aWIS"/>
     </thing>
@@ -9132,23 +9128,42 @@ else
     <tag group="Helper" tag="SpecUp"/>
     </thing>
   <thing id="cPUVitColl" name="Collective" description="A vitalist learns to use psionic power to connect willing minds through an internal network that strengthens their psychic bonds. As a standard action, a vitalist can join any number of willing targets into his collective equal (up to his limit, see below) . The vitalist must have line of sight to each target, each target must have a Wisdom score of at least 1, and all targets must be within Medium range (100 ft. + 10 ft. per class level).{br}{br}The collective can contain up to his key ability modifier or half his vitalist level, whichever is higher. The vitalist is always considered a member of his own collective, and does not count against this limit.{br}{br}The vitalist can choose to remove a member as a free action on his turn, and any member can voluntarily leave the collective as a free action on their turn. Any member whose Wisdom drops to zero or who moves out of range of the collective (100 ft. + 10 ft. per class level) is automatically removed. If a member enters a null psionics field, the connection to the collective is suppressed until that member leaves the field. A member who leaves the collective for any reason immediately loses any and all benefits they may have gained from being a member. A vitalist is aware of the status of his collective and can, roughly, sense the presence of each member, although beyond telling if such a creature is still a member, this has no mechanical benefit until higher levels (see telepathy and health sense, below).{br}{br}A vitalist can manifest certain powers through his collective. If a vitalist power specifies one or more willing targets (or is harmless) and has a range greater than personal, he can manifest this power on a member of his collective regardless of the range of the actual power. All other non-range restrictions still apply. He may also manifest any power with the Network descriptor this way, regardless of their actual ranges or targets. If he is capable of manifesting powers or casting spells from a different class (as is the case for a multiclass vitalist), any compatible spell or power with a range greater than touch can also be used through the collective.{br}{br}If a member of the collective dies, the member is removed from the collective and the vitalist must make a Fortitude save (DC 15) or lose 1 power point for every Hit Die of the fallen member and be sickened for an equal number of rounds.{br}{br}At 15th level, a vitalist&apos;s collective range is limitless on the same plane as the vitalist.{br}{br}At 19th level, a vitalist&apos;s collective reaches even across to other planes and dimensions." compset="ClSpecial">
+    <fieldval field="abRange" value="100"/>
+    <fieldval field="abValue2" value="10"/>
     <usesource source="pPsiUn"/>
-    <tag group="AbilType" tag="Super"/>
     <tag group="Custom" tag="HasCollect" name="Has the Collective Ability"/>
-    <eval phase="Final" priority="10000"><![CDATA[if (field[xIndex].value = 1) then
-  field[listname].text = "Collective"
-elseif (field[xIndex].value = 2) then
-  field[listname].text = "Collective (Unlimited range)"
-elseif (field[xIndex].value = 3) then
-  field[listname].text = "Collective (Planar range)"
-  endif]]></eval>
-    <eval phase="PostAttr" priority="1000" index="2"><![CDATA[var myColl as number
+    <tag group="AbilType" tag="Super"/>
+    <eval phase="Final" priority="10000"><![CDATA[      field[livename].text = field[thingname].text & " (" & field[abValue].value & " members, "
+      if (field[xCount].value = 1) then
+        field[livename].text &= field[abRange].value & " " & tagnames[abRange.?] & ")"
+      elseif (field[xCount].value = 2) then
+        field[livename].text &= "Same Plane)"
 
-myColl = field[xTotalLev].value / 2
-field[abValue2].value += (100 + (10*field[xTotalLev].value))
-field[abValue].value += maximum(round(myColl,0,-1),#attrmod[aWIS])
+      elseif (field[xCount].value = 3) then
+        field[livename].text &= "Anywhere)"
 
-field[abSumm].text = "You have a collective of up to " & field[abValue].value & " individuals within " & field[abValue2].value & " ft."]]></eval>
+      endif
+      if (field[xIndex].value = 2) then
+        field[listname].text = "Collective Range (unlimited)"
+        field[abSumm].text = "Your collective's range is unlimited within the same plane"
+      elseif (field[xIndex].value = 3) then
+        field[listname].text = "Collective Range (planar)"
+        field[abSumm].text = "Your collective's range now extends across all planes"
+      endif]]></eval>
+    <eval phase="PostAttr" priority="1000" index="2"><![CDATA[      ~ Set max members from key ability mod
+      field[abValue].value += maximum(round(field[xTotalLev].value / 2,0,-1),#attrmod[aWIS])
+
+      field[abSumm].text = "You have a collective of up to " & field[abValue].value & " individuals"
+
+      if (field[xCount].value = 1) then
+        field[abRange].value += (field[abValue2].value * field[xTotalLev].value)
+        perform assign[abRange.Feet]
+        field[abSumm].text &= " within " & field[abRange].value & " feet" 
+      elseif (field[xCount].value = 2) then
+        field[abRange].value = 0
+        perform delete[abRange.Plane]
+        field[abSumm].text &= " on the same plane"
+      endif]]></eval>
     </thing>
   <thing id="cPUCoorStr" name="Coordinated Strike" description="The tactician is able to direct his allies to coordinating their attacks upon a single target to devastating effect. As a swift action, the tactician can declare one target within his line of sight as the primary foe. All members of the tactician&apos;s collective, including the tactician himself gain a +1 insight bonus to attacks against the primary foe until the beginning of the tactician&apos;s next turn. At 5th level and every four levels thereafter, this bonus increases by 1.{br}{br}This ability may be used a number of times per day equal to 3 + the tacticians Intelligence modifier." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -9478,22 +9493,41 @@ perform hero.child[cPUVitKnac].pushtags[psiClass.?]</eval>
 perform hero.child[cPUVitKnac].pushtags[psiClass.?]</eval>
     </thing>
   <thing id="cPUTacColl" name="Collective" description="A tactician learns to use psionic power to connect willing minds through an internal network that strengthens their psychic bonds. As a standard action, a tactician can join any number of willing targets into his collective equal (up to his limit, see below) . The tactician must have line of sight to each target, each target must have a Wisdom score of at least 1, and all targets must be within Medium range (100 ft. + 10 ft. per class level). The collective can contain up to his key ability modifier or half his tactician level, whichever is higher. The tactician is always considered a member of his own collective, and does not count against this limit.\n\nThe tactician can choose to remove a member as a free action on his turn, and any member can voluntarily leave the collective as a free action on their turn. Any member whose Wisdom drops to zero or who moves out of range of the collective is automatically removed. If a member enters a null psionics field, the connection to the collective is suppressed until that member leaves the field. A member who leaves the collective for any reason immediately loses any and all benefits they may have gained from being a member. A tactician is aware of the status of his collective and can, roughly, sense the presence of each member, although beyond telling if such a creature is still a member, this has no mechanical benefit until higher levels (see telepathy below).\n\nA tactician can manifest certain powers through his collective. If a tactician power specifies one or more willing targets (or is harmless) and has a range greater than personal, he can manifest this power on a member of his collective regardless of the range of the actual power.\n\nAll other non-range restrictions still apply. He may also manifest any power with the Network descriptor this way, regardless of their actual ranges or targets. If he is capable of manifesting powers or casting spells from a different class (as is the case for a multiclass tactician), any compatible spell or power with a range greater than touch can also be used through the collective.{br}{br}If a member of the collective dies, the member is removed from the collective and the tactician must make a Fortitude save (DC 15) or lose 1 power point for every Hit Die of the fallen member and be sickened for an equal number of rounds.{br}{br}At 15th level, a tactician&apos;s collective range is limitless on the same plane as the tactician.{br}{br}At 19th level, a tactician&apos;s collective reaches even across to other planes and dimensions." compset="ClSpecial">
+    <fieldval field="abRange" value="100"/>
+    <fieldval field="abValue2" value="10"/>
     <usesource source="pPsiUn"/>
     <tag group="AbilType" tag="Super"/>
-    <eval phase="Final" priority="10000"><![CDATA[if (field[xIndex].value = 1) then
-  field[listname].text = "Collective"
-elseif (field[xIndex].value = 2) then
-  field[listname].text = "Collective (Unlimited range)"
-elseif (field[xIndex].value = 3) then
-  field[listname].text = "Collective (Planar range)"
-  endif]]></eval>
-    <eval phase="PostAttr" priority="1000" index="2"><![CDATA[var myColl as number
+    <eval phase="Final" priority="10000"><![CDATA[      field[livename].text = field[thingname].text & " (" & field[abValue].value & " members, "
+      if (field[xCount].value = 1) then
+        field[livename].text &= field[abRange].value & " " & tagnames[abRange.?] & ")"
+      elseif (field[xCount].value = 2) then
+        field[livename].text &= "Same Plane)"
 
-myColl = field[xTotalLev].value / 2
-field[abValue2].value += (100 + (10*field[xTotalLev].value))
-field[abValue].value += maximum(round(myColl,0,-1),#attrmod[aINT])
+      elseif (field[xCount].value = 3) then
+        field[livename].text &= "Anywhere)"
 
-field[abSumm].text = "You have a collective of up to " & field[abValue].value & " individuals within " & field[abValue2].value & " ft."]]></eval>
+      endif
+      if (field[xIndex].value = 2) then
+        field[listname].text = "Collective Range (unlimited)"
+        field[abSumm].text = "Your collective's range is unlimited within the same plane"
+      elseif (field[xIndex].value = 3) then
+        field[listname].text = "Collective Range (planar)"
+        field[abSumm].text = "Your collective's range now extends across all planes"
+      endif]]></eval>
+    <eval phase="PostAttr" priority="1000" index="2"><![CDATA[      ~ Set max members from key ability mod
+      field[abValue].value += maximum(round(field[xTotalLev].value / 2,0,-1),#attrmod[aINT])
+
+      field[abSumm].text = "You have a collective of up to " & field[abValue].value & " individuals"
+
+      if (field[xCount].value = 1) then
+        field[abRange].value += (field[abValue2].value * field[xTotalLev].value)
+        perform assign[abRange.Feet]
+        field[abSumm].text &= " within " & field[abRange].value & " feet" 
+      elseif (field[xCount].value = 2) then
+        field[abRange].value = 0
+        perform delete[abRange.Plane]
+        field[abSumm].text &= " on the same plane"
+      endif]]></eval>
     </thing>
   <thing id="cPUVitColH" name="Collective Healing" description="Whenever a willing member of the vitalist&apos;s collective could regain lost hit points or ability damage, the vitalist may choose to redirect any or all of that healing to one or more other willing members of the collective as a free action. This can transfer instantaneous healing (such as a {i}body adjustment{/i} power), healing from ongoing healing effects, such as fast healing, and even hit points gained from rest (in which case, a member of the collective would rest for a period of time as normal, and the amount of hit points {i}A vitalist joins his allies into a collective so he can share healing energy{/i} {b}Psionics Expanded{/b} 59 and ability damage healed would go to another).{br}{br}In any case, the original recipient of the healing effect chooses whether to allow the diverted healing, and does not gain the benefits of any healing he grants to another.{br}{br}The type of healing (positive energy, negative energy, construct repair, etc.) is unchanged from the original source for determining who or what can be healed.{br}{br}{i}Example: Darius the soulknife is a willing member of Jorus the vitalist&apos;s collective. He drinks a potion of cure light wounds that would normally heal him for 6 hit points, but Jorus decides to redirect 4 of those points to himself. Darius agrees and, as a result, Darius is healed for 2 hit points, and Jorus is healed for 4. If there were more members in Jorus&apos;s collective, Jorus could spread the healing from that potion out even more as long as the sum of hit points healed was no greater than 6.{br}{br}{/i}A vitalist may even heal wounds through collective healing if at full health. This may only be used with healing effects such as potions, powers, or other such effects. Healing from long term care or natural healing cannot be transferred in this way." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -9648,10 +9682,7 @@ elseif (field[xIndex].value = 2) then
     <tag group="Helper" tag="SpecUp"/>
     <tag group="ProductId" tag="HLCommunit"/>
     <bootstrap thing="fPUExpKn">
-      <containerreq phase="First" priority="500"><![CDATA[count:Classes.Vitalist >=9 & !AbReplace.cPUVitExpK]]></containerreq>
-      </bootstrap>
-    <bootstrap thing="fPUExpKn">
-      <containerreq phase="First" priority="500"><![CDATA[count:Classes.Vitalist >=18 & !AbReplace.cPUVitExpK]]></containerreq>
+      <containerreq phase="First" priority="500"><![CDATA[ !AbReplace.cPUVitExpK & count:Classes.Vitalist >= fieldVal:abValue]]></containerreq>
       </bootstrap>
     </thing>
   <thing id="cPUGuExper" name="Guardian&apos;s Expertise" description="Upon achieving 11th level, anytime a guardian manifests {i}empathic feedback{/i}, the power gains two additional augment options.{br}{br}3. If you spend 6 additional power points, this power may be manifested as an immediate action.{br}{br}4. If you spend 4 additional power points, the damage dealt to the attacker is subtracted from the damage you take.{br}{br}In addition, any time a guardian manifests a power on a member of his collective (including himself) with a range of You and a duration measured in rounds, the guardian may expend his psionic focus to treat that power as if affected by the Extend Power feat." compset="ClSpecial">
@@ -14695,5 +14726,48 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     </thing>
   <thing id="cPUDayPowr" name="Daily Powers" description="At 2nd level, each day, you may choose one power from the Psion/Wilder list that is not on your list of powers known and manifest that power as if it was. You must have manifested the power from a power stone at some point prior to choosing it as a daily power and the power’s level may not exceed your maximum power level. You may decide which power to manifest at the time of manifesting. Once this choice has been made, it cannot be changed until you have meditated to regain\nyour daily power points after resting. At 7th level and every five psion levels thereafter, you may choose one additional power per day to treat as if a power known (2 at 7th level, 3 at 12th level, 4 at 17th level). These powers are in addition to your normal powers known.\n\nThis ability replaces the Bonus Feat normally gained by a generalist psion and the powers known gained at each level a daily power is gained, as displayed on Table: The Erudite." compset="ClSpecial">
     <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="cDELETEME" name="Collective" description="A zealot learns to use psionic power to connect willing minds through an internal network that strengthens their psychic bonds. As a standard action, a zealot can join any number of willing targets into his collective (up to his limit, see below). The zealot must have line of sight to each target, each target must have a Wisdom score of at least 1, and all targets must be within Medium range (100 ft. + 10 ft. per class level). The collective can contain up to his Charisma modifier or half his zealot level (minimum 1), whichever is higher, plus the intensity of his zeal. The zealot is always considered a member of his own collective, and does not count against this limit. \n\nThe zealot can choose to remove a member as a free action on his turn, and any member can voluntarily leave the collective as a free action on their turn. Any member whose Wisdom drops to zero or who moves out of range of the collective is automatically removed. If a member enters a null psionics field, the connection to the collective is suppressed until the member leaves the field. A member who leaves the collective for any reason immediately loses any and all benefits they may have gained from being a member. A zealot is aware of the status of his collective and can, roughly, sense the presence of each member, although beyond telling if such a creature is still a member, this has no mechanical benefit until higher levels (see telepathy below).\n\nA zealot can initiate certain maneuvers through his collective. If a zealot maneuver specifies one or more willing targets (or is harmless) and has a range greater than personal, he can initiate this maneuver on a member of his collective regardless of the range of the actual maneuver. All other non-range restrictions still apply. \n\nIf he is capable of manifesting powers, casting spells, or initiating maneuvers from a different class (as is the case for a multiclass zealot), any compatible spell, power, or maneuver with a range greater than touch can also be used through the collective. He may manifest any power with the Network Descriptor this way, regardless of their actual ranges or targets.\n\nIf a member of the collective dies, the member is removed from the collective and the zealot must make a Fortitude save (DC 15) or lose 1 power point for every Hit Die of the fallen member or be sickened for an equal number of rounds.\n\nAt 15th level, a zealot&apos;s collective range is limitless on the same plane as the zealot\n\nAt 19th level, a zealot&apos;s range reaches even across other planes and dimensions." compset="ClSpecial">
+    <comment>abValue = Max members
+abValue2 = Feet/level added to range</comment>
+    <fieldval field="abRange" value="100"/>
+    <fieldval field="abValue2" value="10"/>
+    <tag group="AbilType" tag="Super" name="Supernatural Ability" abbrev=" (Su)"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <eval phase="Final" priority="10000"><![CDATA[      field[livename].text = field[thingname].text & " (" & field[abValue].value & " members, "
+      if (field[xCount].value = 1) then
+        field[livename].text &= field[abRange].value & " " & tagnames[abRange.?] & ")"
+      elseif (field[xCount].value = 2) then
+        field[livename].text &= "Same Plane)"
+
+      elseif (field[xCount].value = 3) then
+        field[livename].text &= "Anywhere)"
+
+      endif
+      if (field[xIndex].value = 2) then
+        field[listname].text = "Collective Range (unlimited)"
+        field[abSumm].text = "Your collective's range is unlimited within the same plane"
+      elseif (field[xIndex].value = 3) then
+        field[listname].text = "Collective Range (planar)"
+        field[abSumm].text = "Your collective's range now extends across all planes"
+      endif]]></eval>
+    <eval phase="PostAttr" priority="1000" index="2"><![CDATA[      ~ Set max members from init mod
+      var initMod as number
+      call PWgetIMod
+      field[abValue].value += maximum(round(field[xTotalLev].value / 2,0,-1),initMod)
+      ~ Add zeal value to max members
+      field[abValue].value += #value[cPW5Zeal]
+
+      field[abSumm].text = "You have a collective of up to " & field[abValue].value & " individuals"
+
+      if (field[xCount].value = 1) then
+        field[abRange].value += (field[abValue2].value * field[xTotalLev].value)
+        perform assign[abRange.Feet]
+        field[abSumm].text &= " within " & field[abRange].value & " feet" 
+      elseif (field[xCount].value = 2) then
+        field[abRange].value = 0
+        perform delete[abRange.Plane]
+        field[abSumm].text &= " on the same plane"
+      endif]]></eval>
     </thing>
   </document>

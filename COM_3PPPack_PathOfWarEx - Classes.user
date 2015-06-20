@@ -1059,6 +1059,7 @@ abValue2 stores the extra bonus vs Claimed targets</comment>
     <tag group="Helper" tag="SpecUp"/>
     <tag group="ProductId" tag="HLCommunit"/>
     <bootstrap thing="fRapidRel">
+      <containerreq phase="First" priority="500"><![CDATA[count:Classes.PWWarlord >= 2]]></containerreq>
       <autotag group="thing" tag="skipprereq"/>
       </bootstrap>
     </thing>
@@ -1704,7 +1705,7 @@ abValue2 = Zeal duration increase per PP expenditure</comment>
     <tag group="User" tag="Activation"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="abCategory" tag="ZealotConv" name="Zealot Conviction"/>
-    <eval phase="PostAttr" priority="10000">      hero.childfound[fComRef].field[abValue].value += maximum(hero.child[aCHA].field[aModBonus].value, 0)</eval>
+    <eval phase="PostAttr" priority="10000">hero.childfound[fComRef].field[abValue].value += maximum(hero.child[aCHA].field[aModBonus].value, 0)</eval>
     <exprreq message="Combat Reflexes feat required"><![CDATA[#hasfeat[fComRef] <> 0]]></exprreq>
     <exprreq message="Zealot level 6 required"><![CDATA[hero.tagcount[ClsCountAs.cHelpPW5] >= 6]]></exprreq>
     </thing>

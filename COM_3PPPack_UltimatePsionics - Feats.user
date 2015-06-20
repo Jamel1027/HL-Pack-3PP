@@ -1004,7 +1004,7 @@ hero.childfound[cfgPUPsTal].field[cfgMaxPw1].value += 5]]></eval>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
     <eval phase="PreLevel" priority="10000">hero.childfound[cPUVitColl].field[abValue].value += 2</eval>
-    <exprreq message="Collective class feature required."><![CDATA[(#hasability[cPUVitColl] + #hasability[cPUTacColl]) <> 0]]></exprreq>
+    <exprreq message="Collective class feature required."><![CDATA[(#hasability[cPUTacColl] + #hasability[cPUVitColl] + #hasability[cPW5Collec]) <> 0]]></exprreq>
     </thing>
   <thing id="fPUAdArPth" name="Advanced Archer Path" description="You have expanded expertise at ranged combat.\n\n{b}Prerequisites:{/b} Point-Blank Shot, Precise Shot, Archer path class feature, manifester level 10th, base attack bonus +6 \n\n{b}Benefit:{/b} Half of the competence bonus from your Archer trance is added to your damage rolls for attacks made with ranged or thrown weapons (natural weapons do not count for this benefit). In addition, when using the Archer maneuver, you may perform a bull rush attempt instead of a trip attempt." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -2493,7 +2493,7 @@ field[abValue].value += 1
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="ProductId" tag="HLCommunit"/>
-    <exprreq message="Collective class feature required"><![CDATA[(#hasability[cPUTacColl] + #hasability[cPUVitColl]) <> 0]]></exprreq>
+    <exprreq message="Collective class feature required"><![CDATA[(#hasability[cPUTacColl] + #hasability[cPUVitColl] + #hasability[cPW5Collec]) <> 0]]></exprreq>
     <prereq message="Manifester level 3 required">
       <validate><![CDATA[~check for Manifester level 3
 validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
@@ -2509,7 +2509,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="ShowSpec"/>
-    <exprreq message="Collective class feature required"><![CDATA[(#hasability[cPUTacColl] + #hasability[cPUVitColl]) <> 0]]></exprreq>
+    <exprreq message="Collective class feature required"><![CDATA[(#hasability[cPUTacColl] + #hasability[cPUVitColl] + #hasability[cPW5Collec]) <> 0]]></exprreq>
     <exprreq message="Spirit of Many class feature required"><![CDATA[(#hasability[cPUSpiMany] + #hasability[cPUViSpiMa]) <> 0]]></exprreq>
     </thing>
   <thing id="fPUFearRch" name="Fear&apos;s Reach" description="You have learned how to focus the power of fear to reach enemies too far away to touch. \n\n{b}Prerequisites:{/b} Devastating touch class feature, Psionic Shot\n\n{b}Benefit:{/b} Your devastating touch ability may now also be used as a ranged touch attack with a range of close (25 ft. + 5 ft. /2 levels)." compset="Feat" uniqueness="useronce">
