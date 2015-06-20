@@ -238,4 +238,8 @@
          perform hero.assign[PWActNRG.Water]
       Endif]]></eval>
     </thing>
+  <thing id="arHdPWZeal" name="Zealot" compset="ClassVary" uniqueness="unique" isshowonly="yes">
+    <comment><![CDATA[This is a helper object for the "Zealot" class header.]]></comment>
+    <link linkage="varies" thing="cHelpPW5"/>
+    </thing>
   </document>
