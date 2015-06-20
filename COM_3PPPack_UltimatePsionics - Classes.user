@@ -595,11 +595,9 @@ field[abValue].value += 2 + field[xCount].value]]></eval>
     <bootstrap thing="cPsiDblMan">
       <autotag group="ClSpecWhen" tag="14"/>
       </bootstrap>
-    <eval phase="PreLevel" priority="5000">
-      ~ Make selected skill a class skill
+    <eval phase="PreLevel" priority="5000">~ Make selected skill a class skill
       perform field[usrChosen1].chosen.assign[Helper.ClassSkill]</eval>
-    <eval phase="First" index="2">
-      ~ Set 2nd bonus feat tags
+    <eval phase="First" index="2">~ Set 2nd bonus feat tags
       perform linkage[table].assign[fCatSec.ItemCreate]
       perform linkage[table].assign[fCatSec.Metapsion]
       ~ Expanded Knowledge
@@ -6079,6 +6077,9 @@ perform forward[WepProf.?]]]></eval>
     <bootstrap thing="cPUTeamFt">
       <autotag group="ClSpecWhen" tag="6"/>
       </bootstrap>
+    <bootstrap thing="cPUTacCoor">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
     <bootstrap thing="cPUEchoEff">
       <autotag group="ClSpecWhen" tag="8"/>
       </bootstrap>
@@ -7271,7 +7272,7 @@ herofield[tLangsSpk].value += 1</eval>
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="Secondary"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
-    <eval phase="PostLevel" priority="10000">      hero.childfound[mNatural].field[Bonus].value += field[abValue].value</eval>
+    <eval phase="PostLevel" priority="10000">hero.childfound[mNatural].field[Bonus].value += field[abValue].value</eval>
     </thing>
   <thing id="cPUSInUnrP" name="Unravel Pattern" description="Once per day, the cryptic can permanently unravel a creature or object’s pattern as a ranged touch attack. The creature or object struck must make a Fortitude save (DC 20 + the cryptic’s Intelligence modifier) or be destroyed. The target must have 150 or fewer current hit points or this ability has no effect. Creatures killed in this manner leave behind no trace of their body. This is considered a death effect." compset="CustomSpec" uniqueness="unique">
     <usesource source="pPsiUn"/>
@@ -14391,16 +14392,17 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
       ~ Power Point Reserve total.
       PP = focus.field[aModBonus].value * root.linkage[varies].field[cMagicLev].value * .5
       PP = round(PP,0,-1)
-      #resmax[resPowerPt] += PP     
-      ]]></eval>
+      #resmax[resPowerPt] += PP]]></eval>
     </thing>
-
-
-  <thing id="cPUTacCoor" name="Coordinate" description="Coordinate (Su): At 6th level, as long as the tactician maintains psionic focus, he may share any one teamwork feat he has with one member of his collective within line of sight and line of effect. Declaring which member of the collective gains the teamwork feat is a free action that may only be done once per round. The ally’s positioning and actions must still meet the prerequisites listed in the teamwork feat to receive the listed bonus, but the ally need not meet the feat prerequisites to gain the benefit.&quot;" compset="ClSpecial"></thing>
-  <thing id="cPUIConstr" name="Improved Constructs" description="At 8th level, you gain your choice of the Advanced Construct* or Boost Construct feat as a bonus feat. If you already have one of the feats, you gain the other instead. If you already possess both feats, you gain a bonus psionic feat of your choice. You must meet any applicable prerequisites to select the feat." compset="ClSpecial">
+  <thing id="cPUTacCoor" name="Coordinate" description="At 6th level, as long as the tactician maintains psionic focus, he may share any one teamwork feat he has with one member of his collective within line of sight and line of effect. Declaring which member of the collective gains the teamwork feat is a free action that may only be done once per round. The ally’s positioning and actions must still meet the prerequisites listed in the teamwork feat to receive the listed bonus, but the ally need not meet the feat prerequisites to gain the benefit.&quot;" compset="ClSpecial" summary="Psionic focus share one teamwork feat with one member within line of sight/effect.">
+    <tag group="AbilType" tag="Super"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="cPUIConstr" name="Improved Constructs" description="At 8th level, you gain your choice of the Advanced Construct* or Boost Construct feat as a bonus feat. If you already have one of the feats, you gain the other instead. If you already possess both feats, you gain a bonus psionic feat of your choice. You must meet any applicable prerequisites to select the feat.\n\n{b}Note:{/b} Not Scripted yet." compset="ClSpecial">
     <comment>Stub</comment>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="cPUMsConst" name="Maestro of Constructs" description="At 14th level, once per day as a standard action, you can choose to create up to half your psion level in astral constructs, divided at your discretion (For example, for a 14th level constructor, a 5th-level construct and a 2nd-level construct, a single 7th-level construct, seven 1st-level constructs, etc.), repair a damaged astral construct for up to 30 hit points plus 1 hit point per psion level, or summon two astral swarms (see Appendix) plus one astral swarm for each three levels beyond 14th, to a maximum of 4 at 20th level." compset="ClSpecial">
+  <thing id="cPUMsConst" name="Maestro of Constructs" description="At 14th level, once per day as a standard action, you can choose to create up to half your psion level in astral constructs, divided at your discretion (For example, for a 14th level constructor, a 5th-level construct and a 2nd-level construct, a single 7th-level construct, seven 1st-level constructs, etc.), repair a damaged astral construct for up to 30 hit points plus 1 hit point per psion level, or summon two astral swarms (see Appendix) plus one astral swarm for each three levels beyond 14th, to a maximum of 4 at 20th level.\n\n{b}Note:{/b} Not Scripted yet." compset="ClSpecial">
     <comment>stub</comment>
     </thing>
   <thing id="cPUConSha" name="Constructor (Shaper)" description="A psion specializing in metacreativity is known as a shaper. This discipline includes powers that draw ectoplasm from the Astral Plane, creating semisolid and solid items such as armor, weapons, or animated constructs to do battle at the shaper&apos;s command.\n\n{i}Class Skills:{/i} Bluff (Cha), Disguise (Cha), and Use Magic Device (Cha)." compset="CustomSpec" uniqueness="useronce">
@@ -14461,8 +14463,7 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
       doneif (tagis[Helper.SpcDisable] <> 0)
 
       ~ Make selected skill a class skill
-      perform field[usrChosen1].chosen.assign[Helper.ClassSkill]
-      ]]></eval>
+      perform field[usrChosen1].chosen.assign[Helper.ClassSkill]]]></eval>
     <eval phase="First" index="2"><![CDATA[
       ~ If we've been Disabled, get out now
       doneif (tagis[Helper.SpcDisable] <> 0)
@@ -14478,8 +14479,7 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
       linkage[table].field[cSBonFtTot].arrayvalue[1]  = 1
       linkage[table].field[cSBonFtTot].arrayvalue[6]  = 2
       linkage[table].field[cSBonFtTot].arrayvalue[11] = 3
-      linkage[table].field[cSBonFtTot].arrayvalue[16] = 4
-      ]]></eval>
+      linkage[table].field[cSBonFtTot].arrayvalue[16] = 4]]></eval>
     </thing>
   <thing id="cPUInsSeer" name="Insight (Seer)" description="A psion who chooses clairsentience is known as a seer. Seers can learn precognitive powers to aid their comrades in combat, as well as powers that permit them to gather information in many different ways.\n\n{i}Class Skills:{/i} Diplomacy (Cha) and Perception (Wis)." compset="CustomSpec" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -14696,7 +14696,4 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
   <thing id="cPUDayPowr" name="Daily Powers" description="At 2nd level, each day, you may choose one power from the Psion/Wilder list that is not on your list of powers known and manifest that power as if it was. You must have manifested the power from a power stone at some point prior to choosing it as a daily power and the power’s level may not exceed your maximum power level. You may decide which power to manifest at the time of manifesting. Once this choice has been made, it cannot be changed until you have meditated to regain\nyour daily power points after resting. At 7th level and every five psion levels thereafter, you may choose one additional power per day to treat as if a power known (2 at 7th level, 3 at 12th level, 4 at 17th level). These powers are in addition to your normal powers known.\n\nThis ability replaces the Bonus Feat normally gained by a generalist psion and the powers known gained at each level a daily power is gained, as displayed on Table: The Erudite." compset="ClSpecial">
     <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-
-
-
   </document>
