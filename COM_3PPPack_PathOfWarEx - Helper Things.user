@@ -253,4 +253,8 @@
     <comment><![CDATA[This is a helper object for the "Zealot" class header.]]></comment>
     <link linkage="varies" thing="cHelpPW5"/>
     </thing>
+  <thing id="arHdPWMyst" name="Mystic" compset="ClassVary" uniqueness="unique" isshowonly="yes">
+    <comment><![CDATA[This is a helper object for the "Mystic" class header.]]></comment>
+    <link linkage="varies" thing="cHelpPW6"/>
+    </thing>
   </document>
