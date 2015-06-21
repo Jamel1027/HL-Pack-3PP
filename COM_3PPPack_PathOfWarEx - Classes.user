@@ -1182,7 +1182,7 @@ abValue2 stores the extra bonus vs Claimed targets</comment>
     <tag group="ClassSkill" tag="skSurvival"/>
     <tag group="ProductId" tag="HLCommunit"/>
     <tag group="cRef" tag="Poor"/>
-    <tag group="Classes" tag="PWZealot"/>
+    <tag group="Classes" tag="PWZealot" name="Zealot"/>
     <tag group="cWill" tag="Good"/>
     <tag group="PathOfWar" tag="Class"/>
     <tag group="ClassSkill" tag="skHeal"/>
@@ -1870,5 +1870,345 @@ abValue2 = Zeal duration increase per PP expenditure</comment>
       else
         field[listname].text = field[thingname].text & " (" & field[abText].text & ")"
       endif]]></eval>
+    </thing>
+  <thing id="cHelpPW6" name="Mystic" compset="Class" uniqueness="unique">
+    <fieldval field="cHDSides" value="8"/>
+    <fieldval field="cAbbr" value="Mys"/>
+    <fieldval field="cSkills" value="4"/>
+    <fieldval field="cBonFtNm" value="Bonus Combat/Item Creation Feats"/>
+    <arrayval field="cBonFtTot" index="1" value="1"/>
+    <arrayval field="cBonFtTot" index="6" value="2"/>
+    <arrayval field="cBonFtTot" index="11" value="3"/>
+    <arrayval field="cBonFtTot" index="16" value="4"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Class"/>
+    <tag group="cAttack" tag="Medium"/>
+    <tag group="cFort" tag="Poor"/>
+    <tag group="fCategory" tag="Combat"/>
+    <tag group="AgeColumn" tag="1"/>
+    <tag group="ClassSkill" tag="skAcrobat"/>
+    <tag group="ClassSkill" tag="Craft"/>
+    <tag group="ClassSkill" tag="Knowledge"/>
+    <tag group="ClassSkill" tag="Perform"/>
+    <tag group="ClassSkill" tag="Profession"/>
+    <tag group="ClassSkill" tag="skPUAhypno"/>
+    <tag group="ClassSkill" tag="skIntim"/>
+    <tag group="ClassSkill" tag="skPercep"/>
+    <tag group="ClassSkill" tag="skSenseMot"/>
+    <tag group="ClassSkill" tag="skSpellcr"/>
+    <tag group="ClassSkill" tag="skStealth"/>
+    <tag group="ClassSkill" tag="skUseMagic"/>
+    <tag group="fCategory" tag="ItemCreate"/>
+    <tag group="cWill" tag="Good"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="cRef" tag="Poor"/>
+    <tag group="Classes" tag="PWMystic" name="Mystic"/>
+    <bootstrap thing="fSimple"></bootstrap>
+    <bootstrap thing="cPW6Animus">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPW6BldMed">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ElmAtt">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cCfgPW6"></bootstrap>
+    <bootstrap thing="fWepMart"></bootstrap>
+    <bootstrap thing="fArmLight"></bootstrap>
+    <bootstrap thing="fArmShield"></bootstrap>
+    <bootstrap thing="cPW6ArcDef">
+      <autotag group="ClSpecWhen" tag="2"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ArcDef">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ArcDef">
+      <autotag group="ClSpecWhen" tag="11"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ArcDef">
+      <autotag group="ClSpecWhen" tag="16"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ArcDef">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ElmGly">
+      <autotag group="ClSpecWhen" tag="3"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ElmGly">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ElmGly">
+      <autotag group="ClSpecWhen" tag="13"/>
+      </bootstrap>
+    <bootstrap thing="cPW6ElmGly">
+      <autotag group="ClSpecWhen" tag="19"/>
+      </bootstrap>
+    <bootstrap thing="cPW6MysArt">
+      <autotag group="ClSpecWhen" tag="4"/>
+      </bootstrap>
+    <bootstrap thing="cPW6WithSp">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cPW6InstEn">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="cPW6InstEn">
+      <autotag group="ClSpecWhen" tag="10"/>
+      </bootstrap>
+    <bootstrap thing="cPW6InstEn">
+      <autotag group="ClSpecWhen" tag="14"/>
+      </bootstrap>
+    <bootstrap thing="cPW6InstEn">
+      <autotag group="ClSpecWhen" tag="18"/>
+      </bootstrap>
+    <bootstrap thing="cPW6QllMag">
+      <autotag group="ClSpecWhen" tag="9"/>
+      </bootstrap>
+    <bootstrap thing="cPW6FntAnm">
+      <autotag group="ClSpecWhen" tag="15"/>
+      </bootstrap>
+    <bootstrap thing="cPW6GlyMas">
+      <autotag group="ClSpecWhen" tag="20"/>
+      </bootstrap>
+    </thing>
+  <thing id="cPWMystic" name="Mystic" description="Born with an untamed magical power buried deep within his soul, the mystic is a warrior who, much like a sorcerer, is filled with untapped energies. This power however, is too primal and unstable, and is difficult to be formed effectively into a spell. By following a martial medium to tame this energy, the mystic is able to shape his wild power into martial maneuvers and this allows him to discover the deeper mysteries of his own inborn power.\n\n{b}Adventures:{/b} Most mystics adventure to stretch the limits of their powers, learning to master the mysteries within their souls. Some do it to express their power in ways that suit their ethics, for good or for ill, and others travel to find others like themselves, to study and train with and hope to eventually learn more about why they are the way they are.\n\n{b}Characteristics:{/b} Mystics tend to be a very introspective lot, wielding a power so foreign to most with an intuitive sense of understanding. Many mystics follow ascetic lifestyles, hoping that the order and abstaining of life’s vices will help them control their power. Others embrace their wild energies and move with the moment, pausing to reflect at the end of the day as to what drives their motivations.\n\n{b}Alignment:{/b} Any. Mystics do not follow any ethical or moral path, and choose their own destiny. Some cling to lawful alignments to master their powers, and others embrace chaotic alignments to freely express their talents.\n\n{b}Religion:{/b} Mystics who follow religion often find their faith with gods of  battle, nature, magic, or freedom.\n\n{b}Background:{/b} Mystics universally have one thing in common, and that’s a magical creature or magic-using being in their near family history. This power is an inherited consequence of such relation, and while it is not widely understood why it has chosen to manifest in such a way, the mystic’s wild power is usually an expression of this relation’s own power. Mystics are born, and must train to master their energies.\n\n{b}Races:{/b} Any member of any race could be a mystic, provided they had the ancestry and proper training available. Most commonly they are of the human, elven, and gnome races. Among monster races, kobolds and their draconic bloodlines are among the first and foremost experts in the realm of mysticism, and many fey or elemental blooded creatures as well.\n\n{b}Other Classes:{/b} Mystics tend to chafe with sorcerers around, as they see each other as failed expressions of the other. Otherwise, mystics find the most in common with rangers and monks for either their freedom or their discipline. Wizards find them interesting and enjoy studying their powers, and martially inclined characters find them to be steady and useful allies.\n\n{b}Role:{/b} A mystic will often find themselves in the role of both striker and party supporter. The glyphs they manifest will aid themselves and their allies, as their animus builds power and strength. Not as hardy as other warriors, however, mystics will find themselves needing the protection of their more robust allies from time to time." compset="ClassLevel" maxlimit="20">
+    <usesource source="srcPOWEx"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="ClassType" tag="Normal"/>
+    <tag group="Helper" tag="Playtest"/>
+    <bootstrap thing="cHelpPW6"></bootstrap>
+    <link linkage="helper" thing="cHelpPW6"/>
+    </thing>
+  <thing id="mHelpPW6" name="Mystic Manuevers" compset="PWManList">
+    <arrayval field="cManKnown" index="0" value="7"/>
+    <arrayval field="cManKnown" index="1" value="8"/>
+    <arrayval field="cManKnown" index="2" value="9"/>
+    <arrayval field="cManKnown" index="3" value="10"/>
+    <arrayval field="cManKnown" index="4" value="11"/>
+    <arrayval field="cManKnown" index="5" value="12"/>
+    <arrayval field="cManKnown" index="6" value="13"/>
+    <arrayval field="cManKnown" index="7" value="14"/>
+    <arrayval field="cManKnown" index="8" value="15"/>
+    <arrayval field="cManKnown" index="9" value="15"/>
+    <arrayval field="cManKnown" index="10" value="16"/>
+    <arrayval field="cManKnown" index="11" value="16"/>
+    <arrayval field="cManKnown" index="12" value="17"/>
+    <arrayval field="cManKnown" index="13" value="17"/>
+    <arrayval field="cManKnown" index="14" value="18"/>
+    <arrayval field="cManKnown" index="15" value="18"/>
+    <arrayval field="cManKnown" index="16" value="19"/>
+    <arrayval field="cManKnown" index="17" value="19"/>
+    <arrayval field="cManKnown" index="18" value="20"/>
+    <arrayval field="cManKnown" index="19" value="21"/>
+    <arrayval field="cManReady" index="0" value="5"/>
+    <arrayval field="cManReady" index="1" value="5"/>
+    <arrayval field="cManReady" index="2" value="6"/>
+    <arrayval field="cManReady" index="3" value="6"/>
+    <arrayval field="cManReady" index="4" value="6"/>
+    <arrayval field="cManReady" index="5" value="7"/>
+    <arrayval field="cManReady" index="6" value="7"/>
+    <arrayval field="cManReady" index="7" value="7"/>
+    <arrayval field="cManReady" index="8" value="8"/>
+    <arrayval field="cManReady" index="9" value="8"/>
+    <arrayval field="cManReady" index="10" value="8"/>
+    <arrayval field="cManReady" index="11" value="9"/>
+    <arrayval field="cManReady" index="12" value="9"/>
+    <arrayval field="cManReady" index="13" value="9"/>
+    <arrayval field="cManReady" index="14" value="10"/>
+    <arrayval field="cManReady" index="15" value="10"/>
+    <arrayval field="cManReady" index="16" value="10"/>
+    <arrayval field="cManReady" index="17" value="11"/>
+    <arrayval field="cManReady" index="18" value="11"/>
+    <arrayval field="cManReady" index="19" value="12"/>
+    <arrayval field="cStances" index="0" value="1"/>
+    <arrayval field="cStances" index="1" value="2"/>
+    <arrayval field="cStances" index="2" value="2"/>
+    <arrayval field="cStances" index="3" value="2"/>
+    <arrayval field="cStances" index="4" value="3"/>
+    <arrayval field="cStances" index="5" value="3"/>
+    <arrayval field="cStances" index="6" value="3"/>
+    <arrayval field="cStances" index="7" value="3"/>
+    <arrayval field="cStances" index="8" value="4"/>
+    <arrayval field="cStances" index="9" value="4"/>
+    <arrayval field="cStances" index="10" value="4"/>
+    <arrayval field="cStances" index="11" value="4"/>
+    <arrayval field="cStances" index="12" value="5"/>
+    <arrayval field="cStances" index="13" value="5"/>
+    <arrayval field="cStances" index="14" value="6"/>
+    <arrayval field="cStances" index="15" value="6"/>
+    <arrayval field="cStances" index="16" value="6"/>
+    <arrayval field="cStances" index="17" value="7"/>
+    <arrayval field="cStances" index="18" value="7"/>
+    <arrayval field="cStances" index="19" value="7"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="MithCurr"/>
+    <tag group="Discipline" tag="ShaMirror"/>
+    <tag group="Discipline" tag="SolarWind"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="UseAttr" tag="aWIS"/>
+    <tag group="Discipline" tag="VeiledMoon"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <link linkage="powClass" thing="cHelpPW6"/>
+    <link linkage="powCfg" thing="cCfgPW6"/>
+    </thing>
+  <thing id="cCfgPW6" name="Mystic Maneuvers" compset="Configure" uniqueness="unique">
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Config"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="ClsCountAs" tag="cHelpPW6"/>
+    <tag group="Discipline" tag="ElemFlux"/>
+    <tag group="Discipline" tag="SolarWind"/>
+    <tag group="Discipline" tag="MithCurr"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="Discipline" tag="ShaMirror"/>
+    <tag group="Discipline" tag="VeiledMoon"/>
+    <bootstrap thing="mHelpPW6"></bootstrap>
+    <prereq message="You have too many Manuevers Readied.">
+      <validate>var ValidManOn as number
+        Call ValidManOn
+        @valid = ValidManOn</validate>
+      </prereq>
+    <prereq message="You have activated more stances than allowed.">
+      <validate>var ValidStaOn as number
+        Call ValidStaOn
+        @valid = ValidStaOn</validate>
+      </prereq>
+    </thing>
+  <thing id="cPW6Animus" name="Animus" description="A mystic’s martial prowess is in part fueled by a reservoir of roiling, turbulent energy within her soul, and the passion and danger of combat causes this arcane energy to overflow outwards. This power, called animus, waxes and wanes with a mystic’s use of her maneuvers in battle. Outside combat, a mystic has no animus to spend, but her inner power can still be used for more subtle arcane arts. Her levels in mystic count as arcane spellcaster levels for the purposes of qualifying for prerequisites (such as those of item creation feats or the Arcane Strike feat), and if a mystic ever develops arcane spellcasting from another class, she may add her mystic level to her levels in that class to determine her overall caster level for the purposes of item creation feats.\n\nWhen a mystic enters combat, she gains an animus pool equal to 1 + her Wisdom modifier (minimum 1) at the start of her first turn, and adds one point of animus to her animus pool at the start of each turn thereafter. Her animus pool persists for one minute after the last enemy combatant is defeated or the encounter otherwise ends. At the end of any round in which the mystic initiates a maneuver (a strike, boost, or counter), she adds an additional point of animus to her pool. Certain abilities, such as some class features, maneuvers, and feats, require the mystic to expend points of animus to use. \n\nThe primal power of animus can be used in several ways – the foremost of which is the augmentation of maneuvers. Many maneuvers in the Elemental Flux discipline can be augmented by spending points of animus (see the maneuver descriptions for more details), and the mystic can augment maneuvers in additional ways as well.\n\nStarting at 1st level, a mystic may spend a single point of animus to augment a maneuver as part of that maneuver’s initiation action to apply one of the following effects to it (if applicable):\n\n• {b}Enhance Maneuver:{/b} For each point of animus spent, the mystic adds a cumulative +2 insight bonus to all d20 rolls made (including attack rolls, CMB rolls, and skill checks) when initiating that maneuver (maximum of three animus may be spent on this augmentation); if the maneuver allows the user to make multiple attacks, then this bonus only applies to the first attack.\n• {b}Increase DC:{/b} For each point of animus spent, the Difficulty Class for all saving throws against that maneuver increases by 1.\n\nWhen the mystic reaches 4th level, she may spend up to two points of animus on maneuver augmentations, rather than one, and she gains access to the following additional augmentations:\n\n• {b}Anima Burn:{/b} The mystic adds ½ her class level to damage rolls made during that maneuver. This augment costs two points of animus, and can only be applied once to a given maneuver.\n• {b}Increase Potency:{/b} For each point of animus spent, you may ignore 10 points of energy resistance or 5 points of damage reduction.\n\nWhen the mystic reaches 9th level, she may now spend up to three points of animus on maneuver augmentations, and gains access to the following additional augmentation:\n\n• {b}Increase Range:{/b} The mystic may target a creature within 30 feet with a strike that normally uses a melee attack. Resolve the strike normally, as if the targeted creature was within the mystic’s melee reach. This augmentation costs two points of animus. \n• {b}Animus Rush:{/b} The mystic make move up to her base movement speed as part of the initiation action for the maneuver before initiating the strike. This is a teleportation effect and the mystic must clearly see her destination. This augmentation costs three points of animus.\n\nAt 13th level you may spend up to four points of animus on maneuver augmentation, and again at 19th level, you may increase this to five points of animus per augmentation." compset="ClSpecial" summary="Gain an Animus pool that you can spend to enhance maneuvers">
+    <comment>abValue = Max animus spent per turn</comment>
+    <fieldval field="abValue" value="1"/>
+    <tag group="SbNamePar" tag="IncUses"/>
+    <tag group="ChargeCalc" tag="AttrUses1"/>
+    <tag group="ChargeAttr" tag="Minimum1"/>
+    <tag group="ChargeAttr" tag="aWIS"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="User" tag="Tracker"/>
+    <tag group="AbilType" tag="Super"/>
+    <eval phase="Render" priority="50000" index="2"><![CDATA[      field[listname].text = field[thingname].text & " (" & field[abValue].value & "/turn)"
+      field[livename].text = field[listname].text]]></eval>
+    <eval phase="PostLevel" priority="10000"><![CDATA[      ~ Gain +1 to max anima spent per turn at levels 4, 9, 13, and 19
+      if (field[xTotalLev].value >= 4) then
+        field[abValue].value += 1
+      endif
+      if (field[xTotalLev].value >= 9) then
+        field[abValue].value += 1
+      endif
+      if (field[xTotalLev].value >= 13) then
+        field[abValue].value += 1
+      endif
+      if (field[xTotalLev].value >= 19) then
+        field[abValue].value += 1
+      endif]]></eval>
+    </thing>
+  <thing id="cPW6BldMed" name="Blade Meditation" description="When a mystic finds that her martial power is beginning to wane or that few options remain available for use, she can pause in battle, drawing on her inner well of animus to reinvigorate her body and mind. As a full round action, a mystic can spend one point of animus to grant herself all her remaining withheld maneuvers, then immediately expend them in a raging cadence of arcane power. As there are no remaining maneuvers to be granted, a new set of maneuvers is granted to the mystic at the end of her turn, as normal.\n\nIn addition, until the start of her next turn, creatures that target the mystic with melee attacks are engulfed in the explosion of energy, taking 1d6 points of damage of your active energy type, plus an additional 1d6 points of damage for every two points of animus remaining in the mystic’s animus pool." compset="ClSpecial" summary="As a full-round action, expend all your maneuvers and damage melee attackers">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPW6ElmAtt" name="Elemental Attunement" description="A mystic contains incredible elemental power within her body, surging energies that constantly flow through her blood and muscle. Bringing these energies to bear is as easy as breathing for a mystic, shifting the flow of power with the subtle movements of her martial stances. When a mystic readies her maneuvers, she may select one of the following elements (and associated energy type) to be her active element: air (electricity), earth (acid), fire (fire), and water (cold). \n\nAfter readying maneuvers, a mystic can change her active element by taking a standard action to focus inwards, or by expending one point of animus as a free action while assuming a new stance. Whenever she initiates a maneuver that deals damage, she may spend one point of animus as part of its initiation action to change all damage the maneuver deals to her active element’s associated energy type. For example, if a mystic whose active element is currently Air initiated the Cursed Fate Veiled Moon strike, she could spend one point of animus to change her attack’s damage (including the strike’s bonus damage) to from her weapon’s normal damage type to electricity damage.\n\nIf the mystic has access to the Elemental Flux discipline, then her active element from this class feature is the same as her active element for Elemental Flux maneuvers. Likewise, if she is psionic and has an active energy type, her active energy type and your active element are synonymous, and any effect which changes one changes both (exception being acid and sonic damage, which for these purposes are both considered earth for Elemental Attunement and Elemental Flux)." compset="ClSpecial">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPW6ArcDef" name="Arcane Defense" description="Starting at 2nd level, the sorcerous power within her body makes her resilient to the supernatural. These energies defend her from magical and psionic powers, granting her a +1 insight bonus to her AC and saving throws against psionic powers, psi-like abilities, spells, and spell-like abilities. This bonus increases by +1 at 6th level, and again at 11th level, 16th level, and 20th level." compset="ClSpecial" summary="Gain insight bonus to AC/saves vs magic and psionics">
+    <tag group="AbilType" tag="Super" name="Supernatural Ability" abbrev=" (Su)"/>
+    <tag group="LvNameApp" tag="AppValue"/>
+    <tag group="LvNameApp" tag="SignAppVal"/>
+    <tag group="User" tag="Activation"/>
+    <tag group="Helper" tag="UseOwnLev"/>
+    <tag group="abAction" tag="None"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="SpecType" tag="Defense"/>
+    <eval phase="PostLevel" priority="20000"><![CDATA[      ~Set the list name
+      field[listname].text = field[thingname].text & " " & signed(field[xIndex].value)
+
+      ~only perform the calculations for the first copy
+      doneif (tagis[Helper.FirstCopy] = 0)
+
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ if we've been disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ Set the bonus
+      field[abValue].value += field[xCount].value
+
+      ~ Stop now if we're not activated
+      doneif (field[abilActive].value = 0)
+
+      ~ Grant morale bonus to hit
+      #applybonus[BonInsight,hero.childfound[ArmorClass],field[abValue].value]
+      #applybonus[BonInsight,hero.childfound[svAll],field[abValue].value]]]></eval>
+    </thing>
+  <thing id="cPW6ElmGly" name="Elemental Glyph" description="Starting at 3rd level, a mystic learns to aid her friends with the arcane power of the elements. Although at first this surging energy was raw and unformed, she has begun to master this ability, and can use it to empower her allies, granting them benefits in combat. As a move action, the mystic can spend one point of animus to apply an elemental glyph to a number of allies equal to her Wisdom modifier within her sight. The effect of this glyph depends on the element it is associated with, but all glyphs last for a number of rounds equal to 1 + the mystic’s Wisdom modifier. A mystic is not limited to casting glyphs of her active element (as darkness, illumination, and metal have no elemental type). Allies may only be affected by one of her glyphs at a time, with new glyphs ending the current glyph in effect and replacing it on the affected ally. The benefits of these glyphs are cumulative (for example, an 8th level mystic grants both the 3rd level and 8th level benefits to her allies). Different glyphs from different mystics may apply to the same target. Glyphs are supernatural abilities and not subject to spells or effects like {i}dispel magic{/i} but do not function within an {i}antimagic field{/i} or similar effect.\n\n {b}Air:{/b} The glyph of air fills the mystic’s allies with energy and speed. \n• At 3rd level, each of the movement speeds of affected allies increases by 10 feet and they make up to one 90 degree turn while making charge attacks. This adjustment is treated as an enhancement bonus. \n• At 8th level, this bonus increases to 30 feet, and they may make Acrobatics checks to jump as if they had a running start.\n• At 13th level, allies affected by the glyph of air gain the ability to move up to 30 feet as a swift action. This movement provokes attacks of opportunity as normal. \n• At 19th level, whenever one of the mystic’s allies uses the glyph of air’s swift action movement ability, they can make a single attack with a weapon they are wielding at their highest base attack bonus at any point during this movement.\n\n•{b}Darkness:{/b} Though darkness often connotates evil, for the mystic its shroud offers both protection and insight, allowing the mystic’s allies tactical avenues that they would otherwise be unable to access. \n• At 3rd level, allies affected by the glyph of darkness gain concealment (20% miss chance).  \n• At 8th level, affected allies gain darkvision and the effects of a see invisibility spell out to a range of 60 feet.\n• At 13th level, affected allies are shrouded in a pitch-black veil, gaining total concealment (50% miss chance).\n• At 19th level, affected allies gain the blindsight trait, with a range of 30-ft, when affected by this glyph.\n\n\n{b}Earth:{/b} The dour, steadfast nature of earth allows the mystic’s allies to better stand their ground and weather assaults. \n• At 3rd level, this glyph makes allies more difficult to move against their will; affected allies gain a bonus to their CMD equal to the mystic’s Wisdom modifier. \n• At 8th level, affected allies gain DR/adamantine equal to the mystic’s Wisdom modifier.\n• At 13th level, affected allies gain resistance to all energy types equal to the mystic’s class level.\n• At 19th level, affected allies cannot die from hit point loss - when reduced to 0 or few hit points, they are instead stabilized at 0 hit points until the glyph’s effects expire.\n\n{b}Fire:{/b} The unquenchable flames of passion drive the mystic’s allies to feats of glory. \n• At 3rd level, affected allies gain a circumstance bonus to attack rolls equal to ¼ the mystic’s class level (minimum +1).\n• At 8th level, affected allies add ½ the mystic’s class level as fire damage to attacks they make.\n• At 13th level, affected allies’ attacks ignore a number of points of energy resistance  equal to the mystic’s class level.\n• At 19th level, whenever an affected ally is targeted by a melee attack, the attacker takes fire damage equal to the mystic’s class level, regardless of whether or not the attack hits\n\n{b}Illumination:{/b} The light of the universe reveals truth wherever it hides.\n• At 3rd level, affected allies’ attacks ignore the miss chance granted to targets by anything less than total concealment\n• At 8th level, affected allies gain a bonus to Will saving throws against illusion spells and effects equal to the mystic’s Wisdom modifier .\n• At 13th level, affected allies gain the effects of a true seeing spell out to a range of 30 feet.\n• At 19th level, affected allies are protected from any falsehood, gaining the effects of a mind blank spell.\n\n{b}Metal:{/b} Sturdy and unyielding like the forged iron from which it takes its name, the glyph of metal imparts resolute strength to the mystic’s allies.\n• At 3rd level, affected allies increase their natural armor bonus to AC equal to ¼ the mystic’s class level (minimum +1).\n• At 8th level, affected allies gain a circumstance bonus to Fortitude saves equal to ¼ the mystic’s class level (minimum +1).\n• At 13th level, affected allies’ attacks ignore a number of points of damage reduction and hardness equal to the mystic’s Wisdom modifier.\n• At 19th level, affected allies gain DR/- equal to the mystic’s Wisdom modifier and gain spell resistance equal to 15 +  the mystic’s class level.\n\n{b}Water:{/b} Fluid and changeable, the glyph of water grants allies flexibility in both their movement and their thinking.\n• At 3rd level, affected allies gain a circumstance bonus to their CMB and to Swim checks equal to the mystic’s Wisdom modifier.\n• At 8th level, affected allies ignore difficult terrain when they move.\n• At 13th level, affected allies gain the effects of a freedom of movement spell.\n• At 19th level, affected allies gain fast healing of 10 while under the effects of this glyph." compset="ClSpecial" summary="As a move action, grant one of several suites of elemental abilities to your allies">
+    <comment>abValue = Number of glyph targets</comment>
+    <fieldval field="abDuration" value="1"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="SpecType" tag="Defense"/>
+    <tag group="abAction" tag="Move"/>
+    <tag group="AbilType" tag="Super" name="Supernatural Ability" abbrev=" (Su)"/>
+    <tag group="abDuration" tag="Round"/>
+    <tag group="LvNamePar" tag="AppTextCom"/>
+    <tag group="LvNamePar" tag="IncDurati"/>
+    <tag group="LvNamePar" tag="AppText"/>
+    <eval phase="PostAttr" priority="20000"><![CDATA[      ~ Add init mod to duration and number of targets
+      var initMod as number
+      call PWgetIMod
+      field[abValue].value += initMod
+      field[abDuration].value += initMod
+
+      field[abText].text = field[abValue].value & " allies"]]></eval>
+    <eval phase="Render" priority="20000" index="2"><![CDATA[      if (field[xIndex].value = 1) then 
+        field[listname].text = field[thingname].text & " (I)"
+      elseif (field[xIndex].value = 2) then 
+        field[listname].text = field[thingname].text & " (II)"
+      elseif (field[xIndex].value = 3) then 
+        field[listname].text = field[thingname].text & " (III)"
+      elseif (field[xIndex].value = 4) then 
+        field[listname].text = field[thingname].text & " (IV)"
+      endif]]></eval>
+    </thing>
+  <thing id="cPW6MysArt" name="Mystic Artifice" description="Starting at 4th level, a mystic is able to channel her animus into her craft, substituting primal arcane energies in place of more ordinary spells. When attempting to create a magical item for which she does not possess a prerequisite spell, the mystic can attempt to replicate the spell through her innate power with a Spellcraft check (DC 15 + the level of the spell being replicated). If successful, she can create the item as if she had cast the prerequisite spell. If the item being created requires multiple spells, she must make this check for each spell she intends to replicate. If she fails the skill check, she may not try again for that spell while creating that item – the item creation DC increases as normal for the creation of an item without a prerequisite spell in such a case." compset="ClSpecial" summary="Use a Spellcraft check to substitute for spells when creating magic items">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPW6WithSp" name="Withstand Spell" description="Starting at 5th level, the mystic’s natural instincts with magic work to protect her, guiding her reactions against offensive spells cast by her enemies and allowing her to siphon off a small amount of that energy for her own use. If the mystic is targeted by a spell, spell-like ability, or psionic power that normally would have a lesser effect (such as a partial effect) on a successful Fortitude or Reflex saving throw, she may make a Will saving throw instead of the effect’s normal save. If that Will saving throw is successful, she is completely unaffected by the spell or power, taking no damage and suffering no ill-effects. If she fails the saving throw, she suffers the effect as normal, and adds one point of animus to her animus pool. \n\nThe mystic must be unencumbered and wearing light or no armor to use this ability. This ability does not protect the mystic from traps, extraordinary or supernatural abilities, or any other effects that require a Fortitude or Reflex save. A helpless mystic does not gain the benefit of withstand spell." compset="ClSpecial" summary="Use Will in place of Fort/Ref vs spells and psionics, suffer no effect if save normally allows lesser effect">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="cPW6InstEn" name="Instant Enlightenment" description="Starting at 6th level, a mystic is capable of drawing deep on her training to channel the untapped energies within her, granting her an infinitesimal moment perfect clarity. Once per day as a free action, the mystic may expend one granted maneuver and instantly replace it with another maneuver she knows. This maneuver is added to her currently granted maneuvers and readied for use, replacing the previous maneuver. At every 4 levels beyond 6th (10th, 14th, and 18th), the mystic can use this ability one additional time per day, as indicated in Table: The Mystic." compset="ClSpecial" summary="As a free action, trade one granted maneuver for another that you know">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    <tag group="abAction" tag="Free"/>
+    <tag group="SbNamePar" tag="IncUses"/>
+    <tag group="Usage" tag="Day"/>
+    <tag group="User" tag="Tracker"/>
+    <eval phase="PostLevel" priority="10000"><![CDATA[      ~ If we're not shown or disabled, just get out now
+      doneif (tagis[Helper.ShowSpec] = 0)
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ Add to uses/day
+      field[trkMax].value += field[xCount].value]]></eval>
+    <eval phase="Render" priority="20000" index="2"><![CDATA[      field[listname].text = field[thingname].text & " (" & field[xIndex].value & "/day)"]]></eval>
+    </thing>
+  <thing id="cPW6QllMag" name="Quell Magic" description="Starting at 9th level, a mystic can channel her animus to act as a sort of null-magic energy, smothering active magical effects with its flow. In order to use this ability, the mystic must have identified an ongoing spell or power through a Spellcraft check or other method. As a standard action, she can spend a number of points of animus equal to that spell or power’s level to suppress (as if by an {i}antimagic field{/i} spell) that spell or power for a number of rounds equal to her Wisdom modifier. Time spent suppressed counts against the suppressed spell or power’s duration." compset="ClSpecial">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
+    <tag group="abDuration" tag="Round"/>
+    <tag group="LvNamePar" tag="IncDurati"/>
+    <tag group="SbNamePar" tag="IncDurati"/>
+    <eval phase="PostAttr" priority="10000">      ~ Add init mod to duration
+      var initMod as number
+      call PWgetIMod
+      field[abDuration].value += initMod</eval>
+    </thing>
+  <thing id="cPW6FntAnm" name="Font of Animus" description="At 15th level, a mystic gains the ability to draw in energy from the world around her, converting it into animus to fuel her own primal power. As a move action, the mystic can add a number of points of animus to her animus pool equal to 1d6 + her Wisdom modifier. Unlike other animus abilities, this may be used outside of combat to generate a small pool of animus that persists for one minute outside of combat." compset="ClSpecial" summary="Generate animus as a standard action">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
+    </thing>
+  <thing id="cPW6GlyMas" name="Glyph Mastery" description="At 20th level, a mystic’s control over her elemental powers are strong enough that she can manifest two elemental glyphs at the same time. As a move action, the mystic may spend two points of animus and manifest an elemental glyph of any two elements, regardless of her active element." compset="ClSpecial" summary="You can manifest two glyphs at the same time">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Super"/>
     </thing>
   </document>

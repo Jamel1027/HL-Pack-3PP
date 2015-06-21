@@ -204,7 +204,7 @@
     <eval phase="First" priority="50">~ Setup the Discipline Class Skill
       Call PWsetupDSk</eval>
     </thing>
-  <thing id="fPWEFlxNrg" name="Elemental Flux: Active Energy Type" description="{b}Elemental Flux and Energy Damage:{/b} Many of this discipline’s maneuvers deal damage of a certain type of energy, with  air (electricity), earth (acid), fire (fire), and water (cold) being the elements available. Additionally, some maneuvers use pure arcane force for their source and is not affected by your active element. For maneuvers of the Elemental Flux discipline that have the choice of acid, cold, electricity, and fire; the initiator must choose after he prepares his readied maneuvers which of these energy types is his active energy. Maneuvers that deal energy damage deal damage of your active element, and a character may only have one element active at a time. The initiator may choose to change which energy type is his active element by spending a standard action. If the character is psionic and has an active energy type, this active energy type and active element are synonymous and may both be changed at the same time in a manner than changes one or the other." compset="Feat" summary="Choose your active energy type" uniqueness="useronce">
+  <thing id="fPWEFlxNrg" name="Active Energy Type" compset="Feat" summary="Choose your active energy type" uniqueness="useronce">
     <arrayval field="usrArray" index="0" value="Air (Electricity)"/>
     <arrayval field="usrArray" index="1" value="Earth (Acid)"/>
     <arrayval field="usrArray" index="2" value="Fire (Fire)"/>
@@ -215,12 +215,23 @@
     <tag group="thing" tag="skipprereq"/>
     <eval phase="First" priority="10500" index="2"><![CDATA[      ~ If we don't have any Elemental Flux maneuvers, disable this feat and remove any tags it assigned
       ~ We wait until First/10500 to do this because we need the PWActNRG tags early for bootstraps but can't check for maneuver presence until after First/10000
+      var hasAET as number
+      hasAET = 0
       if (hero.childlives[zPWElmFlux] = 1) then
-        if (hero.childfound[zPWElmFlux].tagcount[mLevel.?] < 1) then
-          perform assign[Helper.FtDisable]
-          perform delete[Helper.ActivMenu]
-          perform hero.delete[PWActNRG.?]
+        if (hero.childfound[zPWElmFlux].tagcount[mLevel.?] > 0) then
+          hasAET = 1
         endif
+      endif
+
+      ~ We can also get an active energy type from Elemental Attunement
+      if (hasAET = 0) then
+        hasAET = hero.childlives[cPW6ElmAtt]
+      endif
+
+      if (hasAET = 0) then
+        perform assign[Helper.FtDisable]
+        perform delete[Helper.ActivMenu]
+        perform hero.delete[PWActNRG.?]
       endif]]></eval>
     <eval phase="First"><![CDATA[      ~ If we're disabled, do nothing
       doneif (tagis[Helper.FtDisable] <> 0)
