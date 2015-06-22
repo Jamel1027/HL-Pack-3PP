@@ -13290,7 +13290,7 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
     <prereq message="Enhanced Mind Blade or Enhanced Mind Bolt class feature required.">
       <validate><![CDATA[
         validif (#hasability[cSknEnhMB] <> 0)
-        ~ TO-DO add logic fo Enhanced Mind Bolt????]]></validate>
+        validif (#hasability[cPUEnhMBlt] <> 0)]]></validate>
       </prereq>
     </thing>
   <thing id="cPUAFoMiAr" name="Form Mind Arrow" description="A soul archer can choose to shape her mind blade as a semisolid arrow of psychic energy and forms a mind arrow as a free action. If the soul archer has the ability to make multiple attacks, he can create multiple mind arrows as part of an attack. The soul archer must have one hand free to create and fire a mind arrow.\n\nThe arrow is identical in all ways (except visually) to an arrow shot from a composite longbow of a size appropriate to the soul archer. The soul archer adds his Wisdom modifier to the damage for attacks made with mind arrows, instead of his Strength modifier. The mind arrow receives all the benefits normally applied to the mind blade, including the ability to use psychic strike, any enhancement bonus or weapon special abilities, or feats that apply to the mind blade, although any meleespecific options are non-functional while in mind arrow form. Ranged feats that apply to ranged attacks, such as Point-Blank Shot, apply to the mind arrow. Any weapon special abilities that only work on melee weapons that apply to the mind blade are inactive while in mind arrow form until the soulknife spends the normal amount of time to reassign the special abilities of the mind blade." compset="ClSpecial" summary="Shape your mind blade into a semisolid arrow of psychic energy.">
