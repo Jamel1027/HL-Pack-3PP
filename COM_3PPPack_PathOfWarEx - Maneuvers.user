@@ -3191,4 +3191,522 @@ abValue3 = Fire speed bonus</comment>
     <tag group="mSave" tag="SeeText"/>
     <tag group="mSave" tag="Special"/>
     </thing>
+  <thing id="staPWSotS1" name="Sands of Time Stance" description="By attuning yourself to the ebb and flow of time, you can visualize the time-stream as a metaphorical hourglass in your soul, and learn to manipulate your place within it. While you maintain this stance, you gain a +2 bonus to Initiative checks and a +2 bonus to Reflex saves. When your initiator level reaches 12th level, these bonuses increase to +4." compset="PWManuever" summary="Gain +2 to initiative and Ref saves, +4 at IL 12" uniqueness="useronce">
+    <fieldval field="abValue" value="2"/>
+    <fieldval field="abValue2" value="4"/>
+    <fieldval field="abValue3" value="12"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ Determine bonus
+      var bon as number
+      bon = field[abValue].value
+      if (field[mIL].value >= field[abValue3].value) then 
+        bon = field[abValue2].value
+      endif     
+
+      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+
+      ~ Init bonus
+      hero.child[Initiative].field[Bonus].value += bon
+      hero.child[svRef].field[Bonus].value += bon]]></eval>
+    </thing>
+  <thing id="staPWDsCl1" name="Distorted Clock" description="Magic is a fickle thing, influenced by time, and wanes in power as the sands glitter through the hourglass of existence. You halt this progression within yourself, sustaining abilities that would normally only last a few minutes, or rending a harmful effect to mere moments. While in this stance, you may apply the effects of the Extend Spell metamagic feat (or Extend Power metapsionic feat) to a single beneficial spell, psionic power, extract, or spell-like ability cast upon you as long as you maintain this stance; leaving this stance causes the duration to resume as normal (each round of the effect spent as half of a round while in this stance). You may Extend an additional effect at 6th initiator level and every four initiator levels after. You gain a +2 circumstance bonus to saving throws versus harmful effects with a duration of longer than instantaneous, and you may reroll the saving throw each round on your turn to try to end the effect upon you." compset="PWManuever" summary="Extend a beneficial spell or power affecting you;  get a new save every round vs. hostile spells/powers" uniqueness="useronce">
+    <comment>abValue1 = Number of effects extendable
+abValue2 = Save bonus</comment>
+    <fieldval field="abValue2" value="2"/>
+    <fieldval field="abValue" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mType" tag="Stance"/>
+    <eval phase="Render" priority="10000" index="2"><![CDATA[      field[livename].text = field[name].text & " (" & field[abValue].value & " effect"
+      if (field[abValue].value > 1) then
+        field[livename].text &= "s"
+      endif
+      field[livename].text &= ")"]]></eval>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ Determine number of effects extendable
+      var firstIncLv as number
+      var incEveryLv as number
+      var incAmt as number
+      var inc as number
+      firstIncLv = 6
+      incEveryLv = 4
+      incAmt = 1
+      call PWgetILBon
+      field[abValue].value += inc
+
+      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+
+      ~ Save bonus
+      #situational[hero.child[svAll], signed(field[abValue2].value) & " circumstance vs spells and psi powers with a duration longer than Instant", field[name].text]]]></eval>
+    </thing>
+  <thing id="staPWRHSt1" name="Riven Hourglass Stance" description="By altering the flow of time around yourself, you flicker between potential time paths, slipping quietly between the grains that fall within your Hourglass. While you maintain this stance, you gain a +4 dodge bonus to your AC, a +4 bonus to your initiative, you become immune to the slow spell, and any power, spell, or spell-like ability that target you specifically suffers a 50% miss chance." compset="PWManuever" summary="+4 to init. and dodge AC, immune to {i}slow{/i} and 50% miss chance for spells that target you" uniqueness="useronce">
+    <fieldval field="abValue" value="4"/>
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+
+      ~ Init bonus
+      hero.child[Initiative].field[Bonus].value += field[abValue].value
+      hero.child[ArmorClass].field[tACDodge].value += field[abValue].value]]></eval>
+    </thing>
+  <thing id="staPWSBSw6" name="Sand-Bearer&apos;s Swiftness" description="You open a floodgate within your soul, channeling time-accelerating energies through your body to move at blindingly-fast speeds. While you maintain this stance, you are considered to be under the effects of a {i}haste{/i} spell, and are immune to the {i}slow{/i} spell and similar effects. Additionally, your great speed makes you exceptionally hard to hit, protecting you with a 20% miss chance against all melee or ranged attacks." compset="PWManuever" summary="You are {i}hasted{/i} and also gain 20% miss chance vs melee/ranged attacks" uniqueness="useronce">
+    <fieldval field="abValue" value="4"/>
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <bootstrap thing="pHaste">
+      <containerreq phase="First" priority="400">fieldVal:abilActive = 1</containerreq>
+      </bootstrap>
+    <eval phase="PostAttr" priority="10000"><![CDATA[      ~ If we're not enabled, get out now
+      doneif (field[abilActive].value = 0)
+
+      ~ Init bonus
+      hero.child[Initiative].field[Bonus].value += field[abValue].value
+      hero.child[ArmorClass].field[tACDodge].value += field[abValue].value]]></eval>
+    </thing>
+  <thing id="staPWGotH8" name="God of the Hourglass Stance" description="Your control over your own time-stuff increases, allowing you to isolate your Hourglass from reality, causing you to move with unparalleled speed and grace, and, affording you protection from those who would manipulate your quintessence. While you maintain this stance, you are immune to the {i}slow{/i} spell and similar effects, as well as effects that would fatigue or exhaust you. You can always act during a surprise round, even if you’re caught unaware, and if an ally or opponent uses a {i}time stop{/i} spell or similar effect you are within 50 feet of you can take a single standard action during the duration of that spell or effect. In addition, you may take an additional move or standard action during your turn." compset="PWManuever" summary="Act in surprise rounds or during {i}time stop{/i}, get an extra standard or move action each round" uniqueness="useronce">
+    <fieldval field="abValue" value="4"/>
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="PathOfWar" tag="Stance"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="mDuration" tag="Stance"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="mType" tag="Stance"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <bootstrap thing="pHaste">
+      <containerreq phase="First" priority="400">fieldVal:abilActive = 1</containerreq>
+      </bootstrap>
+    </thing>
+  <thing id="manPWSoTA1" name="Sands of Time Approach" description="By wrapping a bit of quintessence around his weapon in the form of a glittering aura, you are capable of striking a foe and burning through the time that he has left. Make an attack. If it hits, it deals weapon damage as normal, and the target is fatigued for 1d4 rounds." compset="PWManuever" summary="Attack fatigues target for 1d4 rounds" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Round1d4"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="manPWStHr1" name="Strike the Hourglass" description="With a simple strike, you influence time&apos;s attitude towards a foe and their ability to act in battle. Make an attack. If it hits, it deals weapon damage as normal, and the target can only take a single move action or standard action during its next turn." compset="PWManuever" summary="Opponent struck by this attack loses his next move action." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="manPWTmBn2" name="Temporal Burn" description="By surrounding your weapon with a bubble of vastly accelerated time, are are able to strike at a foe and burn away at their personal quintessence. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 3d6 points of damage." compset="PWManuever" summary="Attack that inflicts an additional 3d6 points of damage to living targets." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mTarget" tag="Living1" name="One living target"/>
+    </thing>
+  <thing id="manPWCrAg2" name="Chronal Aggression" description="A Riven Hourglass disciple must end fights quickly, as the Sands of Time halt for no man. Heeding this logic, you attack at your foe’s reserves of enduring strength. Make a ranged touch attack against an enemy within range. If it hits, it deals 2d6 + your initiation modifier points of damage, and sickens the target for one minute. A successful Fortitude save (DC 12 + initiation modifier) reduces the duration to one round." compset="PWManuever" summary="Temporal energies ravage foe, inflicting 2d6 + IM damage and sickens them." uniqueness="useronce">
+    <fieldval field="mDuration" value="1 round or 1 minute; see text"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Close"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mSave" tag="FortPart"/>
+    </thing>
+  <thing id="manPWRpSt2" name="Rapid Strike" description="You compress the time needed to strike twice within the span of a single blow. Make two melee attacks. Each attack deals weapon damage as normal, plus an additional 1d6 points of damage." compset="PWManuever" summary="Make two melee attacks, each with +1d6 damage" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mDuration" tag="Instant"/>
+    </thing>
+  <thing id="manPWTmFr3" name="Temporal Fury" description="You surround your weapon with quintessence, the essence of time that withers all things, and strike at your foe with its burning temporal energies. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 2d6 points of damage, and {i}slows{/i} the target (as the spell) for two rounds." compset="PWManuever" summary="Attack deals +2d6 damage and {i}slows{/i} target" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mTarget" tag="Living1"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    </thing>
+  <thing id="manPWTtHG4" name="Tip the Hourglass" description="By wrapping a field of anarchic temporal energy around your weapon, you strike at your foe&apos;s own inner Hourglass, seeking to disrupt its flow. Make a melee attack. If it hits, it deals weapon damage as normal, plus an additional 5d6 points of damage, and target must succeed at a Fortitude save (DC 14 + initiation modifier) or be {i}slowed{/i} for a number of rounds equal to your initiation modifier." compset="PWManuever" summary="Melee attack deals +5d6 damage and may {i}slow{/i} target" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mTarget" tag="Living1"/>
+    <tag group="mSave" tag="FortPart"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    </thing>
+  <thing id="manPWChDr4" name="Chronal Draw" description="By damaging the time-flow on a target&apos;s vital forces, you temporarily age a foe, exhausting their body before their Hourglass can stabilize. Make an attack. If it hits, it deals weapon damage as normal, plus an additional 4d6 points of damage, and the target must succeed at a Will save (DC 14 + initiation modifier) or be exhausted for one minute." compset="PWManuever" summary="Attack deals +4d6 damage and can exhaust target" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Minute1" name="One minute" abbrev="1 min."/>
+    <tag group="mSave" tag="WillPart"/>
+    </thing>
+  <thing id="manPWSoTT5" name="Sands of Time Tornado" description="You accelerate your personal Hourglass, speeding up your mind and body to the point that you seem to be a blur, surrounded by a phantom aura of glittering smoke. Make one melee attack at your highest base attack bonus against each adjacent opponent. You must make a separate attack roll against each opponent. If an attack hits, it deals additional damage equal to twice your initiation modifier, and the target must succeed at a Fortitude save (DC 15 + initiation modifier) or be sickened for 1d4 rounds." compset="PWManuever" summary="Attack each adjacent foe, hits add IM*2 to damage and can sicken targets" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mDuration" tag="Round1d4"/>
+    <tag group="mSave" tag="FortPart"/>
+    <tag group="mTarget" tag="AllAdjEnm"/>
+    </thing>
+  <thing id="manPWTTtl5" name="Time-Thief&apos;s Talons" description="Every being holds within its Hourglass sands of time that mark how long they will reside in this world, and you have learned to steal another’s grains to replenish your own. Make an attack. If it hits, it deals weapon damage as normal, plus additional points of damage equal to twice your initiator level, and regain a number of hit points equal to twice your initiator level." compset="PWManuever" summary="Attack deals IL*2 bonus damage and heals you for same amount" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mRange" tag="MelOrRang"/>
+    </thing>
+  <thing id="manPWStHG6" name="Shatter the Hourglass" description="With a heavy blow, you strike your foe’s Hourglass directly, temporarily shattering it and freezing their timeline in place. Make a melee attack. If it hits, it deals weapon damage as normal, and the target must succeed at a Fortitude save (DC 16 + initiation modifier) or be paralyzed for 1d4 rounds. A successful saving throw negates the paralysis and causes the foe to be {i}slowed{/i} (as the spell) for 1d4 rounds." compset="PWManuever" summary="Melee attack paralyzes or {i}slows{/i} target" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mSave" tag="FortPart"/>
+    </thing>
+  <thing id="manPWTmWv6" name="Temporal Wave" description="You reach deep within your soul and pull forth a handful of quintessence to cast at your foes, wreaking havoc upon their ability to act. When you initiate this maneuver, you create a 30-ft cone of quintessence; creatures caught within the cone are nauseated and {i}slowed{/i} on a failed Will save (DC 16 + initiator modifier) for a number of rounds equal to your your initiation modifier. Targets that succeed their save are {i}slowed{/i} for one round." compset="PWManuever" summary="30-ft cone effect that nauseates and {i}slows{/i} targets" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <fieldval field="mArea" value="30-ft cone"/>
+    <fieldval field="mDuration" value="Initiation modifier in rounds or one round"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="30"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mSave" tag="WillPart"/>
+    </thing>
+  <thing id="manPWSoTH7" name="Sands of Time Hurricane" description="By pouring time-accelerating energies through your form, your perception of time grinds to a halt, allowing you to erupt into a whirlwind of perfect strikes and glittering quintessence at supernatural speed. Make two melee attacks with a +4 bonus on the attack rolls and compare them to the AC of each opponent within your reach. If an opponent is hit, the attacks deal weapon damage as normal, and the target must succeed at a Fortitude save (DC 17 + initiation modifier) or be nauseated for 1 round." compset="PWManuever" summary="Make two attacks with +4 to hit against all adj. foes, can nauseate targets" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="AllEnmRch" name="All enemies within reach" abbrev="All in reach"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mSave" tag="FortPart"/>
+    </thing>
+  <thing id="manPWTmpD7" name="Temporal Dilation" description="By summoning up a time-altering aura into your hand and channeling it through a foe, you can destabilize their Hourglass, pushing them out of sync with the present for a few scant moments. Make a melee touch attack. If it hits, the target disappears from reality for 1d4 rounds. After this duration, the target reappears in exactly the same orientation and condition as before. From the target’s point of view, no time has passed at all. If the space from which the target departed is occupied upon his return to the time stream, he appears in the closest unoccupied space, still in his original orientation. Determine the closest space randomly if necessary. A successful Will save (DC 17 + initiation modifier) reduces the duration of this strike to one round." compset="PWManuever" summary="Melee touch attack causes target to disappear for 1d4 rds." uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mDuration" tag="Round1d4"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mSave" tag="WillPart"/>
+    </thing>
+  <thing id="manPWWoT8" name="Wrath of Time" description="You open your Hourglass and those of all around you, willing their grains to scatter in an attempt to outright erase their futures. When you initiate this maneuver,  you unleash a 60-ft cone of violent temporal energy, reducing people and objects alike to harmless white sand. Make an Autohypnosis check as part of this maneuver. Each enemy or object within the area takes damage equal to twice the result of your check. A successful Fortitude save (DC 18 + initiation modifier) halves the damage. If this damage reduces a creature or object to 0 or fewer hit points, it is entirely disintegrated, leaving only a scattered pile of white dust." compset="PWManuever" summary="Targets in 60-ft cone take damge equal to 2x your Autohyp. check (Fort save for 1/2)" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <fieldval field="mArea" value="Cone-shaped emanation"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Strike"/>
+    <tag group="mInitAct" tag="Standard1"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="mTarget" tag="Creature1"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mSave" tag="FortHalf"/>
+    </thing>
+  <thing id="manPWClkw1" name="Clockwatcher" description="By pulling your perception forward in time for the barest of moments, you are able to cheat fate and act when most would be caught unaware. Unlike other immediate actions, you can initiate this counter while flat-footed, and may use this maneuver at the beginning of a surprise round you otherwise would not be able to act in. You may act during the surprise round normally, and may use this counter to remove the flat-footed condition." compset="PWManuever" summary="As an immediate action, act in a surprise round you normally would not be capable of." uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWStpw2" name="Stopwatch" description="With a dizzying burst of incredible speed, you step out of time, adjusting your position to possibly avoid an attack. You may initiate this counter in response to a melee or ranged attack being made against you. Make an Autohypnosis check, using the attack roll of your opponent as the DC. If you are successful, you may take a 5-foot step as part of this counter. If this movement puts you in a position where the opponent would not have been able to attack you, then the attack is negated." compset="PWManuever" summary="Autohypnosis check vs attack lets you take a 5-ft step and avoid the attack" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWPrTw3" name="Probability Twist" description="While the flows of time are constantly moving, it is possible for a disciple to analyze and alter how the grains fall within his own Hourglass. You may initiate this counter to reroll any d20 roll or damage roll you make in combat on your turn. You must take the result of the reroll, even if it&apos;s worse than the original roll." compset="PWManuever" summary="Reroll any d20 or damage roll you make on your turn" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="AbilType" tag="Super"/>
+    </thing>
+  <thing id="manPWFlDf3" name="Flickering Defense" description="All actions cause new potential futures, and you can force particularly  unlucky futures upon your foes by looking forward and shifting the right sands. You may initiate this counter in response to a melee or ranged attack being made against you or an ally within 60 feet. The attacker takes a -4 penalty on the attack roll, and rolls twice and takes the lower result. You must initiate this counter before the success or failure of the original roll is known." compset="PWManuever" summary="Counter forces attacker to roll twice at -4 and take the worse result" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="60"/>
+    <tag group="mTarget" tag="YouOrAlly"/>
+    </thing>
+  <thing id="manPWTmBA4" name="Temporal Body Adjustment" description="By reversing the flow of your personal Hourglass, you can turn back time, undoing a harmful event. You may initiate this counter when you would be affected by a negative condition (such as being cursed, dazed, paralyzed, or sickened), or are affected by a negative condition. Negate the condition that would affect you, or end any one such condition currently affecting you." compset="PWManuever" summary="Negate one harmful condition" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWRlBr5" name="Relativity Burst" description="By rearranging how your time is managed, you can manipulate the present, shifting your position on the battlefield.  When you initiate this counter, you can immediately take a move action." compset="PWManuever" summary="Immediately gain a move action" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWTmDs6" name="Temporal Distortion" description="By finding yourself in an immediate need of action, you are capable of stretching a tiny amount of time into the moments needed to move yourself away from danger. Use of this counter allows you to make a double move as your immediate action. Movement gained from this counter does not provoke attacks of opportunity due to the speed with which you move." compset="PWManuever" summary="Make a double move immediately; no AoO provked by movement" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="6"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWBttC7" name="Beat the Clock" description="You briefly accelerate your personal timeframe, acting so fast that you appear to be a blur. When you initiate this counter, you can immediately take a standard action, as if you had readied an action. You cannot gain more than one standard action per round this way." compset="PWManuever" summary="Immediately gain a standard action" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="7"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWHoTL8" name="Heart of the Time Lord" description="When the sands within your Hourglass finally run dry, you can force your timeline to restart, willing the sands to reverse within your soul and restore what has been lost. You may initiate this counter in response to taking damage that would reduce you to 0 hit points or less. You recover hit points and are cured of debilitating effects as if a {i}heal{/i} spell had been cast on you, using your initiator level as its caster level." compset="PWManuever" summary="Immediately {i}heal{/i} yourself in response to an attack bringing to to 0 HP or below" uniqueness="useronce">
+    <fieldval field="mPreReq" value="3"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="8"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWBtHG9" name="Break the Hourglass" description="By forcing his will upon the quintessence of the universe and acting within pockets of time so small that blink by within the gap between seconds, the master of the Riven Hourglass turns time on its end and may react to an opponent&apos;s actions before they have even been made. As an immediate action, you react within the area of an opponent&apos;s ability or attack that targets you, and you may take actions before this effect occurs. You gain a standard action and a move action (or if used together a full round action) that you may use as long as the action only affects the the target that the counter was initiated against. If the target is reduced to 0 hit points or fewer than the target&apos;s effect never happens, effectively negating the effect from ever occurring (this would also negate the attack&apos;s effect on other characters as well). You cannot gain more than one standard action and move action per round this way." compset="PWManuever" summary="Immediately gain a full-round action, or a standard and a move" uniqueness="useronce">
+    <fieldval field="mPreReq" value="4"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Counter"/>
+    <tag group="mInitAct" tag="Immed1"/>
+    <tag group="mLevel" tag="9"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWMinH1" name="Minute Hand" description="You make an incredibly swift strike which sacrifices some accuracy for power. As a swift action, make an attack with a -2 penalty on the attack roll. If it hits, it deals weapon damage as normal, plus an additional two points of damage." compset="PWManuever" summary="Swift-action attack with -2 to hit, +2 damage" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mLevel" tag="1"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWUnSt2" name="Unhindered Step" description="By slowing the falling sands of the Hourglass inside your soul, you are capable of greatly accelerating your movements. When you initiate this boost, your base land speed increases by 30 feet until the beginning of your next turn. This adjustment is treated as an enhancement bonus. This boost does not affect other modes of movement, such as burrow, climb, fly, or swim." compset="PWManuever" summary="+30-ft enh. bonus to your land speed for 1 round" uniqueness="useronce">
+    <usesource source="srcPOWEx"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mLevel" tag="2"/>
+    <tag group="mDuration" tag="Round1"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
+  <thing id="manPWGoT4" name="Gift of Time" description="By focusing and carefully gathering glittering grains of quintessence from within your Hourglass into your hands, you can donate time to another with a touch. You can only initiate this boost at the start of your turn, before taking any other actions. Select an adjacent ally you can touch. You can choose to grant them a standard, move, or full-round action. That ally can take the action(s) you selected, and must use them immediately, changing their place in the initiative order as if they had readied an action. You lose the chosen action(s), and cannot take them this turn." compset="PWManuever" summary="Donate your move, standard, or full-round action to an ally" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mLevel" tag="4"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="mTarget" tag="You"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mRange" tag="RTouch"/>
+    <tag group="mTarget" tag="Ally1"/>
+    </thing>
+  <thing id="manPWHrHn5" name="Hour Hand" description="You compress the timeframe of your attack, sacrificing precision to make a lightning-fast strike. After initiating this boost, you can make one additional attack as part of your next attack action. This extra attack is made at your highest attack bonus, with a -4 penalty on the attack roll. If it hits, it deals weapon damage as normal, plus an additional 6d6 points of damage." compset="PWManuever" summary="Next attack action gets bonus attack at highest BAB-4 and +6d6 dmg" uniqueness="useronce">
+    <fieldval field="mPreReq" value="2"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mLevel" tag="5"/>
+    <tag group="mDuration" tag="Instant"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mRange" tag="Melee"/>
+    <tag group="mTarget" tag="Creature1"/>
+    </thing>
+  <thing id="manPWTmSk3" name="Time Skitter" description="By accelerating your personal time-stream, you speed up your movements and accelerate your blows for a few moments. When you initiate this boost, you gain the benefits of a {i}haste{/i} spell for a number of rounds equal to your initiation modifier (+1 to attack rolls, initiative, and Reflex saves, a +30 ft. enhancement bonus to base speed, and one extra attack when making  a full round attack)." compset="PWManuever" summary="Gain {i}haste{/i} for rounds equal to your IM" uniqueness="useronce">
+    <fieldval field="mPreReq" value="1"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="PathOfWar" tag="Manuever"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="Discipline" tag="RivnHglass"/>
+    <tag group="mType" tag="Boost"/>
+    <tag group="mInitAct" tag="Swift1"/>
+    <tag group="mLevel" tag="3"/>
+    <tag group="mDuration" tag="AttrRounds"/>
+    <tag group="mRange" tag="Personal"/>
+    <tag group="mTarget" tag="You"/>
+    </thing>
   </document>
