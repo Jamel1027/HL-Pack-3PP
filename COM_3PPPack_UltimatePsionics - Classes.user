@@ -14727,50 +14727,7 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
   <thing id="cPUDayPowr" name="Daily Powers" description="At 2nd level, each day, you may choose one power from the Psion/Wilder list that is not on your list of powers known and manifest that power as if it was. You must have manifested the power from a power stone at some point prior to choosing it as a daily power and the power’s level may not exceed your maximum power level. You may decide which power to manifest at the time of manifesting. Once this choice has been made, it cannot be changed until you have meditated to regain\nyour daily power points after resting. At 7th level and every five psion levels thereafter, you may choose one additional power per day to treat as if a power known (2 at 7th level, 3 at 12th level, 4 at 17th level). These powers are in addition to your normal powers known.\n\nThis ability replaces the Bonus Feat normally gained by a generalist psion and the powers known gained at each level a daily power is gained, as displayed on Table: The Erudite." compset="ClSpecial">
     <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="cDELETEME" name="Collective" description="A zealot learns to use psionic power to connect willing minds through an internal network that strengthens their psychic bonds. As a standard action, a zealot can join any number of willing targets into his collective (up to his limit, see below). The zealot must have line of sight to each target, each target must have a Wisdom score of at least 1, and all targets must be within Medium range (100 ft. + 10 ft. per class level). The collective can contain up to his Charisma modifier or half his zealot level (minimum 1), whichever is higher, plus the intensity of his zeal. The zealot is always considered a member of his own collective, and does not count against this limit. \n\nThe zealot can choose to remove a member as a free action on his turn, and any member can voluntarily leave the collective as a free action on their turn. Any member whose Wisdom drops to zero or who moves out of range of the collective is automatically removed. If a member enters a null psionics field, the connection to the collective is suppressed until the member leaves the field. A member who leaves the collective for any reason immediately loses any and all benefits they may have gained from being a member. A zealot is aware of the status of his collective and can, roughly, sense the presence of each member, although beyond telling if such a creature is still a member, this has no mechanical benefit until higher levels (see telepathy below).\n\nA zealot can initiate certain maneuvers through his collective. If a zealot maneuver specifies one or more willing targets (or is harmless) and has a range greater than personal, he can initiate this maneuver on a member of his collective regardless of the range of the actual maneuver. All other non-range restrictions still apply. \n\nIf he is capable of manifesting powers, casting spells, or initiating maneuvers from a different class (as is the case for a multiclass zealot), any compatible spell, power, or maneuver with a range greater than touch can also be used through the collective. He may manifest any power with the Network Descriptor this way, regardless of their actual ranges or targets.\n\nIf a member of the collective dies, the member is removed from the collective and the zealot must make a Fortitude save (DC 15) or lose 1 power point for every Hit Die of the fallen member or be sickened for an equal number of rounds.\n\nAt 15th level, a zealot&apos;s collective range is limitless on the same plane as the zealot\n\nAt 19th level, a zealot&apos;s range reaches even across other planes and dimensions." compset="ClSpecial">
-    <comment>abValue = Max members
-abValue2 = Feet/level added to range</comment>
-    <fieldval field="abRange" value="100"/>
-    <fieldval field="abValue2" value="10"/>
-    <tag group="AbilType" tag="Super" name="Supernatural Ability" abbrev=" (Su)"/>
-    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
-    <eval phase="Final" priority="10000"><![CDATA[      field[livename].text = field[thingname].text & " (" & field[abValue].value & " members, "
-      if (field[xCount].value = 1) then
-        field[livename].text &= field[abRange].value & " " & tagnames[abRange.?] & ")"
-      elseif (field[xCount].value = 2) then
-        field[livename].text &= "Same Plane)"
-
-      elseif (field[xCount].value = 3) then
-        field[livename].text &= "Anywhere)"
-
-      endif
-      if (field[xIndex].value = 2) then
-        field[listname].text = "Collective Range (unlimited)"
-        field[abSumm].text = "Your collective's range is unlimited within the same plane"
-      elseif (field[xIndex].value = 3) then
-        field[listname].text = "Collective Range (planar)"
-        field[abSumm].text = "Your collective's range now extends across all planes"
-      endif]]></eval>
-    <eval phase="PostAttr" priority="1000" index="2"><![CDATA[      ~ Set max members from init mod
-      var initMod as number
-      call PWgetIMod
-      field[abValue].value += maximum(round(field[xTotalLev].value / 2,0,-1),initMod)
-      ~ Add zeal value to max members
-      field[abValue].value += #value[cPW5Zeal]
-
-      field[abSumm].text = "You have a collective of up to " & field[abValue].value & " individuals"
-
-      if (field[xCount].value = 1) then
-        field[abRange].value += (field[abValue2].value * field[xTotalLev].value)
-        perform assign[abRange.Feet]
-        field[abSumm].text &= " within " & field[abRange].value & " feet" 
-      elseif (field[xCount].value = 2) then
-        field[abRange].value = 0
-        perform delete[abRange.Plane]
-        field[abSumm].text &= " on the same plane"
-      endif]]></eval>
-    </thing>
-  <thing id="arPUShaHnt" name="Shadow Hunter" description="*Not fully implemented yet\nEven the most intelligent of races can have fears of what might be lurking within the shadows, and a special breed of dread known as shadow hunters have learned how to use their connection to fears to manipulate darkness to aid them. Whether it is concealing them from sight or turning shadows into substance, shadow hunters are at home where others fear the unknown." compset="ClassVary" uniqueness="unique">
+<thing id="arPUShaHnt" name="Shadow Hunter" description="*Not fully implemented yet\nEven the most intelligent of races can have fears of what might be lurking within the shadows, and a special breed of dread known as shadow hunters have learned how to use their connection to fears to manipulate darkness to aid them. Whether it is concealing them from sight or turning shadows into substance, shadow hunters are at home where others fear the unknown." compset="ClassVary" uniqueness="unique">
     <fieldval field="srcPageNum" value="269"/>
     <arrayval field="cvBonFtMod" index="4" value="-1"/>
     <usesource source="pPsiUn"/>
