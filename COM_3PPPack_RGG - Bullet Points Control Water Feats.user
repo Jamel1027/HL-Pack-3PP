@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document signature="Hero Lab Data">
+  <loadonce key="COM_3PPPack_RGG - Bullet Points Control Water Feats.user"/>
   <fileinfo>
-    <info_author>W Birchler
-wwbbsffan68@gmail.com
-Sethvir - Paizo Boards
-Asandir - Lone Wolf Boards</info_author>
-    <info_history>Ver 1.0
-Intial Functionality
-February 2015
+    <info_author>
+      W Birchler
+      wwbbsffan68@gmail.com
+      Sethvir - Paizo Boards
+      Asandir - Lone Wolf Boards</info_author>
+    <info_history>
+      Ver 1.0
+      Intial Functionality
+      February 2015
 
-The High Concept: Five feats that greatly expand the options available to characters who wish to specialize in the classic and venerable control water spell.</info_history>
+      The High Concept: Five feats that greatly expand the options available to characters who wish to specialize in the classic and venerable control water spell.</info_history>
     </fileinfo>
   <thing id="fSGEldrchW" name="Eldritch Well" description="You can summon up water into the spaces you magically create.\n\n{b}Prerequisites{/b}: Knowledge (engineering) 1 rank, ability to cast {i}control water{/i}.\n\n{b}Benefit{/b}: Whenever you use a spell, spelllike ability, magic item, or supernatural ability to create a space able to hold water (such as with create pit, an encircled wall of stone, or even a portable hole), as a swift action you may fill that space with water up to 1 foot deep. This effect acts as a {i}create water{/i} spell cast at your character level (so any effect or magic that would prevent create water, also prevents this feat from functioning). The water within this area can be affected by control water normally." compset="Feat" summary="You can summon up water into the spaces you magically create." uniqueness="useronce">
     <usesource source="BP5CntlWtr"/>
