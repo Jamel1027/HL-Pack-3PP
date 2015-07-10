@@ -509,7 +509,7 @@
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="abAction" tag="PUExpFocus"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="abAction" tag="PUManFocus"/>
     <eval phase="Final" priority="50000"><![CDATA[
       ~ If we're disabled, do nothing
@@ -524,7 +524,7 @@
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="abAction" tag="PUExpFocus"/>
     <eval phase="Final" priority="50000"><![CDATA[
       ~ If we're disabled, do nothing
@@ -610,7 +610,7 @@
     <fieldval field="abValue" value="1"/>
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="abAction" tag="PUManFocus"/>
     <eval phase="Final" priority="50000"><![CDATA[
@@ -657,7 +657,7 @@
     <fieldval field="abValue" value="1"/>
     <fieldval field="abValue2" value="2"/>
     <usesource source="pPsiUn"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="abAction" tag="PUManFocus"/>
@@ -686,7 +686,7 @@
     <fieldval field="abValue3" value="6"/>
     <fieldval field="actName" value="Expend Focus"/>
     <usesource source="pPsiUn"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="User" tag="Activation"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec" name="ShowSpec" abbrev="ShowSpec"/>
@@ -2004,7 +2004,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <bootstrap thing="cfgPUUnTal"></bootstrap>
     <eval phase="PreLevel" priority="10000"><![CDATA[
       ~ If we're disabled, do nothing
@@ -2048,7 +2048,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <fieldval field="cfgAllwPw1" value="component.BasePower  &amp; sLevel.1"/>
     <fieldval field="cfgPower1" value="Power"/>
     <usesource source="pPsiUn"/>
-    <tag group="ProductId" tag="PUProdID" name="Community Created Psionics" abbrev="Community Created Psionics"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="StandardDC" tag="aCHA"/>
     <eval phase="Render" priority="99999"><![CDATA[
       ~ Create nice wording that says "XXXXXXXs: 0 of 1"
@@ -2083,7 +2083,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <fieldval field="cfgAllwPw1" value="component.BasePower  &amp; sLevel.0"/>
     <fieldval field="cfgPower1" value="Talent"/>
     <usesource source="pPsiUn"/>
-    <tag group="ProductId" tag="PUProdID" name="Community Created Psionics" abbrev="Community Created Psionics"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="StandardDC" tag="aCHA"/>
     <eval phase="Render" priority="99999"><![CDATA[
       ~ Create nice wording that says "XXXXXXXs: 0 of 1"

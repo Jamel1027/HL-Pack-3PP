@@ -1835,7 +1835,7 @@ This should allow for people making custom races to have it work correctly for t
 
 Note: This does not work correctly if it is source marked.
 Note2: DO NOT CLICK the "All Characters?" option.]]></comment>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="PostLevel" priority="10000">~ Give a bonus to Power Points each time we are taken
       field[abValue].value += field[fcCount].value    
       #resmax[resPowerPt] += field[abValue].value
@@ -6495,7 +6495,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <tag group="AbilType" tag="Super"/>
     <tag group="User" tag="Tracker"/>
     <tag group="Usage" tag="Rounds"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="PostAttr" priority="10000"><![CDATA[
       ~NOTE:
       ~ abValue is bonus
@@ -6524,7 +6524,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <tag group="AbilType" tag="Super"/>
     <tag group="abRange" tag="Feet"/>
     <tag group="abDuration" tag="Instant"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="WeaponSpec"/>
     <tag group="wCategory" tag="RangeProj"/>
     <tag group="Helper" tag="SingleAtt"/>
@@ -6579,7 +6579,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
   <thing id="cPUEnhDisr" name="Enhanced Disruption" description="At 3rd level and every two levels thereafter, the cryptic’s disrupt pattern deals an additional 1d6 points of damage. This additional damage is not multiplied on a critical hit or by using feats such as Vital Strike, but it is halved if the creature struck is not of the cryptic’s active creature type." compset="ClSpecial" summary="Deal additional damage with Disrupt Pattern.">
     <fieldval field="abValue2" value="6"/>
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="LvNameApp" tag="AppText"/>
     <tag group="LvNameApp" tag="SignAppVal"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
@@ -6623,7 +6623,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <tag group="Helper" tag="SpecUp"/>
     </thing>
   <thing id="cPUScribTa" name="Scribe Tattoo" description="At 1st level, cryptics receive Scribe Tattoo as a bonus feat. A cryptic can scribe tattoos of any power she knows (up to 3rd level). The power must be one that can be made into a tattoo. The cryptic does not need to meet the prerequisites for this feat." compset="ClSpecial">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="SpecUp"/>
     <bootstrap thing="fPUScrTatt">
       <containerreq phase="First" priority="500">!AbReplace.cPUScribTa</containerreq>
@@ -6631,7 +6631,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
       </bootstrap>
     </thing>
   <thing id="cPUTrapmak" name="Trapmaker" description="A cryptic gains a competence bonus on Craft (traps) checks equal to her class level." compset="ClSpecial">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -6642,7 +6642,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     </thing>
   <thing id="cPUHiddenP" name="Hidden Pattern" description="A cryptic learns how to recognize patterns in light and sound around her that can help her to mask her presence. At 2nd level, a cryptic gains a +2 competence bonus on all Stealth checks. This bonus increases to +4 at 5th level, and then again to +6 at 8th level. At 10th level, as long as the cryptic maintains psionic focus, she can use the Stealth skill to hide, even while being observed." compset="ClSpecial" summary="You gain a competence bonus on all Stealth checks.">
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="SpecUp"/>
     <tag group="abAction" tag="PUManFocus"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
@@ -6667,16 +6667,16 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     </thing>
   <thing id="cPURapDef" name="Rapid Defense" description="Starting at 4th level, a cryptic can use her altered defense ability as a free action by expending her psionic focus. The cryptic may even do this when it is not her turn." compset="ClSpecial" summary="Use your altered defense ability as a free action by expending your psionic focus.">
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="abAction" tag="PUExpFocus"/>
     <tag group="abAction" tag="Free"/>
     </thing>
   <thing id="cPUSwiftTr" name="Swift Trapper" description="At 6th level, a cryptic can create traps with astounding speed. It takes a cryptic half the normal amount of time to create traps." compset="ClSpecial" summary="It takes a cryptic half the normal amount of time to create traps.">
     <tag group="AbilType" tag="Extra"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
   <thing id="cPUEndDef" name="Enduring Defense" description="A cryptic of 14th level can choose any option from the Altered Defense ability and always be under that effect. The cryptic can still change the effect as a swift action, but she is no longer limited to how many rounds per day she can have Altered Defense active." compset="ClSpecial" summary="Altered Defense is usable unlimited amount of time per day.">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="Final" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
       doneif (tagis[Helper.ShowSpec] <> 1)
@@ -6693,7 +6693,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     </thing>
   <thing id="cPUUncPatt" name="Unchanging Pattern" description="At 18th level, the cryptic gains power resistance equal to 12 + her class level." compset="ClSpecial" summary="Gain power resistance equal to 12 + her class level.">
     <fieldval field="abValue" value="12"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="Helper" tag="SpecUp"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're not shown, just get out now
@@ -6728,7 +6728,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="Final" priority="10050"><![CDATA[
 
       ~ Calculate total dice from
@@ -6843,7 +6843,7 @@ field[livename].text = "Augment Suit (" & myPts & ") (" & myTimes & " rounds)"]]
     <usesource source="pPsiUn"/>
     <tag group="SpecSource" tag="cHelpPU1"/>
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="Final" priority="10050"><![CDATA[
 
       ~ Calculate total dice from
@@ -13342,16 +13342,16 @@ field[abSumm].text = "Gain total concealment (50% miss chance) for " & #attrmod[
     </thing>
   <thing id="cPUARefSho" name="Reflexive Shot" description="At 6th level, a soul archer can make attacks of opportunity with his mind arrows. The soul archer still only threatens squares he could reach with his mind blade or with unarmed strikes, but can still only make one attack of opportunity per round (unless he has additional sources of attacks of opportunity such as the Combat Reflexes feat)." compset="ClSpecial" summary="Make AoO&apos;s with your mind arrow.">
     <tag group="AbilType" tag="Extra"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
   <thing id="cPUAPhaSho" name="Phasing Shot" description="Once a soul archer has achieved 8th level, he can expend his psionic focus and make a single ranged touch attack as a standard action and launch a mind arrow at a target within range. The mind arrow travels to the target in a straight path, passing through any nonmagical or nonpsionic barrier or wall on its way. (A {i}wall of force{/i}, {i}wall of fire{/i}, {i}wall of ectoplasm{/i}, or the like stops a mind arrow.) This ability negates cover and concealment, but otherwise the attack is rolled normally." compset="ClSpecial" summary="Expend your focus to make a ranged touch attack with your mind arrow.">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="abAction" tag="PUExpFocus"/>
     <tag group="abAction" tag="Standard"/>
     </thing>
   <thing id="cPUAEmpSho" name="Empowered Shot" description="At 10th level, the soul archer can expend his psionic focus to grant the effect of a single feat that requires focus expenditure to apply to all attacks in a full attack sequence that round. The feat must only work on ranged attacks." compset="ClSpecial" summary="Expend your focus to grant the effect of a feat that requires focus expenditure to apply to full attack.">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="AbilType" tag="Super"/>
     <tag group="abAction" tag="PUExpFocus"/>
     </thing>
@@ -13671,7 +13671,7 @@ perform hero.findchild[BaseClSpec,"thingid.cSknEnhMB & SpecSource.cHelpSkn & ClS
     </thing>
   <thing id="cPUNBWFin" name="Weapon Finesse" description="A nimble blade gains the Weapon Finesse feat as a bonus feat at 1st level. This replaces the bonus feat normally gained at 1st level." compset="ClSpecial">
     <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <bootstrap thing="fWepFin"></bootstrap>
     </thing>
   <thing id="cPUNBMinFi" name="Mind Blade Finesse" description="A 1st level nimble blade gains the Mind Blade Finesse blade skill*. This replaces proficiency with shields and medium armor." compset="ClSpecial">
@@ -13684,13 +13684,13 @@ perform hero.findchild[BaseClSpec,"thingid.cSknEnhMB & SpecSource.cHelpSkn & ClS
     </thing>
   <thing id="cPUNBPirSt" name="Piranha Strike" description="At 2nd level nimble blade gains the Piranha Strike* feat as a bonus feat. This replaces the blade skill normally gained at 2nd level." compset="ClSpecial">
     <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <bootstrap thing="fPUPiranha">
       <containerreq phase="First" priority="500"><![CDATA[count:Classes.Soulknife >= 2]]></containerreq>
       </bootstrap>
     </thing>
   <thing id="cPUNBAgBla" name="Agile Blade" description="A nimble blade of 7th level treats his mind blade as if it had the agile weapon special ability. This does not count toward the nimble blade’s mind blade’s enhancement bonus. This replaces the mind blade enhancement increase gained at 7th level." compset="ClSpecial">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[~ If the hero doesn't have this ability, ignore the following.
 doneif (tagis[Helper.ShowSpec] = 0)
 
@@ -13699,7 +13699,7 @@ foreach pick in hero from BaseWep where "IsWeapon.wMindBlade"
   nexteach]]></eval>
     </thing>
   <thing id="cPUNBAdaFo" name="Adaptive Form" description="Once a nimble blade has reached 10th level, he has learned how to rapidly alter his use of the mind blade to adapt to any particular situation. As an immediate action and by expending psionic focus, the nimble blade can select any one blade skill whose requirements he meets and be treated as having that blade skill. The effect of the blade skill selected lasts until he expends his psionic focus as an immediate action to change it. This replaces the blade skill normally gained at 10th level." compset="ClSpecial">
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="abAction" tag="PUExpFocus"/>
     <tag group="abAction" tag="Immediate"/>
     </thing>
@@ -13980,7 +13980,7 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     </thing>
   <thing id="cPUAltDef1" name="Altered Defense, Absorb" description="A cryptic learns early on to modify the patterns around her to grant her protection as a swift action. The cryptic chooses from the options below and may only have one such effect active at any given time. The cryptic can use this ability for a number of rounds per day equal to 4 + her Intelligence modifier. The cryptic can maintain this ability as long as she wants as long as she has rounds available, or dismiss it at any time as a free action.\n\n{i}Absorb:{/i} The cryptic gains DR 1/-." compset="ClSpecial" summary="The cryptic gains DR 1/-.">
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="User" tag="Activation"/>
     <eval phase="PostAttr" priority="11000"><![CDATA[
       ~NOTE:
@@ -14004,7 +14004,7 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     </thing>
   <thing id="cPUAltDef2" name="Altered Defense, Deflect" description="A cryptic learns early on to modify the patterns around her to grant her protection as a swift action. The cryptic chooses from the options below and may only have one such effect active at any given time. The cryptic can use this ability for a number of rounds per day equal to 4 + her Intelligence modifier. The cryptic can maintain this ability as long as she wants as long as she has rounds available, or dismiss it at any time as a free action.\n\n{i}Deflect:{/i} The cryptic gains a +1 dodge bonus to her AC." compset="ClSpecial" summary="The cryptic gains a +1 dodge bonus to her AC.">
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="User" tag="Activation"/>
     <eval phase="PostAttr" priority="11000"><![CDATA[
       ~NOTE:
@@ -14028,7 +14028,7 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     </thing>
   <thing id="cPUAltDef3" name="Altered Defense, Retaliate" description="A cryptic learns early on to modify the patterns around her to grant her protection as a swift action. The cryptic chooses from the options below and may only have one such effect active at any given time. The cryptic can use this ability for a number of rounds per day equal to 4 + her Intelligence modifier. The cryptic can maintain this ability as long as she wants as long as she has rounds available, or dismiss it at any time as a free action.\n\n{i}Retaliate:{/i} The cryptic gains a +1 bonus on her attack rolls against any opponent that successfully hit her since her last turn." compset="ClSpecial" summary="+1 bonus on your attack rolls against any opponent that hit you since your last turn.">
     <tag group="AbilType" tag="Super"/>
-    <tag group="ProductId" tag="PUProdID"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <tag group="User" tag="Activation"/>
     <eval phase="PostAttr" priority="11000"><![CDATA[
       ~NOTE:
