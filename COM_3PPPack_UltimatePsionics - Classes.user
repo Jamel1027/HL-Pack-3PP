@@ -2993,23 +2993,26 @@ if (hero.tagis[Classes.Monk] <> 0) then
     <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
     <tag group="abAction" tag="PUManFocus"/>
     <bootstrap thing="xDamRd">
-      <autotag group="SpecSource" tag="cHelpFst"/>
       </bootstrap>
-    <eval phase="PostLevel" priority="10000"><![CDATA[field[listname].text = "Infused Body (DR: " & field[xIndex].value & "/-)"
+    <eval phase="PostLevel" priority="10000"><![CDATA[
+      field[listname].text = field[name].text & " (DR: " & field[xIndex].value & "/-)"
 
-  ~These calculations should only happen for the first copy
-  doneif (tagis[Helper.FirstCopy] = 0)
+      ~ These calculations should only happen for the first copy
+      doneif (tagis[Helper.FirstCopy] = 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] = 0)
 
-  ~ If we're not shown, just get out now
-  doneif (tagis[Helper.ShowSpec] = 0)
+      field[abValue].value += field[xCount].value
+      field[CustDesc].text = "Damage Reduction (" & field[abValue].value & ") against weapons and natural attacks."
 
-  field[abValue].value += field[xCount].value
-  field[CustDesc].text = "Damage Reduction (" & field[abValue].value & ") against weapons and natural attacks."
+      var v_focus as number
+      call PUPsiFocus
+      ~ If Not psionically focused get out now
+      doneif (v_focus <> 1)
 
-~If psionically focused, add the Damage Reduction
-if (hero.tagis[Hero.PsiFocus] <> 0) then
-  hero.child[xDamRd].field[abValue].value = maximum(hero.child[xDamRd].field[abValue].value, field[abValue].value)
-endif]]></eval>
+      ~ If psionically focused, add the Damage Reduction
+      #applydr[xDamRd,field[abValue].value]
+      ]]></eval>
     </thing>
   <thing id="cMesmerGlo" name="Mesmerising Glow" description="A psychic fist of 4th level can, as a standard action, spend 1 ki point to perform a visually-dazzling display, dazing up to half his class level in targets for one round unless the targets make a successful Will save (DC 10 + 1/2 psychic fist level + psychic fist&apos;s Wisdom modifier). All targets must be within 30 feet of the psychic fist and have line of sight to him to be affected." compset="ClSpecial">
     <tag group="AbilType" tag="Super"/>
