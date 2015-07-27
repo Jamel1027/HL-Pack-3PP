@@ -669,8 +669,20 @@
       field[abSumm].text = "Focus ranged attacks deal " & signed(field[abValue].value) & " dmg. Expend focus to do " & signed(field[abValue2].value) & "d6."
       
       field[livename].text = field[name].text & " " & signed(field[abValue].value) & " / " & signed(field[abValue2].value) & "d6"]]></eval>
-    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
+    <eval phase="PostAttr" priority="10000" index="2"><![CDATA[
+      ~ If we're disabled, do nothing
+      doneif (tagis[Helper.FtDisable] <> 0)
+
+      var v_focus as number
+      call PUPsiFocus
+      ~ If not psionically focused get out now!
+      doneif (v_focus = 0)
+
+      foreach pick in hero from BaseWep where "wCategory.Range?"
+        eachpick.field[dmrBonus].value += field[abValue].value
+      nexteach]]></eval>
     <exprreq message="Point Blank Shot required." iserror="no"><![CDATA[#hasfeat[fPointBlnk] <> 0]]></exprreq>
+    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
     </thing>
   <thing id="fPUPsiTal" name="Psionic Talent" description="You gain additional power points to supplement those you already had.\n\n{b}Prerequisite{/b}: Having a power point reserve.  \n\n{b}Benefit{/b}: When you take this feat for the first time, you gain 2 power points.  \n\n{b}Special{/b}: You can take this feat multiple times. Each time you take the feat after the first time, the number of power points you gain increases by 1." compset="Feat" summary="Gain 2 or 1 extra power points.">
     <usesource source="pPsiUn"/>
