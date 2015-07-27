@@ -678,9 +678,7 @@
       ~ If not psionically focused get out now!
       doneif (v_focus = 0)
 
-      foreach pick in hero from BaseWep where "wCategory.Range?"
-        eachpick.field[dmrBonus].value += field[abValue].value
-      nexteach]]></eval>
+      hero.childfound[Damage].field[dmrBonus].value += field[abValue].value]]></eval>
     <exprreq message="Point Blank Shot required." iserror="no"><![CDATA[#hasfeat[fPointBlnk] <> 0]]></exprreq>
     <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
     </thing>
