@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document signature="Hero Lab Data">
+  <loadonce key="COM_3PPPack_PathOfWarEx - Archetypes"/>
   <thing id="arPWMyrm" name="Myrmidon" description="Some fighters attend grand colleges of war where they learn to master more esoteric martial forms, and some learn the techniques of many different schools of combat and forge their own path. Others are trained in small regiments to fight as a single cohesive, adaptable unit where all members are capable of playing the other&apos;s parts. These fighters are known as myrmidons, the pinnacle of the fighter&apos;s tradition of adaptability, ingenuity, and enduring strength." compset="ClassVary" uniqueness="unique">
     <fieldval field="cvSkillPts" value="4"/>
     <arrayval field="cvBonFtMod" index="1" value="-1"/>
