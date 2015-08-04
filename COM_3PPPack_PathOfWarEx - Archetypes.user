@@ -999,12 +999,189 @@ abValue2 stores the extra bonus vs Claimed targets</comment>
     <arrayval field="cvCustTot" index="18" value="-4"/>
     <arrayval field="cvCustTot" index="19" value="-5"/>
     <arrayval field="cvBonFtMod" index="1" value="-1"/>
+    <arrayval field="cvCustTTot" index="0" value="1"/>
+    <arrayval field="cvCustTTot" index="3" value="2"/>
+    <arrayval field="cvCustTTot" index="7" value="3"/>
+    <arrayval field="cvCustTTot" index="11" value="4"/>
+    <arrayval field="cvCustTTot" index="15" value="5"/>
+    <arrayval field="cvCustTTot" index="19" value="6"/>
     <usesource source="srcPathOfW" parent="pDscar" name="DSP - Path of War"/>
     <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
     <tag group="ClVaryName" tag="AppParen" name="Append (in Parentheses)" abbrev="Append (in Parentheses)"/>
     <tag group="AllowC3rd" tag="cHelpPW1"/>
     <tag group="ClassSkill" tag="skPerfDanc"/>
-    <bootstrap thing="cCfgMyrm"></bootstrap>
+    <bootstrap thing="cPWHMHdSpc">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPWHBHdWep">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPWHBPHSpc">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPWHBGmbts">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cCfgPWHdBl"></bootstrap>
     <link linkage="varies" thing="cHelpRog"/>
+    </thing>
+  <thing id="mHelpPWHBl" name="Hidden Blade Maneuvers" compset="PWManList">
+    <arrayval field="cManKnown" index="0" value="3"/>
+    <arrayval field="cManKnown" index="1" value="4"/>
+    <arrayval field="cManKnown" index="2" value="5"/>
+    <arrayval field="cManKnown" index="3" value="5"/>
+    <arrayval field="cManKnown" index="4" value="6"/>
+    <arrayval field="cManKnown" index="5" value="6"/>
+    <arrayval field="cManKnown" index="6" value="7"/>
+    <arrayval field="cManKnown" index="7" value="7"/>
+    <arrayval field="cManKnown" index="8" value="8"/>
+    <arrayval field="cManKnown" index="9" value="8"/>
+    <arrayval field="cManKnown" index="10" value="9"/>
+    <arrayval field="cManKnown" index="11" value="9"/>
+    <arrayval field="cManKnown" index="12" value="10"/>
+    <arrayval field="cManKnown" index="13" value="10"/>
+    <arrayval field="cManKnown" index="14" value="11"/>
+    <arrayval field="cManKnown" index="15" value="11"/>
+    <arrayval field="cManKnown" index="16" value="12"/>
+    <arrayval field="cManKnown" index="17" value="12"/>
+    <arrayval field="cManKnown" index="18" value="13"/>
+    <arrayval field="cManKnown" index="19" value="13"/>
+    <arrayval field="cManReady" index="0" value="3"/>
+    <arrayval field="cManReady" index="1" value="3"/>
+    <arrayval field="cManReady" index="2" value="3"/>
+    <arrayval field="cManReady" index="3" value="4"/>
+    <arrayval field="cManReady" index="4" value="4"/>
+    <arrayval field="cManReady" index="5" value="4"/>
+    <arrayval field="cManReady" index="6" value="4"/>
+    <arrayval field="cManReady" index="7" value="4"/>
+    <arrayval field="cManReady" index="8" value="4"/>
+    <arrayval field="cManReady" index="9" value="5"/>
+    <arrayval field="cManReady" index="10" value="5"/>
+    <arrayval field="cManReady" index="11" value="5"/>
+    <arrayval field="cManReady" index="12" value="5"/>
+    <arrayval field="cManReady" index="13" value="5"/>
+    <arrayval field="cManReady" index="14" value="6"/>
+    <arrayval field="cManReady" index="15" value="6"/>
+    <arrayval field="cManReady" index="16" value="6"/>
+    <arrayval field="cManReady" index="17" value="6"/>
+    <arrayval field="cManReady" index="18" value="6"/>
+    <arrayval field="cManReady" index="19" value="7"/>
+    <arrayval field="cStances" index="0" value="1"/>
+    <arrayval field="cStances" index="1" value="1"/>
+    <arrayval field="cStances" index="2" value="1"/>
+    <arrayval field="cStances" index="3" value="2"/>
+    <arrayval field="cStances" index="4" value="2"/>
+    <arrayval field="cStances" index="5" value="2"/>
+    <arrayval field="cStances" index="6" value="2"/>
+    <arrayval field="cStances" index="7" value="2"/>
+    <arrayval field="cStances" index="8" value="2"/>
+    <arrayval field="cStances" index="9" value="3"/>
+    <arrayval field="cStances" index="10" value="3"/>
+    <arrayval field="cStances" index="11" value="3"/>
+    <arrayval field="cStances" index="12" value="3"/>
+    <arrayval field="cStances" index="13" value="3"/>
+    <arrayval field="cStances" index="14" value="4"/>
+    <arrayval field="cStances" index="15" value="4"/>
+    <arrayval field="cStances" index="16" value="4"/>
+    <arrayval field="cStances" index="17" value="4"/>
+    <arrayval field="cStances" index="18" value="4"/>
+    <arrayval field="cStances" index="19" value="4"/>
+    <arrayval field="cMaxManLvl" index="0" value="1"/>
+    <arrayval field="cMaxManLvl" index="1" value="1"/>
+    <arrayval field="cMaxManLvl" index="2" value="1"/>
+    <arrayval field="cMaxManLvl" index="3" value="2"/>
+    <arrayval field="cMaxManLvl" index="4" value="2"/>
+    <arrayval field="cMaxManLvl" index="5" value="2"/>
+    <arrayval field="cMaxManLvl" index="6" value="3"/>
+    <arrayval field="cMaxManLvl" index="7" value="3"/>
+    <arrayval field="cMaxManLvl" index="8" value="4"/>
+    <arrayval field="cMaxManLvl" index="9" value="4"/>
+    <arrayval field="cMaxManLvl" index="10" value="5"/>
+    <arrayval field="cMaxManLvl" index="11" value="5"/>
+    <arrayval field="cMaxManLvl" index="12" value="6"/>
+    <arrayval field="cMaxManLvl" index="13" value="6"/>
+    <arrayval field="cMaxManLvl" index="14" value="6"/>
+    <arrayval field="cMaxManLvl" index="15" value="6"/>
+    <arrayval field="cMaxManLvl" index="16" value="6"/>
+    <arrayval field="cMaxManLvl" index="17" value="6"/>
+    <arrayval field="cMaxManLvl" index="18" value="6"/>
+    <arrayval field="cMaxManLvl" index="19" value="6"/>
+    <usesource source="srcPOWEx"/>
+    <tag group="UseAttr" tag="aINT"/>
+    <tag group="PathOfWar" tag="CstManProg"/>
+    <tag group="Discipline" tag="MithCurr"/>
+    <tag group="Discipline" tag="ThrashDrag"/>
+    <tag group="Discipline" tag="VeiledMoon"/>
+    <link linkage="powClass" thing="cHelpRog"/>
+    <link linkage="powCfg" thing="cCfgPWHdBl"/>
+    </thing>
+  <thing id="cCfgPWHdBl" name="Hidden Blade Maneuvers" compset="Configure" uniqueness="unique">
+    <tag group="PathOfWar" tag="Config" name="Configurable" abbrev="Configurable"/>
+    <tag group="ProductId" tag="HLCommunit" name="Communit" abbrev="HLCommunit"/>
+    <bootstrap thing="mHelpPWHBl"></bootstrap>
+    <prereq message="You have activated more stances than allowed">
+      <validate>var ValidStaOn as number
+        Call ValidStaOn
+        @valid = ValidStaOn</validate>
+      </prereq>
+    <prereq message="You have too many maneuvers readied">
+      <validate>var ValidManOn as number
+        Call ValidManOn
+        @valid = ValidManOn</validate>
+      </prereq>
+    </thing>
+  <thing id="cPWHMHdSpc" name="Hidden Specialization" description="At 1st level, the hidden blade adds an additional discipline to his list of known disciplines from the following list: Broken Blade, Shattered Mirror, or Tempest Gale.  He adds the associated skill of the discipline to his list of class skills if it is not already a class skill, and can learn and ready maneuvers from the discipline as normal." compset="ClSpecial" summary="Add Broken Blade, Shattered Mirror, or Tempest Gale">
+    <fieldval field="usrCandid1" value="PathOfWar.selDisc &amp; (Discipline.BrokenBlad | Discipline.ShaMirror | Discipline.TmpGale)"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="Helper" tag="SpecUp" name="SpecUp" abbrev="SpecUp"/>
+    <tag group="Hide" tag="Statblock" name="Statblock" abbrev="Statblock"/>
+    <tag group="AbilType" tag="Extra"/>
+    <eval phase="First" index="2">~ Let the PWManlist component know that this class has to choose disciplines
+      perform root.linkage[varies].assign[PathOfWar.selDisc]</eval>
+    <eval phase="PostLevel" priority="10000">~ Add two selected discipline
+      if (field[usrChosen1].ischosen = 1) then
+        perform field[usrChosen1].chosen.pulltags[Discipline.?]
+        perform hero.childfound[mHelpPWHBl].pushtags[Discipline.?]
+      endif</eval>
+    </thing>
+  <thing id="cPWHBHdWep" name="Hidden Weapons" description="The Hidden Blade is adept at storing and retrieving weapons from places that no one would expect to find them.  At 1st level, he gains Quick Draw as a bonus feat even if he does not meet the prerequisites and can draw hidden weapons as a free action." compset="ClSpecial" summary="Gain Quick Draw as a bonus feat, draw hidden weapons as free action">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    <bootstrap thing="fQuickDraw">
+      <autotag group="thing" tag="skipprereq"/>
+      </bootstrap>
+    <eval phase="Render" priority="10000"><![CDATA[      ~ Append to the Quick Draw description
+      #appenddesc[fQuickDraw, "{b}" & field[name].text & "{/b}: You can draw a hidden weapon as a free action"]]]></eval>
+    </thing>
+  <thing id="cPWHBPHSpc" name="Portable Hole Specialist" description="Hidden Blades are adept at smuggling and storing objects in extradimensional spaces, and can retrieve items from {i}bags of holding{/i} or {i}portable holes{/i} as a move action, regardless of how full the bag is." compset="ClSpecial" summary="Use {i}bags of holding{/i} or {i}portable holes{/i} as a move action">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="AbilType" tag="Extra"/>
+    </thing>
+  <thing id="cPWHBGmbts" name="Gambits" description="The rogue is a cunning warrior who seizes opportunities as they present themselves to put his enemies in untenable positions. At 1st level, a rogue selects two gambits as methods by which the rogue can recover expended maneuvers. Each gambit possesses three aspects a risk, a rake, and a reward.\n\nEach gambit&apos;s risk describes an action that the rogue must undertake in order to attempt to recover an expended maneuver. The rogue begins a gambit as a swift action, effectively diving recklessly into the act he is attempting. The rogue then performs the action described in the gambit, and if he is successful, he regains maneuvers (see below). If he is not, he suffers the rake of the gambit and only regains a single maneuver of his choosing. While performing a gambit, the rogue may add his Intelligence modifier to the d20 check(s) to aid in accomplishing the gambit as an insight bonus. A rogue may attempt the actions of a gambit as normal, but does not gain any benefits of the gambit unless he spends a swift action to make the action a gambit. The character may initiate a maneuver while performing a gambit (if the maneuver helps him accomplish it) but he may not recover the maneuver used to achieve the gambit as part of the reward.\n\nA gambit&apos;s rake is the penalty that the rogue suffers if he attempts his gambit and fails, such as failing a trip attempt or failing to strike an opponent with a charge attack. Each gambit possesses a unique reward that the rogue enjoys for succeeding at that gambit. All gambits possess the same rake; the rogue only regains a single expended maneuver and suffers a -2 penalty on all d20 rolls for one round. A rogue who succeeds at fulfilling his gambit immediately recovers a number of expended maneuvers equal to his Intelligence modifier (minimum 2) and enjoys the unique reward for each gambit. Allies who would receive benefits from a rogue&apos;s successful gambit must be within 60-ft. of the rogue and must be able to see him perform the action. Finally, gambits may not be initiated outside of combat due to their reliance upon the stresses of battle to bring out the best of the rogue.\n\nAt 4th level and every four levels thereafter, the rogue selects an additional gambit.\n\nThe rogue may select any gambit available to Warlords, and may also choose to learn additional gambits unique to them.  Any gambit reward that uses the rogue’s charisma modifier as a bonus instead uses the rogue’s initiation modifier." compset="ClSpecial" summary="Regain maneuvers by taking risky actions">
+    <tag group="AbilType" tag="Extra" name="Extraordinary Ability" abbrev=" (Ex)"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <eval phase="Final" priority="99999999"><![CDATA[      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
+
+      ~ Allow Warlord Gambits
+      hero.child[cHelpRog].field[cCstS3Expr].text &= " | ((SpecSource.cHelpPW1) & !Helper.Secondary & !Helper.Tertiary & !Helper.Quaternary)"]]></eval>
+    </thing>
+  <thing id="cPWHBStGmb" name="Stealth Gambit" description="{i}Risk{/i}: The rogue attempts to hide from an enemy, making a Stealth check to do so as normal.\n\n{i}Reward{/i}: The rogue becomes invisible, as if subject to the {i}invisibility{/i} spell, for a number of rounds equal to his initiation modifier.  The caster level for this effect is equal to the rogue’s initiator level." compset="CustomSpec" uniqueness="unique">
+    <usesource source="srcPOWEx"/>
+    <tag group="SpecSource" tag="arPWHidBld"/>
+    <tag group="Helper" tag="Tertiary"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    </thing>
+  <thing id="cPWHBFlGmb" name="Flanker&apos;s Gambit" description="{i}Risk{/i}: The rogue successfully attacks an enemy engaged in melee with one of the rogue’s allies.\n\n{i}Reward{/i}: The rogue is considered to be flanking the target until the end of their next turn, even if the rogue is not normally in a position to flank the target." compset="CustomSpec" uniqueness="unique">
+    <usesource source="srcPOWEx"/>
+    <tag group="SpecSource" tag="arPWHidBld"/>
+    <tag group="Helper" tag="Tertiary"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    </thing>
+  <thing id="cPWHBCwGmb" name="Coward&apos;s Gambit" description="{i}Risk{/i}: The rogue attempts to hit an enemy with a sneak attack.\n\n{i}Reward{/i}: The rogue’s allies gain a bonus to damage rolls against the target equal to the rogue’s initiation modifier for 1 round." compset="CustomSpec" uniqueness="unique">
+    <usesource source="srcPOWEx"/>
+    <tag group="SpecSource" tag="arPWHidBld"/>
+    <tag group="Helper" tag="Tertiary"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
     </thing>
   </document>
