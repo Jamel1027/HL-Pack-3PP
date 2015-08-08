@@ -1700,13 +1700,12 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
 validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
       </prereq>
     </thing>
-  <thing id="fPUMultCon" name="Multiple Connections" description="You are able to be attuned to multiple minds.\n\n{b}Prerequisite:{/b} Open Door*, Mindlock class feature \n\n{b}Benefit:{/b} You can be attuned to up to three creature for the purposes of Open Door.\n\n{b}Normal:{/b} You can only be attuned to one creature." compset="Feat" maxlimit="2">
+  <thing id="fPUMultCon" name="Multiple Connections" description="You are able to be attuned to multiple minds.\n\n{b}Prerequisite:{/b} Open Door*, Mindlock class feature \n\n{b}Benefit:{/b} You can be attuned to up to three creature for the purposes of Open Door.\n\n{b}Normal:{/b} You can only be attuned to one creature." compset="Feat" maxlimit="" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
-    <exprreq message="Open Door feat required."><![CDATA[#hasfeat[fPUOpeDoor] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Mindlock class feature required."><![CDATA[#hasability[cPUTerMndl] <> 0]]></exprreq>
+    <exprreq message="Open Door feat required."><![CDATA[#hasfeat[fPUOpeDoor] <> 0]]></exprreq>
     </thing>
   <thing id="fPUNetwPwr" name="Network Power" description="You can temporarily alter the nature of certain powers to allow use over a mental link.{br}{br}{b}Prerequisites:{/b} Collective class feature, manifester level 3rd.{br}{br}{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can treat a power as if it had the network descriptor. You may only use this feat on powers with a range of personal and a target of you.{br}{br}Using this feat increases the power point cost of the power by 4. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" maxlimit="2">
     <usesource source="pPsiUn"/>
@@ -1729,11 +1728,10 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <exprreq message="Shattered Dreams Strike feat required."><![CDATA[#hasfeat[fPUShatDre] <> 0]]></exprreq>
     <exprreq message="Intimidate 9+ ranks required."><![CDATA[#skillranks[skIntim] >= 9]]></exprreq>
     </thing>
-  <thing id="fPUOpeDoor" name="Open Door" description="Once you have pried the gates open into another mind, you can always return there no matter how long it has been.{br}{br}{b}Prerequisite:{/b} Mindlock class feature.{br}{br}{b}Benefit:{/b} Once an individual has failed a Will save to avoid being mindlocked by you, you can attune yourself to that creature. You can only be attuned to one creature in such a way at any given time. You can reactivate the mindlock to your attuned creature at any time by spending 1 power point as a free action, regardless of the time since you first mindlocked the target. This means that they count as having failed their Will save again." compset="Feat" maxlimit="2">
+  <thing id="fPUOpeDoor" name="Open Door" description="Once you have pried the gates open into another mind, you can always return there no matter how long it has been.{br}{br}{b}Prerequisite:{/b} Mindlock class feature.{br}{br}{b}Benefit:{/b} Once an individual has failed a Will save to avoid being mindlocked by you, you can attune yourself to that creature. You can only be attuned to one creature in such a way at any given time. You can reactivate the mindlock to your attuned creature at any time by spending 1 power point as a free action, regardless of the time since you first mindlocked the target. This means that they count as having failed their Will save again." compset="Feat" maxlimit="" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Mindlock class feture required."><![CDATA[#hasability[cPUTerMndl] <> 0]]></exprreq>
     </thing>
   <thing id="fPUPeneFea" name="Penetrating Fear" description="Your terrors are able to affect those normally immune.{br}{br}{b}Prerequisite:{/b} Terrors class feature, 10th level dread\n\n{b}Benefit:{/b} You can expend your psionic focus when activating a terror to allow it to affect those normally immune to fear effects or mind-affecting effects. The target gets a +4 bonus to any applicable save against the effect." compset="Feat" maxlimit="2">
@@ -1965,11 +1963,10 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <exprreq message="Intimidating Shot feat required."><![CDATA[#hasfeat[fPUIntimSh] <> 0]]></exprreq>
     <exprreq message="Point Blank Shot feat required."><![CDATA[#hasfeat[fPointBlnk] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUTerMast" name="Terror Mastery" description="You have learned to activate multiple terrors at a time.\n\n{b}Prerequisite:{/b} 8 terrors known.\n\n{b}Benefit:{/b} When you use your terrors class feature, you can activate two terrors in a single swift action.\n\n{b}Normal:{/b} You can only activate one terror at a time." compset="Feat" maxlimit="2">
+  <thing id="fPUTerMast" name="Terror Mastery" description="You have learned to activate multiple terrors at a time.\n\n{b}Prerequisite:{/b} 8 terrors known.\n\n{b}Benefit:{/b} When you use your terrors class feature, you can activate two terrors in a single swift action.\n\n{b}Normal:{/b} You can only activate one terror at a time." compset="Feat" maxlimit="" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="8 Terrors known required."><![CDATA[hero.childfound[cHelpPU2].field[cUsedSpec].value >= 8]]></exprreq>
     </thing>
   <thing id="fPUThunPwr" name="Thundering Power" description="You can conjure your powers into existence with blaring thunder or fearful shrieks, deafening creatures damaged by their effects.{br}{br}{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can modify a power to deafen a creature damaged by the power. When a creature takes damage from this power, it becomes deafened for a number of rounds equal to the level of the power. If the power allows a saving throw, a successful save negates the deafening effect. If the power does not allow a save, the target can make a Fortitude save to negate the deafening effect.{br}{br}If the power effect also causes the creature to become deafened, the duration of this metapsionic effect is added to the duration of the power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.{br}{br}Powers that do not inflict damage cannot be used with this feat." compset="Feat">
