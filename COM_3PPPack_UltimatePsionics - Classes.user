@@ -9767,84 +9767,86 @@ ClsAllowPs - This tag group is used to setup the Powers that this Path grants. Y
 Call PsyWarPath</eval>
     </thing>
   <thing id="cPWaTraArc" name="Trance (Archer Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus on attack rolls made with a ranged or thrown weapon (natural weapons do not count for this benefit). This bonus increases by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to ranged or thrown weapons">
-    <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
-    <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">
+      ~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ Set the level bonus
-field[abValue].value += 1
-If (field[xTotalLev].value >= 7) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 11) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 15) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 19) Then
-  field[abValue].value += 1
-Endif
+      ~ Set the level bonus
+      field[abValue].value += 1
+      If (field[xTotalLev].value >= 7) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 11) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 15) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 19) Then
+        field[abValue].value += 1
+      Endif
 
-~ Set live name
-field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
+      ~ Set live name
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
       var v_focus as number
       call PUPsiFocus
       ~ If Not psionically focused get out now
       doneif (v_focus <> 1)
 
-~ If not active get out now
-doneif (field[abilActive].value <> 1)
+      ~ If not active get out now
+      doneif (field[abilActive].value <> 1)
 
-~ Give bonus to attack rolls for 
-foreach pick in hero from BaseWep where "wCategory.RangeThrow | wCategory.RangeProj"  
-  eachpick.field[wAttRanged].value += field[abValue].value
-  nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
+      ~ Give competence bonus to attack rolls for ranged weapons
+      #applybonus[atrBonComp,hero.child[Attack],field[abValue].value]
+      ]]></eval>
     </thing>
   <thing id="cPWaTraSur" name="Trance (Survivor Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain DR 2/-. This damage reduction improves by 1 every four psychic warrior levels thereafter. In addition, you suffer no harm from being in a hot or cold environment. You can exist comfortably in conditions between –50 and 140 degrees Fahrenheit without having to make Fortitude saves. Your equipment is likewise protected. This doesn’t provide any protection from fire or cold damage, nor does it protect against other environmental hazards such as smoke, lack of air, and so forth." compset="ClSpecial" summary="When psi-focused you gain DR and hot or cold environment endurance.">
     <usesource source="pPsiUn"/>
     <tag group="abAction" tag="PUManFocus"/>
     <bootstrap thing="xDamRd"></bootstrap>
+    <eval phase="First" priority="10000" index="2">
+      ~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ Set the level bonus
-field[abValue].value += 2
-If (field[xTotalLev].value >= 7) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 11) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 15) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 19) Then
-  field[abValue].value += 1
-Endif
+      ~ Set the level bonus
+      field[abValue].value += 2
+      If (field[xTotalLev].value >= 7) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 11) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 15) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 19) Then
+        field[abValue].value += 1
+      Endif
 
-~ Set live name
-~field[livename].text = field[thingname].text & " " & signed(field~[abValue].value)
+      ~ Set live name
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
       var v_focus as number
       call PUPsiFocus
       ~ If Not psionically focused get out now
       doneif (v_focus <> 1)
-~ Give bonus to DR 
-hero.child[xDamRd].field[abValue].value = maximum(hero.child[xDamRd].field[abValue].value, field[abValue].value)]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
+
+      ~ Give bonus to DR 
+      #applydr[xDamRd,field[abValue].value]
+      ]]></eval>
     </thing>
   <thing id="cPWaManArc" name="Maneuver (Archer Path)" description="Beginning at 3rd level, you can expend your psionic focus and make a ranged trip attack as a standard action. If your target is flying, they are instead staggered for one round. At 7th level and every four psychic warrior levels thereafter, you gain a +1 bonus to your CMB when using this maneuver." compset="ClSpecial">
     <usesource source="pPsiUn"/>
@@ -9860,179 +9862,172 @@ Call PsyWarTrMa</eval>
 Call PsyWarTrMa</eval>
     </thing>
   <thing id="cPWaTraDer" name="Trance (Dervish Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus on attack rolls made when you wield two weapons. This bonus increases by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to attack rolls when using two weapons.">
-    <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
-    <tag group="User" tag="Activation"/>
     <tag group="abAction" tag="PUExpFocus"/>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
+    <eval phase="First" priority="10000" index="2">
+      ~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ Set the level bonus
-field[abValue].value += 1
-If (field[xTotalLev].value >= 7) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 11) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 15) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 19) Then
-  field[abValue].value += 1
-Endif
+      ~ Set the level bonus
+      field[abValue].value += 1
+      If (field[xTotalLev].value >= 7) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 11) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 15) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 19) Then
+        field[abValue].value += 1
+      Endif
 
-~ Set live name
-field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
+      ~ Set live name
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
       var v_focus as number
       call PUPsiFocus
       ~ If Not psionically focused get out now
       doneif (v_focus <> 1)
+      ~ If not duel wielding weapons get out now!
+      doneif (tagexpr[(count:hero#Hero.EquipWep = 2) | hero#Hero.EquipDbl] = 0)
 
-~ If not active get out now
-doneif (field[abilActive].value <> 1)
-
-~ Give bonus to attack rolls for 
-~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
-~  eachpick.field[wAttRanged].value += field[abValue].value
-~  nexteach]]></eval>
+      #applybonus[atmBonComp,hero.child[Attack],field[abValue].value]
+      ]]></eval>
     </thing>
   <thing id="cPWaTraGla" name="Trance (Gladiator Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus to your CMB and a +2 competence bonus to your CMD. These bonuses increase by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to CMB and CMD.">
-    <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
-    <tag group="User" tag="Activation"/>
     <tag group="abAction" tag="PUManFocus"/>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
+    <eval phase="First" priority="10000" index="2">
+      ~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ Set the level bonus
-field[abValue].value += 1
-If (field[xTotalLev].value >= 7) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 11) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 15) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 19) Then
-  field[abValue].value += 1
-Endif
+      ~ Set the level bonus
+      field[abValue].value += 1
+      If (field[xTotalLev].value >= 7) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 11) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 15) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 19) Then
+        field[abValue].value += 1
+      Endif
 
-~ Set live name
-field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
+      ~ Set live name
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
       var v_focus as number
       call PUPsiFocus
       ~ If Not psionically focused get out now
       doneif (v_focus <> 1)
 
-~ If not active get out now
-doneif (field[abilActive].value <> 1)
-
-~ Give bonus to attack rolls for 
-~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
-~  eachpick.field[wAttRanged].value += field[abValue].value
-~  nexteach]]></eval>
+      ~ competence bonus to CMB/CMD
+      #applybonus[BonComp,hero.child[Maneuver],field[abValue].value]
+      ]]></eval>
     </thing>
   <thing id="cPWaTraInf" name="Trance (Infiltrator Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +2 competence bonus on Disguise checks and a +1 competence bonus on damage rolls made with natural weapons. These bonuses increase by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to Disguise checks and damage with natural weapons.">
-    <fieldval field="actName" value="Active"/>
     <usesource source="pPsiUn"/>
-    <tag group="User" tag="Activation"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <eval phase="First" priority="10000" index="2">
+      ~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ Set the level bonus
-field[abValue].value += 1
-If (field[xTotalLev].value >= 7) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 11) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 15) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 19) Then
-  field[abValue].value += 1
-Endif
+      ~ Set the level bonus
+      field[abValue].value += 1
+      If (field[xTotalLev].value >= 7) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 11) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 15) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 19) Then
+        field[abValue].value += 1
+      Endif
 
-~ Set live name
-field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
+      ~ Set live name
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
       var v_focus as number
       call PUPsiFocus
       ~ If Not psionically focused get out now
       doneif (v_focus <> 1)
 
-~ If not active get out now
-doneif (field[abilActive].value <> 1)
+      ~ Bonus to disguise skill
+      #applybonus[ModCirc,hero.childfound[skDisguise],field[abValue].value]
 
-~ Give bonus to attack rolls for 
-~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
-~  eachpick.field[wAttRanged].value += field[abValue].value
-~  nexteach]]></eval>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
+      ~ Bonus to natural attack damage      
+      foreach pick in hero from BaseWep where "wGroup.Natural"  
+        #applybonus[dmmBonComp,eachpick,field[abValue].value]
+        #applybonus[dmrBonComp,eachpick,field[abValue].value]
+      nexteach
+      ]]></eval>
     </thing>
   <thing id="cPWaTraInt" name="Trance (Interceptor Path)" description="Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus on attack and damage rolls made against any opponent that threatens any of your allies. This bonus increases by 1 every four psychic warrior levels thereafter." compset="ClSpecial" summary="When psi-focused you gain a competence bonus to attack and damage rolls against opponents who threaten your allies.">
-    <fieldval field="actName" value="Active"/>
+    <fieldval field="actName" value="Threatens Ally"/>
     <usesource source="pPsiUn"/>
     <tag group="User" tag="Activation"/>
     <tag group="abAction" tag="PUManFocus"/>
-    <eval phase="First" priority="10000" index="2">~ Setup this Maneuver or Trance for the Psy Warrior
-Call PsyWarTrMa</eval>
+    <eval phase="First" priority="10000" index="2">
+      ~ Setup this Maneuver or Trance for the Psy Warrior
+      Call PsyWarTrMa</eval>
     <eval phase="PostLevel" priority="10000"><![CDATA[
-~ If we're not shown, just get out now
-doneif (tagis[Helper.ShowSpec] <> 1)
-~ If we've been Disabled, get out now
-doneif (tagis[Helper.SpcDisable] <> 0)
+      ~ If we're not shown, just get out now
+      doneif (tagis[Helper.ShowSpec] <> 1)
+      ~ If we've been Disabled, get out now
+      doneif (tagis[Helper.SpcDisable] <> 0)
 
-~ Set the level bonus
-field[abValue].value += 1
-If (field[xTotalLev].value >= 7) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 11) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 15) Then
-  field[abValue].value += 1
-Endif
-If (field[xTotalLev].value >= 19) Then
-  field[abValue].value += 1
-Endif
+      ~ Set the level bonus
+      field[abValue].value += 1
+      If (field[xTotalLev].value >= 7) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 11) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 15) Then
+        field[abValue].value += 1
+      Endif
+      If (field[xTotalLev].value >= 19) Then
+        field[abValue].value += 1
+      Endif
 
-~ Set live name
-field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
+      ~ Set live name
+      field[livename].text = field[thingname].text & " " & signed(field[abValue].value)
 
       var v_focus as number
       call PUPsiFocus
       ~ If Not psionically focused get out now
       doneif (v_focus <> 1)
+      ~ If not activated get out now!
+      doneif (field[abilActive].value = 0)
 
-~ If not active get out now
-doneif (field[abilActive].value <> 1)
-
-~ Give bonus to attack rolls for 
-~foreach pick in hero from BaseWep where "wCategory.RangeThrow | ~wCategory.RangeProj"  
-~  eachpick.field[wAttRanged].value += field[abValue].value
-~  nexteach]]></eval>
+      ~ Competence bonus to attack & damage
+      #applybonus[BonComp,hero.child[Attack],field[abValue].value]
+      #applybonus[BonComp,hero.child[Damage],field[abValue].value]
+      ]]></eval>
     </thing>
   <thing id="cPWaManDer" name="Maneuver (Dervish Path)" description="Beginning at 3rd level, you can expend your psionic focus as part of a full attack when you fight with two weapons to take a 5-foot step between your attacks, even if you have already taken a 5-foot step, but not if you have moved normally (such as by using hustle). At 8th level and every five psychic warrior levels thereafter, you gain one additional 5-foot step, but each of these 5-foot steps must be made after an attack in your full attack." compset="ClSpecial">
     <usesource source="pPsiUn"/>
