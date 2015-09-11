@@ -15593,6 +15593,177 @@ field[listname].text = "Enhanced Mind Bolt +" & field[xIndex].value]]></eval>
     <tag group="ProductId" tag="HLCommunit"/>
     <tag group="AbilType" tag="Super"/>
     </thing>
-
-
+  <thing id="arPUAmplif" name="Amplifier" description="Amplifiers use the collective bond to boost the abilities of their allies, allowing them increased accuracy, speed, and prowess. These tacticians do so at the cost of their ability to turn their collective into a coordinated combat unit. Amplifiers can help turn a dangerous fighter into a deadly killing machine." compset="ClassVary" uniqueness="unique">
+    <tag group="ClVaryName" tag="AppParen"/>
+    <tag group="AbReplace" tag="cPUCoorStr"/>
+    <tag group="AbReplace" tag="cPUImpShar"/>
+    <tag group="AbReplace" tag="cPUTacCoor"/>
+    <tag group="AbReplace" tag="cPUTeamFt"/>
+    <bootstrap thing="cPUInStrik">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPUHiMove">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cPUAugOff">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="cPUEmpAtt">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <link linkage="varies" thing="cHelpPU4"/>
+    </thing>
+  <thing id="cPUInStrik" name="Inevitable Strike" description="The amplifier can grant the members of his collective the increased insight needed to make successful attacks. A number of times per day equal to 3 + the amplifier’s Intelligence modifier, the amplifier can grant one member of his collective a +5 insight bonus to its next single attack roll made before the end of its next turn. At 3rd level and every 2 levels thereafter, this insight bonus increases by 1. This ability replaces coordinated strike." compset="ClSpecial">
+    <usesource source="pDscar"/>
+    <tag group="Helper" tag="MultiCopy"/>
+    <tag group="AbilType" tag="Super"/>
+    <tag group="User" tag="Tracker"/>
+    <tag group="ChargeCalc" tag="AttrUses3"/>
+    <tag group="ChargeAttr" tag="aINT"/>
+    <tag group="abAction" tag="Standard"/>
+    </thing>
+  <thing id="cPUHiMove" name="Heightened Movement" description="  An amplifier of 5th level has gained the ability to accelerate the movements of members of the collective, allowing them to avoid danger and increase their movement speed. As a swift action, the amplifier can grant one member of his collective a +1 insight bonus to AC and Reflex saves, as well as a 5 ft. bonus to movement speed. This effect lasts a number of rounds equal to the amplifier’s Intelligence modifier and counts as a use of the amplifier’s strategies ability.\n  At 11th level, the insight bonus increases to +2 and the bonus to speed increases to 10 ft. \n  At 17th level, the insight bonus increases to +3 and the bonus to speed increases to 15 ft.\n  This ability replaces improved share." compset="ClSpecial">
+    <tag group="abAction" tag="Swift"/>
+    <tag group="Usage" tag="Rounds"/>
+    <tag group="User" tag="Tracker"/>
+    </thing>
+  <thing id="cPUAugOff" name="Augmented Offense" description="An amplifier of 6th level can grant a member of his collective a boost to offensive abilities for a short duration. As a standard action, the amplifier can grant one member of his collective a +1 insight bonus to attack rolls and to the DC of the next\nsingle power or spell the collective member manifests or casts that has a save DC, and a +2 insight bonus to damage rolls. At 9th level and every 3 levels thereafter, the insight bonus to attack rolls and DCs increases by 1 and the insight bonus to damage rolls increases by 2. This effect lasts a number of rounds equal to the amplifier’s Intelligence modifier. This ability replace teamwork feats." compset="ClSpecial">
+    <tag group="AbilType" tag="Super"/>
+    <tag group="abAction" tag="Standard"/>
+    <tag group="ChargeCalc" tag="AttrOnly"/>
+    <tag group="ChargeAttr" tag="aINT"/>
+    <tag group="Usage" tag="Rounds"/>
+    <tag group="User" tag="Tracker"/>
+    </thing>
+  <thing id="cPUEmpAtt" name="Empowered Attack" description="As an immediate action, an amplifier of 6th level can expend his psionic focus and pay two power points to treat one attack made by a member of his collective as empowered. An empowered attack deals 50% additional damage. The attack to be empowered cannot be modified by a similar effect such as Empower Power. This ability replaces coordinate." compset="ClSpecial">
+    <tag group="abAction" tag="Immediate"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    </thing>
+  <thing id="arPUBtMed" name="Battle Medic" description="Getting wounded allies back into the fight is a part of combat that some tacticians embrace, sacrificing some of their strategic options to learn techniques to mend wounds and guard against attacks. These battle medics are not as skilled at healing as vitalists, but offer a mixture of tactical and healing abilities to help turn the tide of battle." compset="ClassVary" uniqueness="unique">
+    <arrayval field="cvCustTot" index="3" value="-1"/>
+    <tag group="AbReplace" tag="cPULessStr"/>
+    <tag group="AbReplace" tag="cPUCoorStr"/>
+    <tag group="ClVaryName" tag="AppParen" name="Append (in Parentheses)" abbrev="Append (in Parentheses)"/>
+    <tag group="AbReplace" tag="cPUTacCoor"/>
+    <tag group="AbReplace" tag="cPUTeamFt"/>
+    <bootstrap thing="cPUBMPwrK">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitKnac">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="4"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="7"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="10"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="13"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="16"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="19"/>
+      </bootstrap>
+    <bootstrap thing="cPUVitTraW">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPUBMHBnd">
+      <autotag group="ClSpecWhen" tag="4"/>
+      </bootstrap>
+    <bootstrap thing="cPUBMBitF">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="fPUCushBlo">
+      <autotag group="ClSpecWhen" tag="6"/>
+      </bootstrap>
+    <bootstrap thing="fPUICushBl">
+      <autotag group="ClSpecWhen" tag="12"/>
+      </bootstrap>
+    <bootstrap thing="fPUGCushBl">
+      <autotag group="ClSpecWhen" tag="18"/>
+      </bootstrap>
+    <link linkage="varies" thing="cHelpPU4"/>
+    </thing>
+  <thing id="cPUBMPwrK" name="Battle Healer Additional Powers Known" compset="ClSpecial">
+    <eval phase="UserFinal" priority="10100"><![CDATA[
+hero.child[cHelpPU4].field[cPsiExpr].text = "(" & hero.child[cHelpPU4].field[cPsiExpr].text & ") | (psiClass.cHelpPU5 & psiSubdisc.psdPUHeali)"]]></eval>
+    </thing>
+  <thing id="cPUGBPwrK" name="Gifted Blade Powers" compset="ClSpecial">
+    <eval phase="UserFinal" priority="10100"><![CDATA[
+hero.child[cHelpSkn].field[cPsiExpr].text = "(" & hero.child[cHelpSkn].field[cPsiExpr].text & ") | (psiClass.arPUGiftBl)"]]></eval>
+    </thing>
+  <thing id="cPUBMHBnd" name="Healing Bond" description="A battle medic of 4th level has learned how to share healing over his network. When manifesting a power of the Healing subdiscipline with a range of personal, the battle medic can choose to change the target to a member of his collective. This ability replaces the strategy normally gained at 4th level." compset="ClSpecial">
+    <tag group="abAction" tag="None"/>
+    </thing>
+  <thing id="cPUBMBitF" name="Back into the Fray" description="A battle medic of 6th level has learned to channel additional healing energy when it is most needed. When manifesting a power of the Healing subdiscipline on a member of his collective, and the target is below 50% of its total hit points, the battle medic can expend his psionic focus to treat that power as if affected by the Empower Power feat. This ability replaces coordinate." compset="ClSpecial"></thing>
+  <thing id="cPUFrcPart" name="Forced Participant" description="A 1st level commander gains the Unwilling Participant* feat as a bonus feat. At 5th level and every 4 levels thereafter, the DC to resist being unwillingly added to the collective is increased by 1. \nThis ability replaces coordinated strike." compset="ClSpecial" summary="Any creature in the collective against their will makes a save against an effect from over the collective, they suffer a -2 penalty on the save to resist the effect.">
+    <tag group="ProductId" tag="HLCommunit"/>
+    <bootstrap thing="fPUUnwillP">
+      <containerreq phase="First" priority="500"><![CDATA[
+      count:Classes.Vitalist>= 2 & !AbReplace.cPUUnwPart]]></containerreq>
+      </bootstrap>
+    </thing>
+  <thing id="cPUIssOrdr" name="Issue Order" description="A commander of 4th level can, as a swift action, direct one member of his collective to  take an action that requires either a standard or move  action. On that member’s next turn, they must perform that command unless they make a successful Will saving throw at the same DC as that of the commander’s Unwilling Participant* DC. This ability replaces the strategy normally gained at 4th level, but functions like a strategy, including using the same pool of 3 + the tactican’s Charisma modifier limited uses per day." compset="CustomSpec" uniqueness="unique">
+    <usesource source="pPsiUn" parent="pDscar" name="DSP - Ultimate Psionics"/>
+    <tag group="SpecSource" tag="cHelpPU4" name="Tactician" abbrev="Tactician"/>
+    </thing>
+  <thing id="arPUComm" name="Commander" description="For some tacticians, it is not enough to direct their allies and coordinate battle tactics, they need to ensure that the members of their collective are doing exactly as told. These commanders can force individuals into their collective and force members within the collective to take actions by using telepathic force, rather than diplomatic measures." compset="ClassVary" uniqueness="unique">
+    <arrayval field="cvBonFtMod" index="11" value="-1"/>
+    <tag group="ClVaryName" tag="AppParen"/>
+    <bootstrap thing="cPUThrall">
+      <autotag group="ClSpecWhen" tag="12"/>
+      </bootstrap>
+    <bootstrap thing="cPUFrcPart">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <link linkage="varies" thing="cHelpPU4"/>
+    </thing>
+  <thing id="cPUThrall" name="Thrall" description="Once a commander has reached 12th level, he can treat one member of his collective as if a thrall and that member will follow any instruction given by the commander. Like a thrall, if this member of the collective dies while under this effect, the commander suffers one negative level for one day. This thrall effect can be ended by the commander as a free action, but otherwise is treated as a permanent effect. The targeted collective member may make a Will save at the same DC as the commander’s Unwilling Participant DC if the commander gives any commands that would cause the thrall to harm itself or obviously suicidal orders. This ability replaces the teamwork feat normally gained at 12th level." compset="ClSpecial">
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="arPUFrProj" name="Fear Projector" description="Fear is a powerful emotion, and in the midst of battle, it can stop even the strongest warrior in his tracks. Fear projectors tap into these ubiquitous phobias and channel them into the minds of their enemies, even using the members of their collective to expand their influence." compset="ClassVary" uniqueness="unique">
+    <arrayval field="cvBonFtMod" index="5" value="-1"/>
+    <arrayval field="cvCustTot" index="9" value="-1"/>
+    <tag group="ClVaryName" tag="AppParen"/>
+    <tag group="AbReplace" tag="cPULessStr"/>
+    <tag group="AbReplace" tag="cPUTacCoor"/>
+    <link linkage="varies" thing="cHelpPU4"/>
+    </thing>
+  <thing id="arPUMtaNex" name="Metanexus" description="The sum is greater than its parts, and never has it been more true than with the metanexus. Their ability to harness their allies and redefine them as needed makes them highly flexible in the field of battle and using his allies as nodes to target others makes him capable of literally being everywhere at the same time." compset="ClassVary" uniqueness="unique">
+    <arrayval field="cvPsiPowTo" index="8" value="-1"/>
+    <arrayval field="cvCustTot" index="15" value="-1"/>
+    <tag group="AbReplace" tag="cPUImpShar"/>
+    <tag group="ClVaryName" tag="AppParen"/>
+    <bootstrap thing="cPUBrdgPow">
+      <autotag group="ClSpecWhen" tag="5"/>
+      </bootstrap>
+    <bootstrap thing="cPUPoolTrt">
+      <autotag group="ClSpecWhen" tag="8"/>
+      </bootstrap>
+    <bootstrap thing="cPUHrnAlly">
+      <autotag group="ClSpecWhen" tag="1"/>
+      </bootstrap>
+    <bootstrap thing="cPUCollKno">
+      <autotag group="ClSpecWhen" tag="16"/>
+      </bootstrap>
+    <link linkage="varies" thing="cHelpPU4"/>
+    </thing>
+  <thing id="cPUBrdgPow" name="Bridged Power" description="A metanexus of 5th level has learned to use members of his collective as a link to alter the source of powers he manifests. Any time the metanexus manifests a power with a range greater than touch, he can choose a member of his collective and treat that member as the source for determining eligible targets or areas for the power. The metanexus must still himself have line of sight to the target or area to be affected to manifest the power. For example, a metanexus of 6th level who was manifesting a power of Short range (40 foot range) could use a member of his collective 100 feet away to target a creature within 40 feet of the collective member that would otherwise be beyond the Short range of the power. This ability replaces improved share (1)." compset="ClSpecial"></thing>
+  <thing id="cPUPoolTrt" name="Pooled Traits" description="Starting at 8th level, a metanexus has learned to distribute the special abilities of the members of his collective. Any member of the collective can choose to use one of the racial traits of another willing member of the collective. Using this racial trait counts as a use for the member with the ability to be used and the benefiting collective member must spend the appropriate action to use the ability. Only racial traits that are limited in use per day, such as the xeph’s burst ability, or that require a power point cost, such as the elan’s resilience ability, can be distributed in this way, but if the ability has a power point cost, the benefiting member must pay double the normal power point cost. This ability replaces the power known normally gained at 8th level." compset="ClSpecial"></thing>
+  <thing id="cPUHrnAlly" name="Harness Ally" description="Beginning at 11th level, the metanexus has learned not only to use his ally as a link for his powers, but to actually tap into the senses of that member of the collective. As a swift action, the metanexus can expend his psionic focus and use the visual and auditory senses of one member of his collective for one round. In that round, the metanexus can manifest a power and can select a target for the power if it is eligible to the chosen member of the collective. The power then uses that collective member’s line of sight and line of effect to determine eligible targets. The member of the collective selected must be within 100 feet of the metanexus to use this ability. The metanexus can cease using the collective member’s senses at any time as a free action. The metanexus otherwise manifests the power as normal. This ability replaces improved share (2)." compset="ClSpecial"></thing>
+  <thing id="cPUCollKno" name="Collective Knowledge" description="Once a metanexus has reached level 16, he is able to tap into the collected psionic knowledge of all members of his collective. By taking a full-round action, the metanexus can manifest any power known by a member of his collective as if\nit was on the metanexus’s list of powers known. If the power’s manifesting time is longer than a standard action, that manifesting time is added to the time it takes to use this ability. If the power is not on the tactician power list, using this ability costs one daily use of the strategy ability. This ability replaces the strategy normally gained at 16th level." compset="ClSpecial"></thing>
+  <thing id="cPUPrjFear" name="Project Fear" description="A fear projector is capable of projecting horrifying images into the minds of his enemies. As a standard action, the fear projector targets one creature within 30 ft. and projects these terrifying images into that creature’s mind unless the creature makes a successful Will save (DC 10 + 1/2 the projector’s level + the projector’s Charisma modifier). A failed save means the creature is shaken for a number of rounds equal to the fear projector’s Charisma modifier. This ability\nreplaces lesser strategies." compset="ClSpecial">
+    <fieldval field="abRange" value="30"/>
+    <tag group="abRange" tag="Feet"/>
+    <tag group="abSave" tag="WillNeg"/>
+    </thing>
+  <thing id="cPUCllFear" name="Collective Fear" description="The fear projector at 6th level has learned to channel his powers over fear through his collective. The fear projector can choose one member of his collective and treat that as the source for any fearbased effect he uses, including his project fear ability, by expending his psionic focus while creating the effect to be redirected. This ability includes altering what creatures can be targeted by an effect, what creatures are affected by an effect, and the like. \n  In addition, the member of his collective selected is shrouded in frightening images that provide a +1 deflection bonus to AC until the end of its next turn. This ability replaces coordinate." compset="ClSpecial"></thing>
+  <thing id="cPUPwrFear" name="Power from Fear" description="Once a projector has reached 6th level, his allies are able to tap into his fear-based power. When a member of the collective causes a creature to have the shaken, panicked, or frightened condition, that collective member gains a +1 morale\nbonus to attack rolls and saving throws for a number of rounds equal to the fear projector’s Charisma modifier. Every four levels thereafter (9th, 13th, 17), this morale bonus improves by 1. This ability replaces the teamwork feat normally gained at 6th level." compset="ClSpecial"></thing>
+  <thing id="cPUPrmFear" name="Permeating Fear" description="At 10th level, the fear projector can expend his psionic focus to channel his project fear ability through his collective and target all creatures within 30 ft. of any member of his collective. The fear projector must wait ten minutes after using this ability before he can use it again. This ability replaces the strategy normally gained at 10th level." compset="ClSpecial"></thing>
   </document>
