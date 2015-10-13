@@ -2691,7 +2691,11 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="Helper" tag="ShowSpec"/>
     <exprreq message="Soulthief Method required"><![CDATA[#hasability[cPUVitSoul] <> 0]]></exprreq>
     <prereq message="Sneak Attack 1d6 required.">
-      <validate><![CDATA[validif (#value[cSneakAtt] >= 1)]]></validate>
+      <validate><![CDATA[
+        var sneakatt as number
+        call NumSnkDice   
+        validif (sneakatt >= 1)
+        ]]></validate>
       </prereq>
     </thing>
   <thing id="fPUKngtmre" name="Knightmare" description="*Not fully implemented yet\nYou are a roving horror that strikes terror into the hearts of others.\n\n{b}Prerequisites:{/b} Terrors class feature, cavalier’s charge class feature\n\n{b}Benefit:{/b} Your manifester level which granted you the terrors class feature gains a +2 bonus as long as this bonus doesn’t raise your manifester level above your current Hit Dice. In addition, for the purpose of terrors level requirements and order benefits, add your dread\nand cavalier levels together. In addition, when declaring your challenge, you can make a free Intimidate check against the target." compset="Feat" summary="You are a roving horror that strikes terror into the hearts of others." uniqueness="useronce">
