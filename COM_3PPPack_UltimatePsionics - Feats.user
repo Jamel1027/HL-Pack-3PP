@@ -409,13 +409,14 @@
     <exprreq message="Wisdom 13+ required." iserror="no"><![CDATA[child[aWIS].field[aFinalVal].value >= 13]]></exprreq>
     <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUMaxPow" name="Maximize Power" description="You can manifest powers to maximum effect.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can maximize a power. All variable, numeric effects of a power modified by this feat are maximized. A maximized power deals maximum damage, cures the maximum number of hit points, affects the maximum number of targets, and so on, as appropriate. Saving throws and opposed checks are not affected, nor are powers without random variables.\n\nAugmented powers can be maximized; a maximized augmented power deals the maximum damage (or cures the maximum hit points, and so on) of the augmented power.\n\nAn empowered and maximized power gains the separate benefits of each feat: the maximum result plus one-half the normally rolled result.\n\nUsing this feat increases the power point cost of the power by 4. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" summary="Expend focus to maximize a power. All variable, numeric effects are maximized." uniqueness="useronce">
+  <thing id="fPUMaxPow" name="Maximize Power" description="You can manifest powers to maximum effect.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can maximize a power. All variable, numeric effects of a power modified by this feat are maximized. A maximized power deals maximum damage, cures the maximum number of hit points, affects the maximum number of targets, and so on, as appropriate. Saving throws and opposed checks are not affected, nor are powers without random variables.\n  Augmented powers can be maximized; a maximized augmented power deals the maximum damage (or cures the maximum hit points, and so on) of the augmented power.\n  An empowered and maximized power gains the separate benefits of each feat: the maximum result plus one-half the normally rolled result.\n  Using this feat increases the power point cost of the power by 4. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" summary="Expend focus to maximize a power. All variable, numeric effects are maximized." uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="fPUMenLeap" name="Mental Leap" description="{b}Prerequisites:{/b} Str 13, Acrobatics 2 ranks.\n\n{b}Benefit:{/b}  While you maintain psionic focus, you gain a +2 enhancement bonus on Acrobatics checks made to jump.  If you have at least 10 ranks in Acrobatics, this bonus increases to +4.  Additionally, if you expend your psionic focus, you gain a +10 enhancement bonus on an Acrobatics check made to jump.  If you have at least 10 ranks in Acrobatics, this bonus increases to +20." compset="Feat" summary="You are skilled at using optical tricks to make yourself seem to be where you are not." uniqueness="useronce">
+  <thing id="fPUMenLeap" name="Mental Leap" description="You can make amazing jumps.\n\n{b}Prerequisites:{/b} Dex OR Str 13, Acrobatics 2 ranks.\n\n{b}Benefit:{/b}  While you maintain psionic focus, you gain a +2 enhancement bonus on Acrobatics checks made to jump.  If you have at least 10 ranks in Acrobatics, this bonus increases to +4.\n   Additionally, if you expend your psionic focus, you gain a +10 enhancement bonus on an Acrobatics check made to jump.  If you have at least 10 ranks in Acrobatics, this bonus increases to +20." compset="Feat" uniqueness="useronce">
     <fieldval field="abValue" value="2"/>
     <fieldval field="abValue2" value="4"/>
     <fieldval field="abValue3" value="10"/>
@@ -427,6 +428,7 @@
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="User" tag="Activation"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="PostAttr"><![CDATA[      ~Stop now if we're disabled
       doneif (tagis[Helper.FtDisable] <> 0)
 
@@ -458,8 +460,8 @@
       doneif (bon < 1)
 
       #situational[hero.child[skAcrobat],signed(bon) & " to jump", field[thingname].text]]]></eval>
-    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
     <exprreq message="Acrobatics 2 ranks required." iserror="no"><![CDATA[#skillranks[skAcrobat] >= 2]]></exprreq>
+    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
     <prereq message="Dex 13 OR Str 13 required.">
       <validate><![CDATA[
         ~ Valid if a Dex or Str 13+
@@ -880,18 +882,26 @@
     <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Psionic character required."><![CDATA[#hasability[cPsiEgoist] <> 0]]></exprreq>
     <exprreq message="Swift Shapeshifter feat required."><![CDATA[#hasfeat[fPUSwftSha]<> 0]]></exprreq>
+    <prereq message="Ability to manifest {i}metamorphosis{/i}">
+      <validate><![CDATA[    var PowerID as String
+    var HavePower as number
+    PowerID = "puMetamor3"
+    Call HavePower
+    @valid = HavePower]]></validate>
+      </prereq>
     </thing>
-  <thing id="fPUMstrRef" name="Master&apos;s Refuge" description="Your thralls are also your final resort if death comes calling.\n\n{b}Prerequisites:{/b} Twofold Master class feature.\n\n{b}Benefit:{/b}  When you die, your mind instantly transfers to one of your living thralls. While inside your thrall, their mind submerges into a comatose state and you take over their body. You retain the body&apos;s Strength, Constitution and Dexterity, but you keep your Intelligence, Wisdom and Charisma, as well as all other relevant statistics. Each day you remain in your thralls body, you must make a Will-save or die (DC 20 +1 for each day spent in the body). If your body is recreated, you can relocate to your body at will, or you can find alternate means of surviving (via the mind switch power, for example)." compset="Feat" summary="Your thralls are also your final resort if death comes \ncalling." uniqueness="useronce">
+  <thing id="fPUMstrRef" name="Master&apos;s Refuge" description="Your thralls are also your final resort if death comes calling.\n\n{b}Prerequisites:{/b} Twofold Master class feature.\n\n{b}Benefit:{/b}  When you die, your mind instantly transfers to one of your living thralls. While inside your thrall, their mind submerges into a comatose state and you take over their body. You retain the body&apos;s Strength, Constitution and Dexterity, but you keep your Intelligence, Wisdom and Charisma, as well as all other relevant statistics. Each day you remain in your thralls body, you must make a Will-save or die (DC 20 +1 for each day spent in the body). If your body is recreated, you can relocate to your body at will, or you can find alternate means of surviving (via the mind switch power, for example)." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Twofold master class feature required."><![CDATA[#hasability[cTwofoldMa] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUMstrVoi" name="Master&apos;s Voice" description="{b}Prerequisites:{/b} Thrallherd class feature.\n\n{b}Benefit:{/b}  Each of your thralls is always under the effect of a permanent {i}mindlink{/i} with you. You can always communicate instantly with them and you do not need to spend power points to manifest this power." compset="Feat" summary="You are always present in the mind of your thrall." uniqueness="useronce">
+  <thing id="fPUMstrVoi" name="Master&apos;s Voice" description="You are always present in the mind of your thrall.\n\n{b}Prerequisites:{/b} Thrallherd class feature.\n\n{b}Benefit:{/b}  Each of your thralls is always under the effect of a permanent {i}mindlink{/i} with you. You can always communicate instantly with them and you do not need to spend power points to manifest this power." compset="Feat" summary="You are always present in the mind of your thrall." uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Thrallherd class feature required."><![CDATA[#hasability[cThrall] <> 0]]></exprreq>
     </thing>
   <thing id="fPUOppPwr" name="Opportunity Power" description="{b}Benefit{\b}: To use this feat, you must expend your psionic focus. When you make an attack of opportunity, you can use any power you know with a range of touch, if you have at least one hand free.\n\nManifesting this power is an immediate action.\n\nYou cannot use this feat with a touch power whose manifesting time is longer than 1 full-round action. \n\nUsing this feat increases the power point cost of the power by 6. The power&apos;s total cost cannot exceed your manifester level.\n\n{b}Normal:{/b} Attacks of opportunity can be made only with melee weapons. \nAugmented powers can be maximized; a maximized augmented power deals the maximum damage (or cures the maximum hit points, and so on) of the augmented power.  \nAn empowered and maximized power gains the separate benefits of each feat: the maximum result plus one-half the normally rolled result.  \nUsing this feat increases the power point cost of the power by 4. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" summary="You can make power-enhanced\nattacks of opportunity." uniqueness="useronce">
@@ -914,11 +924,18 @@
       field[livename].text = field[thingname].text & " " & #value[cWldWildSu] & " allies; " & field[abValue].value & "ft"]]></eval>
     <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUSwftSha" name="Swift Shapeshifter" description="{b}Prerequisites:{/b} Ability to manifest {i}metamorphosis{/i}.\n\n{b}Benefit:{/b} When you manifest {i}minor metamorphosis{/i}, {i}major metamorphosis{/i} or {i}metamorphosis{/i} the manifestation time is a move action instead of a standard action." compset="Feat" summary="You are naturally confident with different shapes and\nforms, and years of training have allowed your body to\nmore easily flow into new shapes." uniqueness="useronce">
+  <thing id="fPUSwftSha" name="Swift Shapeshifter" description="You are naturally confident with different shapes and forms, and years of training have allowed your body to more easily flow into new shapes.\n\n{b}Prerequisites:{/b} Ability to manifest {i}metamorphosis{/i}.\n\n{b}Benefit:{/b} When you manifest {i}minor metamorphosis{/i}, {i}major metamorphosis{/i} or {i}metamorphosis{/i} the manifestation time is a move action instead of a standard action." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec" name="ShowSpec" abbrev="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
-    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <prereq message="Ability to manifest {i}metamorphosis{/i}">
+      <validate><![CDATA[    var PowerID as String
+    var HavePower as number
+    PowerID = "puMetamor3"
+    Call HavePower
+    @valid = HavePower]]></validate>
+      </prereq>
     </thing>
   <thing id="fPUWepPsi" name="Psion Weapon Proficiencies" description="{b}Benefit{/b}: You are proficient with the club, dagger, heavy crossbow, light crossbow, quarterstaff, and shortspear.\n\n{b}Normal{/b}: When using a weapon with which you are not proficient, you are at -4 to attack rolls." compset="Feat" summary="You are proficient with the club, dagger, heavy crossbow, light\ncrossbow, quarterstaff, and shortspear." uniqueness="unique">
     <fieldval field="shortname" value="Psion Weapons"/>
@@ -1100,6 +1117,13 @@ validif (hero.tagcount[Hero.Manifester] >= 10)]]></validate>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <prereq message="Able to manifest {i}astral construct{/i}">
+      <validate><![CDATA[    var PowerID as String
+    var HavePower as number
+    PowerID = "puAstCons1"
+    Call HavePower
+    @valid = HavePower]]></validate>
+      </prereq>
     </thing>
   <thing id="fPUAdDerPa" name="Advanced Dervish Path" description="You seem to float between enemies, a blur of destruction.{br}{br}{b}Prerequisites:{/b} Dex 15, Double Slice, Two-Weapon Fighting, Dervish path class feature, manifester level 10th, base attack bonus +6 \n\n{b}Benefit:{/b} When using the Dervish trance, the competence bonus applies to your damage as well as your attack rolls. In addition, you can use the Dervish maneuver even if you moved before your attack and you have no limit of how many 5-foot steps you can take while using the Dervish maneuver, as long as you make at least one attack before each 5-foot step. The maximum distance you can move in this round is that of a double move." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -1543,11 +1567,18 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
       #value3[cPUDisPatt] += #value[cPUEnhDisr] + #value[cPUDisPatt]]]></eval>
     <exprreq message="Disrupt pattern class feature required."><![CDATA[#hasability[cPUDisPatt] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUImpMetm" name="Improved Metamorphosis" description="*Not completely implemented\nYou gain more versatility when changing your form.\n\n{b}Prerequisite:{/b} Ability to manifest {i}minor metamorphosis{/i}, {i}metamorphosis{/i}, {i}greater metamorphosis{/i}, or {i}true metamorphosis{/i}.\n\n{b}Benefit:{/b} Any time you manifest {i}minor metamorphosis{/i}, {i}metamorphosis{/i}, {i}greater metamorphosis{/i}, or {i}true metamorphosis{/i}, you gain one additional menu option from either the Ability Menu or Enhancement Menu of the relevant power." compset="Feat" uniqueness="useronce">
+  <thing id="fPUImpMetm" name="Improved Metamorphosis" description="You gain more versatility when changing your form.\n\n{b}Prerequisite:{/b} Ability to manifest {i}minor metamorphosis{/i}, {i}metamorphosis{/i}, {i}major metamorphosis{/i}, or {i}true metamorphosis{/i}.\n\n{b}Benefit:{/b} Any time you manifest {i}minor metamorphosis{/i}, {i}metamorphosis{/i}, {i}major metamorphosis{/i}, or {i}true metamorphosis{/i}, you gain one additional menu option from either the Ability Menu or Enhancement Menu of the relevant power." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <prereq message="Ability to manifest {i}minor metamorphosis{/i}, {i}metamorphosis{/i}, {i}major metamorphosis{/i}, or {i}true metamorphosis{/i}">
+      <validate><![CDATA[    var PowerID as String
+    var HavePower as number
+    PowerID = "puMetamor1|puMetamor2|puMetamor3|puMetamor6|puMetamor9"
+    Call HavePower
+    @valid = HavePower]]></validate>
+      </prereq>
     </thing>
   <thing id="fPUImpPsiA" name="Improved Psi-like Ability" description="You can manifest your racial psionic abilities more often.{br}{br}{b}Prerequisite:{/b} Racial psi-like ability.{br}{br}{b}Benefit:{/b} Choose one psi-like ability gained from your race. You can use that racial psi-like ability an additional two times per day.{br}{br}{b}Special:{/b} You can take this feat multiple times, either choosing an additional psi-like ability or to gain an additional two uses per day of the same psi-like ability." compset="Feat">
     <fieldval field="usrCandid1" value="Helper.PsiLike"/>
@@ -2051,11 +2082,16 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <exprreq message="Assassin path class feature required."><![CDATA[#hasability[cWPaAssPri] <> 0]]></exprreq>
     <exprreq message="Base Attack Bonus 3+ required"><![CDATA[child[Attack].field[tAtkBase].value >= 3]]></exprreq>
     <prereq message="Prevenom or Prevenom Weapon Path Powers required.">
-      <validate><![CDATA[
-        ~set our focus to the Psywarrior's Path Power Prevenom 
-        ~or Prevenom Weapon
-        perform hero.findchild[BasePower,"PsyWarrior.PathPower & (thingid.puPrevenm1|thingid.puPreVenW1)"].setfocus
-        validif (state.isfocus <> 0)]]></validate>
+      <validate><![CDATA[    ~set our focus to the Psywarrior's Path Power Prevenom 
+    ~or Prevenom Weapon
+    ~    perform hero.findchild[BasePower,"PsyWarrior.PathPower & (thingid.puPrevenm1|thingid.puPreVenW1)"].setfocus
+    ~    validif (state.isfocus <> 0)
+
+    var PowerID as String
+    var HavePower as number
+    PowerID = "puPrevenm1"
+    Call HavePower
+    @valid = HavePower]]></validate>
       </prereq>
     </thing>
   <thing id="cfgPUUnTal" name="Unlocked Talent" compset="Configure" uniqueness="unique">
