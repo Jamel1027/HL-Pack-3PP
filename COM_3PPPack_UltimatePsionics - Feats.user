@@ -2079,19 +2079,29 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <eval phase="PostLevel" priority="11000"><![CDATA[
+      ~ If we're disabled, do nothing
+      doneif (tagis[Helper.FtDisable] <> 0)
+
+      ~ Set our focus to the Psywarrior's Path Power Prevenom or Prevenom Weapon
+      perform hero.findchild[BasePower,"PsyWarrior.PathPower & (thingid.puPrevenm1|thingid.puPreVenW1)"].setfocus
+      doneif (state.isfocus = 0)      
+      
+      ~ Increase Power DC by the Trance Class feature bonus
+      focus.field[sDCMisc].value += #value[cPWaTraAss]
+      ]]>
+      <after name="Trance Assassins Path Setup"/>
+      </eval>
     <exprreq message="Assassin path class feature required."><![CDATA[#hasability[cWPaAssPri] <> 0]]></exprreq>
     <exprreq message="Base Attack Bonus 3+ required"><![CDATA[child[Attack].field[tAtkBase].value >= 3]]></exprreq>
     <prereq message="Prevenom or Prevenom Weapon Path Powers required.">
-      <validate><![CDATA[    ~set our focus to the Psywarrior's Path Power Prevenom 
-    ~or Prevenom Weapon
-    ~    perform hero.findchild[BasePower,"PsyWarrior.PathPower & (thingid.puPrevenm1|thingid.puPreVenW1)"].setfocus
-    ~    validif (state.isfocus <> 0)
-
-    var PowerID as String
-    var HavePower as number
-    PowerID = "puPrevenm1"
-    Call HavePower
-    @valid = HavePower]]></validate>
+      <validate><![CDATA[    
+        var PowerID as String
+        var HavePower as number
+        PowerID = "puPrevenm1|puPreVenW1"
+        Call HavePower
+        @valid = HavePower
+        ]]></validate>
       </prereq>
     </thing>
   <thing id="cfgPUUnTal" name="Unlocked Talent" compset="Configure" uniqueness="unique">

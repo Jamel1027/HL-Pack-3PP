@@ -49,7 +49,7 @@
     ~ Add thingid to the spell id passed us
     PowerID = "thingid." & PowerID
     ~ replace the | with |thingid. tag groups
-    PowerID  = replace(PowerID,"|","|thingid.",0)
+    PowerID = replace(PowerID,"|","|thingid.",0) & " & !Hide.Power"
 
     ~ Set focus to the power and based on if we got the pointer
     ~ or not set the validation flag. Make sure at the end to
