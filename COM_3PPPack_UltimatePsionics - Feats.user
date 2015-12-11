@@ -469,9 +469,10 @@
         validif (hero.child[aDEX].field[aFinalVal].value >= 13)]]></validate>
       </prereq>
     </thing>
-  <thing id="fPUMindBod" name="Mind Over Body" description="{b}Prerequisites:{/b} Con 13.\n\n{b}Benefit:{/b}  You heal ability damage and ability burn damage more quickly than normal. You heal a number of ability points per day equal to 1 + your Constitution bonus.  \n\n{b}Normal{/b}: You heal ability damage and ability burn damage at a rate of 1 point per day." compset="Feat" summary="Your ability damage heals more rapidly." uniqueness="useronce">
+  <thing id="fPUMindBod" name="Mind Over Body" description="Your ability damage heals more rapidly.\n\n{b}Prerequisites:{/b} Con 13.\n\n{b}Benefit:{/b}  You heal ability damage and ability burn damage more quickly than normal. You heal a number of ability points per day equal to 1 + your Constitution bonus.  \n\n{b}Normal{/b}: You heal ability damage and ability burn damage at a rate of 1 point per day." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Constitution 13+ required." iserror="no"><![CDATA[child[aCON].field[aFinalVal].value >= 13]]></exprreq>
     </thing>
   <thing id="fPUOpenMn" name="Open Minded" description="{b}Benefit:{/b}  You gain 1 skill point for every Hit Die you possess. You gain 1 skill point whenever you gain a Hit Die (such as when you gain a level). You spend these skill points as normal. You cannot exceed the normal maximum ranks for your level in any skill." compset="Feat" summary="You are naturally able to reroute your memory, mind, and skill expertise." uniqueness="useronce">
@@ -1697,41 +1698,44 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <exprreq message="Spellcraft 10+ ranks required."><![CDATA[#skillranks[skSpellcr] >= 10]]></exprreq>
     <exprreq message="Selective Power feat required."><![CDATA[#hasfeat[fPUSelePwr] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUMercPwr" name="Merciful Power" description="Your damaging powers subdue rather than kill.{br}{br}{b}Benefit:{/b} To use this feat, you must maintain your psionic focus, rather than expend it. You can alter powers that inflict hit point damage to inflict nonlethal damage instead. Powers that inflict hit point damage of a particular type (such as fire) inflict nonlethal damage of that same type. Using this feat does not increase the power point cost of the power.{br}{br}Powers that do not deal hit point damage cannot be used with this feat." compset="Feat">
+  <thing id="fPUMercPwr" name="Merciful Power" description="Your damaging powers subdue rather than kill.\n\n{b}Benefit:{/b} To use this feat, you must maintain your psionic focus, rather than expend it. You can alter powers that inflict hit point damage to inflict nonlethal damage instead. Powers that inflict hit point damage of a particular type (such as fire) inflict nonlethal damage of that same type. Using this feat does not increase the power point cost of the power.\n\nPowers that do not deal hit point damage cannot be used with this feat." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUManFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="fPUMerDesi" name="Merge Designs" description="Your tattoo designs are altered to disguise their nature and to be more compact.{br}{br}{b}Prerequisites:{/b} Scribe Tattoo, pattern designs class feature.{br}{br}{b}Benefit:{/b} Your tattoos cannot be interpreted to determine your powers known. In addition, you can safely wear one additional psionic tattoo on your body.{br}{br}{b}Normal:{/b} Tattoos for the pattern designs class feature can be identified by a Spellcraft check. A character can only safely wear twenty psionic tattoos." compset="Feat" maxlimit="2">
+  <thing id="fPUMerDesi" name="Merge Designs" description="Your tattoo designs are altered to disguise their nature and to be more compact.{br}{br}{b}Prerequisites:{/b} Scribe Tattoo, pattern designs class feature.{br}{br}{b}Benefit:{/b} Your tattoos cannot be interpreted to determine your powers known. In addition, you can safely wear one additional psionic tattoo on your body.{br}{br}{b}Normal:{/b} Tattoos for the pattern designs class feature can be identified by a Spellcraft check. A character can only safely wear twenty psionic tattoos." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
-    <exprreq message="Scribe Tattoo feat required."><![CDATA[#hasfeat[fPUScrTatt] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Pattern Designs class feature required."><![CDATA[#hasability[cPUPattern] <> 0]]></exprreq>
+    <exprreq message="Scribe Tattoo feat required."><![CDATA[#hasfeat[fPUScrTatt] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUMpsiMas" name="Metapsionic Mastery" description="You have mastered applying a metapsionic feat to a particular power.\n\n{b}Prerequisites:{/b} Manifester level 3rd, one metapsionic feat \n\n{b}Benefit:{/b} Select one psionic power you can manifest. You can manifest this power while applying any number of metapsionic feats you possess without having to expend your psionic focus, but for each metapsionic feat you apply without expending your psionic focus, the power&apos;s cost is increased by 2 power points. The power&apos;s total cost cannot exceed your manifester level.\n\n{b}Special:{/b} You can select this feat multiple times. Each time, it applies to a different psionic power." compset="Feat" maxlimit="2">
+  <thing id="fPUMpsiMas" name="Metapsionic Mastery" description="You have mastered applying a metapsionic feat to a particular power.\n\n{b}Prerequisites:{/b} Manifester level 3rd, one metapsionic feat \n\n{b}Benefit:{/b} Select one psionic power you can manifest. You can manifest this power while applying any number of metapsionic feats you possess without having to expend your psionic focus, but for each metapsionic feat you apply without expending your psionic focus, the power&apos;s cost is increased by 2 power points. The power&apos;s total cost cannot exceed your manifester level.\n\n{b}Special:{/b} You can select this feat multiple times. Each time, it applies to a different psionic power." compset="Feat">
     <fieldval field="usrCandid1" value="component.BasePower"/>
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <prereq message="One metapsionic feat required">
+      <validate><![CDATA[   validif (hero.tagis[fCategory.Metapsion] <> 0)]]></validate>
+      </prereq>
     <prereq message="Manifester level 3+ required.">
-      <validate><![CDATA[~check for Manifester level 3
-validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
+      <validate><![CDATA[   ~check for Manifester level 3
+   validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
       </prereq>
     </thing>
-  <thing id="fPUMixComb" name="Mixed Combat" description="You are trained at using ranged and melee attacks at the same time.\n\n{b}Prerequisites:{/b} Quick Draw, base attack bonus +6 \n\n{b}Benefit:{/b} You can sheathe your weapons as free actions that do not provoke attacks of opportunity.\n\nIf you use this feat to change from a melee attack to a ranged attack against the same target, your ranged attacks do not provoke attacks of opportunity from that target.\n\n{b}Normal{/b}: Sheathing weapons is a move action that provokes attacks of opportunity. Ranged attacks provoke attacks of opportunity." compset="Feat" maxlimit="" uniqueness="useronce">
+  <thing id="fPUMixComb" name="Mixed Combat" description="You are trained at using ranged and melee attacks at the same time.\n\n{b}Prerequisites:{/b} Quick Draw, base attack bonus +6 \n\n{b}Benefit:{/b} You can sheathe your weapons as free actions that do not provoke attacks of opportunity.\n  If you use this feat to change from a melee attack to a ranged attack against the same target, your ranged attacks do not provoke attacks of opportunity from that target.\n\n{b}Normal{/b}: Sheathing weapons is a move action that provokes attacks of opportunity. Ranged attacks provoke attacks of opportunity." compset="Feat" maxlimit="" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Combat"/>
     <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Quick Draw feat required."><![CDATA[#hasfeat[fQuickDraw] <> 0]]></exprreq>
     <exprreq message="Base Attack Bonus 6+ required."><![CDATA[child[Attack].field[tAtkBase].value >= 6]]></exprreq>
     </thing>
-  <thing id="fPUModBlst" name="Modified Blast" description="You have learned to alter the nature of your surge blast by spending your psionic power.\n\n{b}Prerequisites:{/b} Surge blast class feature, manifester level 3rd.\n\n{b}Benefit:{/b} When you activate your surge blast, you gain the following augment options. Like augmenting a power, augmenting a surge blast is limited to your manifester level. You can also choose to invoke a wild surge when using your surge blast, using the power from the wild surge to pay for augments to the surge blast, but suffer the standard risk of psychic enervation for invoking a wild surge.\n\n{b}Augment:{/b} You can augment your surge blast in one of the following ways.\n\n1. If you spend 2 additional power points, your surge blast deals splash damage.\n\n2. If you spend 3 additional power points, your surge blast is instead a 5 ft. emanation centered on you and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage.\n\n3. If you spend 4 additional power points, your surge blast deals half damage, but damages all creatures in a 30 ft. line.\n\n4. If you spend 4 additional power points, your surge blast is empowered, dealing 50% additional damage.\n\n5. If you spend 4 additional power points, your surge blast is a 15 ft. cone effect instead of a ranged touch attack, and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage.\n\n6. If you spend 4 additional power points, your surge blast affects all creatures within a 10 ft. radius of the targeted creature and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage.\n\n7. If you spend 6 additional power points, your surge blast is instead a 10 ft. emanation centered on you and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage." compset="Feat" maxlimit="2">
+  <thing id="fPUModBlst" name="Modified Blast" description="You have learned to alter the nature of your surge blast by spending your psionic power.\n\n{b}Prerequisites:{/b} Surge blast class feature, manifester level 3rd.\n\n{b}Benefit:{/b} When you activate your surge blast, you gain the following augment options. Like augmenting a power, augmenting a surge blast is limited to your manifester level. You can also choose to invoke a wild surge when using your surge blast, using the power from the wild surge to pay for augments to the surge blast, but suffer the standard risk of psychic enervation for invoking a wild surge.\n\n{b}Augment:{/b} You can augment your surge blast in one of the following ways.\n\n1. If you spend 2 additional power points, your surge blast deals splash damage.\n\n2. If you spend 3 additional power points, your surge blast is instead a 5 ft. emanation centered on you and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage.\n\n3. If you spend 4 additional power points, your surge blast deals half damage, but damages all creatures in a 30 ft. line.\n\n4. If you spend 4 additional power points, your surge blast is empowered, dealing 50% additional damage.\n\n5. If you spend 4 additional power points, your surge blast is a 15 ft. cone effect instead of a ranged touch attack, and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage.\n\n6. If you spend 4 additional power points, your surge blast affects all creatures within a 10 ft. radius of the targeted creature and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage.\n\n7. If you spend 6 additional power points, your surge blast is instead a 10 ft. emanation centered on you and creatures in the affected area gain a Reflex save (DC 10 + 1/2 your manifester level + your Charisma modifier) to take half damage." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Surge Blast class feature required."><![CDATA[#hasability[cWldSurBla] <> 0]]></exprreq>
     <prereq message="Manifester level 3+ required.">
       <validate><![CDATA[~check for Manifester level 3
@@ -1749,6 +1753,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Collective class feature required."><![CDATA[(#hasability[cPUCollect] + #hasability[cPUTacColl] + #hasability[cPUVitColl] + #hasability[cPW5Collec]) <> 0]]></exprreq>
     <prereq message="Manifester level 3+ required.">
       <validate><![CDATA[~check for Manifester level 3
@@ -2088,8 +2093,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
       doneif (state.isfocus = 0)      
       
       ~ Increase Power DC by the Trance Class feature bonus
-      focus.field[sDCMisc].value += #value[cPWaTraAss]
-      ]]>
+      focus.field[sDCMisc].value += #value[cPWaTraAss]]]>
       <after name="Trance Assassins Path Setup"/>
       </eval>
     <exprreq message="Assassin path class feature required."><![CDATA[#hasability[cWPaAssPri] <> 0]]></exprreq>
@@ -2100,8 +2104,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
         var HavePower as number
         PowerID = "puPrevenm1|puPreVenW1"
         Call HavePower
-        @valid = HavePower
-        ]]></validate>
+        @valid = HavePower]]></validate>
       </prereq>
     </thing>
   <thing id="cfgPUUnTal" name="Unlocked Talent" compset="Configure" uniqueness="unique">
@@ -2760,5 +2763,30 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="Helper" tag="ShowSpec"/>
     <exprreq message="Elocator level 5 required"><![CDATA[#featlevelcount[Elocator] >= 5]]></exprreq>
     <exprreq message="Gravitic Stability feat required"><![CDATA[#hasfeat[fPUGravSta] <> 0]]></exprreq>
+    </thing>
+  <thing id="fPUMdBldKn" name="Mind Blade Knight" description="You have gained additional flexibility with your summoned weapons.\n\n{b}Prerequisites:{/b} Mind knight warrior path, expanded path class feature.\n\n{b}Benefit:{/b} As long as you maintain focus, when you wield a weapon created by {i}call weaponry{/i}, you may choose to forgo some or all of the mind knight trance bonus to attack and damage rolls, and instead add an equal value of weapon special abilities to the weapon. These special abilities must be selected from the soulknife’s list of weapon special abilities, and your effective soulknife level for determining which abilities you can select is equal to half your psychic warrior level (rounded down). Once you have selected weapon special abilities to apply, you must spend 8 hours in meditation to change the selected special abilities, or to dismiss the special abilities and keep the normal trance bonus.\n  If you have levels in a class that grants you a mindblade or similar weapon (such as a mind bolt or mind arrow), you may add those class levels to your psychic warrior levels to determine your manifester level for {i}call weaponry{/i} and your mind knight trance bonus." compset="Feat" uniqueness="useronce">
+    <usesource source="pPsiUn"/>
+    <tag group="fCategory" tag="Psionic"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <exprreq message="Mind knight warrior path required"><![CDATA[#hasability[cWPaMKnPri] <> 0]]></exprreq>
+    <exprreq message="Expanded path class feature required"><![CDATA[#hasability[cPWaExpPat] <> 0]]></exprreq>
+    </thing>
+  <thing id="fPUMdKnArs" name="Mind Knights&apos;s Arsenal" description="Your skill with a particular weapon makes your summoned weapons more powerful.\n\n{b}Prerequisites:{/b} Base attack bonus +3, mind knight warrior path, {i}call weaponry{/i} path power, Weapon Focus with selected weapon.\n\n{b}Benefit:{/b} When you summon a weapon with the {i}call weaponry{/i} path power with which you have the Weapon Focus feat, the weapon’s enhancement bonus is increased by 1 and it gains a single predetermined weapon special ability with a +1 base price modifier. The weapon special ability must be appropriate for the weapon you choose and must be selected from those weapon special abilities available to the soulknife. You can meditate for 8 hours to change which predetermined special ability it gets.\n\n{b}Special:{/b} You may take this feat multiple times, its effect does not stack. Each time, choose a new weapon for which you have the Weapon Focus feat to apply the benefits of this feat." compset="Feat">
+    <usesource source="pPsiUn"/>
+    <tag group="fCategory" tag="Psionic"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <exprreq message="Base attack bonus +3 required"><![CDATA[#BAB[] >= 3]]></exprreq>
+    <exprreq message="Mind knight warrior path required"><![CDATA[#hasability[cWPaMKnPri] <> 0]]></exprreq>
+    <exprreq message="Weapon Focus required"><![CDATA[(#hasfeat[fWepFoc] + #hasfeat[fWepFocMB] + #hasfeat[fWepFocMBt]) <> 0]]></exprreq>
+    <prereq message="{i}Call weaponry{/i} path power required">
+      <validate><![CDATA[    var PowerID as String
+    var HavePower as number
+    PowerID = "puPUCalWe1"
+    Call HavePower
+    @valid = HavePower]]></validate>
+      </prereq>
     </thing>
   </document>
