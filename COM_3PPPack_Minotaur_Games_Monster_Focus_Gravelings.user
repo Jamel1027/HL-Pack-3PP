@@ -194,7 +194,11 @@ bodrinbarlow@gmail.com
 
 A Minotaur Games Supplement
 
-perform hero.childfound[raMIGChEva].delete[Helper.ShowSpec]</comment>
+~Remove from the special list
+perform hero.childfound[raMIGChEva].delete[Helper.ShowSpec]
+
+~Disable the Ability
+perform hero.childfound[raMIGChEva].assign[Helper.SpcDisable]</comment>
     <fieldval field="gCraftDC" value="16"/>
     <fieldval field="shortname" value="Graveling Wing"/>
     <fieldval field="gCost" value="100"/>
@@ -230,6 +234,7 @@ doneif (#hasrace[rMIGGravel] = 0)
 if (field[gIsEquip].value <> 0) then
 
 perform hero.childfound[raMIGChEva].delete[Helper.ShowSpec]
+perform hero.childfound[raMIGChEva].assign[Helper.SpcDisable]
 
 endif]]></eval>
     <eval phase="Final" priority="10000"><![CDATA[~We don't need this to run if we arent' a Graveling
