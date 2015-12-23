@@ -17,6 +17,19 @@ bodrinbarlow@gmail.com
 22nd of December 2015
 
 A Minotaur Games Supplement.</info_history>
+    <info_todo><![CDATA[Add script to amend Ice Storm on Crown of Bones
+
+#appenddesc - doesn't work
+
+Example???
+
+~ Lets add to our modified Ice Storm spell information for reference
+
+    perform state.thing[spIceSto3].amendthing[description,"Three times per day, the wearer of the crown can call down a storm of razor sharp bone shards. Similar to {i}ice storm{/i} with the following differences.
+
+These shards deal 5d6 points of slashing damage to all creatures in a 10-foot-radius burst and each creature bleeds on its turn for an additional 1d6 points of damage (this bleed can be healed or stopped as normal). 
+
+Creatures in the area can attempt a DC 16 Reflex save to halve the damage and negate the bleed."]]]></info_todo>
     </fileinfo>
   <thing id="fB0DMoFSAD" name="Ash and Dust" description="Your channeled energy easily destroys skeletal creatures.\n\n{b}Prerequisite{/b}: Channel positive energy class feature.\n\n{b}Benefit{/b}: Whenever you use channel positive energy to harm undead creatures, any skeleton (or undead creature made up primarily of bones, such as a lich) takes 2 extra points of damage per die of damage dealt. In addition, undead creatures made from bone take a - 2 penalty on any saving throw made to reduce this damage." compset="Feat" summary="Your channeled energy easily destroys skeletal creatures." uniqueness="useronce">
     <comment>Data Input by Bodrin
@@ -216,8 +229,9 @@ A Minotaur Games Supplement.</comment>
     <tag group="sComp" tag="V"/>
     <tag group="sLevel" tag="2"/>
     <tag group="sDescript" tag="Sonic"/>
+    <tag group="sDuration" tag="Instant"/>
     </thing>
-  <thing id="spB0MFSCd8" name="Call the Dead" description="Calling on the grim powers of death, you cause all the corpses in the area to rise up as skeletons under your control. \n\nThis spell affects corpses buried underground as well, up to a depth of 10 feet, although such undead take 1d4 minutes to claw their way up to the surface. \nThese skeletons can be made into burning or bleeding skeletons at the time of casting by reducing the duration to 10 minutes per level. \n\nThese undead do not count against your Hit Die limit for the amount of undead you can control. \n\nThese undead must be commanded as a single group and cannot be split up to perform multiple tasks.\n\nIf you are slain, these undead immediately crumble to dust." compset="Spell" summary="Calling on the grim powers of death, you cause all the corpses in the area to rise up as skeletons under your control.">
+  <thing id="spB0MFSCd9" name="Call the Dead" description="Calling on the grim powers of death, you cause all the corpses in the area to rise up as skeletons under your control. \n\nThis spell affects corpses buried underground as well, up to a depth of 10 feet, although such undead take 1d4 minutes to claw their way up to the surface. \nThese skeletons can be made into burning or bleeding skeletons at the time of casting by reducing the duration to 10 minutes per level. \n\nThese undead do not count against your Hit Die limit for the amount of undead you can control. \n\nThese undead must be commanded as a single group and cannot be split up to perform multiple tasks.\n\nIf you are slain, these undead immediately crumble to dust." compset="Spell" summary="Calling on the grim powers of death, you cause all the corpses in the area to rise up as skeletons under your control.">
     <comment>Data Input by Bodrin
 
 bodrinbarlow@gmail.com
@@ -247,5 +261,391 @@ A Minotaur Games Supplement.</comment>
     <tag group="sResist" tag="No"/>
     <tag group="sSchool" tag="Necromancy"/>
     <tag group="sDescript" tag="Evil"/>
+    <tag group="sDuration" tag="Dismiss"/>
+    </thing>
+  <thing id="spB0MFSCd8" name="Call the Dead" description="Calling on the grim powers of death, you cause all the corpses in the area to rise up as skeletons under your control. \n\nThis spell affects corpses buried underground as well, up to a depth of 10 feet, although such undead take 1d4 minutes to claw their way up to the surface. \nThese skeletons can be made into burning or bleeding skeletons at the time of casting by reducing the duration to 10 minutes per level. \n\nThese undead do not count against your Hit Die limit for the amount of undead you can control. \n\nThese undead must be commanded as a single group and cannot be split up to perform multiple tasks.\n\nIf you are slain, these undead immediately crumble to dust." compset="Spell" summary="Calling on the grim powers of death, you cause all the corpses in the area to rise up as skeletons under your control.">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="sCompDesc" value="(skull of a powerful undead creature, onyx gemstone worth 5,000 gp) "/>
+    <fieldval field="sCompCost" value="5000"/>
+    <fieldval field="sTarget" value="All corpses in a 100-ft. spread "/>
+    <fieldval field="sEffect" value="This spell affects corpses buried underground as well, up to a depth of 10 feet, although such undead take 1d4 minutes to claw their way up to the surface. {br}{br}These skeletons can be made into burning or bleeding skeletons at the time of casting by reducing the duration to 10 minutes per level. "/>
+    <fieldval field="sDuration" value="1 hour/level (D)"/>
+    <usesource source="srcMoFoSke" parent="pMinoGames" name="Monster Focus - Skeletons"/>
+    <tag group="sDuration" tag="Hour" name="1+ Hours" abbrev="1+ Hours"/>
+    <tag group="sLevel" tag="8"/>
+    <tag group="sRange" tag="Medium" name="Medium (100 + 10 ft./level)" abbrev="{ref s_Medium}Med{ref}"/>
+    <tag group="sResist" tag="No" name="No" abbrev="No"/>
+    <tag group="sSave" tag="None" name="None" abbrev="None"/>
+    <tag group="sSchool" tag="Necromancy" name="Necromancy" abbrev="Necro"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="sCastTime" tag="Hour4" name="4 hours" abbrev="4 hours"/>
+    <tag group="sComp" tag="M" name="Material" abbrev="{ref s_M}M{ref}"/>
+    <tag group="sComp" tag="S" name="Somatic" abbrev="{ref s_S}S{ref}"/>
+    <tag group="sComp" tag="V" name="Verbal" abbrev="{ref s_V}V{ref}"/>
+    <tag group="sDescript" tag="Evil" name="Evil" abbrev="Evil"/>
+    <tag group="sClass" tag="cHelpClr"/>
+    <tag group="sDuration" tag="Dismiss"/>
+    </thing>
+  <thing id="spB0DMFSCR" name="Corpse Rebellion" description="This spell causes the once living spirit of an undead creature to attempt to regain control of its body. \n\nThis functions as the confused condition, affecting the undead creature. In addition, if the &quot;act normally&quot; result is rolled and the spirit of the creature would be opposed to being undead, it instead deals damage to itself as if it had rolled that result instead. \n\nIf the undead fails its Will save, it receives a new saving throw at the end of each of its turns to end this effect.\n\nMindless undead creatures take a - 4 penalty on their saving throws against this spell." compset="Spell" summary="This spell causes the once living spirit of an undead creature to attempt to regain control of its body.">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="sTarget" value="one corporeal undead creature"/>
+    <fieldval field="sDuration" value="1 round/level"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="sClass" tag="cHelpSor"/>
+    <tag group="sClass" tag="cHelpWit"/>
+    <tag group="sComp" tag="V"/>
+    <tag group="sComp" tag="S"/>
+    <tag group="sRange" tag="Close"/>
+    <tag group="sLevel" tag="1"/>
+    <tag group="sDuration" tag="Round"/>
+    <tag group="sSave" tag="WillNeg"/>
+    <tag group="sClass" tag="cHelpWiz"/>
+    <tag group="sDescript" tag="Evil"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="sResist" tag="Yes"/>
+    <tag group="sCastTime" tag="Action1"/>
+    <tag group="sSchool" tag="Necromancy"/>
+    </thing>
+  <thing id="spB0MFSMr3" name="Maul of the Righteous" description="This spell creates a two-handed maul made up of shimmering force.\n\nYou must have both hands free to cast this spell and the maul appears in your hands upon completion of the spell. \n\nYou are automatically proficient with this weapon and you receive a +1 bonus on attack rolls for every four caster levels you possess (maximum +5 at 20th level). \n\nThe maul deals 2d6 points of bludgeoning damage on a hit (if you are Medium) and has a x3 critical multiplier. \n\nThe damage from this weapon is not halved against incorporeal creatures. If the weapon strikes an undead creature, it deals 1 additional point of damage per two caster levels. \n\nThis damage is not multiplied on a critical hit. If this weapon leaves you possession, the spell immediately ends." compset="Spell" summary="This spell creates a two-handed maul made up of shimmering force.">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="sEffect" value="Magic weapon of force."/>
+    <fieldval field="sDuration" value="1 round/level (D) "/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="sClass" tag="cHelpClr"/>
+    <tag group="sComp" tag="V"/>
+    <tag group="sComp" tag="S"/>
+    <tag group="sComp" tag="DF"/>
+    <tag group="sRange" tag="Personal"/>
+    <tag group="sCastTime" tag="Action1"/>
+    <tag group="sDuration" tag="Round"/>
+    <tag group="sDuration" tag="Dismiss"/>
+    <tag group="sLevel" tag="3"/>
+    <tag group="sSchool" tag="Evocation"/>
+    <tag group="sDescript" tag="Force"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    </thing>
+  <thing id="iB0DMFSBSw" name="Bone Sword" description="This ancient blade appears to be made from bone, but it is as hard as steel. \n\nOnce per day, when this +2 longsword is used to deliver the killing blow to a humanoid creature, the bone sword can be used as a swift action to cause the creature&apos;s flesh to melt away and its body to rise up as a skeleton under the wielder&apos;s control, as if using lesser animate dead (Ultimate Magic). \n\nThe skeleton can have no more than 5 Hit Dice when created in this way. The sword wielder cannot control more than one skeleton in this way at a time. If the sword is used again to create a skeleton, any previous skeleton created by the sword immediately crumbles to dust.\n\nThis skeleton does not count against the Hit Die limit of undead that the wielder can control, but if the wielder ever loses the bone sword the undead becomes uncontrolled until a creature picks up the sword, gaining control of the skeleton.\n\n{b}CONSTRUCTION{/b}  Craft Magic Arms and Armor, {i}lesser animate dead{/i}; {b}Cost{/b} 8,315 gp" compset="MagicWep" summary="This ancient blade appears to be made from bone, but it is as hard as steel">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gWeight" value="4"/>
+    <fieldval field="gSizeCost" value="15"/>
+    <fieldval field="gCost" value="16300"/>
+    <fieldval field="BonEnhance" value="2"/>
+    <fieldval field="iCL" value="10"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="wProfReq" tag="Martial"/>
+    <tag group="wClass" tag="OneHanded"/>
+    <tag group="wCategory" tag="Melee"/>
+    <tag group="iSchool" tag="Necromancy"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="EquipType" tag="Masterwork" name="Masterwork" abbrev="Masterwork"/>
+    <tag group="wCritMin" tag="19"/>
+    <tag group="wCritMult" tag="2"/>
+    <tag group="wType" tag="S"/>
+    <child entity="wSpecMagic">
+      <bootstrap thing="wLongsword"></bootstrap>
+      </child>
+    </thing>
+  <thing id="iB0DMFSSpM" name="Spine Mace" description="The handle of this +1 heavy mace is crafted from the spine of a humanoid creature, with its skull as the head of the mace. \n\nWhenever the mace strikes a skeleton, or another creature made primarily of bones, the spine mace deals an additional 1d6 points of damage.\n\nThis additional damage is not multiplied on a critical hit. \n\nOnce per day as a standard action, the wielder of the mace can cause the skull to emit a silent scream.\n\nAny undead within 30 feet of the wielder must make a DC 13 Will save or flee from the wielder of the mace for 1 minute as if panicked. \n\nIntelligent undead receive a new saving throw each round to end the effect.\n\n{b}CONSTRUCTION{/b} Craft Magic Arms and Armor, Turn Undead, {i}summon monster I{/i}; Cost 10,312 gp" compset="MagicWep">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gCost" value="10300"/>
+    <fieldval field="gSizeCost" value="12"/>
+    <fieldval field="iCL" value="5"/>
+    <fieldval field="BonEnhance" value="1"/>
+    <fieldval field="gWeight" value="8"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="iSchool" tag="Necromancy"/>
+    <tag group="wProfReq" tag="Simple"/>
+    <tag group="wClass" tag="Light"/>
+    <tag group="wCategory" tag="Melee"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="wCritMult" tag="2"/>
+    <tag group="wCritMin" tag="20"/>
+    <child entity="wSpecMagic">
+      <bootstrap thing="wMaceHeavy"></bootstrap>
+      </child>
+    </thing>
+  <thing id="spB0MFSMr2" name="Maul of the Righteous" description="This spell creates a two-handed maul made up of shimmering force.\n\nYou must have both hands free to cast this spell and the maul appears in your hands upon completion of the spell. \n\nYou are automatically proficient with this weapon and you receive a +1 bonus on attack rolls for every four caster levels you possess (maximum +5 at 20th level). \n\nThe maul deals 2d6 points of bludgeoning damage on a hit (if you are Medium) and has a x3 critical multiplier. \n\nThe damage from this weapon is not halved against incorporeal creatures. If the weapon strikes an undead creature, it deals 1 additional point of damage per two caster levels. \n\nThis damage is not multiplied on a critical hit. If this weapon leaves you possession, the spell immediately ends." compset="Spell" summary="This spell creates a two-handed maul made up of shimmering force.">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="sEffect" value="Magic weapon of force."/>
+    <fieldval field="sDuration" value="1 round/level (D) "/>
+    <usesource source="srcMoFoSke" parent="pMinoGames" name="Monster Focus - Skeletons"/>
+    <tag group="sComp" tag="S" name="Somatic" abbrev="{ref s_S}S{ref}"/>
+    <tag group="sComp" tag="V" name="Verbal" abbrev="{ref s_V}V{ref}"/>
+    <tag group="sDescript" tag="Force" name="Force" abbrev="Force"/>
+    <tag group="sDuration" tag="Dismiss" name="Dismissable" abbrev="Dismissable"/>
+    <tag group="sDuration" tag="Round" name="1+ Rounds" abbrev="1+ Rounds"/>
+    <tag group="sLevel" tag="2"/>
+    <tag group="sRange" tag="Personal" name="Personal" abbrev="{ref s_Pers}Pers{ref}"/>
+    <tag group="sSchool" tag="Evocation" name="Evocation" abbrev="Evoc"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="sCastTime" tag="Action1" name="1 action" abbrev="1 action"/>
+    <tag group="sComp" tag="DF" name="Divine Focus" abbrev="{ref s_DF}DF{ref}"/>
+    <tag group="sClass" tag="cHelpPal"/>
+    <tag group="ClsScAllSp" tag="spB0MFSMr3" name="Maul of the Righteous" abbrev="Maul of the Righteous"/>
+    </thing>
+  <thing id="ioB0MFSCBo" name="Crown of Bones" description="This grisly crown is made up of dozens of finger bones, rib bones, and teeth, blackened with age. \n\nThree times per day, the wearer of the crown can call down a storm of razor sharp bone shards. Similar to {i}ice storm{/i} with the following differences.\n\nThese shards deal 5d6 points of slashing damage to all creatures in a 10-foot-radius burst and each creature bleeds on its turn for an additional 1d6 points of damage (this bleed can be healed or stopped as normal). \n\nCreatures in the area can attempt a DC 16 Reflex save to halve the damage and negate the bleed. \n\nIn addition, the wearer of the crown can cast animate dead once per day without having to provide a material component, although the crown can only be used to create skeletons.\n\nFinally, once per day, the crown allows its wearer to assume the form of a skeleton (of the same size as the wearer) as if using undead anatomy II (Ultimate Magic). \n\nThe wearer can end this transformation as a free action.\n\n{b}CONSTRUCTION{/b} Craft Wondrous Item, {i}animate dead{/i}, {i}ice storm{/i}, {i}undead anatomy II{/i}; Cost 28,000 gp" compset="Wondrous">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gCost" value="56000"/>
+    <fieldval field="iCL" value="7"/>
+    <fieldval field="shortname" value="Crown of Bones"/>
+    <fieldval field="gWeight" value="4"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="gType" tag="Wonder" name="Wondrous Item" abbrev="Wonder"/>
+    <tag group="Helper" tag="EquipMag" name="EquipMag" abbrev="EquipMag"/>
+    <tag group="Helper" tag="ShowSpec" name="Show Spec" abbrev="Show Spec"/>
+    <tag group="Hero" tag="EqpHead" name="Head" abbrev="Head"/>
+    <tag group="Helper" tag="EquipAvail" name="EquipAvail" abbrev="EquipAvail"/>
+    <tag group="iSchool" tag="Necromancy"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="Usage" tag="Day" name="/day" abbrev="/day"/>
+    <bootstrap thing="spUndeAna5">
+      <autotag group="Helper" tag="ItemSpell"/>
+      <autotag group="Usage" tag="Day"/>
+      <assignval field="sCL" value="7"/>
+      <assignval field="trkMax" value="1"/>
+      </bootstrap>
+    <bootstrap thing="spIceSto3">
+      <autotag group="Helper" tag="ItemSpell"/>
+      <autotag group="Usage" tag="Day"/>
+      <assignval field="livename" value="Ice Storm (Modified - Calls down a storm of razor sharp bone shards, see item description)"/>
+      <assignval field="sCL" value="7"/>
+      <assignval field="trkMax" value="3"/>
+      </bootstrap>
+    <bootstrap thing="spAnimDea3">
+      <autotag group="Helper" tag="ItemSpell"/>
+      <autotag group="Usage" tag="Day"/>
+      <assignval field="sCL" value="7"/>
+      <assignval field="trkMax" value="1"/>
+      </bootstrap>
+    <eval phase="Final" priority="50000"><![CDATA[~ Lets add to our modified Ice Storm spell information for reference
+
+   #appenddesc[spIceSto3, "{b}Three times per day{/b}, the wearer of the crown can call down a storm of razor sharp bone  shards.Similar to {i}ice storm{/i} with the following differences.{BR}These shards deal 5d6 points of slashing damage to all creatures in a 10-foot-radius burst and each creature bleeds on its turn for an additional 1d6 points of damage (this bleed can be healed or stopped as normal).{BR}Creatures in the area can attempt a DC 16 Reflex save to halve the damage and negate the bleed."]]]></eval>
+    </thing>
+  <thing id="irB0MFSRoL" name="Ring of Light" description="This ring is made from pale, white gold set with a trio of small diamonds on its face. \n\nThe ring can shed light, as per the spell, on command. \n\nIn addition, three times per day as a standard action, the wielder can attempt a melee touch attack against an undead creature to deal 1d8+5 points of damage, as if using cure light wounds. \n\nThis cannot be used to heal a living creature. The undead creature receives a DC 11 Will save for half damage.\n\n{b}CONSTRUCTION{/b} Forge Ring, {i}cure light wounds{/i}, {i}light{/i}; Cost 2,000 gp" compset="Ring">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gCost" value="4000"/>
+    <fieldval field="trkMax" value="3"/>
+    <fieldval field="iCL" value="5"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="Usage" tag="Day"/>
+    <tag group="iSchool" tag="Conjur"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="User" tag="Tracker"/>
+    <bootstrap thing="spCureLig1">
+      <autotag group="Usage" tag="Day"/>
+      <assignval field="trkMax" value="3"/>
+      </bootstrap>
+    </thing>
+  <thing id="ioB0MFSSoC" name="Skull of Command" description="This ancient skull has a single black diamond embedded in its forehead. \n\nThree times per day, when the skull is pointed at an undead creature it can be used to control that creature as if using {i}command undead{/i} (DC 13), but it cannot command more than one creature at a time.\n\nIn addition, the skull can be used as a holy symbol when attempting to channel negative energy, allowing the wielder to attempt to command undead creatures instead of heal them, as if he possessed the Command Undead feat.\n\n{b}CONSTRUCTION{/b} Craft Wondrous Item, Command Undead or {i}command undead{/i}; Cost 8,000 gp" compset="Wondrous">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gCost" value="16000"/>
+    <fieldval field="iCL" value="5"/>
+    <fieldval field="gWeight" value="4"/>
+    <fieldval field="shortname" value="Skull of Command"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="gType" tag="Wonder"/>
+    <tag group="Helper" tag="EquipAvail"/>
+    <tag group="iSchool" tag="Necromancy"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="EquipMag"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <bootstrap thing="spCommUnd2">
+      <autotag group="Helper" tag="ItemSpell"/>
+      <autotag group="Usage" tag="Day"/>
+      <assignval field="trkMax" value="3"/>
+      </bootstrap>
+    </thing>
+  <thing id="ioB0MFSSoF" name="Skull of Fangs" description="This sinister black skull has a mouth full of incredibly sharp fangs. \n\nAs a standard action the skull can be commanded to fly from the wielder&apos;s grasp and attack one creature within 30 feet. \n\nEach round, including the first, the skull attempts to bite the target, making a melee attack with a +5 bonus on the roll. \n\nIf the bite hits, it does 1d4+3 points of piercing damage. In addition, any creature bit by the skull must make a DC 13 Will save or be shaken for 1 round. \n\nThe skull can be used a total of 10 rounds each day. \n\nThe skull has a fly speed of 30 feet with perfect maneuverability. \n\nIt can be redirected to a new target once per round as a move action.\n\nThe skull has an AC of 16, 10 hit points, and Hardness 5.\n\nIf it takes any damage (but is not destroyed), it immediately flies back to its wielder.\n\n{b}CONSTRUCTION{/b} Craft Wondrous Item, {i}animate object{/i}; Cost 5,000 gp" compset="Wondrous">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gCost" value="10000"/>
+    <fieldval field="gWeight" value="4"/>
+    <fieldval field="iCL" value="6"/>
+    <fieldval field="trkMax" value="10"/>
+    <fieldval field="shortname" value="Skull of Fangs"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="Helper" tag="EquipAvail"/>
+    <tag group="Helper" tag="EquipMag"/>
+    <tag group="Usage" tag="DayRound"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <tag group="iSchool" tag="Transmutat"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="gType" tag="Wonder"/>
+    </thing>
+  <thing id="ioB0MFSSoS" name="Skull of the Servant" description="This pale white skull emits a faint glow when in total darkness and seems to chatter faintly while unattended.\n\nOnce per day, a skull of the servant can be commanded to transform into a skeletal champion. \n\nIt remains in this form for up to 10 minutes, until destroyed or commanded to revert back into a simple skull.\n\nDestroying the skeletal champion does not destroy the skull, but it does prevent it from being used again for one week. \n\nWhen the skeletal champion appears, it is at full hit points and has all of the listed gear, but that gear disappears when it reverts back to its skull form.\n\nThe skeletal champion understands Common, but it cannot speak.\n\nIt obeys the commands of the creature that activated it to the best of its abilities, but it cannot comprehend instructions more than one brief sentence in length.\n\n{b}CONSTRUCTION{/b} Craft Wondrous Item, {/i}animate dead{/i}; Cost 8,000 gp" compset="Wondrous">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="gCost" value="16000"/>
+    <fieldval field="gWeight" value="4"/>
+    <fieldval field="iCL" value="10"/>
+    <fieldval field="trkMax" value="1"/>
+    <fieldval field="shortname" value="Skull of the Servant"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="Helper" tag="EquipAvail"/>
+    <tag group="Helper" tag="EquipMag"/>
+    <tag group="Usage" tag="Day"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <tag group="iSchool" tag="Necromancy"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="gType" tag="Wonder"/>
+    </thing>
+  <thing id="tmB0MFSSkD" name="Skeleton, Decrepit" description="These skeletons are so ancient that the magic that binds them is beginning to fail. They are often missing parts of their bodies, such as an arm or a number of ribs. Some even lack legs and instead must crawl about. Decrepit skeletons cannot be intentionally created.\n\n{b}Challenge Rating{/b}: As a normal skeleton - 1.\n\n{b}Armor Class{/b}: As a normal skeleton, but reduce the natural armor bonus by 1 (minimum 0).\n\n{b}Defensive Abilities{/b}: As a normal skeleton, except a decrepit skeleton gains DR 5/bludgeoning or slashing instead of DR 5/bludgeoning.\n\nAbilities: As a normal skeleton, but its Charisma score is reduced to 8.\n\nSpecial Qualities: A decrepit skeleton frequently is missing various parts that impair its function. Roll 1d10 and consult the following table.\n\n1 - 5: No missing parts.\n\n6 - 7: Missing one arm. The skeleton only gets one claw attack or weapon attack and can&apos;t use two-handed weapons.\n\n8 - 9: Missing a number of bones all over its body. It loses DR 5/bludgeoning or slashing.\n\n10: Missing one or both legs. It takes a - 4 penalty to Dexterity and its speed is reduced to 5 feet. It cannot take a 5-foot step." compset="Template" uniqueness="unique">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.
+
+~ Subtract 1 from our natural armor class
+   hero.child[ArmorClass].field[tACNatural].value = hero.child[ArmorClass].field[tACNatural].value -1</comment>
+    <fieldval field="tmCHA" value="-2"/>
+    <fieldval field="tmAC" value="-1"/>
+    <arrayval field="tmCRArray" index="0" value="-1"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="ClVaryName" tag="Prepend" name="Prepend" abbrev="Prepend"/>
+    <tag group="TemplHelp" tag="Acquired" name="Acquired" abbrev="Acquired"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="TemplHelp" tag="Inherited" name="Inherited" abbrev="Inherited"/>
+    <bootstrap thing="xB0DMFSBoS">
+      <autotag group="SpecSource" tag="tmB0MFSSkD"/>
+      <autotag group="Value" tag="5"/>
+      </bootstrap>
+    <eval phase="PreLevel" priority="10001" index="2"><![CDATA[
+      ~if we've been added to a skeleton, force the value on our CHA to 8
+      if (hero.tagis[Template.tmSkeleton] <> 0) then
+        hero.child[aCHA].field[aNormForce].value = 8
+        endif]]></eval>
+    <eval phase="First" priority="600" index="3"><![CDATA[
+      field[livename].text = "Decrepit"]]>
+      <before name="Template Name Modification"/>
+      </eval>
+    <eval phase="First" priority="550" index="5"><![CDATA[
+      hero.childfound[tmSkeleton].field[livename].text = "Skeleton, Decrepit"
+      hero.childfound[tmSkelCham].field[livename].text ="Skeletal Champion, Decrepit"]]></eval>
+    <eval phase="First"><![CDATA[~find the copy of Damage reduction Bludgeoning added by the skeleton template disable and delete it
+      var searchexpr as string
+      searchexpr = "SpecSource.tmSkeleton & thingid.xDamRdB"
+      perform hero.findchild[Ability,searchexpr].assign[Helper.SpcDisable]
+      perform hero.findchild[Ability,searchexpr].delete[Helper.ShowSpec]]]></eval>
+    <eval phase="First" index="6"><![CDATA[~find the copy of Damage reduction Bludgeoning and slashing added our decrepit skeleton template renable and show it
+      var searchexpr as string
+      searchexpr = "SpecSource.tmB0MFSSkD & thingid.xB0DMFSBoS"
+      perform hero.findchild[Ability,searchexpr].delete[Helper.SpcDisable]
+      perform hero.findchild[Ability,searchexpr].assign[Helper.ShowSpec]]]></eval>
+    <exprreq message="Skeleton or Skeletal Champion Template required."><![CDATA[hero.tagis[Template.tmSkeleton] + hero.tagis[Template.tmSkelCham] <> 0]]></exprreq>
+    </thing>
+  <thing id="xB0DMFSBoS" name="Damage Reduction, Bludgeoning or Slashing" description="You have Damage Reduction against all except Bludgeoning or Slashing attacks." compset="Ability" summary="You have Damage Reduction against all except Bludgeoning or Slashing attacks." uniqueness="unique">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <usesource source="srcMoFoSke"/>
+    <tag group="Helper" tag="ShowSpec" name="Show Spec" abbrev="Show Spec"/>
+    <tag group="NaturalDR" tag="Magic" name="Magic" abbrev="Magic"/>
+    <tag group="Universal" tag="Universal" name="Universal Monster Ability or Core Rulebook ability" abbrev="Universal Monster Ability or Core Rulebook ability"/>
+    <tag group="HasAbility" tag="xDamRdAny" name="xDamRdAny" abbrev="xDamRdAny"/>
+    <tag group="Helper" tag="BaseAbil" name="Base Ability" abbrev="Base Ability"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="SpecType" tag="DR"/>
+    <eval phase="Final" priority="10000"><![CDATA[call CalcValue
+
+      ~ Use our value field as the amount of damage we can resist
+      field[livename].text = "Damage Reduction (" & field[abValue].value & "/bludgeoning or slashing)"
+      field[shortname].text = field[abValue].value & "/bludgeoning or slashing"]]></eval>
     </thing>
   </document>
