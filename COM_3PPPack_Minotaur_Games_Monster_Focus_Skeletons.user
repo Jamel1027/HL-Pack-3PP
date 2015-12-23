@@ -602,26 +602,50 @@ A Minotaur Games Supplement.
       <autotag group="SpecSource" tag="tmB0MFSSkD"/>
       <autotag group="Value" tag="5"/>
       </bootstrap>
-    <eval phase="PreLevel" priority="10001" index="2"><![CDATA[
-      ~if we've been added to a skeleton, force the value on our CHA to 8
-      if (hero.tagis[Template.tmSkeleton] <> 0) then
-        hero.child[aCHA].field[aNormForce].value = 8
-        endif]]></eval>
-    <eval phase="First" priority="600" index="3"><![CDATA[
-      field[livename].text = "Decrepit"]]>
-      <before name="Template Name Modification"/>
-      </eval>
-    <eval phase="First" priority="550" index="5"><![CDATA[
-      hero.childfound[tmSkeleton].field[livename].text = "Skeleton, Decrepit"
-      hero.childfound[tmSkelCham].field[livename].text ="Skeletal Champion, Decrepit"]]></eval>
+    <bootstrap thing="rcB0DMFSOA">
+      <autotag group="SpecSource" tag="tmB0MFSSkD"/>
+      </bootstrap>
+    <bootstrap thing="rcB0DMFSOB">
+      <autotag group="SpecSource" tag="tmB0MFSSkD"/>
+      </bootstrap>
+    <bootstrap thing="rcB0DMFSOL">
+      <autotag group="SpecSource" tag="tmB0MFSSkD"/>
+      </bootstrap>
     <eval phase="First"><![CDATA[~find the copy of Damage reduction Bludgeoning added by the skeleton template disable and delete it
       var searchexpr as string
       searchexpr = "SpecSource.tmSkeleton & thingid.xDamRdB"
       perform hero.findchild[Ability,searchexpr].assign[Helper.SpcDisable]
       perform hero.findchild[Ability,searchexpr].delete[Helper.ShowSpec]]]></eval>
-    <eval phase="First" index="6"><![CDATA[~find the copy of Damage reduction Bludgeoning and slashing added our decrepit skeleton template renable and show it
+    <eval phase="First" index="6"><![CDATA[~find the copy of missing one arm added by our decrepit skeleton template renable and show it
       var searchexpr as string
       searchexpr = "SpecSource.tmB0MFSSkD & thingid.xB0DMFSBoS"
+      perform hero.findchild[Ability,searchexpr].delete[Helper.SpcDisable]
+      perform hero.findchild[Ability,searchexpr].assign[Helper.ShowSpec]]]></eval>
+    <eval phase="PreLevel" priority="10001" index="2"><![CDATA[
+      ~if we've been added to a skeleton, force the value on our CHA to 8
+      if (hero.tagis[Template.tmSkeleton] <> 0) then
+        hero.child[aCHA].field[aNormForce].value = 8
+        endif]]></eval>
+    <eval phase="First" index="7"><![CDATA[~find the copy of Damage reduction Bludgeoning and slashing added by our decrepit skeleton template renable and show it
+      var searchexpr as string
+      searchexpr = "SpecSource.tmB0MFSSkD & thingid.rcB0DMFSOA"
+      perform hero.findchild[Ability,searchexpr].delete[Helper.SpcDisable]
+      perform hero.findchild[Ability,searchexpr].assign[Helper.ShowSpec]]]></eval>
+    <eval phase="First" priority="600" index="3"><![CDATA[
+      field[livename].text = "Decrepit"]]>
+      <before name="Template Name Modification"/>
+      </eval>
+    <eval phase="First" index="8"><![CDATA[~find the copy of missing a number of bones added by our decrepit skeleton template renable and show it
+      var searchexpr as string
+      searchexpr = "SpecSource.tmB0MFSSkD & thingid.rcB0DMFSOB"
+      perform hero.findchild[Ability,searchexpr].delete[Helper.SpcDisable]
+      perform hero.findchild[Ability,searchexpr].assign[Helper.ShowSpec]]]></eval>
+    <eval phase="First" priority="550" index="5"><![CDATA[
+      hero.childfound[tmSkeleton].field[livename].text = "Skeleton, Decrepit"
+      hero.childfound[tmSkelCham].field[livename].text ="Skeletal Champion, Decrepit"]]></eval>
+    <eval phase="First" index="9"><![CDATA[~find the copy of missing one or both legs added by our decrepit skeleton template renable and show it
+      var searchexpr as string
+      searchexpr = "SpecSource.tmB0MFSSkD & thingid.rcB0DMFSOL"
       perform hero.findchild[Ability,searchexpr].delete[Helper.SpcDisable]
       perform hero.findchild[Ability,searchexpr].assign[Helper.ShowSpec]]]></eval>
     <exprreq message="Skeleton or Skeletal Champion Template required."><![CDATA[hero.tagis[Template.tmSkeleton] + hero.tagis[Template.tmSkelCham] <> 0]]></exprreq>
@@ -649,5 +673,85 @@ A Minotaur Games Supplement.</comment>
       ~ Use our value field as the amount of damage we can resist
       field[livename].text = "Damage Reduction (" & field[abValue].value & "/bludgeoning or slashing)"
       field[shortname].text = field[abValue].value & "/bludgeoning or slashing"]]></eval>
+    </thing>
+  <thing id="rcB0DMFSOA" name="Missing one arm" description="Missing one arm. The skeleton only gets one claw attack or weapon attack and can&apos;t use two-handed weapons." compset="RaceCustom">
+    <comment><![CDATA[Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.
+
+~Make our Claw attack only apply STR bonus not *1.5
+
+perform hero.findchild[BaseNatWep,"IsWeapon.wClaw"].assign[Helper.NatPrimary]]]></comment>
+    <fieldval field="actName" value="Missing one arm"/>
+    <usesource source="srcMoFoSke"/>
+    <tag group="User" tag="Activation"/>
+    <tag group="AllowRCust" tag="anSkeleton"/>
+    <tag group="SpecType" tag="Weakness"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <eval phase="First"><![CDATA[~ If we're not enabled, get out now
+doneif (field[abilActive].value = 0)
+
+~ We only get one claw attack.
+perform hero.findchild[BaseNatWep,"IsWeapon.wClaw"].delete[Helper.RaceHands]]]></eval>
+    </thing>
+  <thing id="rcB0DMFSOB" name="Missing a number of bones" description="Missing a number of bones all over its body. It loses DR 5/bludgeoning or slashing." compset="RaceCustom">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="actName" value="Missing a number of bones"/>
+    <usesource source="srcMoFoSke" parent="pMinoGames" name="Monster Focus - Skeletons"/>
+    <tag group="User" tag="Activation" name="Activation" abbrev="Activation"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="SpecType" tag="Weakness" name="Weakness" abbrev="Weakness"/>
+    <tag group="AllowRCust" tag="anSkeleton" name="Skeleton" abbrev="Skeleton"/>
+    <eval phase="First"><![CDATA[~ If we're not enabled, get out now
+doneif (field[abilActive].value = 0)
+
+~find the copy of Damage reduction Bludgeoning or slashing added by the skeleton template disable and delete it
+      var searchexpr as string
+      searchexpr = "SpecSource.tmB0MFSSkD & thingid.xB0DMFSBoS"
+      perform hero.findchild[Ability,searchexpr].assign[Helper.SpcDisable]
+      perform hero.findchild[Ability,searchexpr].delete[Helper.ShowSpec]]]></eval>
+    </thing>
+  <thing id="rcB0DMFSOL" name="Missing one or both legs." description="Missing one or both legs. It takes a - 4 penalty to Dexterity and its speed is reduced to 5 feet. It cannot take a 5-foot step." compset="RaceCustom">
+    <comment>Data Input by Bodrin
+
+bodrinbarlow@gmail.com
+
+22/12/2015
+
+22nd of December 2015
+
+A Minotaur Games Supplement.</comment>
+    <fieldval field="actName" value="Missing one or both legs"/>
+    <usesource source="srcMoFoSke" parent="pMinoGames" name="Monster Focus - Skeletons"/>
+    <tag group="ProductId" tag="HLCommunit" name="Hero Lab Community" abbrev="Hero Lab Community"/>
+    <tag group="User" tag="Activation" name="Activation" abbrev="Activation"/>
+    <tag group="AllowRCust" tag="anSkeleton" name="Skeleton" abbrev="Skeleton"/>
+    <tag group="SpecType" tag="Weakness" name="Weakness" abbrev="Weakness"/>
+    <eval phase="First"><![CDATA[~ If we're not enabled, get out now
+doneif (field[abilActive].value = 0)
+
+~ We apply a -4 penalty to dexterity
+hero.child[aDEX].field[Penalty].value = hero.child[aDEX].field[Penalty].value - 4
+
+~Script Placeholders for Base speed (COMPILES BUT NOT WORKING)
+
+~and we reduce our speed to 5 feet
+~hero.child[Speed].field[aNormForce].value = 5
+
+~hero.child[Speed].field[tSpeed].value = hero.child[Speed].field~[tSpeed].value - 5]]></eval>
     </thing>
   </document>
