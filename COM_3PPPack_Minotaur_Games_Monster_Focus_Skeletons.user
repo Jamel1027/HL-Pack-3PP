@@ -17,19 +17,21 @@ bodrinbarlow@gmail.com
 22nd of December 2015
 
 A Minotaur Games Supplement.</info_history>
-    <info_todo><![CDATA[Add script to amend Ice Storm on Crown of Bones
+    <info_todo><![CDATA[Add script to amend Ice Storm on Crown of Bones - Completed 23/12/2015
 
-#appenddesc - doesn't work
+#appenddesc - won't work if we have line breaks without the {BR} or \n tags
 
-Example???
+Example
 
 ~ Lets add to our modified Ice Storm spell information for reference
 
-    perform state.thing[spIceSto3].amendthing[description,"Three times per day, the wearer of the crown can call down a storm of razor sharp bone shards. Similar to {i}ice storm{/i} with the following differences.
+   #appenddesc[spIceSto3, "{b}Three times per day{/b}, the wearer of the crown can call down a storm of razor sharp bone  shards.Similar to {i}ice storm{/i} with the following differences.{BR}These shards deal 5d6 points of slashing damage to all creatures in a 10-foot-radius burst and each creature bleeds on its turn for an additional 1d6 points of damage (this bleed can be healed or stopped as normal).{BR}Creatures in the area can attempt a DC 16 Reflex save to halve the damage and negate the bleed."]
 
-These shards deal 5d6 points of slashing damage to all creatures in a 10-foot-radius burst and each creature bleeds on its turn for an additional 1d6 points of damage (this bleed can be healed or stopped as normal). 
+This next script should change the whole spell description from the default text (UNTESTED)
 
-Creatures in the area can attempt a DC 16 Reflex save to halve the damage and negate the bleed."]]]></info_todo>
+~ Lets add to our modified Ice Storm spell information for reference
+
+    perform state.thing[spIceSto3].amendthing[description,"Three times per day, the wearer of the crown can call down a storm of razor sharp bone shards. Similar to {i}ice storm{/i} with the following differences.{BR}These shards deal 5d6 points of slashing damage to all creatures in a 10-foot-radius burst and each creature bleeds on its turn for an additional 1d6 points of damage (this bleed can be healed or stopped as normal).{BR}Creatures in the area can attempt a DC 16 Reflex save to halve the damage and negate the bleed."]]]></info_todo>
     </fileinfo>
   <thing id="fB0DMoFSAD" name="Ash and Dust" description="Your channeled energy easily destroys skeletal creatures.\n\n{b}Prerequisite{/b}: Channel positive energy class feature.\n\n{b}Benefit{/b}: Whenever you use channel positive energy to harm undead creatures, any skeleton (or undead creature made up primarily of bones, such as a lich) takes 2 extra points of damage per die of damage dealt. In addition, undead creatures made from bone take a - 2 penalty on any saving throw made to reduce this damage." compset="Feat" summary="Your channeled energy easily destroys skeletal creatures." uniqueness="useronce">
     <comment>Data Input by Bodrin
