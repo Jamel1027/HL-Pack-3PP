@@ -745,13 +745,14 @@ A Minotaur Games Supplement.</comment>
 doneif (field[abilActive].value = 0)
 
 ~ We apply a -4 penalty to dexterity
-hero.child[aDEX].field[Penalty].value = hero.child[aDEX].field[Penalty].value - 4
+hero.child[aDEX].field[Penalty].value = hero.child[aDEX].field[Penalty].value - 4]]></eval>
+    <eval phase="First" index="2"><![CDATA[~ If we're not enabled, get out now
+  doneif (field[abilActive].value = 0)
 
-~Script Placeholders for Base speed (COMPILES BUT NOT WORKING)
-
-~and we reduce our speed to 5 feet
-~hero.child[Speed].field[aNormForce].value = 5
-
-~hero.child[Speed].field[tSpeed].value = hero.child[Speed].field~[tSpeed].value - 5]]></eval>
+  ~set our focus to the hero's base race
+   perform hero.findchild[BaseRace].setfocus
+   doneif (state.isfocus = 0)
+      ~ then set the speed to 5
+        focus.field[rSpeed].value =5]]></eval>
     </thing>
   </document>
