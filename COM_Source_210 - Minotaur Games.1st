@@ -15,7 +15,7 @@
     id="pMinoGames"
     name="Minotaur Games"
     selectable="no"
-    parent="pComPacks"
+    parent="p3PPPack"
     sortorder="10"
     description="Community created Minotaur Games Pathfinder Compatible Books. Use is allowed for gaming groups only.">
     </source>
