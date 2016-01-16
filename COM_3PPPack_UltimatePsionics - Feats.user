@@ -780,12 +780,13 @@
     <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Manifester level 3rd required."><![CDATA[hero.tagcount[Hero.Manifester] >= 3]]></exprreq>
     </thing>
-  <thing id="fPUSidChrg" name="Sidestep Charge" description="{b}Prerequisites{/b}: Dex 13, Dodge.{br}{br}{b}Benefit{/b}: You get a +4 dodge bonus to Armor Class against charge attacks. If a charging opponent fails to make a successful attack against you, you gain an immediate attack of opportunity. This feat does not grant you more attacks of opportunity than you are normally allowed in a round. If you are flat-footed or otherwise denied your Dexterity bonus to Armor Class, you do not gain the benefit of this feat." compset="Feat" summary="You are skilled at dodging past charging opponents and taking advantage when they miss." uniqueness="useronce">
+  <thing id="fPUSidChrg" name="Sidestep Charge" description="You are skilled at dodging past charging opponents and taking advantage when they miss.\n\n{b}Prerequisites{/b}: Dex 13, Dodge.\n\n{b}Benefit{/b}: You get a +4 dodge bonus to Armor Class against charge attacks. If a charging opponent fails to make a successful attack against you, you gain an immediate attack of opportunity. This feat does not grant you more attacks of opportunity than you are normally allowed in a round. If you are flat-footed or otherwise denied your Dexterity bonus to Armor Class, you do not gain the benefit of this feat." compset="Feat" summary="You are skilled at dodging past charging opponents and taking advantage when they miss." uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec" name="ShowSpec" abbrev="ShowSpec"/>
     <tag group="fCategory" tag="General" name="General" abbrev="General"/>
-    <exprreq message="Dodge required." iserror="no"><![CDATA[#hasfeat[fDodge] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Dexterity 13 required." iserror="no"><![CDATA[child[aDEX].field[aFinalVal].value >= 13]]></exprreq>
+    <exprreq message="Dodge required." iserror="no"><![CDATA[#hasfeat[fDodge] <> 0]]></exprreq>
     </thing>
   <thing id="fPUSpdThgt" name="Speed of Thought" description="The energy of your mind energizes the alacrity of your body.{br}{br}{b}Prerequisite:{/b} Wis 13.{br}{br}{b}Benefit:{/b} As long as you are psionically focused and not wearing heavy armor, you gain an insight bonus to your speed of 10 feet. You may expend your psionic focus to increase the insight bonus to your speed to 30 feet for your turn." compset="Feat" summary="When focused speed +10ft or +30ft when you expend focus." uniqueness="useronce">
     <fieldval field="actName" value="Expend Focus"/>
@@ -796,6 +797,7 @@
     <tag group="Helper" tag="ShowSpec" name="ShowSpec" abbrev="ShowSpec"/>
     <tag group="abAction" tag="PUManFocus"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="PostLevel" priority="10000"><![CDATA[
       ~ If we're wearing heavy armor then we are disabled.
       if (hero.tagis[Hero.HeavyArmor] = 1) then
@@ -816,19 +818,20 @@
 
       #applybonus[BonEnhance,hero.child[Speed],field[abValue].value]]]></eval>
     </thing>
-  <thing id="fPUSplPsiR" name="Split Psionic Ray" description="{b}Prerequisite{/b}: Any other metapsionic feat.\n  \n{b}Benefit{\b}: To use this feat, you must expend your psionic focus. You can split psionic rays you manifest. The split ray affects any two targets that are both within the power&apos;s range and within 30 feet of each other. If the ray deals damage, each target takes as much damage as a single target would take.  You may choose to have both rays strike the same target.  \nUsing this feat increases the power point cost of the power by 2." compset="Feat" summary="You can affect two targets with a single ray." uniqueness="useronce">
+  <thing id="fPUSplPsiR" name="Split Psionic Ray" description="You can affect two targets with a single ray.\n\n{b}Prerequisite{/b}: Any other metapsionic feat.\n  \n{b}Benefit{\b}: To use this feat, you must expend your psionic focus. You can split psionic rays you manifest. The split ray affects any two targets that are both within the power&apos;s range and within 30 feet of each other. If the ray deals damage, each target takes as much damage as a single target would take.  You may choose to have both rays strike the same target.  \n  Using this feat increases the power point cost of the power by 2." compset="Feat" summary="You can affect two targets with a single ray." uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Any other metapsionic feat required."><![CDATA[tagcount[fCategory.Metapsion] >= 1]]></exprreq>
     </thing>
-  <thing id="fPUTalent" name="Talented" description="{b}Prerequisites:{/b} Overchannel. \n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. When manifesting a power of 3rd level or lower, you do not take damage from overchanneling." compset="Feat" summary="You can overchannel powers with less cost to yourself." uniqueness="useronce">
+  <thing id="fPUTalent" name="Talented" description="You can overchannel powers with less cost to yourself.\n\n{b}Prerequisites:{/b} Overchannel. \n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. When manifesting a power of 3rd level or lower, you do not take damage from overchanneling." compset="Feat" summary="You can overchannel powers with less cost to yourself." uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec" name="ShowSpec" abbrev="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="abAction" tag="PUExpFocus"/>
-    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Overchannel feat required."><![CDATA[#hasfeat[fPUOverch] <> 0]]></exprreq>
     </thing>
   <thing id="fPUTwinPwr" name="Twin Power" description="{b}Benefit{\b}: To use this feat, you must expend your psionic focus. You can twin a power. Manifesting a power altered by this feat causes the power to take effect twice on the area or target, as if you were simultaneously manifesting the same power two times on the same location or target. Any variables in the power (such as duration, number of targets, and so on) are the same for both of the resulting powers. The target experiences all the effects of both powers individually and receives a saving throw (if applicable) for each. In some cases, such as a twinned {i}psionic charm{/i}, failing both saving throws results in redundant effects (although, in this example, any ally of the target would have to succeed on two dispel attempts to free the target from the charm effect).  \nUsing this feat increases the power point cost of the power by 6. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" summary="You can manifest a power simultaneously with another power just like it." uniqueness="useronce">
@@ -924,10 +927,11 @@
     <tag group="abAction" tag="PUExpFocus"/>
     <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="fPUSurAur" name="Surging Aura" description="{b}Prerequisites:{/b} Wild Surge +1. \n\n{b}Benefit:{/b} You gain a 10&apos; surging aura. When you use your wild surge class feature, you can designate one ally for every +1 of your wild surge within the surging aura to gain an insight bonus to attack rolls equal to your wild surge until the end of their next turn." compset="Feat" summary="Your wild surge enhances the aim of nearby allies." uniqueness="useronce">
+  <thing id="fPUSurAur" name="Surging Aura" description="Your wild surge enhances the aim of nearby allies.\n\n{b}Prerequisites:{/b} Wild Surge +1. \n\n{b}Benefit:{/b} You gain a 10&apos; surging aura. When you use your wild surge class feature, you can designate one ally for every +1 of your wild surge within the surging aura to gain an insight bonus to attack rolls equal to your wild surge until the end of their next turn." compset="Feat" summary="Your wild surge enhances the aim of nearby allies." uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="Helper" tag="ShowSpec" name="ShowSpec" abbrev="ShowSpec"/>
     <tag group="fCategory" tag="Psionic"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <eval phase="Final" priority="30000"><![CDATA[
       ~ If we're disabled, do nothing
       doneif (tagis[Helper.FtDisable] <> 0)
@@ -936,7 +940,7 @@
       field[abValue].value += 10
       ~ Set livename with number of allies and feet
       field[livename].text = field[thingname].text & " " & #value[cWldWildSu] & " allies; " & field[abValue].value & "ft"]]></eval>
-    <exprreq message="Psionic character required."><![CDATA[hero.tagis[Hero.Psionic] <> 0]]></exprreq>
+    <exprreq message="Wild Surge +1 required"><![CDATA[#hasability[cWldWildSu] <> 0]]></exprreq>
     </thing>
   <thing id="fPUSwftSha" name="Swift Shapeshifter" description="You are naturally confident with different shapes and forms, and years of training have allowed your body to more easily flow into new shapes.\n\n{b}Prerequisites:{/b} Ability to manifest {i}metamorphosis{/i}.\n\n{b}Benefit:{/b} When you manifest {i}minor metamorphosis{/i}, {i}major metamorphosis{/i} or {i}metamorphosis{/i} the manifestation time is a move action instead of a standard action." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -1975,42 +1979,43 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="abAction" tag="PUExpFocus"/>
     <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="fPUSelePwr" name="Selective Power" description="Your allies need not fear friendly fire.{br}{br}{b}Prerequisite:{/b} Spellcraft 10 ranks.{br}{br}{b}Benefit:{/b} To use this feat, you must expend your psionic focus. When manifesting a selective power with an area effect, you can choose a number of targets in the area equal to your key ability modifier. These targets are excluded from the effects of your power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.{br}{br}Powers that do not have an area of effect cannot be used with this feat." compset="Feat">
+  <thing id="fPUSelePwr" name="Selective Power" description="Your allies need not fear friendly fire.\n\n{b}Prerequisite:{/b} Spellcraft 10 ranks.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. When manifesting a selective power with an area effect, you can choose a number of targets in the area equal to your key ability modifier. These targets are excluded from the effects of your power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.\n  Powers that do not have an area of effect cannot be used with this feat." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Spellcraft 10+ ranks required."><![CDATA[#skillranks[skSpellcr] >= 10]]></exprreq>
     </thing>
-  <thing id="fPUSharPwr" name="Shared Power" description="You have learned to extend the range of your personal powers, granting their benefits to your nearby allies.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can manifest a power with a range of personal as if the range was instead touch. Using this feat in this manner does not increase the power point cost of the power. \n\nAlternatively, you can expend your psionic focus to treat the power as if it has a range of Close (25 ft. + 5 ft./2 levels) and has the network descriptor. \n\nUsing this feat in this manner increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" uniqueness="useronce">
+  <thing id="fPUSharPwr" name="Shared Power" description="You have learned to extend the range of your personal powers, granting their benefits to your nearby allies.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can manifest a power with a range of personal as if the range was instead touch. Using this feat in this manner does not increase the power point cost of the power. \n  Alternatively, you can expend your psionic focus to treat the power as if it has a range of Close (25 ft. + 5 ft./2 levels) and has the network descriptor. \n  Using this feat in this manner increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="fPUShatDre" name="Shattered Dream Strike" description="You sap your opponent&apos;s will with your attacks.\n\n{b}Prerequisites:{/b} Devastating touch class feature, Improved Unarmed Strike, Broken Dreams Style*, Intimidate 6 ranks \n\n{b}Benefit:{/b} While in the broken dreams style, after making a successful unarmed strike empowered with your devastating touch, you can make a free Intimidate check against the target." compset="Feat" maxlimit="2">
+  <thing id="fPUShatDre" name="Shattered Dream Strike" description="You sap your opponent&apos;s will with your attacks.\n\n{b}Prerequisites:{/b} Devastating touch class feature, Improved Unarmed Strike, Broken Dreams Style*, Intimidate 6 ranks \n\n{b}Benefit:{/b} While in the broken dreams style, after making a successful unarmed strike empowered with your devastating touch, you can make a free Intimidate check against the target." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
-    <exprreq message="Devastating Touch class feature required."><![CDATA[#hasability[cPUDevaTou] <> 0]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Improved Unarmed Strike feat required."><![CDATA[#hasfeat[fImpUnarm] <> 0]]></exprreq>
     <exprreq message="Broken Dreams style feat required."><![CDATA[#hasfeat[fPUBroDrea] <> 0]]></exprreq>
     <exprreq message="Intimidate 6+ ranks required."><![CDATA[#skillranks[skIntim] >= 6]]></exprreq>
+    <exprreq message="Devastating Touch class feature required."><![CDATA[#hasability[cPUDevaTou] <> 0]]></exprreq>
     </thing>
-  <thing id="fPUSickPwr" name="Sickening Power" description="You can sicken creatures with your powers.{br}{br}{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can modify a power to sicken a creature damaged by the power. When a creature takes damage from this power, they become sickened for a number of rounds equal to the level of the power. If the power allows a saving throw, a successful save negates the sickening effect. If the power does not allow a save, the target can make a Fortitude save to negate the sickening effect.{br}{br}If the power effect also causes the creature to become sickened, the duration of this metapsionic effect is added on to the duration of the power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.{br}{br}Powers that do not inflict damage cannot be used with this feat." compset="Feat">
+  <thing id="fPUSickPwr" name="Sickening Power" description="You can sicken creatures with your powers.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can modify a power to sicken a creature damaged by the power. When a creature takes damage from this power, they become sickened for a number of rounds equal to the level of the power. If the power allows a saving throw, a successful save negates the sickening effect. If the power does not allow a save, the target can make a Fortitude save to negate the sickening effect. If the power effect also causes the creature to become sickened, the duration of this metapsionic effect is added on to the duration of the power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.\n  Powers that do not inflict damage cannot be used with this feat." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
-  <thing id="fPUStagSho" name="Staggering Shot" description="Your ranged and thrown attacks stagger fearful opponents.{br}{br}{b}Prerequisites:{/b} Intimidating Shot, Point-Blank Shot, base attack bonus +6.{br}{br}{b}Benefit:{/b} As long as you maintain psionic focus, as a standard action, you may make a single ranged or thrown attack against an enemy that is frightened, panicked, or shaken. If the attack hits, you deal damage normally and the target is staggered until the end of your next turn unless it makes a Fortitude saving throw (DC 10 + 1/2 your character level + your Wis modifier). This feat has no effect on targets that are staggered." compset="Feat" maxlimit="2">
+  <thing id="fPUStagSho" name="Staggering Shot" description="Your ranged and thrown attacks stagger fearful opponents.{br}{br}{b}Prerequisites:{/b} Intimidating Shot, Point-Blank Shot, base attack bonus +6.{br}{br}{b}Benefit:{/b} As long as you maintain psionic focus, as a standard action, you may make a single ranged or thrown attack against an enemy that is frightened, panicked, or shaken. If the attack hits, you deal damage normally and the target is staggered until the end of your next turn unless it makes a Fortitude saving throw (DC 10 + 1/2 your character level + your Wis modifier). This feat has no effect on targets that are staggered." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
-    <tag group="ChooseSrc1" tag="Hero"/>
-    <tag group="fShowWhat" tag="WeaponsNat"/>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="abAction" tag="PUManFocus"/>
     <tag group="abAction" tag="Standard"/>
-    <exprreq message="Base Attack Bonus 6+ required."><![CDATA[child[Attack].field[tAtkBase].value >= 6]]></exprreq>
+    <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="Intimidating Shot feat required."><![CDATA[#hasfeat[fPUIntimSh] <> 0]]></exprreq>
     <exprreq message="Point Blank Shot feat required."><![CDATA[#hasfeat[fPointBlnk] <> 0]]></exprreq>
+    <exprreq message="Base Attack Bonus 6+ required."><![CDATA[#BAB[] >= 6]]></exprreq>
     </thing>
   <thing id="fPUTerMast" name="Terror Mastery" description="You have learned to activate multiple terrors at a time.\n\n{b}Prerequisite:{/b} 8 terrors known.\n\n{b}Benefit:{/b} When you use your terrors class feature, you can activate two terrors in a single swift action.\n\n{b}Normal:{/b} You can only activate one terror at a time." compset="Feat" maxlimit="" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -2897,5 +2902,24 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="Helper" tag="ShowSpec"/>
     <exprreq message="Discipline class feature required"><![CDATA[(#hasability[cPsiSeer] + #hasability[cPUConSha] + #hasability[cPUErudite] + #hasability[cPsiGen] + #hasability[cPUInsSeer] + #hasability[cPUJaunNom] + #hasability[cPsiShaper] + #hasability[cPUMindTel] + #hasability[cPsiKineti] + #hasability[cPsiEgoist] + #hasability[cPsiNomad] + #hasability[cPsiTelepa] + #hasability[cPUTranEgo] + #hasability[cPUUnseHan]) <> 0]]></exprreq>
     <exprreq message="Arcane school required"><![CDATA[hero.tagis[Hero.Arcane] <> 0]]></exprreq>
+    </thing>
+  <thing id="fPUSoulWar" name="Soul Warrior" description="You have learned to blend your abilities with psionic power and the mind blade.\n\n{b}Prerequisites:{/b} Enhanced mind blade +2, warrior’s path class feature.\n\n{b}Benefit:{/b} Your manifester level which granted you the warrior’s path class feature gains a +2 bonus as long as this bonus doesn’t raise your manifester level above your current Hit Dice. Your soulknife level gains a +2 bonus, up to a maximum of your hit dice, for the purpose of your mind blade enhancement class feature. In addition, any time you perform a path maneuver while wielding your mind blade, you gain a +1 bonus to attack rolls with your mind blade for until the end of your next turn." compset="Feat" uniqueness="useronce">
+    <usesource source="pPsiUn"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <exprreq message="Warrior&apos;s path class feature required"><![CDATA[#hasability[cPWaWarPat] <> 0]]></exprreq>
+    <exprreq message="Enhanced Mind Blade +2 required"><![CDATA[#featlevelcount[Soulknife] >= 5]]></exprreq>
+    </thing>
+  <thing id="fPUSptHdLa" name="Split Headed Lash" description="The pyrokineticist has learned to split her focus and attack multiple targets at once.\n\nPrerequisites: Fire lash class feature, Knowledge (psionics) 10 ranks, Point Blank Shot, Precise Shot, Weapon Focus (whip)\n\nBenefit: By expending your psionic focus as part of a full attack, you can split you fire lash into two separate heads for the first attack. The fire lash returns to normal for the remaining attacks. Each head’s attack is rolled separately and need not be at the same target. If attacking multiple targets, these targets must be within 10 ft. of each other and both must be within 15 ft. of the pyrokineticist. Any extra damage dice that would have applied to the fire lash attack are applied to both heads, including damage from sources such as sneak attack and psychic strike." compset="Feat" uniqueness="useronce">
+    <usesource source="pPsiUn"/>
+    <tag group="fCategory" tag="Psionic"/>
+    <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <exprreq message="Fire lash class feature required"><![CDATA[#hasability[cFireLash] <> 0]]></exprreq>
+    <exprreq message="Knowledge (psionics) 10 ranks required"><![CDATA[#skillranks[skPUKnwPsi] >= 10]]></exprreq>
+    <exprreq message="Point-blank Shot required"><![CDATA[#hasfeat[fPointBlnk] <> 0]]></exprreq>
+    <exprreq message="Precise Shot required"><![CDATA[#hasfeat[fPrecShot] <> 0]]></exprreq>
+    <exprreq message="Weapon Focus (Whip) required"><![CDATA[hero.tagis[WepFocus.wWhip] <> 0]]></exprreq>
     </thing>
   </document>
