@@ -2023,10 +2023,11 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="ProductId" tag="HLCommunit"/>
     <exprreq message="8 Terrors known required."><![CDATA[hero.childfound[cHelpPU2].field[cUsedSpec].value >= 8]]></exprreq>
     </thing>
-  <thing id="fPUThunPwr" name="Thundering Power" description="You can conjure your powers into existence with blaring thunder or fearful shrieks, deafening creatures damaged by their effects.{br}{br}{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can modify a power to deafen a creature damaged by the power. When a creature takes damage from this power, it becomes deafened for a number of rounds equal to the level of the power. If the power allows a saving throw, a successful save negates the deafening effect. If the power does not allow a save, the target can make a Fortitude save to negate the deafening effect.{br}{br}If the power effect also causes the creature to become deafened, the duration of this metapsionic effect is added to the duration of the power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.{br}{br}Powers that do not inflict damage cannot be used with this feat." compset="Feat">
+  <thing id="fPUThunPwr" name="Thundering Power" description="You can conjure your powers into existence with blaring thunder or fearful shrieks, deafening creatures damaged by their effects.\n\n{b}Benefit:{/b} To use this feat, you must expend your psionic focus. You can modify a power to deafen a creature damaged by the power. When a creature takes damage from this power, it becomes deafened for a number of rounds equal to the level of the power. If the power allows a saving throw, a successful save negates the deafening effect. If the power does not allow a save, the target can make a Fortitude save to negate the deafening effect. If the power effect also causes the creature to become deafened, the duration of this metapsionic effect is added to the duration of the power. Using this feat increases the power point cost of the power by 2. The power&apos;s total cost cannot exceed your manifester level.\n  Powers that do not inflict damage cannot be used with this feat." compset="Feat">
     <usesource source="pPsiUn"/>
     <tag group="fCategory" tag="Metapsion"/>
     <tag group="abAction" tag="PUExpFocus"/>
+    <tag group="ProductId" tag="HLCommunit"/>
     </thing>
   <thing id="fPUToppPwr" name="Toppling Power" description="Your powers with the force descriptor knock the affected creatures prone.{br}{br}{b}Benefit:{/b} To use this feat, you must expend your psionic focus. The impact of your force power is strong enough to knock the target prone. If the target takes damage, fails its saving throw, or is moved by your force power, make a trip check against the target, using your manifester level plus your manifesting ability score bonus (Wisdom for psychic warriors, Intelligence for psions, and so on).{br}{br}This does not provoke an attack of opportunity. If the check fails, the target cannot attempt to trip you or the force effect in response.{br}{br}A toppling power only affects powers with the force descriptor. Using this feat does not increase the power point cost of the power." compset="Feat">
     <usesource source="pPsiUn"/>
@@ -2895,6 +2896,7 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <tag group="fCategory" tag="Psionic"/>
     <tag group="Helper" tag="ShowSpec"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <exprreq message="Any metapsionic feat required"><![CDATA[hero.tagcount[fCategory.Metapsion] >= 1]]></exprreq>
     </thing>
   <thing id="fPUSchlrDs" name="Scholarly Discipline" description="You have found similarities in your study of arcane schools and psionic disciplines, increasing your ability in both.\n\n{b}Prerequisites:{/b} Arcane school, discipline class feature.\n\n{b}Benefit:{/b} Your psion manifester level and wizard caster level gain a +2 bonus as long as this bonus doesn’t raise your manifester level or caster level above your current Hit Dice." compset="Feat" uniqueness="useronce">
     <usesource source="pPsiUn"/>
@@ -2921,5 +2923,34 @@ validif (hero.tagcount[Hero.Manifester] >= 3)]]></validate>
     <exprreq message="Point-blank Shot required"><![CDATA[#hasfeat[fPointBlnk] <> 0]]></exprreq>
     <exprreq message="Precise Shot required"><![CDATA[#hasfeat[fPrecShot] <> 0]]></exprreq>
     <exprreq message="Weapon Focus (Whip) required"><![CDATA[hero.tagis[WepFocus.wWhip] <> 0]]></exprreq>
+    </thing>
+  <thing id="fPUTelLink" name="Telepathic Link" description="Your experience with joining minds has progressed to the point that you are now able to maintain a permanent telepathic connection with others.\n\n{b}Prerequisites:{/b} Manifester level 3rd, ability to manifest {i}mindlink{/i}.\n\n{b}Benefit:{/b} As long as you maintain psionic focus, you may maintain a telepathic connection between yourself and other willing creatures. Creatures so connected may communicate with you and each other telepathically, even if they do not share a common language.\n  As a standard action, you may add any number of creatures in line of sight to this link; however the link may never contain more creatures than your key ability modifier (minimum 1). You are always a member of the link and do not count against this limit. You may remove any number of creatures from the link as a free action, and any creature within the link may remove itself as a free action. Any creature in the link which moves beyond medium range (100 ft. + 10 ft./manifester level) from you or falls unconscious or dies is automatically removed from the link.\n\n{b}Special:{/b} You may take this feat multiple times. Each additional time, the maximum number of creatures in the link is increased by 2." compset="Feat">
+    <usesource source="pPsiUn"/>
+    <tag group="fCategory" tag="Psionic"/>
+    <tag group="abAction" tag="Free"/>
+    <tag group="abAction" tag="PUManFocus"/>
+    <tag group="abAction" tag="Standard"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <exprreq message="Manifester level 3rd required"><![CDATA[hero.tagcount[Hero.Manifester] >= 3]]></exprreq>
+    <prereq message="Ability to manifest {i}mindlink{/i}">
+      <validate><![CDATA[    var PowerID as String
+    var HavePower as number
+    PowerID = "puMindlnk1"
+    Call HavePower
+    @valid = HavePower]]></validate>
+      </prereq>
+    </thing>
+  <thing id="fPUTombRdr" name="Tomb Raider" description="You are adept at exploring dangerous ruins and dungeons.\n\n{b}Prerequisites:{/b} Trapmaker class feature, favored terrain (underground) class feature.\n\n{b}Benefit:{/b} Add your levels of cryptic and ranger together for the purposes of your trapfinding and favored terrain class features. In addition, you can add your favored terrain (subterranean) bonus to Disable Device checks when in a subterranean terrain." compset="Feat" uniqueness="useronce">
+    <usesource source="pPsiUn"/>
+    <tag group="ProductId" tag="HLCommunit"/>
+    <tag group="Helper" tag="ShowSpec"/>
+    <eval phase="PostLevel" priority="9000"><![CDATA[      ~set situational bonus to Disable Device
+      #situational[hero.child[skDisable]," +" & hero.child[ftUndergro].field[abUser].value & " while in underground terrain",field[thingname].text]
+
+      ~add to the bonus for Trapfinding skill
+      hero.child[cRogTrapfn].field[abValue].value += round(hero.tagcount[Classes.Ranger]/2,0,-1)]]></eval>
+    <exprreq message="Favored terrain (underground) class feature required"><![CDATA[#hasability[ftUndergro] <> 0]]></exprreq>
+    <exprreq message="Trapmaker class feature required"><![CDATA[#hasability[cPUTrapmak] <> 0]]></exprreq>
     </thing>
   </document>
