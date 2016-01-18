@@ -6122,6 +6122,7 @@ perform forward[WepProf.?]]]></eval>
     <usesource source="pPsiUn"/>
     <tag group="ClassType" tag="Normal"/>
     <tag group="ProductId" tag="HLCommunit"/>
+    <bootstrap thing="cHelpPU4"></bootstrap>
     <link linkage="helper" thing="cHelpPU4"/>
     </thing>
   <thing id="cHelpPU5" name="Vitalist" compset="Class" uniqueness="unique">
