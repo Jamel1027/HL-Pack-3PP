@@ -857,7 +857,7 @@ August 13, 2013 - Tim Shadow
     <tag group="mTarget" tag="YouOrAlly"/>
     <tag group="mDuration" tag="Instant"/>
     </thing>
-  <thing id="manPWKiWo3" name="Kill the Wounded" description="The Golden Lion disciple makes a ferocious assault on his foe, opening the enemy&apos;s defenses to the attacks of his allies. The character makes a melee attack against a foe and if successful, subsequent attacks made by the character&apos;s allies inflict an additional 2d6 points of damage per successful attack until the initiator&apos;s next turn." compset="PWManuever" summary="Stance: Target of this strike takes an additional 2d6 points of damage on attacks made upon him by allies." uniqueness="useronce">
+  <thing id="manPWKiWo3" name="Kill the Wounded" description="The Golden Lion disciple makes a ferocious assault on his foe, opening the enemy&apos;s defenses to the attacks of his allies. The character makes a melee attack against a foe and if successful, subsequent attacks made by the character&apos;s allies inflict an additional 2d6 points of damage per successful attack until the initiator&apos;s next turn." compset="PWManuever" summary="Strike: Target of this strike takes an additional 2d6 points of damage on attacks made upon him by allies." uniqueness="useronce">
     <fieldval field="mPreReq" value="1"/>
     <usesource source="srcPathOfW"/>
     <tag group="AbilType" tag="Extra"/>
@@ -1830,7 +1830,7 @@ August 13, 2013 - Tim Shadow
     <tag group="mTarget" tag="You"/>
     <tag group="mDuration" tag="Turn1"/>
     </thing>
-  <thing id="manPWViSw3" name="Vicious Swipe" description="The disciple&apos;s combat style allows him to get in close to a target and strike beneath its guard, dealing a powerful blow and potentially knocking it senseless for a few moments. The initiator makes a melee attack, and if successful the attack inflicts an additional 3d6 points of damage and potentially dazes the opponent for 1d4 rounds (Fortitude save DC 13 + initiation modifier negates the dazed condition)." compset="PWManuever" summary="Stance: Make a successful melee attack, attack inflicts an additional +3d6 and potentially dazes opponent." uniqueness="useronce">
+  <thing id="manPWViSw3" name="Vicious Swipe" description="The disciple&apos;s combat style allows him to get in close to a target and strike beneath its guard, dealing a powerful blow and potentially knocking it senseless for a few moments. The initiator makes a melee attack, and if successful the attack inflicts an additional 3d6 points of damage and potentially dazes the opponent for 1d4 rounds (Fortitude save DC 13 + initiation modifier negates the dazed condition)." compset="PWManuever" summary="Strike: Make a successful melee attack, attack inflicts an additional +3d6 and potentially dazes opponent." uniqueness="useronce">
     <fieldval field="mPreReq" value="1"/>
     <usesource source="srcPathOfW"/>
     <tag group="AbilType" tag="Extra"/>
@@ -2697,7 +2697,7 @@ August 13, 2013 - Tim Shadow
     <tag group="mRange" tag="Melee"/>
     <tag group="mTarget" tag="Creature1"/>
     </thing>
-  <thing id="manPWBzKn" name="Bronze Knuckle" description="With a spectacular crack of his knuckles, the disciple delivers an extra-potent blow to his foe in the form of a bone-crushing strike. As part of a unarmed attack or a strike from this discipline, the initiator&apos;s attacks for the duration of his turn inflict an additional 2d6 points of damage and these attacks ignore a target&apos;s damage reduction." compset="PWManuever" summary="Your unarmed attacks deal +2d6 damage and ignore DR for the turn" uniqueness="useronce">
+  <thing id="manPWBzKn" name="Bronze Knuckle" description="With a spectacular crack of his knuckles, the disciple delivers an extra-potent blow to his foe in the form of a bone-crushing strike. As part of a unarmed attack or a strike from this discipline, the initiator&apos;s attacks for the duration of his turn inflict an additional 2d6 points of damage and these attacks ignore a target&apos;s damage reduction." compset="PWManuever" summary="Boost: Your unarmed attacks deal +2d6 damage and ignore DR for the turn" uniqueness="useronce">
     <arrayval field="usrArray" index="0" value="Not Readied"/>
     <arrayval field="usrArray" index="1" value="Readied"/>
     <usesource source="srcPathOfW"/>
@@ -2757,7 +2757,7 @@ August 13, 2013 - Tim Shadow
     <tag group="Discipline" tag="BrokenBlad"/>
     <tag group="mRange" tag="Melee"/>
     </thing>
-  <thing id="manPWBBlSt" name="Broken Blade Stance" description="The disciple of the Broken Blade has learned the flows of combat to a degree and has the insight necessary to see the path to victory through the patterns of steel his opponents weave before his eyes. While in this stance, the initiator gains a competence bonus equal to his initiator level to Acrobatics checks to avoid attacks of opportunity, and may make an additional attack when making a full attack action. If the initiator is two weapon fighting, he gains this extra attack for both hands. The attack(s) uses the initiator&apos;s full base attack bonus, plus any modifiers appropriate to the situation." compset="PWManuever" summary="+IL to Acro checks to avoid AoOs, extra attack when full-attacking" uniqueness="useronce">
+  <thing id="manPWBBlSt" name="Broken Blade Stance" description="The disciple of the Broken Blade has learned the flows of combat to a degree and has the insight necessary to see the path to victory through the patterns of steel his opponents weave before his eyes. While in this stance, the initiator gains a competence bonus equal to his initiator level to Acrobatics checks to avoid attacks of opportunity, and may make an additional attack when making a full attack action. If the initiator is two weapon fighting, he gains this extra attack for both hands. The attack(s) uses the initiator&apos;s full base attack bonus, plus any modifiers appropriate to the situation." compset="PWManuever" summary="Stance: +IL to Acro checks to avoid AoOs, extra attack when full-attacking" uniqueness="useronce">
     <fieldval field="mPreReq" value="1"/>
     <usesource source="srcPathOfW"/>
     <tag group="mType" tag="Stance"/>
@@ -2810,7 +2810,7 @@ August 13, 2013 - Tim Shadow
     <tag group="mTarget" tag="You"/>
     <tag group="mDuration" tag="Instant"/>
     </thing>
-  <thing id="manPWStFl" name="Steel Flurry Strike" description="The disciple makes a furious set of attacks upon his foe, hammering through defenses and striking rapidly. The initiator may make three attacks against his foe at full base attack bonus with a -2 penalty to hit. Successful hits inflict an additional 3d6 points of damage per hit." compset="PWManuever" summary="Three attacks at -2 to hit, +3d6 damage" uniqueness="useronce">
+  <thing id="manPWStFl" name="Steel Flurry Strike" description="The disciple makes a furious set of attacks upon his foe, hammering through defenses and striking rapidly. The initiator may make three attacks against his foe at full base attack bonus with a -2 penalty to hit. Successful hits inflict an additional 3d6 points of damage per hit." compset="PWManuever" summary="Strike: Make Three attacks at -2 to hit, +3d6 damage" uniqueness="useronce">
     <fieldval field="mPreReq" value="1"/>
     <arrayval field="usrArray" index="1" value="Readied"/>
     <arrayval field="usrArray" index="0" value="Not Readied"/>
@@ -5261,7 +5261,7 @@ doneif (field[abilActive].value = 0)]]></eval>
     <tag group="PathOfWar" tag="Manuever"/>
     <tag group="AbilType" tag="Extra"/>
     </thing>
-  <thing id="manPWSnpSt" name="Snapping Strike" description="Disciples of the Iron Tortoise school learn basics of the style, and that is to keep one’s shield high and one’s weapon low. By making a quick and vicious strike, the disciple may drive home a potent blow. The initiator makes a melee attack, and if successful, this attack inflicts an additional 1d6 points of damage." compset="PWManuever" summary="Melee attack that deals +1d6 damage" uniqueness="useronce">
+  <thing id="manPWSnpSt" name="Snapping Strike" description="Disciples of the Iron Tortoise school learn basics of the style, and that is to keep one’s shield high and one’s weapon low. By making a quick and vicious strike, the disciple may drive home a potent blow. The initiator makes a melee attack, and if successful, this attack inflicts an additional 1d6 points of damage." compset="PWManuever" summary="Strike: Melee attack that deals +1d6 damage" uniqueness="useronce">
     <usesource source="srcPathOfW" parent="pDscar"/>
     <tag group="mDuration" tag="Instant"/>
     <tag group="mInitAct" tag="Standard1"/>
